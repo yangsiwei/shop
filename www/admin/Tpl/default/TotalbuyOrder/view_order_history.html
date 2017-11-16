@@ -1,0 +1,139 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/js/user.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<load href='__TMPL__Common/js/deal_order.js' />
+<script type="text/javascript">
+	function track_express(express_sn,express_id)
+	{	
+		var newTab=window.open('about:blank');
+		$.ajax({ 
+				url: "<?php echo u("DealOrder/check_delivery");?>&express_sn="+express_sn+"&express_id="+express_id, 
+				data: "ajax=1",
+				dataType: "json",
+				success: function(obj){
+					
+					if(obj.status==1)
+					{
+						newTab.location.href=obj.msg;
+					}
+					if(obj.status==0)
+					{
+						alert(obj.msg);
+					}				
+				}
+		});		
+	}
+</script>
+
+<div class="main">
+<div class="main_title"><if condition="$order_info['order_status'] eq 0">{%DEAL_ORDER_HANDLE}<else />{%DEAL_ORDER_VIEW}</if>{$order_info.order_sn}
+
+</div>
+<div class="blank5"></div>
+
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=4 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%ORDER_USER}:</td>
+		<td class="item_input">
+			{$order_info.user_id|get_user_name_js}
+		</td>
+		<td class="item_title">订单状态:</td>
+		<td class="item_input">
+			{$order_info.order_status|get_order_status=$order_info}
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%ORDER_SN}:</td>
+		<td class="item_input">{$order_info.order_sn}</td>
+		<td class="item_title">{%ORDER_CREATE_TIME}:</td>
+		<td class="item_input">{$order_info.create_time|to_date}</td>
+	</tr>	
+	
+
+	<if condition="$order_info['region_info']">
+	<tr>
+		<th colspan=4>{%ORDER_DELIVERY}</th>
+	</tr>
+
+	
+	<tr>
+		<td class="item_title">{%DELIVERY_REGION_INFO}:</td>
+		<td colspan=3>
+			{$order_info.region_info}	
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%DELIVERY_ADDRESS}:</td>
+		<td class="item_input">{$order_info.address}</td>
+		<td class="item_title">{%DELIVERY_ZIP}:</td>
+		<td class="item_input">{$order_info.zip}</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%DELIVERY_CONSIGNEE}:</td>
+		<td class="item_input">{$order_info.consignee}</td>
+		<td class="item_title">{%DELIVERY_MOBILE}:</td>
+		<td class="item_input">{$order_info.mobile}</td>
+	</tr>
+	
+	</if>
+	
+	<tr>
+		<td colspan=4 class="bottomTd"></td>
+	</tr>
+</table>
+<div class="blank5"></div>
+
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<th colspan=2>{%ORDER_DEAL_GOODS}</th>
+	</tr>
+	<tr>
+		<th>{%ORDER_DEAL_GOODS_NAME}</th>
+		<th width=150>{%NUMBER}</th
+	</tr>
+	<foreach name="order_deals" key="key" item="deal_item">
+	
+	<tr>
+		<td>{$deal_item.name}</td>
+		<td>{$deal_item.number}</td>
+		
+	</tr>
+	
+	</foreach>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>
+
+<if condition="$log_list">
+	<div class="blank5"></div>
+	<table class="form" cellpadding=0 cellspacing=0>
+		<tr>
+		<td colspan=2 class="topTd"></td>
+		</tr>
+		<tr><th colspan=2>{%ORDER_LOG}</th></tr>
+			<foreach name="log_list" item="log_item">
+			<tr>
+				<td>{$log_item.log_info}</td>
+				<td>{$log_item.log_time|to_date}</td>
+			</tr>
+			</foreach>
+		<tr>
+		<td colspan=2 class="bottomTd"></td>
+		</tr>
+	</table>
+	<div class="blank5"></div>
+</if>
+
+</div>
+<include file="Public:footer" />

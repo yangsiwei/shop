@@ -1,0 +1,135 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<load href='__TMPL__Common/js/ecvtype.js' />
+<load href='__TMPL__Common/js/jquery.js' />
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#is_all").bind("change",function(){
+		var is_all = $(this).find("input[name='is_all']").attr('checked');
+		if(is_all==true){
+			for(i=0;i<$("#use_range").find("input").length;i++){
+				$("#use_range").find("input")[i].checked=true
+			} 
+		}else{
+			for(i=0;i<$("#use_range").find("input").length;i++){
+				$("#use_range").find("input")[i].checked=false
+			}
+		}
+		   
+	});
+	$(".not_all").bind("change",function(){
+		var not_all = $(this).find("input").attr('checked');
+		if(not_all==false){
+			$("#use_range").find("input[name='is_all']").get(0).checked=false; 
+		}
+			
+	});
+});
+</script>
+<div class="main">
+<div class="main_title">拆分红包设置</div>
+<div class="blank5"></div>
+<div class="button_row">
+
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0 >
+<tr>
+		<td colspan=2 class="topTd"></td>
+</tr>
+<tr>
+	<td class="item_title">是否开启拆分红包:</td>
+	<td class="item_input">
+	<select name="is_effect">
+			<option value="0" >关闭</option>
+			<option value="1" <if condition="$conf_res['value'] eq 1">selected="selected"</if>>开启</option>
+	</select>
+	</td>
+</tr>
+<tr>
+	<td class="item_title">最小购买金额:</td>
+	<td class ="item_input"><input type="text" class="textbox" name="minchange_money" value="{$ecvtype_res.minchange_money}" />&nbsp;元
+	</td>
+</tr>
+<tr>
+	<td class="item_title">总红包的额度:</td>
+	<td class ="item_input"><input type="text" class="textbox require" name="money" value="{$ecvtype_res.money}" />&nbsp;元&nbsp;
+	<select name="sm_way">
+			<option name="equal" value="0" >等额</option>
+			<option name="interval" value="1" <if condition="$ecvtype_res['sm_way'] eq 1">selected="selected"</if>>随机</option>
+	</select>
+	</td>
+</tr>
+<tr>
+	<td class="item_title">将红包拆分为:</td>
+	<td><input type="text" class="textbox require" name="total_limit" value="{$ecvtype_res.total_limit}" />&nbsp;个 
+	</td>
+</tr>
+<tr>
+	<td class="item_title">每个用户每天能领个数:</td>
+	<td><input type="text" class="textbox" name="draw_count" value="{$ecvtype_res.draw_count}" />&nbsp;个 
+	</td>
+</tr>
+<tr>
+	<td class="item_title">订单金额满多少可以该红包用:</td>
+	<td class ="item_input"><input type="text" class="textbox" name="meet_amount" value="{$ecvtype_res.meet_amount}" />&nbsp;元
+	</td>
+</tr>
+<tr id="use_range">
+		<td class="item_title">指定使用范围:</td>
+		<td class="item_input">
+			<label id="range_value1" class="not_all"> PK区 <input type="checkbox" name="range_value1" value="1" <if condition="$ecvtype_res['domain']['range_value1'] eq 1">checked="checked"</if> /></label>
+			<label id="range_value7" class="not_all"> 一元区 <input type="checkbox" name="range_value7" value="7" <if condition="$ecvtype_res['domain']['range_value7'] eq 7">checked="checked"</if> /></label>
+			<label id="range_value2" class="not_all"> 十元区 <input type="checkbox" name="range_value2" value="2" <if condition="$ecvtype_res['domain']['range_value2'] eq 2">checked="checked"</if> /></label>
+			<label id="range_value3" class="not_all"> 百元区 <input type="checkbox" name="range_value3" value="3" <if condition="$ecvtype_res['domain']['range_value3'] eq 3">checked="checked"</if> /></label>
+			<label id="range_value4" class="not_all"> 直购区 <input type="checkbox" name="range_value4" value="4" <if condition="$ecvtype_res['domain']['range_value4'] eq 4">checked="checked"</if> /></label>
+			<label id="range_value5" class="not_all"> 极速区 <input type="checkbox" name="range_value5" value="5" <if condition="$ecvtype_res['domain']['range_value5'] eq 5">checked="checked"</if> /></label>
+			<label id="range_value6" class="not_all"> 选号区 <input type="checkbox" name="range_value6" value="6" <if condition="$ecvtype_res['domain']['range_value6'] eq 6">checked="checked"</if> /></label>
+			<label id="is_all"> 全部 <input type="checkbox" name="is_all" value="1" <if condition="$ecvtype_res['is_all'] eq 1">checked="checked"</if> /></label>
+		</td>
+	</tr>
+<tr>
+		<td class="item_title">{%VOUCHER_BEGIN_TIME}:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="begin_time" id="begin_time" value="{$ecvtype_res.begin_time|to_date}" onfocus="this.blur(); return showCalendar('begin_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_begin_time');" />
+			<input type="button" class="button" id="btn_begin_time" value="{%SELECT_TIME}" onclick="return showCalendar('begin_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_begin_time');" />	
+			<input type="button" class="button" value="{%CLEAR_TIME}" onclick="$('#begin_time').val('');" />				
+			<span class="tip_span">{%VOUCHER_BEGIN_TIME_TIP}</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%VOUCHER_END_TIME}:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="end_time" id="end_time" value="{$ecvtype_res.end_time|to_date}" onfocus="this.blur(); return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');" />
+			<input type="button" class="button" id="btn_end_time" value="{%SELECT_TIME}" onclick="return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');" />	
+			<input type="button" class="button" value="{%CLEAR_TIME}" onclick="$('#end_time').val('');" />
+			<span class="tip_span">{%VOUCHER_END_TIME_TIP}</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="id" value="{$vo.id}" />
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="RedSet" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="update" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+
+
+<div class="blank5"></div>
+</table>
+</form>
+</div>
+</div>
+<include file="Public:footer" />

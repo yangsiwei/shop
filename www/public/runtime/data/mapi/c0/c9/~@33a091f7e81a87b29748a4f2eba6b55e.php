@@ -1,0 +1,3 @@
+<?php
+//000000000300a:3:{i:0;a:6:{s:2:"id";s:2:"32";s:4:"name";s:7:"banner3";s:3:"img";s:70:"http://www.gagoods.cn/public/attachment/201711/13/11/5a09164582df1.jpg";s:4:"type";s:2:"15";s:4:"data";a:1:{s:0:"";N;}s:3:"ctl";s:5:"prize";}i:1;a:6:{s:2:"id";s:2:"31";s:4:"name";s:7:"banner2";s:3:"img";s:70:"http://www.gagoods.cn/public/attachment/201709/22/10/59c47a0ca1125.jpg";s:4:"type";s:1:"6";s:4:"data";a:1:{s:7:"data_id";s:2:"70";}s:3:"ctl";s:10:"helps#show";}i:2;a:6:{s:2:"id";s:2:"30";s:4:"name";s:7:"banner1";s:3:"img";s:70:"http://www.gagoods.cn/public/attachment/201605/25/12/574526b26c8b3.jpg";s:4:"type";s:1:"1";s:4:"data";a:1:{s:0:"";N;}s:3:"ctl";s:4:"cate";}}
+?>

@@ -1,0 +1,290 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_exchange.js";
+
+?>
+{include file="inc/header.html"}
+
+<script type="text/javascript">
+var ALLOW_EXCHANGE = 0;
+{if $ACTION_NAME eq 'exchange'}
+	ALLOW_EXCHANGE = '{$allow_exchange}';
+	var EXCHANGE_JSON_DATA = {$exchange_json_data};
+{/if}
+</script>
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav f_l ">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<ul class="web-map clearfix">
+			<li>当前位置：</li>
+			<li><a href="{url x="index" r="uc_center"}">个人中心</a> ></li>
+			<li class="txt-red">我的资产</li>
+		</ul>
+		<div class="main_box uc_info_box">
+			<!--<div class="info_nav" >-->
+				<!--<ul class="clearfix">-->
+					<!--<li {if $ACTION_NAME eq 'money'}class="cur"{/if}><a href="{url r="index" b="uc_log#money" }">我的资金</a></li>-->
+					<!--<li {if $ACTION_NAME eq 'score'} class="cur"{/if}><a href="{url r="index" b="uc_log#score" }">我的积分</a></li>-->
+					<!--{if $allow_exchange}<li {if $ACTION_NAME eq 'exchange'} class="cur"{/if}><a href="{url r="index" b="uc_log#exchange" }">uc兑换</a></li>{/if}-->
+				<!--</ul>-->
+			<!--</div>-->
+			<!-- 资产 -->
+			{if $ACTION_NAME eq 'money'}
+			<!-- 资产标题 -->
+			<div class="info_box">
+				<div class="blank20"></div>
+				<h3>我的资产信息</h3>
+				<div class="blank10"></div>
+				<div class="bg_box growth_content">
+					
+					<div class="info_items">
+						<ul>
+							<li><label>我当前的余额是：</label><span class="main_color">{$user_info.money}夺宝币</span></li>
+							<li><label> 可用的赠送金额：</label><span class="main_color">{$user_info.can_use_give_money}夺宝币</span></li>
+							<li><label> 我的赠送总金额：</label><span class="main_color">{$user_info.give_money}夺宝币</span></li>
+                            {if $user_info.dealers eq 2}
+							<li><label>我当前的推广奖：</label><span class="main_color">{$user_info.fx_money}夺宝币</span></li>
+                            {/if}
+                            {if $user_info.fx_level gt 3}
+							<li><label> 我当前的管理奖：</label><span class="main_color">{$user_info.admin_money}夺宝币</span></li>
+                            {/if}
+							<li><label>	充值到{function name="app_conf" v="SHOP_TITLE"}帐户，方便抢购！：</label><span><a class="main_color" href="{url r="index" b="uc_money#incharge"}" target="_blank">[会员充值]</a></span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 资产内容 -->
+			<div class="blank20"></div>
+			<div class="info_box">
+				<h3>我的资产记录</h3>
+				<div class="blank10"></div>
+				<div class="info_table">
+					<table>
+						<tbody>
+							<tr>
+								<th width="120">时间</th>
+								<th width="700">详情</th>
+								<th width="176">金额</th>
+							</tr>
+							{foreach from=$data.list item=row}
+							<tr class="alt">
+                                <td>{$row.flog_time}</td>
+                                <td class="detail">{$row.log_info}</td>
+                                <td class="value increase" ><span class="growth">&yen;{if $row.money gt 0}{/if}{function name="round" v=$row.money v2="2"}</span></td>
+                            </tr>
+                            {/foreach}
+                            
+                            <tr >
+                            	{if $data.count gt 0}
+                                <td colspan="3"><div class="pages">{$pages}</div></td>
+                                {else}
+                                <td colspan="3"><span>暂时没有成资金日志</span></td>
+                                {/if}
+
+                            </tr>
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+			
+			{/if}
+			
+			<!--经验-->
+			{if $ACTION_NAME eq 'point'} 
+			<div class="info_box">
+				<div class="blank20"></div>
+				<h3>我的成长信息</h3>
+				<div class="blank10"></div>
+				<div class="bg_box growth_content">
+					
+					<div class="info_items">
+						<ul>
+							<li><label>我当前的等级是：</label><span class="level_bg level_{$uc_query_data.cur_level}" title="{$uc_query_data.cur_level_name}"></span></li>
+							<li><label>我当前的经验值是：</label><span class="main_color">{$uc_query_data.cur_point}</span></li>
+							{if $uc_query_data.next_level gt 0}
+								<li><label>我再增加：</label><span><em class="main_color">{$uc_query_data.next_point}</em> 经验值，就可以升级为：<em class="lv_name">{$uc_query_data.next_level_name}</em></span></li>
+							{/if}
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="blank20"></div>
+			<div class="info_box">
+				<h3>我的成长记录</h3>
+				<div class="blank10"></div>
+				<div class="info_table">
+					<table>
+						<tbody>
+							<tr>
+								<th width="120">时间</th>
+								<th width="auto">详情</th>
+								<th width="70">经验值</th>
+							</tr>
+							{foreach from=$data.list item=row}
+							<tr class="alt">
+                                <td>{$row.flog_time}</td>
+                                <td class="detail">{$row.log_info}</td>
+                                <td class="value increase" ><span class="growth">{if $row.point gt 0}+{/if}{$row.point}</span></td>
+                            </tr>
+                            {/foreach}
+                            
+                            <tr >
+                            	{if $data.count gt 0}
+                                <td colspan="3"><div class="pages">{$pages}</div></td>
+                                {else}
+                                <td colspan="3"><span>暂时没有成长记录，^_^ 去发发文章或者图片，累计经验你就成长了~</span></td>
+                                {/if}
+
+                            </tr>
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+			{/if}
+			
+			
+			<!--积分-->
+			{if $ACTION_NAME eq 'score'} 
+			<div class="info_box">
+				<div class="blank20"></div>
+					<h3>我的积分信息</h3>
+				<div class="blank10"></div>
+				<div class="bg_box ">
+					<div class="info_items">
+						<ul>
+							<li><label>我当前的积分是：</label><span class="main_color">{$uc_query_data.cur_score}</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="blank20"></div>
+			<div class="info_box">
+				<h3>我的积分记录</h3>
+				<div class="blank10"></div>
+				<div class="info_table">
+					<table>
+						<tbody>
+							<tr>
+								<th width="120">时间</th>
+								<th width="auto">详情</th>
+								<th width="70">积分值</th>
+							</tr>
+							{foreach from=$data.list item=row}
+							<tr class="alt">
+                                <td>{$row.flog_time}</td>
+                                <td class="detail">{$row.log_info}</td>
+                                <td class="value increase" ><span class="growth">{if $row.score gt 0}+{/if}{$row.score}</span></td>
+                            </tr>
+                            {/foreach}
+                            <tr >
+                            	{if $data.count gt 0}
+                                <td colspan="3"><div class="pages">{$pages}</div></td>
+                                {else}
+                                <td colspan="3"><span>暂时没有积分记录，^_^ </span></td>
+                                {/if}
+                            </tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			{/if}
+			
+			
+			<!-- 兑换 -->
+			{if $ACTION_NAME eq 'exchange' && $allow_exchange}
+			<!-- 资产标题 -->
+			<div class="info_box">
+				<div class="blank20"></div>
+				<h3>我的资产预览</h3>
+				<div class="blank10"></div>
+				<div class="bg_box growth_content">
+					
+					<div class="info_items">
+						<ul>
+							<li><label>我当前的余额是：</label><span class="main_color">{function name="format_price" v=$user_info.money}</span></li>
+							<li><label>我累计的积分是：</label><span class="main_color">{$user_info.score}</span></li>
+							<li><label>我当前的经验是：</label><span class="main_color">{$user_info.point}</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 资产内容 -->
+			<div class="blank20"></div>
+			<div class="info_box">
+				<h3>我的兑换操作</h3>
+				<div class="blank10"></div>
+				<div class="info_table cnt_tf_left">
+					<table>
+						<tbody>
+							<tr>
+								<th width="80">兑换数量</th>
+								<th width="auto">详情</th>
+								<th width="150">消耗</th>
+							</tr>
+							<tr class="alt">
+                                <td>
+                                	<input type="text" class="ui-textbox field_text" name="amountdesc" id="amountdesc" size="4"  />
+                                </td>
+                                <td class="detail">
+                                		<div class="field_select w430">
+			                                <select name="key" id="key" class="ui-select ">
+												{foreach from=$exchange_data key=key item=exchange_desc}
+												<option value="{$key}" rel="{$exchange_desc.title}">{$exchange_desc.title}({$exchange_desc.ratiodesc} {$exchange_desc.title}:{$exchange_desc.ratiosrc} {$exchange_desc.srctitle})</option>
+												{/foreach}
+											</select>
+										</div>
+                                </td>
+                                <td class="value increase" >
+                                	<input type="text" class="ui-textbox field_text" name="amountsrc" id="amountsrc"   size="4" readonly="true" />
+                                	<span id="titlesrc"></span>
+                                </td>
+                            </tr>
+							<tr >
+                                <td colspan="3">
+	                                <span>登录密码：&nbsp;&nbsp;</span>
+									<input type="password" name="user_pwd" id="user_pwd" class="ui-textbox field_text" />
+								</td>
+                            </tr>
+                            <tr >
+                                <td colspan="3">
+                                <button id="doexchange" rel="orange" type="button" class="formbutton ui-button">兑换</button>
+                                </td>
+                            </tr>
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+			
+			{/if}
+		</div>
+	</div>	
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

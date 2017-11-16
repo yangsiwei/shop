@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>百度--您的访问出错了</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <style type="text/css">
+    /*重置样式*/
+    
+    body,
+    html,
+    div,
+    blockquote,
+    img,
+    label,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    pre,
+    ul,
+    ol,
+    li,
+    dl,
+    dt,
+    dd,
+    form,
+    a,
+    fieldset,
+    input,
+    th,
+    td {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: none;
+    }
+    
+    body {
+        line-height: 1;
+        font-size: 88%/* Decide for yourself if you want to include this. */
+        ;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: 100%;
+        padding: .6em 0;
+        margin: 0 15px;
+    }
+    
+    ul,
+    ol {
+        list-style: none;
+    }
+    
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+    
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+        text-decoration: none;
+    }
+    </style>
+    <style type="text/css">
+    body {
+        min-width: 880px;
+    }
+    /*顶部样式开始*/
+    
+    .error-header {
+        width: 100%;
+        height: 55px;
+        border-bottom: 1px solid #ebebeb;
+    }
+    /*logo*/
+    
+    .error-logo {
+        display: inline-block;
+        width: 101px;
+        height: 33px;
+        margin: 10px 0 0 28px;
+        float: left;
+    }
+    /*搜索框*/
+    
+    .error-search {
+        display: inline-block;
+        float: left;
+        margin: 10px 0 0 10px;
+    }
+    
+    .error-search-word {
+        display: inline-block;
+        margin: 0;
+        padding-left: 7px;
+        width: 540px;
+        height: 34px;
+        border: 1px solid #b8b8b8;
+        border-right: 0;
+        float: left;
+        font-size: 16px;
+        line-height: 34px;
+    }
+    
+    .error-search-submit {
+        border: 1px solid #2f83ff;
+        width: 100px;
+        height: 34px;
+        margin: 0;
+        float: left;
+    }
+    
+    .error-search-submit button {
+        display: inline-block;
+        width: 100px;
+        height: 34px;
+        border: none;
+        background: #2f83ff;
+        font-size: 16px;
+        color: #fff;
+        cursor: pointer;
+    }
+    /*到首页*/
+    
+    .error-index {
+        float: right;
+        font-size: 13px;
+        color: #333;
+        margin: 20px 10px 0 0;
+        text-decoration: underline;
+    }
+    /*顶部样式结束*/
+    /*主体样式开始*/
+    
+    .error-main {
+        margin: 145px auto 0 auto;
+        position: relative;
+        font-family: "Microsoft YaHei", sans-serif;
+        width: 900px;
+    }
+    /*提示动图*/
+    
+    .error-appease {
+        position: absolute;
+        top: 60px;
+        left: 0;
+    }
+    /*提示文案*/
+    
+    .error-notify {
+        position: absolute;
+        top: 0;
+        left: 390px;
+    }
+    
+    .error-notify-404 {
+        font-size: 100px;
+        font-weight: 700;
+        color: #9dc4ff;
+    }
+    
+    .error-a-18 {
+        font-size: 18px;
+        color: #00c;
+        text-decoration: none;
+        margin-bottom: 10px;
+        display: inline-block;
+    }
+    
+    .error-a-14 {
+        font-size: 14px;
+        color: #00c;
+        text-decoration: none;
+    }
+    
+    .error-a {
+        color: #00c;
+        text-decoration: underline;
+    }
+    
+    .error-notify-tips {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 28px;
+    }
+    
+    .error-notify-text {
+        font-size: 14px;
+        color: #999;
+        margin-bottom: 28px;
+        line-height: 1.5;
+    }
+    
+    .error-notify-text-first {
+        font-size: 14px;
+        color: #999;
+        margin-bottom: 15px;
+    }
+    
+    .error-em {
+        color: #000;
+    }
+    /*主体样式结束*/
+    </style>
+</head>
+
+<body>
+    <!--顶部开始-->
+    <div class="error-header">
+        <!--logo-->
+        <a href="http://image.baidu.com/" target="_blank">
+            <img class="error-logo" src="../img/image/imglogo-r.png" width="202" height="66">
+        </a>
+        <!--搜索框-->
+        <form class="error-search" action="/search/index" onsubmit="return f_submit(this,true)">
+            <label for="tn"></label>
+            <input type="hidden" id="tn" name="tn" value="baiduimage">
+            <label for="fm"></label>
+            <input type="hidden" id="fm" name="fm" value="result">
+            <label for="ie"></label>
+            <input type="hidden" id="ie" name="ie" value="utf-8">
+            <label for="word"></label>
+            <input class="error-search-word" type="text" id="word" name="word" value="">
+            <span class="error-search-submit">
+                    <button type="submit">百度一下</button>
+                </span>
+        </form>
+        <!--到首页-->
+        <a class="error-index" href="https://www.baidu.com/" target="_blank">百度首页</a>
+    </div>
+    <!--顶部结束-->
+    <!--主体开始-->
+    <div class="error-main">
+        <!--提示动图-->
+        <div class="error-appease">
+            <img src="../img/error/error_appease.gif" width="340" height="270">
+        </div>
+        <!--提示文案-->
+        <div class="error-notify">
+            <span class="error-notify-404">404</span>
+            <a class="error-a-18" href="http://image.baidu.com/" target="_blank">返回图片首页</a>
+            <p class="error-notify-tips">您查找的图片找不到了！</p>
+            <p class="error-notify-text-first">可能由于</p>
+            <p class="error-notify-text">
+                <span class="error-em">网址有错误：</span>您可以按照如下标准进行检查：链接是否完整，是否存在多余字符；
+                <br>
+                <span class="error-em">网址已失效：</span>可能页面被删除或下线；
+                <br>
+                <span class="error-em">如有任何问题，请及时<a class="error-a-14" href="http://help.baidu.com/add?prod_id=6#2"
+                    target="_blank">向我们反馈</a></span>。
+            </p>
+            <p class="error-notify-text-first">您还可以</p>
+            <p class="error-notify-text">
+                在顶部搜索栏<span class="error-em">重新搜索</span>；
+                <br> 或者看看这些有意思的分类
+                <a class="error-a" href="http://image.baidu.com/search/index?tn=baiduimage&fm=result&ie=utf-8&word=%E7%BE%8E%E5%A5%B3" target="_blank">美女</a>
+                <a class="error-a" href="http://image.baidu.com/search/index?tn=baiduimage&fm=result&ie=utf-8&word=%E5%AE%A0%E7%89%A9" target="_blank">宠物</a>
+                <a class="error-a" href="http://image.baidu.com/search/index?tn=baiduimage&fm=result&ie=utf-8&word=%E9%A3%8E%E6%99%AF" target="_blank">风景</a>
+                <a class="error-a" href="http://image.baidu.com/search/index?tn=baiduimage&fm=result&ie=utf-8&word=%E8%89%BA%E6%9C%AF" target="_blank">艺术</a>，欣赏这个多彩的世界吧。
+            </p>
+        </div>
+    </div>
+    <!--主体结束-->
+    <script type="text/javascript">
+    window.fSubmit = function (form) {
+        // 当检索词是图片时，跳转到识图
+        var keyword = form.word.value;
+        var tiaoma = /^http[s]*\:\/\/[\s\S]*\.[jpg|gif|png|bmp|jpeg]*$/.test(keyword)
+        || /img5\.imgtn\.bdimg\.com/.test(keyword)
+        || /mt1\.baidu\.com\/timg/.test(keyword);
+        var jumpURL = '/n/pc_search?queryImageUrl=' + encodeURIComponent(keyword)
+        + '&fm=searchresult&pos=urlsearch&uptype=urlsearch';
+        if (tiaoma) {
+            location.href = jumpURL;
+            return false;
+        }
+    };
+    </script>
+</body>
+
+</html>
+<!--07693686811031483914011622-->
+<script> var _trace_page_logid = 0769368681; </script>

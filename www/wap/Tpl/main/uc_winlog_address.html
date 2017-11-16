@@ -1,0 +1,58 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_winlog_address.css";	
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_address.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/uc_address.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_winlog_address.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/uc_winlog_address.js";
+
+?>
+{include file="inc/header_title_home.html"}
+<script type="text/javascript">
+var main_url='{url r="index" x="uc_winlog"}';
+var next_url='{url r="index" x="uc_winlog"}';
+</script>
+<div class="wrap">
+	<div class="content">
+		<div class="add"><a href="{url a="index" r="uc_address#add" p="order_item_id=$order_item_id"}" class="add_address" >新增地址</a>
+		</div>
+	 	<ul class="address_list">
+	 		{foreach from=$data.consignee_list item=item}
+	 		<li class="split-line address-item {if $item.is_default eq 1}address-item-checked{/if}" onclick="confirm_address(this,{$item.id},{$order_item_id})">
+	 			<div class="address-item-hd clearfix">
+		 			<p class="user-name">收货人：{$item.consignee}</p>
+		 			<p class="mobile">{$item.mobile}</p>
+	 			</div>
+	 			<p class="address-info">收货地址：{$item.region_lv2_name} {$item.region_lv3_name} {$item.region_lv4_name} {$item.address}</p>
+	 			<i class="checked-ico iconfont">&#xe70a;</i>
+	 		</li>
+	 		{/foreach}
+	 	</ul>
+	</div>
+</div>
+<script>
+	$(function(){
+		$(".address-item").click(function() {
+			$(".address-item").removeClass('address-item-checked');
+			$(this).addClass('address-item-checked');
+		});
+	});
+</script>
+{include file="inc/footer_index.html"}

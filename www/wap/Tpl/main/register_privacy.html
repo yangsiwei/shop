@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Mobile Devices Support @begin -->
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="false" name="twcClient" id="twcClient">
+    <meta name="wap-font-scale" content="no">
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="0" http-equiv="expires">
+    <!--允许全屏模式-->
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <!--指定sari的样式-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta content="telephone=no" name="format-detection" />
+    <!-- Mobile Devices Support @end -->
+    <title>隐私条款</title>
+    <script type="text/javascript">
+        var APP_ROOT = '';
+        var LOADER_IMG = 'http://www.aliduobaodao.com/wap/Tpl/main/images/loader_img.gif';
+        var LOADING_IMG = 'http://www.aliduobaodao.com/wap/Tpl/main/images/loading.gif';
+        var AJAX_URL = '/wap/index.php?ctl=ajax&show_prog=1';
+        var PAGE_TYPE = '';
+        var DOMAIN_URL = '/wap/index.php?show_prog=1';
+    </script>
+    <link rel="stylesheet" type="text/css" href="http://www.aliduobaodao.com/public/css/read.css" />
+    <script type="text/javascript" src="http://www.aliduobaodao.com/public/js/read.js"></script>
+    <script>
+        $(function(){
+
+            //后退
+            $('#header_back_btn').click(function(){
+                var Expression=/http(s)?:\/\/?/;
+                var objExp=new RegExp(Expression);
+                var backurl = $(this).attr('backurl');
+                $(this).attr('backurl','-1');
+
+                if(objExp.test(backurl)==true){
+                    location.href = backurl;
+                }else{
+                    window.history.go(-1);
+                }
+            });
+            function share_compleate(share_key){
+                $.showSuccess("分享成功");
+            }
+            var share_data={};
+            var share_title=$(".good-countdown > p").html();
+            var share_imageUrl=$(".content").find("img").attr("src")
+            share_data["share_content"]=window.location.href;
+            share_data["share_url"]=window.location.href;
+            share_data["key"]='';
+            share_data['sina_app_api']=1;
+            share_data['qq_app_api']=1;
+            share_data["share_imageUrl"]=share_imageUrl?share_imageUrl:"/yydb/wap/Tpl/main/images/default_logo.png";
+            share_data['share_title'] = share_title?share_title:"快快加入一夺宝币夺宝";
+            share_data=JSON.stringify(share_data);
+            $("#fenxiang").click(function(){
+                try{
+                    App.sdk_share(share_data);
+                }catch(e){
+                    $.showErr(e);
+                }
+            });
+        });
+    </script>
+    <div class="header">
+        <div class="header-wrap">
+            <div class="c-hd split-line">
+                <section class="cut_city">
+                    <a class="flex-box split-line" href="/wap/index.php?ctl=user&act=register&show_prog=1"><i class="iconfont">&#xe701;</i></a>
+                </section>
+                <section class="logo_img">隐私条款</section>
+
+                <div class="hd-drop-mask"></div>
+                <ul class="hd-drop">
+
+                    <li>
+                        <a class="flex-box split-line" href="/wap/index.php?ctl=user&act=register&show_prog=1">
+                            <i class="iconfont">&#xe6ee;</i>
+                            <p>返回注册</p>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#hd-drop").bind('click', function() {
+            $(".hd-drop").toggleClass('active');
+            $(".hd-drop-mask").toggleClass('active');
+        });
+        $(".hd-drop-mask").bind('click', function() {
+            $(".hd-drop").removeClass('active');
+            $(".hd-drop-mask").removeClass('active');
+        });
+    </script>
+
+
+    <div class="wrap">
+        <div class="notice">
+            <h2>隐私条款</h2>
+            <span class="notice_date"></span>
+            <div>
+                <p>用户须知:</p>
+                <p class="MsoNormal"><span style="font-family:arial;">以下是本网站（www.aliduobaodao.com）及其运营公司武汉普惠宝文化发展有限公司（以下合称“本网站”）的隐私规则条款。您成为本网站用户前务必仔细阅读本隐私条款并同意本隐私条款。作为本网站服务的正常操作程序的一部分，本网站收集、使用并（在一些情况下）向第三方披露有关您的资料。本隐私条款作为本网站服务协议的附件，在您注册成为本网站用户后立即生效，并对您及本网站产生约束力。  </span></p>
+                <p class="MsoNormal"><span style="font-family:arial;">用户身份限制：</span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">1</span><span style="font-family:arial;">、未成年人（年龄18周岁以下人士）、限制行为能力人、中国（包括港澳台地区）以外地区人士及自然人以外的组织无资格注册成为本网站用户并使用本网站的服务，本网站要求未成年人、限制行为能力人、中国（包括港澳台地区）以外地区人士及各类组织不要向本网站提交任何个人资料。  </span></p>
+                <p class="MsoNormal"><span style="font-family:arial;">涉及第三方网站：</span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">1</span>、本网站的网站内容可能涉及由第三方所有、控制或者运营的其他网站的内容或链接（以下称“第三方网站”）。本网站不能保证也没有义务保证第三方网站上的信息的真实性和有效性。对于该等内容或链接，您确认按照第三方网站的使用协议确定相关权利义务，而不是按照本协议。第三方网站的内容、产品、广告和其他任何信息均由您自行判断并承担风险，而与本网站无关。 <span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span style="font-family:arial;">涉及的个人资料：</span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">1</span><span style="font-family:arial;">、本网站收集个人资料的主要目的在于向您提供一个顺利、有效和度身订造的交易经历。本网站仅收集本网站认为就此目的及达成该目的所必须的关于您的个人资料。</span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">2</span><span style="font-family:arial;">、本网站可能自公开及私人资料来源收集您的额外资料，以更好地了解本网站用户，并为其度身订造本网站服务、解决争议并有助确保在网站进行交易的安全性。 </span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">3</span><span style="font-family:arial;">、本网站按照您在本网站网址上的行为自动追踪关于您的某些资料。本网站利用这些资料进行有关本网站之用户的人口统计、兴趣及行为的内部研究，以更好地了解您以便向您和本网站的用户社区提供更好的服务。</span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">4</span><span style="font-family:arial;">、本网站在本网站的某些网页上使用诸如“Cookies”的资料收集装置。“Cookies”是设置在您的硬盘上的小档案，以协助本网站为您提供度身订造的服务。本网站亦提供某些只能通过使用“Cookies”才可得到的功能。本网站还利用“Cookies”使您能够在某段期间内减少输入密码的次数。“Cookies”还可以协助本网站提供专门针对您的兴趣而提供的资料。 5、如果您将个人通讯信息（例如：手机短信、电邮或信件）交付给本网站，或如果其他用户或第三方向本网站发出关于您在本网站上的活动或登录事项的通讯信息，本网站可以将这些资料收集在您的专门档案中。</span><span lang="EN-US"><o :p=""></o></span></p>
+
+
+
+                <p class="MsoNormal"><span style="font-family:arial;"> 本网站对您的资料的使用：</span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">1</span><span style="font-family:arial;">、本网站在本网站的某些网页上使用诸如“Cookies”的资料收集装置。“Cookies”是设置在您的硬盘上的小档案，以协助本网站为您提供度身订造的服务。本网站亦提供某些只能通过使用“Cookies”才可得到的功能。本网站还利用“Cookies”使您能够在某段期间内减少输入密码的次数。“Cookies”还可以协助本网站提供专门针对您的兴趣而提供的资料。 5、如果您将个人通讯信息（例如：手机短信、电邮或信件）交付给本网站，或如果其他用户或第三方向本网站发出关于您在本网站上的活动或登录事项的通讯信息，本网站可以将这些资料收集在您的专门档案中。</span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">2</span><span style="font-family:arial;">、您同意本网站可以使用您的个人资料以改进本网站的推广和促销工作、分析网站的使用率、改善本网站的内容和产品推广形式，并使本网站的网站内容、设计和服务更能符合用户的要求。这些使用能改善本网站的网页，以调整本网站的网页使其更能符合您的需求，从而使您在使用本网站服务时得到更为顺利、有效、安全及度身订造的交易体验。 </span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">3</span><span style="font-family:arial;">、您同意本网站利用您的资料与您联络并（在某些情况下）向您传递针对您的兴趣而提供的信息，例如：有针对性的广告条、行政管理方面的通知、产品提供以及有关您使用本网站的通讯。您接受服务协议和隐私条款即为明示同意收取这些资料。  </span><span lang="EN-US"><o :p=""></o></span></p>
+
+                <p class="MsoNormal"><span style="font-family:arial;">本网站对您的资料的修改或删除：</span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">1</span><span style="font-family:arial;">、您可以授权本网站帮助您修改您在本网站填写的一切个人资料。如您违反服务协议等本网站规则或法律规定，本网站有权经电子邮件告知后在网站数据库中删除您的个人资料、关闭账户或者限制您使用本网站。 </span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">2</span><span style="font-family:arial;">、网站有权根据实际审核结果在不通知您的情况下对您所填写的与事实不符的资料进行修正或更改。  </span><span lang="EN-US"><o :p=""></o></span></p>
+
+                <p class="MsoNormal"><span style="font-family:arial;">本网站对您的资料的披露：</span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">1</span>、本网站采用行业标准惯例以保护您的个人资料，但鉴于技术限制，本网站不能确保您的全部私人通讯及其他个人资料不会通过本隐私条款中未列明的途径泄露出去，对此本网站不承担任何责任。 <span style="font-family:arial;"></span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">2</span>、本网站有权根据有关法律和监管要求，本网站风险控制要求以及相关协议要求向司法机关等政府部门、社会组织或团体、其他第三方服务或合作机构提供您的个人资料。在您未能按照与本网站签订的服务协议、居间协议或者与本网站企业用户签订的借款（担保）协议的约定履行自己应尽的义务时，本网站有权根据自己的判断或者与该笔交易有关的其他用户的请求披露您的个人资料，并作出评论。  <span style="font-family:arial;"></span><span lang="EN-US"><o :p=""></o></span></p>
+
+                <p class="MsoNormal"><span style="font-family:arial;">您对其他用户的资料的使用：</span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;"></span><span style="font-family:arial;">在本网站提供的交易活动中，您无权要求本网站提供其他用户的个人资料，除非符合以下条件：</span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">1</span>、您已向法院起诉其他用户的在本网站活动中的违约行为。  <span style="font-family:arial;"></span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">2</span>、本网站被吊销营业执照、解散、清算、宣告破产或者其他有碍于您收回借款本息的情形。 <span style="font-family:arial;"></span><span lang="EN-US"><o :p=""></o></span></p>
+
+                <p class="MsoNormal"><span style="font-family:arial;">电子邮件：</span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">1</span><span style="font-family:arial;">、您不得使用本网站提供的服务或其他电子邮件转发服务发送垃圾邮件或其他可能影响本网站系统运行或违反本网站的用户协议或隐私条款的内容。 </span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">2</span><span style="font-family:arial;">、如果您利用本网站的服务向没有在本网站内注册的电子邮件地址发出电子邮件,本网站除了利用该电子邮件地址发出您的电子邮件之外将不作任何其他用途。本网站不会出租或出售这些电子邮件地址。本网站不会永久储存电子邮件信息或电子邮件地址。</span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span style="font-family:arial;">密码的安全性：</span><span lang="EN-US"><o :p=""></o></span></p>
+
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">(1)</span><span style="font-family:arial;">、您须对使用您的用户名和密码所采取的一切行为负责。因此，本网站建议您不要向任何第三方披露您在本网站的用户名和密码。 </span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span style="font-family:arial;">规则修改：</span><span lang="EN-US"><o :p=""></o></span></p>
+                <p class="MsoNormal"><span lang="EN-US" style="font-family:arial;">1</span><span style="font-family:arial;">、本网站可能不时按照您的意见和本网站的需要修改本隐私条款，以准确地反映本网站的资料收集及披露惯例。本条款的所有修改，在本网站公布有关修改内容后自动生效或在该等条款指定的日期生效。（以下合称“本网站”）的隐私规则条款。 </span><span lang="EN-US"><o :p=""></o></span></p>
+            </div>
+
+        </div>
+        </body>
+        <html>

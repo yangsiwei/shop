@@ -1,0 +1,182 @@
+{if $ajax_refresh==0}
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pull_refresh.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_duobao_record.css";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/lib/touche.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pk_index.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pk_index.js";
+?>
+{include file="inc/header_pk.html"}
+<script>
+var is_pk_index = 1;
+</script>
+
+<div style="z-index:10;" class="slider-nav split-line">
+    <ul>
+        <li class="nav-item"><a href="{url x="index" r="pk#index" p="log_type=3"}" {if $log_type eq 3}class="cur"{/if}>全部</a></li>
+        <li class="nav-item"><a href="{url x="index" r="pk#index" p="log_type=1"}" {if $log_type eq 1}class="cur"{/if}>进行中</a></li>
+        <li class="nav-item"><a href="{url x="index" r="pk#index" p="log_type=2"}"  {if $log_type eq 2}class="cur"{/if}>已揭晓</a></li>
+    </ul>
+</div>
+{/if}
+
+<div class="loading_container" id="loading_container">
+    {if $list}
+    <div class="m-content">
+        <ul class="scroll_bottom_list">
+            {foreach from=$list item=item}
+            <li class="dblist {if $item.success_time eq 0}inprogress{else}finish{/if}">
+                <div class="dblistimg">
+                    {if $item.unit_price==10}
+                    <div class="tenyen"></div>
+                    {elseif $item.unit_price==100}
+                    <div class="hundredyen"></div>
+                    {/if}
+                    <a  href="{url x="index" r="duobao" p="data_id=$item.id"}"><img alt="" src="{$item.icon}"/></a>
+                </div>
+                <div class="dblistmain">
+                    <a class="title " href="{url x="index" r="duobao" p="data_id=$item.id"}">{if $item.has_password}<em style="background-color:#ff2300;padding: 3px 5px;color: #fff;font-size: 12px;">密</em>{/if}{$item.name}</a>
+                    <div class="prl">
+                        <div class="lable">期号&nbsp;:&nbsp;{$item.id}</div>
+                        <div class="progressBar">
+                            <span class="bar" style="width:{$item.progress}%"><i class="color"></i></span>
+                        </div>
+                        <div class="lable fl">剩余&nbsp;:&nbsp;<em>{$item.less}</em></div>
+                        <div class="lable fl surplus">每人&nbsp;:&nbsp;<em>{$item.min_buy}</em></div>
+                        {if $item.my_has_buy_number}
+                        <a class="tacked" href="{url x="index" r="pk#show_pkgoods_status" p="data_id=$item.id"}">查看详情</a>
+                        {elseif $item.has_password}
+                        <a class="tacked pk-now" href="javascript:void(0);" url="{url x="index" r="pk#check_password" p="data_id=$item.id"}">参与PK</a>
+                        {else}
+                        <a class="tacked submit" href="javascript:void(0);" url="{url x="index" r="pk#check_password" p="data_id=$item.id"}">参与PK</a>
+                        {/if}
+                    </div>
+                    <div class="prl">
+                        <div class="partake fl">本期参与&nbsp;:&nbsp;<em>{$item.number}</em>人次</div>
+                        <!--<a class="lookno fr" href="{url x="index" r="uc_duobao_record#my_no" p="id=$item.id"}">查看我的号码</a>-->
+                    </div>
+                    {if $item.has_lottery eq 1}
+                    <div class="announce">
+                        <div class="mline">获得者&nbsp;:&nbsp;<span><a href="{url x="index" r="anno_user_center" p="lucky_user_id=$item.luck_user_id"}">{$item.luck_user_name}</a></span></div>
+                        <div claurlss="mline">本期参与&nbsp;:&nbsp;<em>{$item.luck_user_total}</em>人次</div>
+                        <div class="mline">幸运号码&nbsp;:&nbsp;<em>{$item.lottery_sn}</em> </div>
+                        <div class="mline">揭晓时间&nbsp;:&nbsp;{$item.lottery_time}</div>
+                    </div>
+                    {else}
+                    <div class="announce">
+                        <div class="mline">等待开奖</div>
+                    </div>
+                    {/if}
+                </div>
+            </li>
+
+            {/foreach}
+        </ul>
+        {if $pages}
+        <div class="fy scroll_bottom_page">
+            {$pages}
+        </div>
+        {/if}
+    </div>
+    {else}
+    <div class="content">
+        <div class="null_data">
+            <p class="icon"><i class="iconfont">&#xe6e8;</i></p>
+            <p class="message">暂无数据</p>
+        </div>
+    </div>
+    {/if}
+
+</div>
+<input  type="hidden" class="mark" value="{$per}"/>
+<div class="mask"></div>
+<div class="pk-box" style="display:none;">
+    <div class="pk-box-hd">
+        <h2 class="pk-box-tit">输入密码</h2>
+        <a href="javascript:void(0)" class="close-pk-box"><i class="iconfont">&#xe64f;</i></a>
+    </div>
+    <div class="pk-box-bd">
+        <div class="input-wrap flex-box">
+            <p>设置密码：</p>
+            <input type="password" name="pk_password" id="pk_password" maxlength="6" class="flex-1" placeholder="请输入密码" check-login='{url x="index" r="user#check_login"}'>
+        </div>
+        <a href="javascript:void(0);" id="pk_submit" class="pk-confirm" id="submit">确认</a>
+    </div>
+</div>
+
+<div id="pop_win" class="kami" style="display: none;text-align: center; position: absolute; z-index: 1999; background: rgb(248, 248, 248); width: 250px; border-radius: 10px; left: 50%;
+    margin-left: -125px; top: 223px;">
+    <span class="getkami" style="padding:10px;display:block; border-bottom:1px solid #ccc;">您还没有入场次数，请先申请卡密！</span>
+    <div  class="ka_btn" style="padding:10px; display:-moz-box; display:-webkit-box;display:box; width:100%;">
+        <div class="pkapply" style="-moz-box-flex:1.0;-webkit-box-flex:1.0;box-flex:1.0;" id="yes">申请</div>
+        <div class="close" style="display:none;-moz-box-flex:1.0;-webkit-box-flex:1.0;box-flex:1.0;" id="yes">关闭</div>
+        <li style="width: 1px;height: 50%;display: block;position: absolute;bottom: 0px;background: #ccc;"></li>
+        <div style="-moz-box-flex:1.0;-webkit-box-flex:1.0;box-flex:1.0;" id="no" onclick="history.go(-1)">返回</div>
+    </div>
+</div>
+<div id="bg_mask" class="bgkami" style="display:none;position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;
+background: rgb(0, 0, 0);z-index: 1998;opacity: 0.2;"></div>
+
+<script>
+
+    $(function($) {
+       var per = $('.mark').val();
+       if(per == 1){
+           check_login(function(){
+               $(".kami").show();
+               $('.bgkami').show();
+           });
+       }
+
+    })
+
+
+    $('.pkapply').click(function () {
+        $.post("index.php?ctl=pk&act=getcamilo",callback,'json');
+        function callback(res) {
+            if(res.status==1){
+                var res = res.info;
+                //console.log(res);
+                var str="获得卡密："+res.camilo+','+"入场次数："+res.num;
+                $(".getkami").text(str);
+                $(".pkapply").hide();
+                $(".close").show();
+            }else{
+                $(".getkami").text(res.info);
+            }
+
+        }
+    })
+    $('.close').click(function () {
+        $(".kami").hide();
+        $(".bgkami").hide();
+    })
+
+</script>
+{if $ajax_refresh==0}
+{include file="inc/footer_index.html"}
+{/if}

@@ -1,0 +1,37 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+
+<div class="main">
+<div class="main_title">手机导航标签</div>
+<div class="blank5"></div>
+
+<PHP>
+	function sort_edit($name,$config_name)
+	{
+		$str = "<a href='".u("MNav/edit",array("config_name"=>$config_name))."'>编辑</a>";
+		return $str;
+	}
+	function get_effect($is)
+	{
+		if($is)
+			return "是";
+		else
+			return "否";
+	}
+</PHP>
+
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="nav" 
+	action="true" 
+	datasource="list" 
+	show="name:{%NAV_NAME},is_effect|get_effect:{%IS_EFFECT},sort:{%SORT}" 
+	actionlist="name|sort_edit=$nav['config_name']" /> 
+
+<div class="blank5"></div>
+
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

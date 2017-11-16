@@ -1,0 +1,120 @@
+{if $ajax_refresh==0}
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_totalbuy_detail.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pull_refresh.css";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_totalbuy.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_totalbuy.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/lib/touche.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+
+?>
+{include file="inc/header.html"}
+<script>
+	var url='{url r="index" r="uc_totalbuy#close" }'
+</script>
+{/if}
+
+<div class="loading_container" id="loading_container">
+	<ul class="status-list split-line">
+		<li class="split-line">
+			订单状态：
+			{if $data.order.order_status==3}
+				已过期
+			{elseif $data.order.order_status==2}
+				已关闭
+			{else}
+				{if $data.order.pay_status==2}
+					{if $data.order.is_arrival==1 && $data.order.delivery_status==1}
+						已收货
+					{elseif $data.order.delivery_status==1}
+						已发货
+					{else}
+						已付款
+					{/if}
+				{else}
+					未付款
+				{/if}
+			{/if}
+		</li>
+		<li class="split-line">创建时间：{$data.order.create_time}</li>
+		<li>订单编号：{$data.order.order_sn}</li>
+	</ul>
+	<div class="blank15"></div>
+	{if $data.order.cate_id&&$data.order.fictitious_info}
+	<section class="address-info split-line split-line-top">
+		<h2 class="title split-line">虚拟商品信息</h2>
+		<div class="user-info flex-box">
+			{if $data.order.pay_status==2&&$data.order.delivery_status==1&&$data.order.is_arrival==1}
+			<pre class="name flex-1">{$data.order.fictitious_info}</pre>
+			{else}
+			<p class="name flex-1">收货后可查看信息哦！</p>
+			{/if}
+		</div>
+	</section>
+	{else}
+	<section class="address-info split-line split-line-top">
+		<h2 class="title split-line">收货信息</h2>
+		<div class="user-info flex-box">
+			<p class="name flex-1">{$data.order.consignee}</p>
+			<p class="phone">{$data.order.mobile}</p>
+		</div>
+		<p class="address">{$data.order.region_info}{$data.order.address}</p>
+	</section>
+	{/if}
+	<div class="blank15"></div>
+	<section class="goods-info split-line split-line-top">
+		<h2 class="title split-line">商品信息</h2>
+		<div class="flex-box">
+			<div class="goods-img"><img src="{$data.order.deal_icon}" alt=""></div>
+			<div class="flex-1 goods-detail">
+				<p class="goods-name el">{$data.order.name}</p>
+				<p class="price">单价：&yen;{$data.order.unit_price}</p>
+				<p class="num">数量：{$data.order.buynumber}件</p>
+			</div>
+		</div>
+	</section>
+	<div class="blank15"></div>
+	<section class="price-info split-line split-line-top">
+		<h2 class="title split-line flex-box"><p class="flex-1">商品金额</p><p class="txt-red">&yen;{$data.order.unit_price}</p></h2>
+		<p class="pay-price">实付合计：<span class="txt-red">&yen;{$data.order.total_price}</span></p>
+	</section>
+	<div class="blank50"></div>
+	<div class="btn-box split-line-top">
+		{if $data.order.pay_status == 2}
+		<a href="{url r="index" r="duobao" p="dbid=$data.order.duobao_id"}">再次购买</a>
+		{else}
+		<a href="{url r="index" r="duobao" p="dbid=$data.order.duobao_id"}">重新购买</a>
+		{/if}
+		
+		
+		{if $data.order.pay_status==0&&$data.order.delivery_status==0&&$data.order.is_arrival==0&&$data.order.order_status==0}
+		<a class="close-order" href="javascript:;" action="{url r="index" p="uc_totalbuy#close" b="id=$data.order.order_id"}" >关闭订单</a>
+		<a class="red-btn" href="{url r="index" p="totalbuy#pay_check" d="id=$data.order.order_id"}">立即付款</a>
+		{/if}
+		{if $data.order.pay_status==2&&$data.order.delivery_status==1&&$data.order.is_arrival==0&&$data.order.order_status==0}
+		<a class="red-btn confirm_receipt" href="javascript:void(0);" action="{url r="index" p="uc_totalbuy#verify_delivery" b="id=$data.order.id"}">确认收货</a>
+		{/if}
+	</div>
+</div>
+{if $ajax_refresh==0}
+{include file="footer_index"}
+{/if}

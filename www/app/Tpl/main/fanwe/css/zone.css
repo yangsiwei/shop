@@ -1,0 +1,46 @@
+
+.duobao-rule{
+	width: 230px;
+	padding-top: 8px;
+}
+.duobao-rule .title{
+	line-height: 34px;
+	color: #fff;
+	font-size: 16px;
+	background:@main_color;
+	padding-left:15px;
+}
+.duobao-rule .ten-rule-wrap{
+	background-color: #f5f5f5;
+	height: 364px;
+}
+.duobao-rule .ten-rule-wrap .ten-rule{
+	padding: 25px 16px;
+	font-size: 14px;
+	color: #3c3c3c;
+}
+.duobao-rule .ten-rule li{
+	margin-bottom: 20px;
+	padding-left: 30px;
+	text-indent: -30px;
+}
+.duobao-rule .ten-rule span{
+	font-size: 24px;
+	font-style: italic;
+	font-weight: normal;
+	color: @main_color;
+	font-family: "Verdana";
+	line-height: 20px;
+}
+/* 广告图 */
+.banner .ten-banner{
+	padding-top: 117px;
+	height: 63px;
+	background: url('../images/ten_banner.v1.jpg') center top no-repeat;
+}
+.banner .ten-bolan{
+	margin-top: -3px;
+	height: 3px;
+	overflow: hidden;
+	background: url('../images/mix-icon.png') 0 -12px repeat-x;
+}

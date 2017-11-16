@@ -1,0 +1,68 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<PHP>
+	function get_handle($id, $deal)
+	{
+		$str = "<a href='".u("Deal/edit",array("id"=>$id))."'>编辑</a>";
+		$str.="&nbsp;&nbsp;<a href='javascript:foreverdel(".$id.");'>".l("DEL")."</a>";
+		return $str;
+	}
+</php>
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">商品列表</div>
+<div class="blank5"></div>
+<form name="search" action="__APP__" method="get">	
+<div class="button_row">
+	<input type="button" class="button" value="新增" onclick="add();" />
+	<input type="button" class="button" value="删除" onclick="foreverdel();" />
+</div>
+<div class="blank5"></div>
+<div class="search_row">
+
+		编号：<input type="text" class="textbox" name="id" value="{:strim($_REQUEST['id'])}" style="width:100px;" />
+		商品名称：<input type="text" class="textbox" name="deal_name" value="{:strim($_REQUEST['deal_name'])}" style="width:100px;" />
+		分类名称：<input type="text" class="textbox" name="cate_name" value="{:strim($_REQUEST['cate_name'])}" style="width:100px;" />
+		品牌名称：<input type="text" class="textbox" name="brand_name" value="{:strim($_REQUEST['brand_name'])}" style="width:100px;" />
+		 时段：
+		<input type="text" class="textbox" name="begin_time" id="begin_time" value="{:strim($_REQUEST['begin_time'])}" onfocus="return showCalendar('begin_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_begin_time');" />
+		<input type="button" class="button" id="btn_begin_time" value="{%SELECT_TIME}" onclick="return showCalendar('begin_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_begin_time');" />	
+		-
+		<input type="text" class="textbox" name="end_time" id="end_time" value="{:strim($_REQUEST['end_time'])}" onfocus="return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');" />
+		<input type="button" class="button" id="btn_end_time" value="{%SELECT_TIME}" onclick="return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');" />	
+
+	
+		<input type="hidden" value="Deal" name="m" />
+		<input type="hidden" value="index" name="a" />
+		
+		<input type="submit" class="button" value="{%SEARCH}" />
+</div>
+</form>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+			,deal_name:商品名称
+			,cate_name:分类名称
+			,brand_name:品牌名称
+			,origin_price|format_price:原价
+		 	,current_price|format_price:当前售价
+		 	,create_time|to_date:发布时间
+		 	,is_effect|get_toogle_status=$deal['id']#is_effect:有效"
+	actionlist="id|get_handle=$deal" />
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

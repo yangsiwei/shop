@@ -1,0 +1,112 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<PHP>
+
+
+	function get_handle($id,$order_item)
+	{
+		$str = "<a href='".u("DealOrder/view_order",array("id"=>$order_item['order_id']))."'>查看详情</a>";
+		
+		return $str;
+	}
+	function get_delivery_status($status)
+	{
+		if($status==0)
+		return "未发货";
+		else
+		return "已发货";
+	}
+
+
+</php>
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">{%DEAL_ORDER}</div>
+<div class="blank5"></div>
+<form name="search" action="__APP__" method="get">	
+
+<div class="search_row">
+
+		{%ORDER_SN}：<input type="text" class="textbox" name="order_sn" value="{:strim($_REQUEST['order_sn'])}" style="width:100px;" />		
+		夺宝活动期号：<input type="text" class="textbox" name="duobao_item_id" value="{:strim($_REQUEST['duobao_item_id'])}" style="width:100px;" />
+		会员名称：<input type="text" class="textbox" name="user_name" value="{:strim($_REQUEST['user_name'])}" style="width:100px;" />
+		发货情况：
+		<select name="delivery_status_item">
+			<option value="-1" <if condition="intval($_REQUEST['delivery_status_item']) eq '-1'">selected="selected"</if>>全部</option>
+			<option value="0" <if condition="intval($_REQUEST['delivery_status_item']) eq '0'">selected="selected"</if>>未发货</option>
+			<option value="1" <if condition="intval($_REQUEST['delivery_status_item']) eq 1">selected="selected"</if>>已发货</option>
+		</select>
+        是否填写地址:
+        <select name="is_set_consignee">
+            <option value="-1" <if condition="intval($_REQUEST['is_set_consignee']) eq '-1'">selected="selected"</if>>全部</option>
+            <option value="0" <if condition="intval($_REQUEST['is_set_consignee']) eq '0'">selected="selected"</if>>未填写</option>
+            <option value="1" <if condition="intval($_REQUEST['is_set_consignee']) eq 1">selected="selected"</if>>已填写</option>
+        </select>
+		<input type="hidden" value="DealOrder" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+
+</div>
+</form>
+	<!--start 五倍开奖-->
+
+<div class="blank5"></div>
+	<table id="dataTable" class="dataTable" cellpadding="0" cellspacing="0">
+		<tbody>
+		<tr>
+			<td colspan="9" class="topTd">&nbsp; </td>
+		</tr>
+		<tr class="row">
+			<th width="50px"><a href="javascript:sortBy('id','1','DealOrder','index')" title="按照编号升序排列 ">编号</a></th>
+			<th><a href="javascript:sortBy('name','1','DealOrder','index')" title="按照活动名称升序排列 ">五倍开奖活动名称</a></th>
+			<th><a href="javascript:sortBy('order_sn','1','DealOrder','index')" title="按照订单编号升序排列 ">订单编号</a></th>
+			<th><a href="javascript:sortBy('duobao_item_id','1','DealOrder','index')" title="按照期号升序排列 ">期号</a></th>
+			<th><a href="javascript:sortBy('user_id','1','DealOrder','index')" title="按照会员名称升序排列 ">会员名称<img src="/blog--fang-duobaoShop-master/duobaoShop/admin/Tpl/default/Common/images/desc.gif" width="12" height="17" border="0" align="absmiddle" /></a></th>
+			<th><a href="javascript:sortBy('create_time','1','DealOrder','index')" title="按照下单时间升序排列 ">下单时间</a></th>
+			<th><a href="javascript:sortBy('delivery_status','1','DealOrder','index')" title="按照发货升序排列 ">发货</a></th>
+			<th><a href="javascript:sortBy('lottery_sn','1','DealOrder','index')" title="按照中奖幸运号升序排列 ">中奖幸运号</a></th>
+			<th>操作</th>
+		</tr>
+		<notempty name="five">
+			<foreach name="five" item="vo">
+				<tr class="row">
+					<td>&nbsp;{$vo.duobao_id}</td>
+					<td>&nbsp;{$vo.name}</td>
+					<td>&nbsp;{$vo.success}</td>
+					<td>&nbsp;{$vo.id}</td>
+					<td>&nbsp;{$vo.luck_user_id}</td>
+					<td>&nbsp;{$vo.create_time}</td>
+					<td>
+					<if condition="$vo.take_effect eq 0 ">
+						未发货
+					<else />
+						已发货
+					</if>
+					</td>
+					<td>&nbsp;{$vo.lottery_sn }</td>
+					<td> <a href="/porche.php?m=DealOrder&amp;a=view_order&amp;id={$vo.id}&amp;zq=is_five">查看详情</a>&nbsp;</td>
+				</tr>
+			</foreach>
+		</notempty>
+		<tr>
+			<td colspan="9" class="bottomTd"> &nbsp;</td>
+		</tr>
+		</tbody>
+	</table>
+	<!--end 五倍开奖-->
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal_order_item" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,name:活动名称,order_sn:订单编号,duobao_item_id:期号,user_id|get_user_name:{%USER_NAME},create_time|to_date:{%ORDER_CREATE_TIME},delivery_status|get_delivery_status:发货,lottery_sn:中奖幸运号"	 
+	actionlist="id|get_handle=$deal_order_item" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

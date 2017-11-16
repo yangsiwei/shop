@@ -1,0 +1,34 @@
+.address-list{
+	background:#fff;
+}
+.address-list li{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items:center;
+	align-items:center;
+	padding:.4rem;
+}
+.address-list li a{
+	display: block;
+}
+.address-list .user-info{
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	flex:1;
+	line-height: 1rem;
+	margin-right: .4rem;
+	font-size:.6rem;
+	color:#333;
+}
+.address-list .edit{
+	font-size:.6rem;
+}
+.address-list .default{
+	display: block;
+	margin-right: .4rem;
+}
+.address-list .de-add{
+	color:#008aff;
+}

@@ -1,0 +1,81 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/publish.css";	
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchSlider.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/exif.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/lrz.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/mobileFix.mini.js";
+
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/publish.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/publish.js";
+?>
+{include file="inc/header_title_home.html"}
+<script type="text/javascript">
+var ajax_url = '{$ajax_url}';
+var add_img_icon = '{$TMPL}/images/add_img_icon.png';
+var img_max_size = '{function name="app_conf" v="MAX_IMAGE_SIZE"}';
+</script>
+		<div class="wrap">
+			
+			<div class="main">
+			<form name="publish_form"  method="post" action="{url r="index" p="uc_home#do_publish"}">
+				<div class="form-box">
+					<div class="txt-box">
+						<textarea id="publish_item_textarea" placeholder="也来说两句" style="height:80px;width:100%" class="j_editor_content editor_input editor_content"></textarea>
+					</div>
+					<div class="act-box">
+						<div class="act-item">
+							<div class="i-btn add_expression" onclick="add_expression()"><i class="iconfont">&#xe670;</i></div>
+							<div class="i-btn lr-border add_img" ><i class="iconfont">&#xe66f;</i><input class="file-btn" id="file-btn" type="file" capture="camera" /></div>
+							
+							<div class="i-sub-btn"><button type="submit" class="publish_btn">发表</button></div>
+						</div>
+						
+					</div>
+					<div class="expression">
+						<div class="expression-show-box">
+							<div class="expression-show-box-viewport " id="face_box_hd_publish_item_textarea" >
+								<div class="expression-list ">
+									{foreach from=$expression key=key item=item}
+										<div class="emotion emotion-item emotion_publish_item_textarea {$key} f_l" f="{$key}" >
+											<div class="ibox">
+												{foreach from=$item item=exp}
+													<a href="javascript:void(0);" title="{$exp.title}" rel="{$exp.emotion}"><img src="{$exp.filename}" /></a>
+												{/foreach}
+											</div>
+										</div>
+									{/foreach}
+								</div>
+								<div id="expression-nav" class="expression-nav"></div>
+							</div>
+
+						</div>
+					</div>
+					
+					<div class="img-show-box">
+					
+					</div>
+				</div>
+			</form>
+			</div>
+		</div>
+
+{include file="inc/no_footer.html"}

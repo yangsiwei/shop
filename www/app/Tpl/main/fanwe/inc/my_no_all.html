@@ -1,0 +1,20 @@
+<div class="w-msgbox-bd" pro="entry" style="padding:10px 30px 30px;color:#333333;font-family:'microsoft yahei', verdana, sans-serif;font-size:14px;line-height:25.2px;">
+	<div id="pro-view-31">
+		<div class="w-duobaoCodeList" pro="codeWarper" style="width:500px;">
+			<div class="w-duobaoCodeList-hd" pro="codeTitle" style="line-height:38px;font-weight:bold;color:#323232;border-bottom-width:1px;border-bottom-style:dashed;border-bottom-color:#dbdbdb;margin-bottom:20px;font-size:16px;">本期总共参与了{$data.duobao_count}人次
+			</div>
+			<div pro="list" class="w-duobaoCodeList-list" style="width:500px;max-height:420px;overflow-y:auto;line-height:36px;">
+				<dl class="iItem f-clear" id="pro-view-32" style="width:500px;height:200px;margin:0px;padding:0px 0px 5px;clear:both;overflow-y:auto">
+					{foreach from=$list item=order}
+					<dt class="iItemTime" style="margin:0px 0px 6px;padding:0px;color:#aaaaaa;line-height:18px;">{$order.create_time}</dt>
+					<dt style="margin:0px;padding:0px;">
+						{foreach from=$order.list item=value}
+						<span class="iCodeItem" style="white-space:nowrap;margin-right:15px;">{$value.lottery_sn}</span>&nbsp;
+						{/foreach}
+					</dt>
+					{/foreach}
+				</dl>
+			</div>
+		</div>
+	</div>
+</div>

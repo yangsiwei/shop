@@ -1,0 +1,84 @@
+.luck_main{ width:1034px;}
+.m-win-user
+{
+	overflow:hidden;
+	zoom:1;
+	margin-top:10px;
+}
+.m-user-comm-wrapers
+{
+	border:1px solid #dddddd;
+	overflow:hidden;
+	zoom:1;
+	padding:20px 33px;
+	background:#f8f8f8;
+}
+.m-user-comm-titleHasBdr
+{
+	height:40px;
+	border-bottom-color:#888888;
+	border-width:0px 0px 2px;
+	border-bottom-style:solid;
+	margin:0px 15px 10px;
+}
+.title
+{
+	margin:0px;
+	padding:0px;
+	font-size:18px;
+	line-height:40px;
+	color:#3c3c3c;
+}
+.txt-gray
+{
+	color:#808080;
+	font-size:12px;
+	margin-left:10px;
+	font-weight:normal;
+}
+.w-goods
+{
+	color:#7d7d7d;
+	width:290px;
+	height:405px;
+	overflow:hidden;
+	zoom:1;
+	float:left;
+	margin:15px;
+	border:1px solid #dddddd;
+	line-height:1.8;
+	background:#ffffff;
+}
+.w-goods-pics
+{
+	height:auto;
+	overflow:hidden;
+	text-align:center;
+	width:200px;
+	margin:10px auto 0px;
+}
+.w-goods-content
+{
+	padding:0px 18px;
+}
+.w-goods-title
+{
+	margin-top:15px;
+	padding:0px 20px 0px 0px;
+	height:49px;
+	overflow:hidden;
+}
+.w-goods-price
+{
+	margin-top:0px;
+	margin-bottom:0px;
+	padding:0px;
+}
+.txt-impt
+{
+	color:#db3652;
+}
+.txt-dark
+{
+	color:#333333;
+}

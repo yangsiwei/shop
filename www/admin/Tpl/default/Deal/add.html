@@ -1,0 +1,123 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main">
+<div class="main_title">添加商品<a href="{:u("Deal/index")}" class="back_list"> 返回列表</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">商品名称:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="name" value="{$result['name']}" /></td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">成本价:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="origin_price" value="{$result['origin_price']}" /></td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">当前价:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="current_price" value="{$result['current_price']}" /></td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">直购库存:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="total_buy_stock" value="{$result.total_buy_stock}" />
+			<span class="tip_span">注意： 所有夺宝活动的直购，共用这个库存！</span>
+		</td>
+	</tr>
+	 
+	<tr>
+		<td class="item_title">商品分类:</td>
+		<td class="item_input">
+		<select class="require" name="cate_id">
+			<option value="0">==未选取分类==</option>
+			<foreach name="cate_result" item="cate_item">
+				<option value="{$cate_item.id}" <if condition="$result['cate_id'] eq $cate_item['id']">selected="selected"</if> >{$cate_item.name}</option>
+			</foreach>
+		</select>
+		</td>
+	</tr>
+	
+		 
+	
+	<tr>
+		<td class="item_title">商品品牌:</td>
+		<td class="item_input">
+		<select  name="brand_id">
+			<option value="0">==未选取品牌==</option>
+			<foreach name="brand_result" item="item">
+				<option value="{$item.id}" >{$item.name}</option>
+			</foreach>
+		</select>
+		</td>
+	</tr>
+	 
+	
+	<tr>
+		<td class="item_title">状态:</td>
+		<td class="item_input">
+			<lable>有效<input type="radio" name="is_effect" value="1" checked="checked" /></lable>
+			<lable>无效<input type="radio" name="is_effect" value="0"  /></lable>
+		</td>
+	</tr>
+	 
+	<tr>
+		<td class="item_title">商品简介:</td>
+		<td class="item_input"><textarea class="textarea" name="brief">{$result['brief']}</textarea></td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">商品详情:</td>
+		<td class="item_input">
+		 <html:editor id="brief" name="description" type="KINDEDITOR" content="{$result.description}" />
+		</td>
+	</tr>
+	 
+	<tr>
+		<td class="item_title">缩略图:</td>
+		<td class="item_input">
+			<html:imgUpload name = 'icon' id='icon' value='$result.icon' />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">图集:</td>
+		<td class="item_input">
+			<html:imgUpload name = 'img[]' id='img0' value='$img_list.0' />
+			<html:imgUpload name = 'img[]' id='img1' value='$img_list.1' />
+			<html:imgUpload name = 'img[]' id='img2' value='$img_list.2' />
+			<html:imgUpload name = 'img[]' id='img3' value='$img_list.3' />
+			<div class="blank5"></div>			
+			<html:imgUpload name = 'img[]' id='img4' value='$img_list.4' />
+			<html:imgUpload name = 'img[]' id='img5' value='$img_list.5' />
+			<html:imgUpload name = 'img[]' id='img6' value='$img_list.6' />
+			<html:imgUpload name = 'img[]' id='img7' value='$img_list.7' />
+		</td>
+	</tr>
+	
+	 
+	 
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->			
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="Deal" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="insert" />
+			<input type="hidden" name="id" value="{$result['id']}" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="添加" />
+			<input type="reset" class="button" value="重置" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,132 @@
+{if $ajax_refresh==0}
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pull_refresh.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pk_record.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pk_choose_pkgoods.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_duobao_record.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/lib/touche.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+?>
+{include file="inc/header_title_home.html"}
+<div class="record-hd">
+	<div class="user-avatar"><img src="{$data.user_logo}" alt="{$data.user_logo}"></div>
+	<div class="main-record flex-box">
+		<div class="record-item flex-1">
+			<p>获胜<span>{$data.win_count}</span>次</p>
+		</div>
+		<div class="record-item flex-1">
+			<p>PK<span>{$data.all_count}</span>次</p>
+		</div>
+	</div>
+</div>
+<div style="z-index:10;" class="slider-nav split-line">
+    <ul>
+        <li class="nav-item"><a {if $log_type eq 3}class="cur"{/if} href="{url x="index" r="pk#record" p="log_type=3"}">全部</a></li>
+        <li class="nav-item"><a {if $log_type eq 1}class="cur"{/if}href="{url x="index" r="pk#record" p="log_type=1"}">进行中</a></li>
+        <li class="nav-item"><a {if $log_type eq 2}class="cur"{/if}href="{url x="index" r="pk#record" p="log_type=2"}" >已揭晓</a></li>
+    </ul>
+</div>
+{/if}
+<div class="loading_container" >
+    {if $list}
+    <div class="m-content">
+        <ul class="scroll_bottom_list">
+            {foreach from=$list item=item}
+            <li class="dblist {if $item.success_time eq 0}inprogress{else}finish{/if}">
+                <div class="dblistimg">
+                    {if $item.unit_price==10}
+                    <div class="tenyen"></div>
+                    {elseif $item.unit_price==100}
+                    <div class="hundredyen"></div>
+                    {/if}
+                    <a  href="{url x="index" r="pk#show_pkgoods_status" p="data_id=$item.id"}"><img alt="" src="{$item.icon}"/></a>
+                </div>
+                <div class="dblistmain">
+                    <a class="title " href="{url x="index" r="pk#show_pkgoods_status" p="data_id=$item.id"}">{$item.name}</a>
+                    <div class="prl">
+                        <div class="lable">期号&nbsp;:&nbsp;{$item.id}</div>
+                        <div class="progressBar">
+                            <span class="bar" style="width:{$item.progress}%"><i class="color"></i></span>
+                        </div>
+                        <div class="lable fl">总需&nbsp;:&nbsp;{$item.max_buy}</div>
+                        <div class="lable fl surplus">剩余&nbsp;:&nbsp;<em>{$item.less}</em></div>
+                        <div class="lable fl surplus">每人&nbsp;:&nbsp;<em>{$item.min_buy}</em></div>
+                        {if $item.my_has_buy_number}
+                        <a class="tacked" href="{url x="index" r="pk#show_pkgoods_status" p="data_id=$item.id"}">查看详情</a>
+                        {elseif $item.has_password}
+                        <a class="tacked pk-now" href="javascript:void(0);" url="{url x="index" r="pk#check_password" p="data_id=$item.id"}">参与pk</a>
+                        {else}
+                        <a class="tacked submit" href="javascript:void(0);" url="{url x="index" r="pk#check_password" p="data_id=$item.id"}">参与pk</a>
+                        {/if}
+                    </div>
+                    <div class="prl">
+                        <div class="partake fl">本期参与&nbsp;:&nbsp;<em>{$item.number}</em>人次</div>
+                        <!--<a class="lookno fr" href="{url x="index" r="uc_duobao_record#my_no" p="id=$item.id"}">查看我的号码</a>-->
+                    </div>
+                    {if $item.has_lottery eq 1}
+                    <div class="announce">
+                        <div class="mline">获得者&nbsp;:&nbsp;<span><a href="{url x="index" r="anno_user_center" p="lucky_user_id=$item.luck_user_id"}">{$item.luck_user_name}</a></span></div>
+                        <div claurlss="mline">本期参与&nbsp;:&nbsp;<em>{$item.luck_user_total}</em>人次</div>
+                        <div class="mline">幸运号码&nbsp;:&nbsp;<em>{$item.lottery_sn}</em> </div>
+                        <div class="mline">揭晓时间&nbsp;:&nbsp;{$item.lottery_time}</div>
+                    </div>
+                    {else}
+                    <div class="announce">
+                        <div class="mline">等待开奖</div>
+                    </div>
+                    {/if}
+                </div>
+            </li>
+
+            {/foreach}
+        </ul>
+    </div>
+    {else}
+    <div class="content">
+        <div class="null_data">
+            <p class="icon"><i class="iconfont">&#xe6e8;</i></p>
+            <p class="message">暂无数据</p>
+        </div>
+    </div>
+    {/if}
+    {if $pages}
+    <div class="fy scroll_bottom_page">
+        {$pages}
+    </div>
+    {/if}
+</div>
+<div class="mask"></div>
+<div class="pk-box" style="display:none;">
+    <div class="pk-box-hd">
+        <h2 class="pk-box-tit">输入密码</h2>
+        <a href="javascript:void(0)" class="close-pk-box"><i class="iconfont">&#xe64f;</i></a>
+    </div>
+    <div class="pk-box-bd">
+        <div class="input-wrap flex-box">
+            <p>设置密码：</p>
+            <input type="password" name="pk_password" id="pk_password" maxlength="6" class="flex-1" placeholder="请设定6位密码">
+        </div>
+        <a href="javascript:void(0);" id="pk_sumit" class="pk-confirm" id="submit">确认</a>
+    </div>
+</div>
+{include file="inc/footer_index.html"}

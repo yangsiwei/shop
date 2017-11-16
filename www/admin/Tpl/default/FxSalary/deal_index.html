@@ -1,0 +1,56 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/fx_salary.js' />
+<load href='__TMPL__Common/js/fx_salary_deal_index.js' />
+
+<php>
+function get_edit_url($id,$vo)
+{
+	return "<a href='javascript:void(0)' onclick='add_deal_box(".$id.")'>编辑</a>&nbsp;<a href='javascript:void(0)' onclick='del_deal_fx(".$id.")'>删除</a>";
+}
+function is_fx_status($is_fx){
+	return $is_fx==1?"系统分配":"会员领取";
+}
+</php>
+<div class="main">
+<div class="main_title">{$title_name}</div>
+<div class="blank5"></div>
+<div class="button_row">
+
+<if condition="$fx_set_type eq 1">
+<span class="top_btn">全局推广奖设置</span>
+<else />
+<input type="button" class="button" value="全局推广奖设置" onclick="javascript:window.location='{:u("FxSalary/index")}';"/>
+</if>
+
+<if condition="$fx_set_type eq 2">
+<span class="top_btn">等级推广奖设置</span>
+<else />
+<input type="button" class="button" value="等级推广奖设置" onclick="javascript:window.location='{:u("FxSalary/level_index")}';"/>
+</if>
+
+<if condition="$fx_set_type eq 3">
+<span class="top_btn">分销商品推广奖</span>
+<else />
+<input type="button" class="button" value="分销商品推广奖"  onclick="javascript:window.location='{:u("FxSalary/deal_index")}';"/>
+</if>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="button" value="添加" onclick="add_deal_box();"/>	
+&nbsp;<input type="button" class="button" value="批量删除" onclick="del_deal_fx();"/>	
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="level_list" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,name:商品名称,is_fx|is_fx_status:分销类型" 
+	actionlist="id|get_edit_url=$level_list" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

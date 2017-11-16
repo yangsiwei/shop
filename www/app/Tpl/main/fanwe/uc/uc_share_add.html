@@ -1,0 +1,113 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_share.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_share_add.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_share_add.js";
+?>
+{include file="inc/header.html"}
+
+<script type="text/javascript" src="{$APP_ROOT}/system/region.js"></script>	
+<script>
+var UPLOAD_URL = '{url x="index" r="file#upload_share" p="id=$duobao_item.id"}';
+</script>
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav f_l ">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<ul class="web-map clearfix">
+			<li>当前位置：</li>
+			<li><a href="{url x="index" r="uc_center"}">我的云里云</a> ></li>
+			<li><a href="{url x="index" r="uc_share"}">我的晒单</a> ></li>
+			<li class="txt-red">新增晒单</li>
+		</ul>
+		<div class="share-banner"></div>
+		<div class="blank20"></div>
+		<div class="add-share-box">
+			<div class="share-add-pic"></div>
+			<div class="share-add-info">
+				<p class="title" style="padding-bottom: 14px;">亲爱的用户</p>
+				<p>恭喜您在一夺宝币购买中获得幸运号码！</p>
+				<p>现在，我们邀请您进行晒单！您可以将获得的商品拍照，并附上文字放到网上。</p>
+				<p>您的晒单，可以和网友们分享您的喜悦，帮助大家更充分的了解一夺宝币购买平台的乐趣，而且，晒单成功，您会获得直减红包奖励，最高价值10云币！</p>
+				<p class="title">晒单的时候，我们提醒您注意以下几点：</p>
+				<p class="item"><span class="num">1</span>
+				详细的内容，是晒单的精华，因此，建议您的晒单不少于30字，并且配上3张以上不同的照片（跪求高清无码）；</p>
+				<p class="item"><span class="num">2</span>
+				真实，是晒单的灵魂，因此，您可以将快递单号也晒上来哦~</p>
+				<p class="item"><span class="num">3</span>
+				一般大家都喜欢沾仙气，因此，您能够出镜和商品合个影儿什么的，给大家一起膜拜就再好不过了！</p>
+				<p class="item"><span class="num">4</span>
+				晒单的质量越高越好玩，红包的价值就越高哦！</p>
+				<p class="item"><span class="num">5</span>
+				如果同一类商品多次获得，请勿简单的复制粘贴之前的晒单内容。</p>
+			</div>
+			<div class="blank20"></div>
+			<div class="blank20"></div>
+			<div class="share-add-btn-box">
+				<button class="btn btn-main share-add-btn">我知道了，开始晒单</button>
+			</div>
+			<div class="blank30"></div>
+			<div class="blank20"></div>
+		</div>
+		<form name="share_form" action="{url x="index" b="uc_share#save"}" method="post">
+		<div class="share-add-form">
+			<h1 class="title">
+				编辑晒单内容<span>赢取红包，最高价值10云币</span>
+			</h1>
+			<div class="blank30"></div>
+			<div class="share-title">
+				<label>晒单主题：</label>
+				<div class="input-box">
+					<input name="title" type="text" holder="不少于6个字" placeholder="不少于6个字">
+				</div>
+			</div>
+			<div class="blank20"></div>
+			<div class="share-info">
+				<label>幸运感言：</label>
+				<div class="input-box textarea-box">
+			        <span class="textarea-holder">为了更好地和网友分享您的喜悦，文字内容<b>不少于30字。审核通过会获得直减红包奖励，最高价值10云币！</b></span>
+					<textarea name="content"  class="share-textarea"></textarea>
+					<div class="blank10"></div>
+				</div>
+				
+			</div>
+			<div class="blank20"></div>
+			<div class="share-img">
+				<label>上传图片：</label>
+				<div class="pic-upload">
+					<button class="btn btn-sim share_imgs_upbtn">选择照片</button>
+					<span class="upload-tips">上传的照片，必须是真实的商品照片哦，单张照片大小请勿超过{$img_max_size}M </span>
+				</div>
+			</div>
+			<div class="share_imgs_upload_box pub_upload_img_box"></div>
+			<div class="blank30"></div>
+			<div class="share-button">
+				<input type="hidden" name="duobao_item_id" value="{$duobao_item.id}"/>
+				<button class="btn btn-main">发布晒单</button>
+			</div>
+		</div>
+		</form>
+	</div>
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

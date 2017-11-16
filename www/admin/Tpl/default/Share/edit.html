@@ -1,0 +1,192 @@
+{// 引入标签库 }
+<tagLib name="html" />
+
+<include file="Public:header" />
+<script type="text/javascript">
+	var ECV_TYPE_ID = "{$vo.is_send_ecv}";
+	$(document).ready(function(){
+		
+		$("select[name='is_send_ecv']").bind("change",function(){
+			var val=$(this).val();
+			if(val==1){
+				$("#ecv_box").show();
+			}else{
+				$("#ecv_box").hide();
+			}
+		});
+		
+		if(ECV_TYPE_ID==0)
+			$("select[name='ecv_type_id']").removeAttr("disabled"); 
+		
+	});
+	
+	function del_img(id,o,tid)
+	{
+		if(confirm("{%CONFIRM_DELETE_IMAGE}"))
+		{
+			$.ajax({ 
+				url: ROOT+"?"+VAR_MODULE+"=ShareImage&"+VAR_ACTION+"=delete&id="+id+"&tid="+tid, 
+				data: "ajax=1",
+				dataType: "json",
+				success: function(obj){
+					if(obj.status==1)
+					{
+						$(o).parent().remove();
+					}
+					else
+					{
+						alert(obj.data);
+					}
+				}
+			});
+		}
+	}
+	
+	
+
+	function modify_title(o)
+	{
+		$(o).parent().remove();
+		$("input[name='title']").show();
+	}
+	function modify_content(o)
+	{
+		$(o).parent().remove();
+		$("textarea[name='content']").show();
+	}
+
+</script>
+<div class="main">
+<div class="main_title">{%VIEW} <a href="{:u("Share/index")}" class="back_list">{%BACK_LIST}</a>
+
+</div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">{%TITLE}:</td>
+		<td>
+			<div style="word-break:break-all;">{$vo.title}[<a href='javascript:;' onclick="modify_title(this);">{%MODIFY}</a>]</div>
+			<input type="text" class="text" name="title" value="{$vo.title}" style="display:none;" />
+		</td>
+	</tr>	
+
+	<tr>
+		<td class="item_title">{%CONTENT}:</td>
+		<td>
+			<div style="word-break:break-all;">{$vo.content|nl2br}[<a href='javascript:;' onclick="modify_content(this);">{%MODIFY}</a>]</div>
+			<textarea class="textarea" name="content" style="display:none;" >{$vo.content}</textarea>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">期号:</td>
+		<td>{$vo.duobao_item_id}</td>
+	</tr>
+	<tr>
+		<td class="item_title">会员:</td>
+		<td>{$vo.user_name}</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">{%TOPIC_IMG}:</td>
+		<td>&nbsp;
+			<foreach name="image_list" item="image_item">
+				<div class="topic_image">
+					<span onclick="del_img({$image_item.id},this,{$vo.id})">x</span>
+					<a href="__ROOT__/{$image_item.o_path}" target="_blank"><img src="__ROOT__/{$image_item.o_path}" width=100 height=100 /></a>
+				</div>
+			</foreach>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">有效:</td>
+		<td>
+			<select name="is_effect">
+				<option value="0" <if condition="$vo['is_effect'] eq 0">selected="selected"</if>>否</option>
+				<option value="1" <if condition="$vo['is_effect'] eq 1">selected="selected"</if>>是</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">推荐:</td>
+		<td>
+			<select name="is_recommend">
+				<option value="0" <if condition="$vo['is_recommend'] eq 0">selected="selected"</if>>否</option>
+				<option value="1" <if condition="$vo['is_recommend'] eq 1">selected="selected"</if>>是</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">置顶:</td>
+		<td>
+			<select name="is_top">
+				<option value="0" <if condition="$vo['is_top'] eq 0">selected="selected"</if>>否</option>
+				<option value="1" <if condition="$vo['is_top'] eq 1">selected="selected"</if>>是</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">首页显示:</td>
+		<td>
+			<select name="is_index">
+				<option value="0" <if condition="$vo['is_index'] eq 0">selected="selected"</if>>否</option>
+				<option value="1" <if condition="$vo['is_index'] eq 1">selected="selected"</if>>是</option>
+			</select>
+		</td>
+	</tr>
+	
+	<if condition="$vo['is_send_ecv'] eq 0 and $vo['is_robot'] eq 0">
+	<tr>
+		<td class="item_title">发送红包:</td>
+		<td>
+			<select name="is_send_ecv">
+				<option value="0" <if condition="$vo['is_send_ecv'] eq 0">selected="selected"</if>>否</option>
+				<option value="1" <if condition="$vo['is_send_ecv'] eq 1">selected="selected"</if>>是</option>
+			</select>
+			
+			
+		</td>
+	</tr>
+	</if>
+	<tr id="ecv_box" <if condition="$vo['is_send_ecv'] eq 0">style="display:none;"</if>>
+		<td class="item_title">红包:</td>
+		<td>
+			
+			<select name="ecv_type_id" <if condition="$vo['is_send_ecv'] eq 1">disabled="disabled"</if>>
+					<option value="0">==未选择==</option>
+					<foreach name="ecv_list" item="ecv">
+						<option value="{$ecv.id}" <if condition="$ecv['id'] eq $ecv_send['ecv_type_id']">selected="selected"</if>>{$ecv.name}</option>
+					</foreach>
+			</select>
+		 
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="id" value="{$vo.id}" />
+		
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="Share" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="update" />
+			<!--隐藏元素-->
+			<if condition="$vo.is_check eq '0' ">
+				<input type="submit" class="button" value="审核" />
+			<else />
+				<input type="submit" class="button" value="{%EDIT}" />
+			</if>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>
+<div class="blank5"></div>
+</form>
+
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,43 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/login_page.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+?>
+{include file="inc/header.html"}
+<div class="blank20"></div>
+<div class="{function name="load_wrap" t=$wrap_type}">
+
+<div class="layout_box" id="user_login_box">	
+	<div class="title">登录</div>
+	<div class="content clearfix">	
+		<div class="wrap_m1 f_l">
+			{include file="inc/login_box.html"}
+		</div>
+		<div class="wrap_s1 f_r">
+			{if !$user_info}
+			<span class="regist_tip">还没有帐号？</span>
+			<a href="{url x="index" r="user#register"}" class="do_regist">
+			<button class="ui-button f_l" rel="light" type="button">立即注册</button>
+			</a>
+			{/if}
+		</div>
+	</div>
+</div>	
+
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

@@ -1,0 +1,53 @@
+<script>
+var max_page={$max_page};
+var new_p={$p};
+</script>
+<div class="share-list-wrap">
+	{if !$duobao_share_data}
+	<!-- 没有数据 -->
+	<div class="empty">
+		<div class="empty-info">
+			<i class="littleU littleU-cry"></i>
+			&nbsp;&nbsp;暂时还没有任何晒单
+		</div>
+	</div>
+	{else}
+	<!-- 列表 -->
+	<ul class="share-list">
+		{foreach from=$duobao_share_data item=share_data}
+		<li>
+		<!-- 用户 -->
+			<div class="share-author f_l">
+			<!-- 用户头像 -->
+				<a href="{url r="index" r="home" p="id=$share_data.user_id"}" class="user-pic" target="_blank">
+					<img src="{function name="get_user_avatar" uid=$share_data.user_id type="big"}" width="90" height="90">
+				</a>
+				<!-- 用户名 -->
+				<a href="{url r="index" r="home" p="id=$share_data.user_id"}" class="user-name txt-over" target="_blank">{$share_data.user_name}</a>
+			</div>
+			<!-- 晒单内容 -->
+			<div class="share-detail">
+			<!-- 标题 -->
+				<div class="share-title">
+					<span class="date f_r">{$share_data.create_time}</span>
+					<span class="title"><a href="{url r="index" r="share#detail" p="id=$share_data.id"}" target="_blank"><b>{$share_data.title}</b></a></span>
+				</div>
+			<!-- 文字内容 -->
+				<div class="txt-info">
+					<a href="{url r="index" r="share#detail" p="id=$share_data.id"}" target="_blank">{$share_data.content}</a>
+				</div>
+			<!-- 晒单图片 -->
+				<div class="share-pic">
+					{foreach from=$share_data.image_list item=image}
+					<a href="{url r="index" r="share#detail" p="id=$share_data.id"}" class="f_l" target="_blank">
+						<img src="{$image.path}" width="140" height="140" style="display:block;writing-mode:tb-rl;vertical-align:middle">
+					</a>
+					{/foreach}
+				</div>
+			</div>
+		</li>
+		{/foreach}
+	</ul>
+	<div class="pages">{$pages}</div>
+	{/if}
+</div>

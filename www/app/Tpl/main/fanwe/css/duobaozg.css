@@ -1,0 +1,50 @@
+.zg-header{
+	background-color: #e9f4fe;
+}
+
+.zg-header .zg-header-main img{
+	background-repeat: no-repeat;
+	background-position:center center;
+	max-height: 585px;	
+}
+
+.main-area{
+    background-color: #e4ecee;
+    margin: 20px auto;
+    padding: 20px 10px;
+    font-size: 0;
+    box-sizing: border-box;
+}
+.main-area li{
+	float: left;
+	width: 279px;
+	height: 360px;
+	background-color: #fff;
+	display: inline-block;
+	margin: 7px 8px;
+	box-sizing: border-box;
+	border: 1px solid #c6c6c6;
+}
+.main-area li .zg-pic{
+	width: 190px;
+	height: 160px;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+.main-area li .zg-name{
+	color: #494949;
+    margin: 15px 20px;
+    font-size: 19px;
+    height:50px;
+    overflow: hidden;
+    line-height: 25px;
+}
+.main-area li .zg-btn{
+	text-align: center;
+}
+.main-area li .zg-btn .btn{
+	font-size:21px;
+	line-height: 41px;
+	height:41px;
+	width:222px;
+}

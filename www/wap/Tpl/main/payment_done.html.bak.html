@@ -1,0 +1,62 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/payment.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/user_login.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+
+?>
+{include file="inc/header_title_home.html"}
+<div class="pay-result split-line">
+	<div class="result-txt">
+		<div class="pay-suc">
+			<p>恭喜您，参与成功！</p>
+			<p>请等待系统为您揭晓！</p>
+		</div>
+		<div class="pay-fail">
+			<p>很遗憾，参与失败！</p>
+			<p>已为您退款，请前往<a href="">会员中心</a></p>
+		</div>
+	</div>
+	<div class="btn-box">
+		<a href="" class="btn duobao">继续夺宝</a>
+		<a href="" class="btn check-duobao">查看夺宝记录</a>
+	</div>
+</div>
+<div class="result-info">
+	<h2>您成功参与了<b>1</b>件商品共<b>1</b>人次夺宝，信息如下：</h2>
+	<div class="result-goods-info">
+		<div class="title-num">
+			<a href="" class="title">志斌螺旋飞天大爆炸</a>
+			<div class="num"><b>1</b>人次</div>
+		</div>
+		<p>商品期号：</p>
+		<p>夺宝号码：<span></span></p>
+	</div>
+</div>
+<div class="result-info fail-info">
+	<h2>参与失败的夺宝活动</h2>
+	<div class="result-goods-info">
+		<div class="title-num">
+			<a href="" class="title">志斌螺旋飞天大爆炸</a>
+			<div class="num"><b>1</b>人次</div>
+		</div>
+		<p>商品期号：</p>
+		<p>夺宝号码：<span></span></p>
+	</div>
+</div>
+{include file="inc/footer_index.html"}

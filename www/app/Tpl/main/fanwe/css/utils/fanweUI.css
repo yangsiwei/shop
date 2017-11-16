@@ -1,0 +1,101 @@
+@CHARSET "UTF-8";
+
+/*按钮的样式*/
+.ui-button{ background:url(../images/fanwe_ui/ui-buttonbg.gif) no-repeat; display:inline-block; *display:inline; *zoom:1; }
+.ui-button div{ float:left; background:url(../images/fanwe_ui/ui-buttonbg.gif) no-repeat; }
+.ui-button span{ background:none; white-space:nowrap; border:none;  float:left; display:inline-block; cursor:pointer;}
+
+
+.orange{ background-position:0px -120px; height:40px; padding-left:5px; }
+.orange div{ background-position:right 0px; height:40px; }
+.orange span,.orange_hover span,.orange_active span{ color:#fff; padding:0px 25px 0px 20px; height:38px;  font-size:14px; line-height:38px; }
+
+.orange_hover{ background-position:0px -160px; height:40px; padding-left:5px;}
+.orange_hover div{ background-position:right -40px; height:40px; }
+
+.orange_active{ background-position:0px -200px; height:40px; padding-left:5px;}
+.orange_active div{ background-position:right -80px; height:40px; }
+
+
+
+.blue{ background-position:0px -360px; height:40px; padding-left:5px;}
+.blue div{ background-position:right -240px; height:40px; }
+.blue span,.blue_hover span,.blue_active span{ color:#fff; padding:0px 25px 0px 20px; height:38px;  font-size:14px; line-height:38px; }
+
+.blue_hover{ background-position:0px -400px; height:40px; padding-left:5px;}
+.blue_hover div{ background-position:right -280px; height:40px; }
+
+.blue_active{ background-position:0px -440px; height:40px; padding-left:5px;}
+.blue_active div{ background-position:right -320px; height:40px; }
+
+
+.white{ background-position:0px -549px; height:23px; padding-left:5px; border:solid 1px #eaeaea;}
+.white div{ background-position:right -480px; height:23px; }
+.white span,.white_hover span,.white_active span{ color:#000; padding:0px 15px 0px 10px; height:21px;  font-size:12px; line-height:21px; }
+
+.white_hover{ background-position:0px -572px; height:23px; padding-left:5px;  border:solid 1px #eaeaea;}
+.white_hover div{ background-position:right -503px; height:23px; }
+
+.white_active{ background-position:0px -595px; height:23px; padding-left:5px;  border:solid 1px #eaeaea;}
+.white_active div{ background-position:right -526px; height:23px; }
+
+.light{ background-position:0px -818px; height:34px; padding-left:5px;  border:solid 1px #eaeaea;}
+.light div{ background-position:right -698px; height:34px; }
+.light span,.light_hover span,.light_active span{ color:@main_color; padding:0px 25px 0px 20px; height:32px;  font-size:14px; line-height:32px; }
+
+.light_hover{ background-position:0px -858px; height:34px; padding-left:5px;  border:solid 1px #eaeaea;}
+.light_hover div{ background-position:right -738px; height:34px; }
+
+.light_active{ background-position:0px -898px; height:34px; padding-left:5px;  border:solid 1px #eaeaea;}
+.light_active div{ background-position:right -778px; height:34px; }
+
+.disabled{ background-position:0px -658px; height:36px; padding-left:5px; }
+.disabled div{ background-position:right -618px; height:36px; }
+.disabled span,.disabled_hover span,.disabled_active span{ color:#fff; padding:0px 25px 0px 20px; height:34px;  font-size:14px; line-height:34px; cursor:no-drop; }
+
+.disabled_hover{ background-position:0px -658px; height:36px; padding-left:5px;}
+.disabled_hover div{ background-position:right -618px; height:36px; }
+
+.disabled_active{ background-position:0px -658px; height:36px; padding-left:5px;}
+.disabled_active div{ background-position:right -618px; height:36px; }
+
+/*关于输入框 ui-textbox*/
+input,textarea{
+  border:1px solid #ababab;
+}
+input:focus,textarea:focus{
+  border-color:#3376dc;
+}
+/* 关于ui-checkbox */
+.ui-checkbox{ cursor:pointer; }
+.common_cbo{ height:14px; background:url(../images/fanwe_ui/ui_cbobg.gif) no-repeat 0 0px; padding-left:20px; line-height:14px;}
+.common_cbo_checked{ height:14px; background:url(../images/fanwe_ui/ui_cbobg.gif) no-repeat 0 -78px; padding-left:20px;line-height:14px;}
+.common_cbo_hover{ height:14px; background:url(../images/fanwe_ui/ui_cbobg.gif) no-repeat 0 -39px; padding-left:20px;line-height:14px;}
+
+
+/*关于ui-radiobox*/
+.ui-radiobox{ cursor:pointer; }
+.common_rdo{ height:14px; background:url(../images/fanwe_ui/ui_rdobg.gif) no-repeat 0 0px; padding-left:20px; line-height:14px;}
+.common_rdo_checked{ height:14px; background:url(../images/fanwe_ui/ui_rdobg.gif) no-repeat 0 -78px; padding-left:20px;line-height:14px;}
+.common_rdo_hover{ height:14px; background:url(../images/fanwe_ui/ui_rdobg.gif) no-repeat 0 -39px; padding-left:20px;line-height:14px;}
+
+
+/*关于评分星星*/
+.ui-starbar span {
+  background: url("../images/fanwe_ui/ui_starbar.png") no-repeat scroll 0 0 transparent;
+  display: inline-block;
+  height: 13px;
+}
+
+.ui-starbar {
+  background: url("../images/fanwe_ui/ui_starbar.png") no-repeat scroll 0 0 transparent;
+  display: inline-block;
+  height: 13px;
+  text-align: left;
+  width: 75px;
+  cursor:pointer;
+}
+
+.ui-starbar span {
+  background-position: 0 -22px;
+}

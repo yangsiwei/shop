@@ -1,0 +1,33 @@
+{if $user_info}
+	<span class="user_name">
+		欢迎您，<a href="{url x="index" r="uc_center"}" >{$user_info.user_name}</a>
+		{if $user_info.level gt 0}
+		<span title="{$user_info.level_name}" class="level_bg level_{$user_info.level}"></span>
+		{/if}
+		[ <a href="{url x="index" r="user#loginout"}">退出</a> ]
+	</span>
+	{if $user_info.msg_count gt 0}
+	<a href="{url x="index" r="uc_msg"}" class="msg_count" title="您共有{$user_info.msg_count}条新信息"><span><i class="iconfont">&#xe62c;</i> 消息 <em>{$user_info.msg_count}</em></span></a>
+	{/if}
+	<script type="text/javascript">
+			init_drop_user();
+			{if $signin_result}
+			show_signin_message({$signin_result});
+			{/if}
+	</script>
+{else}
+	<span class="login_tip">请先 [<a href="{url x="index" r="user#login"}" title="登录" id="pop_login">登录</a>]{if $wx_login} / [<a href="javascript:void(0);" rel="{url x="index" r="user#wx_login"}" title="微信登录" id="wx_login">微信登录</a>]{/if} 或 [<a href="{url x="index" r="user#register"}" title="注册">注册</a>]</span>
+{/if}
+<span id="user_drop">
+	<a href="{url x="index" r="uc_duobao"}">我的夺宝</a>
+	<i class="iconfont">&#xe610;</i>
+</span>
+<div id="user_drop_box">
+	<dl>
+		<dd><a href="{url x="index" r="uc_duobao"}">夺宝记录</a></dd>
+		<dd class="group"><a href="{url x="index" r="uc_luck"}">幸运记录</a></dd>
+		<dd><a href="{url x="index" r="uc_share"}">我的晒单</a></dd>
+		<dd><a href="{url x="index" r="uc_money"}">帐户充值</a></dd>
+	</dl>
+</div>
+ <a href="{url x="index" r="help"}">帮助</a>

@@ -1,0 +1,231 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_money_withdraw.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_order.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_order.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_money_withdraw.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_money_withdraw.js";
+
+?>
+{include file="inc/header.html"}
+<script>
+    var withdraw_ajax_url = "{url r="index" b="uc_money" p="del_user_bank" }";
+</script>
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav f_l ">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<ul class="web-map clearfix">
+			<li>当前位置：</li>
+			<li><a href="{url x="index" r="uc_center"}">个人中心</a> ></li>
+			<li class="txt-red">我的资产</li>
+		</ul>
+		<div class="main_box uc_info_box">
+			<div class="info_nav">
+				<ul>
+					<li><a href="{url r="index" b="uc_money#incharge" }">会员充值</a></li>
+					<li class="cur"><a href="{url r="index" b="uc_money#withdraw" }">会员提现</a></li>
+				</ul>
+			</div>
+
+			<!-- 资产标题 -->
+			<div class="info_box">
+				<div class="blank20"></div>
+				<h3>我的资产信息</h3>
+				<div class="blank10"></div>
+				<div class="bg_box growth_content">
+					
+					<div class="info_items">
+						<ul>
+							<li><label>我当前的余额是：</label><span class="main_color">{function name="format_price" v=$user_info.money}</span>
+							<label>&nbsp;&nbsp;&nbsp;&nbsp;会员等级：</label><span class="level_bg level_{$uc_query_data.cur_level}" title="{$uc_query_data.cur_level_name}"></span>
+							</li>
+							{if $uc_query_data.cur_gourp gt 0}
+								<li><label>我当前所在的会员组：</label><span class="main_color">{$uc_query_data.cur_gourp_name}</span></li>
+								{if $uc_query.data.cur_discount<10}
+								<li><label>会员组享受的折扣：</label><span class="main_color">{$uc_query_data.cur_discount} 折</span></li>
+								{/if}
+							{/if}
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div id="withdraw">
+		
+					<form name="withdraw_form" action="{url x="index" r="uc_money#withdraw_done"}" method="post" />	
+					<div class="info_table">
+					<table>
+						<tr>
+							<td class="withdraw">
+								开户行名称
+							</td>
+							<td class="withcontent">
+                                <input type="text" name="bank_name" class="ui-textbox" holder="请输入开户行全称" />
+                                {if $user_bank_list}
+                                <div class="bank_list_btn">已有银行卡<i class="iconfont">&#xe610;</i>
+                                    <div class="bank_list">
+                                         
+                                        {foreach from=$user_bank_list item=row}
+                                        <div class="bank_item bank_item_btn" rel="{$row.id}" data-bank-name="{$row.bank_name}" data-bank-account="{$row.bank_account}" data-bank-user="{$row.bank_user}"  title="{$row.bank_user} {$row.show_bank_name}">
+                                            {$row.show_bank_name}
+                                            <a class="iconfont del_bank_btn" rel="{$row.id}">&#xe619;</a>
+                                        </div>
+                                        {/foreach}
+                                        
+                                       <div class="bank_item " >
+                                             <a href="javascript:void(0);" class="new_bank_btn" >使用新的银行卡</a>
+                                         </div>
+                                    </div>
+                                </div>
+                                {/if}
+							</td>
+						</tr>
+						<tr>
+							<td class="withdraw">
+								开户行账号
+							</td>
+							<td class="withcontent">
+								<input type="text" name="bank_account" class="ui-textbox" holder="请输入开户行账号" />
+							</td>
+						</tr>
+						<tr>
+							<td class="withdraw">
+								真实姓名
+							</td>
+							<td class="withcontent">
+								<input type="text" name="bank_user" class="ui-textbox" holder="请输入开户人真实姓名" rel="{$real_name}" {if $real_name}value="{$real_name}"  readonly="readonly"{/if}/>
+							</td>
+						</tr>
+						<tr>
+							<td class="withdraw">
+								提现金额
+							</td>
+							<td class="withcontent">
+								<input type="text" name="money" class="ui-textbox" holder="请输入提现金额" />
+							</td>
+						</tr>
+						{if app_conf("SMS_ON") eq 1}
+						<tr {if $sms_ipcount>1}style="display:table-row"{/if} class="ph_img_verify">
+							<td class="withdraw">
+								图片验证码
+							</td>
+							<td class="withcontent">
+								<input type="text" name="verify_code" style="width:150px;" class="ui-textbox img_verify f_l" holder="请输入图片文字" />
+								<img src="{$APP_ROOT}/verify.php" class="verify f_l" style="padding:8px 0 0 5px; cursor:pointer;" rel="{$APP_ROOT}/verify.php" />
+								<a href="javascript:void(0);" class="refresh_verify f_l" style="padding:10px 0 0 5px; cursor:pointer;">看不清楚？换一张！</a>
+							</td>
+						</tr>	
+						<tr>
+							<td class="withdraw">
+								请输入验证码
+							</td>
+							<td class="withcontent">
+								<input class="ui-textbox f_l ph_verify" id="sms_verify" name="sms_verify" holder="请输入验证码" />
+								<button class="ui-button f_l light ph_verify_btn" rel="light" lesstime="{$sms_lesstime}" type="button">发送验证码</button>
+							</td>
+						</tr>
+											
+						{/if}
+                                                <tr id="is_bind_box">
+							<td class="withdraw">
+								&nbsp;
+							</td>
+							<td class="withcontent">
+								<label class="ui-checkbox" rel="common_cbo"><input type="checkbox" name="is_bind" value="1" />是否绑定</label>
+							</td>
+						</tr>
+						<tr>		
+							<td colspan=2>
+                                                            <input type="hidden" name="user_bank_id" value=""/>
+                                                            <button class="ui-button orange" rel="orange" type="submit">提交申请</button>
+                                                        </td>
+						</tr>
+					</table>
+					</div>
+					</form>					
+	
+			</div><!--end form-->
+	
+			
+			<!-- 提现内容 -->
+			<div class="blank20"></div>
+			<div class="info_box">
+				<h3>提现记录</h3>
+				<div class="blank10"></div>
+				<div class="info_table order_table">
+					<table>
+						<tbody>
+							<tr>
+								<th width="120">时间</th>
+								<th width="100">金额</th>
+								<th width="auto">详情</th>
+								<th width="100">状态</th>
+								<th width="70">操作</th>
+							</tr>
+							
+							{foreach from=$list item=row}
+							<tr class="alt">
+                                <td>
+								{function name="to_date" value=$row.create_time}
+								</td>
+                                <td>
+                                	<h1>{function name="format_price" v=$row.money}</h1>
+                                </td>
+                                <td class="detail">
+                                	开户行全称:{$row.bank_name}<br />
+									开户行账号:{$row.bank_account}<br />
+									开户人真实姓名:{$row.bank_user}<br />
+                                </td>
+								<td>									
+									{if $row.is_paid eq 0}
+									<h1>审核中</h1>
+									{else}
+									<h1>{function name="to_date" value=$row.pay_time}</h1> 已支付
+									{/if}
+								</td>
+								<td class="op_box">
+									<a href="javascript:void(0);" class="del_order" action="{url x="index" r="uc_money#del_withdraw" p="id=$row.id"}">删除</a>
+								</td>
+                            </tr>
+                            {/foreach}
+                           
+                            <tr >
+                            	{if $list}
+                                <td colspan="4"><div class="pages">{$pages}</div></td>
+                                {else}
+                                <td colspan="4"><span>暂时没有提现记录</span></td>
+                                {/if}
+                            </tr>
+						</tbody>
+					</table>
+				</div>
+				
+			</div><!--end 列表-->
+			
+		</div>
+	</div>	
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

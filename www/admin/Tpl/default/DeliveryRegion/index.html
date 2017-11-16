@@ -1,0 +1,49 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	function add_region(pid)
+	{
+		location.href = ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=add&pid="+pid+"&";
+	}
+	function region(pid)
+	{
+		location.href = ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=index&pid="+pid+"&";
+	}
+</script>
+<PHP>
+	function sub_region($id)
+	{
+		if(intval(M("DeliveryRegion")->where("id=".$id)->getField("region_level"))<4)
+		{
+			return "<a href='javascript:region(".$id.");'>".l("SUB_REGION")."</a>";
+		}
+		else
+		return '';
+	}
+</PHP>
+<div class="main">
+<div class="main_title">{$main_title} 
+<if condition="$parent_region">
+	<a href='{:u("DeliveryRegion/index",array("pid"=>$parent_region['pid']))}'>{%BACK_PARENT_REGION}</a>
+</if></div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%ADD}" onclick="add_region({:intval($_REQUEST['pid'])});" />
+	<input type="button" class="button" value="{%FOREVERDEL}" onclick="foreverdel();" />
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="region" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,name:{%REGION_NAME}" 
+	actionlist="id|sub_region, edit:{%EDIT}, foreverdel:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,76 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";		
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/user_login.css";		
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user_register.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user_register.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/sms_verify.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/sms_verify.js";
+
+?>
+{include file="inc/header_title_home.html"}
+
+<div class="wrap">
+	
+	<div class="content">
+	<div class="comment_list_txt1">
+		
+		 <div class="Contentbox">  
+		 
+			<div id="con_one_2">
+		   	<form action="{url x="index" r="user#doregister"}" id="register_box">
+
+				<div class="inputtxt"> 
+				<div class="inputpc"><i class="iconfont">&#xe61f;</i></div>
+				<div class="input_sr"><input type="text"  placeholder="请输入注册的邮箱" name="email"></div>	 
+				</div>
+				
+				<div class="inputtxt"> 
+				<div class="inputpc"><i class="iconfont">&#xe61d;</i></div>
+				<div class="input_sr"><input type="text"  placeholder="请输入注册用户名" name="user_name"></div>	 
+				</div>
+				
+				<div class="inputtxt"> 
+				<div class="inputpc"><i class="iconfont">&#xe61c;</i></div>
+				<div class="input_sr"><input type="password"  placeholder="请输入4个字符或以上的登录密码" name="user_pwd"></div>	 
+				</div>
+				
+				<div class="inputtxt"> 
+				<div class="inputpc"><i class="iconfont">&#xe618;</i></div>
+				<div class="input_sr"><input type="password"  placeholder="请再次输入登录密码" name="cfm_user_pwd"></div>	 
+				</div>
+				
+				
+				<div class="btn_login">
+				<input type="submit" value="立即注册" style="background: none;">
+				</div>
+			</form>
+		   </div>
+			
+		 </div>
+		 
+		</div>  
+		           
+		
+	 </div>
+	 <div class="tr" style="padding:10px;">
+		 <a href="{url x="index" r="user#getpassword"}">找回密码</a>
+	</div>
+	</div>
+</div>
+
+{include file="inc/footer_index.html"}	

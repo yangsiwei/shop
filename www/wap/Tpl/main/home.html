@@ -1,0 +1,157 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/index.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/homepage.css";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/onload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/swipe.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/index.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/index.js";
+?>
+{include file="inc/header_index.html"}
+
+<div class="w_b p_7_0  bg_fc6f06">
+		<a href="#" class="block w35 pl5 h26 pr lh26 tc">
+			<i class="icon iconfont f20 f_fff">&#xe60b; </i>
+		</a>
+		<div class="w_b_f_1 w_b bdr5 bg_fff bor_fff ovhide">
+			<i class="iconfont block w27 lh25 tc f_a8a8a8">&#xe600;</i>
+			<div class="w_b_f_1 ">
+				<input  class="w_percentage_100 h25 lh25 bg_fff f12" placeholder="搜索店内商品"/>
+			</div>
+		</div>
+		<a href="#" class="block w35 pl10 h26 pr">
+			<i class="iconfont f_fff  ps f20 t-2">&#xe60c;</i>
+			<p class="f10 lh12 ps t_17 f_fff bold">分类</p>
+		</a>
+    </div>		
+<div class="pr">
+	{if $banner_images}
+        <div class="top">
+            <div class="flash" id=containerFlashAnimation>
+                <section>
+                    <div id="banner_box" class="swipe box_swipe" style="visibility: visible;">
+                        <ul style="list-style: none; transition: 500ms; -webkit-transition: 500ms;">
+                            {foreach from="$banner_images" item="banner"}
+                            <li style="vertical-align: top; width: 640px; display: table-cell;">
+                                <a href=""><img src="{$banner}" alt="" border="0" style="width:100%;"></a>
+                            </li>
+							{/foreach}
+                        </ul>
+                        <div id="pagenavi">
+                        	{foreach from="$banner_images" item="banner" key="key"}
+							<a href="javascript:void(0);" {if $key==0}class="active"{/if}>{$smarty.foreach.banner.iteration}</a>
+							{/foreach}
+						</div>
+                    </div>
+                </section>
+            </div>
+        </div>
+		{/if}
+	<div class="ps b_0">
+		<div class="pb10 pl10 clearfix">
+			<img src="{$supplier_info.weishop_logo}" width="74" height="32" class="f_l">
+		<span class="f_l lh32 f_fff pl10 f14 bold"> {$supplier_info.weishop_name}</span>
+		</div>
+	</div>
+</div>
+<div class="w_b tc lh20 bor_15 pt10 bold pb10 ">
+	<div class="w_b_f_1 bor_14 pr">
+		<a href="#">
+			<p>200</p>
+			<p>团购</p>
+		</a>
+		<div class="bor_16 w_percentage_100 ps t_48"></div>
+	</div>
+	<div class="w_b_f_1 ">
+		<a href="#">
+			<p>200</p>
+			<p>商品</p>
+		</a>
+	</div>
+	<div class="w_b_f_1 ">
+		<a href="#">
+			<p>200</p>
+			<p>优惠券</p>
+		</a>
+	</div>
+	<div class="w_b_f_1 ">
+		<a href="#">
+			<p>200</p>
+			<p>活动</p>
+		</a>
+	</div>
+</div>	
+
+		
+<div class="blank20"></div>
+	<div class="h5 bor_5">
+		<p class="tc f12 lh12 f_272727  w100 m_0_auto bg_f0f3f5 bold">热门宝贝</p>
+	</div>
+	<div class="blank20"></div>
+	<div class="clearfix pl10">
+		<ul class="goods_list">
+			<li class="w_percentage_50 f_l">
+				<div class="pr10 pb10">
+					<img src="../images/55877f92Nc18bc8a6.jpg" width="100%">
+					<div class="bg_fff p_0_5">
+						<p class="h30 lh15 f11 f_515050  bor_4  pt5 pb5 bold"><span class="text-overflow_2 ovhide">小米42GB内存版白色移动4G手机小米42GB内存版白色移动4G手机小米42GB内存版白色移动4G手机</span></p>
+						<p class="clearfix lh27">
+							<span class="f_l f_e9583d bold">￥125.00</span>
+							<span class="f_r f_b3b3b3 f10">已销1234笔</span>
+						</p>
+					</div>
+				</div>
+			</li>
+			<li class="w_percentage_50 f_l">
+				<div class="pr10 pb10">
+					<img src="../images/55877f92Nc18bc8a6.jpg" width="100%">
+					<div class="bg_fff p_0_5">
+						<p class="h30 lh15 f11 f_515050  bor_4  pt5 pb5 bold"><span class="text-overflow_2 ovhide">小米42GB内存版白色移动4G手机小米42GB内存版白色移动4G手机小米42GB内存版白色移动4G手机</span></p>
+						<p class="clearfix lh27">
+							<span class="f_l f_e9583d bold">￥125.00</span>
+							<span class="f_r f_b3b3b3 f10">已销1234笔</span>
+						</p>
+					</div>
+				</div>
+			</li>
+			<li class="w_percentage_50 f_l">
+				<div class="pr10 pb10">
+				<img src="../images/55877f92Nc18bc8a6.jpg" width="100%">
+					<div class="bg_fff p_0_5">
+						<p class="h30 lh15 f11 f_515050  bor_4  pt5 pb5 bold"><span class="text-overflow_2 ovhide">小米42GB内存版白色移动4G手机小米42GB内存版白色移动4G手机小米42GB内存版白色移动4G手机</span></p>
+						<p class="clearfix lh27">
+							<span class="f_l f_e9583d bold">￥125.00</span>
+							<span class="f_r f_b3b3b3 f10">已销1234笔</span>
+						</p>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="h5 bor_5">
+		<p class="tc f12 lh12 f_979696 w100 m_0_auto bg_f0f3f5">木有了，到底了</p>
+	</div>
+
+{include file="inc/footer_index.html"}	
+
+

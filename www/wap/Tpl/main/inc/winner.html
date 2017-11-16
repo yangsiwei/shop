@@ -1,0 +1,48 @@
+<div class="winner-layer">
+	<div class="winner-box">
+		<div class="winner-close">
+			<i class="iconfont">&#xe713;</i>
+		</div>
+		<div class="winner-img">
+			<img src="##img##">
+		</div>
+		<div class="winner-info">
+			<p>##site_name##恭喜您获得</p>
+			<p class="txt-yellow">第##issue_no##期</p>
+			<h3 class="txt-yellow">##goods_name##</h3>
+		</div>
+		<div class="winner-btn">
+			<a href="##view##">查看</a>
+			<a class="share-winner" href="javascript:;">分享</a>
+		</div>
+	</div>
+</div>
+
+<div style="display:none;" class="share-winner-layer">
+	<div class="winner-box">
+	 
+		<div class="winner-img">
+			<img src="##share_img##">
+		</div>
+	 
+	</div>
+</div>
+ 
+<script>
+	var is_app = '##is_app##';
+	var share_data = '##share_data##';
+	$('.share-winner').click(function(){
+		if(is_app == 1){
+			App.sdk_share(share_data);
+			$('.winner-layer').remove();
+		}else{
+			$('.winner-layer').remove();
+			$('.share-winner-layer').addClass('winner-layer');
+			$('.share-winner-layer').css('display','block');
+		}
+	});
+	
+	$('.share-winner-layer').click(function(){
+		$(this).remove();
+	});
+</script>

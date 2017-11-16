@@ -1,0 +1,69 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_ecv_exchange.css";	
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_ecv_exchange.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/uc_ecv_exchange.js";
+?>
+{include file="inc/header_evc.html"}
+<script>
+var ajax_url  = '{$ajax_url}';
+</script>
+<div class="wrap">
+	<div class="collection">
+		  <div class="check-form">
+		  	<form name="exchange_form" action="{url r="index" p="uc_ecv#do_snexchange"}" method="post">
+		  		<div class="txt-box">输口令 领红包</div>
+		  		<div class="input-box">
+		  			<input class="input-item" type="text" name="sn" value=''/>
+		  		</div>
+		  		<div class="tip-txt">> 点击空白处确认 <</div>
+		  	</form>
+		  </div>  
+		  <div class="ecv-list">
+		  	<div class="e-title">我的积分：<span class="score_total">{$data.score}</span>
+		  	</div>
+                      {if $ecv_list}
+		  	<ul class="evc-list avilable">
+                            {foreach from=$ecv_list item=item}
+		  		<li>
+		  			<div class="evc-info">
+		  				<div class="evc-count">&yen;<span class="evc-count-sum">{$item.money}</span></div>
+		  				<div class="evc-count-info">
+		  					<h2>{$item.name}</h2>
+                                                        {if $item.memo}<p>{$item.memo}</p>{/if}
+		  				</div>
+		  			</div>
+		  			<div class="evc-button">
+		  			{if $item.receive eq 1}
+		  			<input type="button" value="已兑换" >
+		  			{else if}
+		  			<input type="button" value="兑换" onclick="do_exchange({$item.id},this)" score-data="{$item.exchange_score}">
+		  			{/if}
+		  			</div>
+		  		</li>
+                                {/foreach}
+		  	</ul>
+                      {/if}
+		  </div>
+		  <div class="load-data" page-data="{$data.page.page_total}" {if $data.page.page_total lt 2}style="display:none"{/if}>点击加载更多数据</div>
+	</div>
+</div>
+<div class="blank50"></div>
+{include file="inc/footer_index.html"}	

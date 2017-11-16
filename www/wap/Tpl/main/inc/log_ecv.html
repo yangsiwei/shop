@@ -1,0 +1,34 @@
+<div class="log_ecv">
+	<div class="mask"></div>
+	<div class="log-ecv">
+		<img src="{$TMPL}/images/log_ecv.png" alt="">
+		<div class="log-ecv-info">
+			<h2 class="hd">恭喜你<br>成功获得一个红包</h2>
+			<p class="ecv-num">{$reg_ecv_money}<span>夺宝币</span></p>
+			<a href="javascript:;" class="ecv-btn">立即使用</a>
+			<p class="ecv-tip">邀请朋友们一起玩<br>新注册的用户都有送红包喔！</p>
+			<!-- 
+			<p class="ecv-tip">邀请朋友们一起玩<br>每邀请<span>1</span>个新用户注册，就送<span>1</span>个红包喔！</p>
+			-->
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready(function(){
+	setTimeout(
+			function () {
+				$(".wrap").css('pointer-events', 'none');
+				$(".log-ecv").addClass('active');
+			}, 250);
+
+	$('.ecv-btn').click(function () {
+		$(".log_ecv").hide();
+		$(".log-ecv-1").hide();
+	});
+
+
+
+});
+
+
+</script>

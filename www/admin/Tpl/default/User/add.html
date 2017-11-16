@@ -1,0 +1,144 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/user_edit.js' />
+<load href='__TMPL__Common/js/conf.js' />
+<div class="main">
+<div class="main_title">{%ADD} <a href="{:u("User/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<div class="button_row">
+	<input type="button" class="button conf_btn" rel="1" value="基本信息" />&nbsp;
+</div>
+<div class="blank5"></div>
+<table class="form conf_tab" cellpadding=0 cellspacing=0 rel="1">
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%USER_NAME}:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="user_name" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">微信头像:</td>
+		<td class="item_input"><html:imgUpload name = 'user_logo' id='user_logo' value='' /> </td>
+	</tr>
+	
+    <tr class="robot">
+		<td class="item_title">IP地址:</td>
+		<td class="item_input"><input type="text" class="textbox" name="login_ip" /></td>
+	</tr>
+	<tr class="is_robot">
+		<td class="item_title">{%USER_EMAIL}:</td>
+		<td class="item_input"><input type="text" class="textbox" name="email" /></td>
+	</tr>
+	<tr class="is_robot">
+		<td class="item_title">{%USER_MOBILE}:</td>
+		<td class="item_input"><input type="text" class="textbox" name="mobile" /></td>
+	</tr>
+	<tr class="is_robot">
+		<td class="item_title">{%USER_PASSWORD}:</td>
+		<td class="item_input"><input type="password" class="textbox " name="user_pwd" /></td>
+	</tr>
+	<tr class="is_robot">
+		<td class="item_title">{%USER_CONFIRM_PASSWORD}:</td>
+		<td class="item_input"><input type="password" class="textbox " name="user_confirm_pwd" /></td>
+	</tr>
+	<tr class="is_robot">
+		<td class="item_title">累积积分:</td>
+		<td class="item_input"><input type="text" class="textbox" name="total_score" value="{$vo.total_score}" /></td>
+	</tr>
+	
+	<!--<tr>
+		<td class="item_title">{%USER_IS_DAREN}:</td>
+		<td class="item_input">
+			<select name="is_daren">
+				<option value="0">{%USER_IS_DAREN_0}</option>
+				<option value="1">{%USER_IS_DAREN_1}</option>
+			</select>
+			<span id="daren_title">
+				{%DAREN_TITLE}：<input type="text" class="textbox" name="daren_title" />
+			</span>
+		</td>
+	</tr>
+	
+	<tr id="daren_cate">
+		<td class="item_title">达人分类:</td>
+		<td class="item_input">
+			<foreach name="cate_list" item="cate_item">
+				<label>{$cate_item.name}<input type="checkbox" name="cate_id[]" value="{$cate_item.id}" /></label>
+			</foreach>
+		</td>
+	</tr>-->
+	
+	<tr class="is_robot">
+		<td class="item_title">{%USER_BIRTHDAY}:</td>
+		<td class="item_input">
+			<input type="text" name="byear" class="textbox" value=""  style="width:40px" maxlength="4" />{%USER_BYEAR}
+			<input type="text" name="bmonth" class="textbox" value="" style="width:20px" maxlength="2"/>{%USER_BMONTH}
+			<input type="text" name="bday" class="textbox" value=""  style="width:20px" maxlength="2" />{%USER_BDAY}
+		</td>
+	</tr>
+	
+	<tr class="is_robot">
+		<td class="item_title">{%IS_EFFECT}:</td>
+		<td class="item_input">
+			<lable>{%IS_EFFECT_1}<input type="radio" name="is_effect" value="1" checked="checked" /></lable>
+			<lable>{%IS_EFFECT_0}<input type="radio" name="is_effect" value="0" /></lable>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">机器人:</td>
+		<td class="item_input">
+			<select name="is_robot">
+				<option value="0">否</option>
+				<option value="1">是</option>
+			</select>
+		</td>
+	</tr>
+	<foreach name="field_list" item="field_item">
+	<tr>
+		<td class="item_title">{$field_item.field_show_name}:</td>
+		<td class="item_input">
+			 <if condition="$field_item['input_type'] eq 0">
+			 	<input type="text" class="textbox <if condition="$field_item['is_must'] eq 1">require</if>" name="{$field_item.field_name}" />
+			 </if>
+			 
+			 <if condition="$field_item['input_type'] eq 1">
+			 	<select name="{$field_item.field_name}">
+			 		<foreach name="field_item.value_scope" item="value_item">
+			 			<option value="{$value_item}">{$value_item}</option>
+			 		</foreach>
+			 	</select>
+			 </if>
+		</td>
+	</tr>
+	</foreach>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>
+
+<div class="blank5"></div>
+	<table class="form" cellpadding=0 cellspacing=0>
+		<tr>
+			<td colspan=2 class="topTd"></td>
+		</tr>
+		<tr>
+			<td class="item_title"></td>
+			<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="User" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="insert" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%ADD}" />
+			<input type="reset" class="button" value="{%RESET}" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="bottomTd"></td>
+		</tr>
+	</table> 		 
+</form>
+</div>
+<include file="Public:footer" />

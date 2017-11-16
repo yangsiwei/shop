@@ -1,0 +1,161 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<!-- <load href='__TMPL__Common/js/fx_salary.js' /> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div class="container">
+    <div class="main_title">{$title_name} &nbsp;<a href="{:U('index')}">返回列表</a> </div>
+    <form action="{:U('insert')}" method="post">
+    <table class="table table-condensed">
+        <!-- On rows -->
+        <tr class="info">
+            <td class="info"><p>选择商品：</p> </td>
+            <td class="info">
+
+                <select class="form-control" name="deal_id" id="goods_id">
+                    <option value="">请选择商品</option>
+                </select>
+            </td>
+            <td class="info"><input type="text" class="form-control" id="exampleInputAmount" placeholder="输入商品名称进行搜索"></td>
+            <td class="info"><button type="button" class="btn btn-primary" id="search">搜索</button></td>
+        </tr>
+        <tr class="info">
+            <td class="info"><p>专区：</p> </td>
+            <td class="info">
+                <select class="form-control" name="buy_type">
+                    <option selected="selected" value="1">一元购</option>
+                    <option value="10">十元区</option>
+                    <option value="100">百元区</option>
+                </select><!-- 新字段，数据库不存在，一元购：min_buy为1，unit_price为1,  十元区：min_buy为10，unit_price为1,  百元区：min_buy为1，unit_price为100 -->
+
+            </td>
+            <td class="info"><span class="tip_span">[ 总次数  / 专区数 = 总需人次 ]</span></td>
+        </tr>
+        <tr class="info">
+            <td class="info"><p>限购：</p> </td>
+            <td class="info">
+                <input type="text" class="form-control" name="user_max_buy" value="" />
+
+            </td>
+            <td class="info"><span class="tip_span">非直购商品，每人可购人次，0表示不限购</span></td>
+        </tr>
+        <tr class="info">
+            <td class="info"><p>总需人次：</p> </td>
+            <td class="info">
+                <input type="text" class="textbox form-control" name="max_buy" value="" />
+
+            </td>
+            <td class="info"><span class="tip_span">[ × <span class="set_min_buy">1</span> ]</span></td>
+        </tr>
+        <tr class="info">
+            <td class="info"><p>最大举办期数：</p> </td>
+            <td class="info">
+                <input type="text" class="textbox form-control" name="max_schedule" value="" />
+                <input type="hidden" class="textbox form-control" name="is_effect" value="1" />
+                <input type="hidden" class="textbox form-control" name="place_id" value="{$place_id}" />
+            </td>
+            <td class="info"></td>
+        </tr>
+        <tr class="info">
+            <td class="info">极速专区:</td>
+            <td class="info">
+                <lable>是<input type="radio" name="is_topspeed" value="1"  checked="checked"/></lable>
+                <lable>否<input type="radio" name="is_topspeed" value="0"  /></lable>
+            </td>
+            <td class="info"></td>
+        </tr>
+        <tr class="info">
+            <td class="info">特殊专区:</td>
+            <td class="info">
+                <select  name="spectial_area" class="form-control">
+                    <option value="0" selected="selected">==不选择==</option>
+                    <option value="1">选号专区</option>
+                    <option value="2">pk专区</option>
+                    <option value="3">免费云购</option>
+                </select>
+
+            </td>
+            <td class="info"><span class="tip_span">开启极速专区之后,该专区的活动不显示在极速专区</span></td>
+        </tr>
+        <tr id="info">
+            <td class="info">数值B开奖方式:</td>
+            <td class="info">
+                <select name="fair_type" class="form-control">
+                    <option value="wy">时时彩</option>
+                    <option value="yydb">站内开奖（可人工指定）</option>
+                </select>
+            </td>
+            <td class="info"></td>
+        </tr>
+        <tr>
+            <td class="info"></td>
+            <td class="info">
+                <button type="submit" class="btn btn-success" id="done">确定上传</button>
+            </td>
+            <td class="info"></td>
+        </tr>
+    </table>
+    </form>
+</div>
+
+<script>
+    $(function(){
+        $("#search").click(function(){
+            var good_name = $("#exampleInputAmount").val();
+            $("#goods_id").empty();
+            $("#goods_id").append("<option value=''>请选择商品</option>");
+            $.ajax({
+                type: "POST",
+                url: "{:U('getGoodsName')}",
+                data: "name="+good_name,
+                dataType: "json",
+                success:function(data){
+                    if(data['status'] == 1){
+                        $.each(data['info'],function(i,n){
+                            $("#goods_id").append("<option value='"+n['id']+"'>"+n['name']+"</option>");
+                        });
+                    }
+                }
+            });
+        });
+
+        $("#goods_id").change(function(){
+            var deal_id = $("#goods_id").val();
+            console.log(deal_id);
+            $.ajax({
+                type: "POST",
+                url: "{:U('getDealInfo')}",
+                data: "deal_id="+deal_id,
+                dataType: "json",
+                success: function(data){
+                    if(data['status'] == 1){
+                        $("input[name='max_buy']").val(data['info']['current_price']);
+                    }
+                }
+            });
+        });
+
+//        $("#done").click(function(){
+//            var deal_id = $("#goods_id").val();
+//            var buy_type = $("input[name='buy_type']").val();
+//            var user_max_buy = $("input[name='user_max_buy']").val();
+//            var max_buy = $("input[name='max_buy']").val();
+//            var max_schedule = $("input[name='max_schedule']").val();
+//            var is_topspeed = $("input[name='is_topspeed']").val();
+//            var spectial_area = $("input[name='spectial_area']").val();
+//            var fair_type = $("input[name='fair_type']").val();
+//            $.ajax({
+//                type: "POST",
+//                url: "{:U('insert')}",
+//                data: "deal_id="+deal_id+"buy_type="+buy_type+"user_max_buy="+user_max_buy+"max_buy="+max_buy+"max_schedule="+max_schedule+"is_topspeed="+is_topspeed+"spectial_area="+spectial_area+"fair_type="+fair_type,
+//                dataType: "json",
+//                success:function(data){
+//                    alert('success');
+//                }
+//            });
+//        });
+
+    });
+</script>
+
+<include file="Public:footer" />

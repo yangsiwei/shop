@@ -1,0 +1,33 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main">
+<div class="main_title">[{$ecv_type.name}]{$main_title}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%FOREVERDEL}" onclick="foreverdel();" />
+	<input type="button" class="button" value="{%EXPORT}{%ALL}" onclick="export_csv();" />
+</div>
+<div class="blank5"></div>
+<div class="search_row" style="display:none;"><input type="hidden" name="ecv_type_id" value="{:intval($_REQUEST['ecv_type_id'])}" /></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="ecv" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+	,sn:红包序列号
+	,use_limit:{%VOUCHER_LIMIT}
+	,use_count:{%VOUCHER_USE_COUNT}
+	,user_id|get_user_name:{%USER_NAME}
+	,begin_time|to_date:{%VOUCHER_BEGIN_TIME}
+	,end_time|to_date:{%VOUCHER_END_TIME}
+	,money|format_price:{%VOUCHER_MONEY}"
+	actionlist="foreverdel:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

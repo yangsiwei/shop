@@ -1,0 +1,10 @@
+{if $PAGE_TYPE eq 'app'}
+{else}
+
+{/if}
+	
+		{if $is_lottery == 1 && $MODULE_NAME != 'uc_winlog'}
+			{$lottery_html}
+		{/if}
+	</body>
+<html>

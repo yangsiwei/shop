@@ -1,0 +1,281 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<PHP>
+	function get_handle($id, $duobaoItem)
+	{
+		$str.="<a href='javascript:del_duobao(".$id.");'>".l("DEL")."</a>";
+		if($duobaoItem['success_time']==0)
+		{
+			$str.="&nbsp;<a href='javascript:prepare_lottery(".$id.");'>机器人限时凑单</a>";
+			
+			if($GLOBALS['db']->getOne("select robot_type from ".DB_PREFIX."duobao where id = ".$duobaoItem['duobao_id'])==1)
+			{
+				$str.="&nbsp;<a href='javascript:prepare_lottery_1(".$id.");'>机器人设定凑单</a>";
+			}
+		}
+		if($duobaoItem['success_time']>0&&$duobaoItem['has_lottery']==0)
+		{
+			if($duobaoItem['fair_type']=="yydb")
+			$str.="&nbsp;<a href='javascript:draw_lottery_yydb(".$id.",".$duobaoItem['max_buy'].");'>人工开奖</a>";
+			else
+			$str.="&nbsp;<a href='javascript:draw_lottery(".$id.");'>人工开奖</a>";
+		}
+		if($duobaoItem['user_is_robot']==1&&$duobaoItem['has_lottery']==1){
+			if($duobaoItem['is_send_share']==1){
+			$str.="&nbsp;<a href='".u("DuobaoItem/robot_share_view",array("id"=>$id))."'>查看晒单</a>";
+			}else{
+			$str.="&nbsp;<a href='".u("DuobaoItem/robot_share_add",array("id"=>$id))."'>机器人晒单</a>";
+			}
+		}
+		return $str;
+	}
+	
+	function get_has_lottery($has_lottery){
+		if($has_lottery == 1){
+			$str = '已开奖';
+		}else{
+			$str = '未开奖';
+		}
+		return $str;
+	}
+	
+	function get_current_buy($current_id, $duobao_id){
+		$str = "<a href='".u("DuobaoItemLog/index",array("duobao_item_id"=>$duobao_id))."'>".$current_id."</a>";
+		return $str;
+	}
+	function get_is_robot($is)
+	{
+		if($is==="1")
+			return "是";
+		if($is==="0")
+			return "否";
+		else
+			return ;
+	}
+</php>
+<script type="text/javascript">
+//完全删除
+function del_duobao(id)
+{
+	if(!id)
+	{
+		idBox = $(".key:checked");
+		if(idBox.length == 0)
+		{
+			alert(LANG['DELETE_EMPTY_WARNING']);
+			return;
+		}
+		idArray = new Array();
+		$.each( idBox, function(i, n){
+			idArray.push($(n).val());
+		});
+		id = idArray.join(",");
+	}
+	if(confirm(LANG['CONFIRM_DELETE']+"此删除属于强制删除无法恢复，同时会删除开奖号，活动订单关联数据及晒单，并无法自动退款。删除量大时，请勿刷新页面，避免删除失败。"))
+	$.ajax({ 
+			url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=foreverdelete&id="+id, 
+			data: "ajax=1",
+			dataType: "json",
+			success: function(obj){
+				
+				if(obj.status==1)
+				{
+					$("#info").html(obj.info);
+					location.href=location.href;
+				}
+				else
+				{
+					if(confirm("确定要删除正在进行中的夺活活动数据吗？"))
+					{
+						$.ajax({ 
+								url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=foreverdelete&force=1&id="+id, 
+								data: "ajax=1",
+								dataType: "json",
+								success: function(obj){
+									$("#info").html(obj.info);
+									if(obj.status==1)
+									{										
+										location.href=location.href;
+									}
+								}
+						});
+					}
+				}
+			}
+	});
+}
+	function prepare_lottery(id)
+	{
+		if(confirm("如人数未满将被机器人补全,5分钟左右将进入开奖等待，确定吗？"))
+		$.ajax({ 
+				url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=prepare_lottery&id="+id, 
+				data: "ajax=1",
+				dataType: "json",
+				success: function(obj){
+					alert(obj.info);
+					if(obj.status==1)
+					location.href=location.href;
+				}
+		});
+	}
+	
+	function prepare_lottery_1(id)
+	{
+		if(confirm("重新开启一条已设定的机器人凑单，确定吗？"))
+		$.ajax({ 
+				url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=prepare_lottery_1&id="+id, 
+				data: "ajax=1",
+				dataType: "json",
+				success: function(obj){
+					alert(obj.info);
+					if(obj.status==1)
+					location.href=location.href;
+				}
+		});
+	}
+	
+	function draw_lottery(id)
+	{
+		if(confirm("是否立即人工开奖，如未到开奖时间，则将使用默认开奖数值B")) 
+		$.ajax({ 
+				url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=draw_lottery&id="+id, 
+				data: "ajax=1",
+				dataType: "json",
+				success: function(obj){
+					alert(obj.info);
+					if(obj.status==1)
+					location.href=location.href;
+				}
+		});
+	}
+	
+	function draw_lottery_yydb(id,max)
+	{
+		var lottery_sn = prompt("请输入中奖号，如输入的中奖号非法，系统将随机开奖","请输入1-"+max+"之间的任一整数");
+		if(lottery_sn!=null)
+		{
+			var draw_lottery = true;
+			if(isNaN(lottery_sn)||lottery_sn<1||lottery_sn>max)
+			{
+				if(confirm("非法的中奖号，是否要随机开奖？"))
+					draw_lottery = true;
+				else 
+					draw_lottery = false;
+			}
+
+			if(draw_lottery)
+			$.ajax({ 
+				url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=draw_lottery&id="+id+"&lottery_sn="+lottery_sn, 
+				data: "ajax=1",
+				dataType: "json",
+				success: function(obj){
+					alert(obj.info);
+					if(obj.status==1)
+					location.href=location.href;
+				}
+			});
+		}
+		
+		
+	}
+	
+	
+</script>
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">夺宝活动列表</div>
+<div class="blank5"></div>
+<form name="search" action="__APP__" method="get">	
+<div class="search_row">
+
+		期号：<input type="text" class="textbox" name="id" value="{:strim($_REQUEST['id'])}" style="width:100px;" />
+		商品名称：<input type="text" class="textbox" name="duobaoitem_name" value="{:strim($_REQUEST['duobaoitem_name'])}" style="width:100px;" />
+		人需已满:
+		<select name="is_success">
+			<option value="-1" <if condition="intval($_REQUEST['is_success']) eq '-1'">selected="selected"</if>>全部</option>
+			<option value="0" <if condition="intval($_REQUEST['is_success']) eq '0'">selected="selected"</if>>否</option>
+			<option value="1" <if condition="intval($_REQUEST['is_success']) eq '1'">selected="selected"</if>>是</option>
+		</select>
+		
+		
+		开奖等待：
+		<select name="prepare_lottery">
+			<option value="-1" <if condition="intval($_REQUEST['prepare_lottery']) eq '-1'">selected="selected"</if>>全部</option>
+			<option value="0" <if condition="intval($_REQUEST['prepare_lottery']) eq '0'">selected="selected"</if>>否</option>
+			<option value="1" <if condition="intval($_REQUEST['prepare_lottery']) eq '1'">selected="selected"</if>>是</option>
+		</select>
+		
+		已开奖：
+		<select name="has_lottery">
+			<option value="-1" <if condition="intval($_REQUEST['has_lottery']) eq '-1'">selected="selected"</if>>全部</option>
+			<option value="0" <if condition="intval($_REQUEST['has_lottery']) eq '0'">selected="selected"</if>>否</option>
+			<option value="1" <if condition="intval($_REQUEST['has_lottery']) eq '1'">selected="selected"</if>>是</option>
+		</select>
+		
+		机器人：
+		<select name="user_is_robot">
+			<option value="-1" <if condition="intval($_REQUEST['user_is_robot']) eq '-1'">selected="selected"</if>>全部</option>
+			<option value="0" <if condition="intval($_REQUEST['user_is_robot']) eq '0'">selected="selected"</if>>否</option>
+			<option value="1" <if condition="intval($_REQUEST['user_is_robot']) eq '1'">selected="selected"</if>>是</option>
+		</select>
+		
+		专区：
+		<select name="classify">
+			<option value="-1" <if condition="intval($_REQUEST['classify']) eq '-1'">selected="selected"</if>>全部</option>
+			<option value="1" <if condition="intval($_REQUEST['classify']) eq 1">selected="selected"</if>>一元</option>
+			<option value="10" <if condition="intval($_REQUEST['classify']) eq 10">selected="selected"</if>>十元</option>
+			<option value="100" <if condition="intval($_REQUEST['classify']) eq 100">selected="selected"</if>>百元</option>
+		</select>
+		
+		特殊专区
+		<select name="special_classify">
+			<option value="-1" <if condition="intval($_REQUEST['special_classify']) eq '-1'">selected="selected"</if>>全部</option>
+			<option value="1" <if condition="intval($_REQUEST['special_classify']) eq 1">selected="selected"</if>>免费购</option>
+			<option value="2" <if condition="intval($_REQUEST['special_classify']) eq 2">selected="selected"</if>>选号</option>
+			<option value="3" <if condition="intval($_REQUEST['special_classify']) eq 3">selected="selected"</if>>PK</option>
+		</select>
+		
+		<input type="hidden" value="DuobaoItem" name="m" />
+		<input type="hidden" value="index" name="a" />
+		
+		<input type="submit" class="button" value="{%SEARCH}" />
+		<input type="button" class="button" value="删除" onclick="del_duobao();" />
+</div>
+</form>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="duobaoItem" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:期号|50px
+			,duobao_id:夺宝编号
+			,duobaoitem_name:商品名称
+			,user_name:中奖人
+			,user_is_robot|get_is_robot:机器人
+			,lottery_sn:中奖号码
+			,has_lottery|get_has_lottery:开奖状态 
+			,success_time|to_date:成功时间
+			,lottery_time|to_date:开奖时间  
+			,fair_sn_local:数值A
+			,fair_sn:数值B(第三方公证号)
+			,fair_period:开奖期号
+			,max_buy:总需人次
+			,current_buy|get_current_buy=$duobaoItem['id']:已购人次
+			,progress:进度
+			,sort|get_sort=$duobaoItem['id']:{%SORT}
+		 	,is_effect|get_toogle_status=$duobaoItem['id']#is_effect:有效"
+	actionlist="id|get_handle=$duobaoItem" />
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

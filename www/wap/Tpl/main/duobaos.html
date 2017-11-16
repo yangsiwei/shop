@@ -1,0 +1,106 @@
+{if $ajax_refresh==0}
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/duobaos.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pull_refresh.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/TouchSlide.1.1.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/onload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/swipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/duoobao_item_num.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/duoobao_item_num.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/lib/touche.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+
+?>
+
+{include file="inc/header_title_home.html"}
+
+<script type="text/javascript">
+  //减少移动端触发"Click"事件时300毫秒的时间差
+window.addEventListener('load', function() {
+    FastClick.attach(document.body);
+}, false);
+
+</script>
+
+{/if}
+
+<div class="wrap  loading_container" id="loading_container">
+    <div class="content">
+    {if $list}
+      <ul class="goods-list scroll_bottom_list">
+      
+      	{foreach from=$list item=item}
+        <li>
+          <!--<a href="{url x="index" r="duobao" p="data_id=$item.id"}">-->
+		  <div>
+		  	
+          <div class="imgbox">   
+		      <a href="{url x="index" r="duobao" p="data_id=$item.id"}">   	
+            <img src="{$item.icon}" alt="">		
+			    </a>
+		  {if $item.min_buy==10 or $item.unit_price==10}
+          <div class="tenyen"></div>
+		  {/if}	
+		   {if $item.unit_price eq 100}
+          <div class="hundredyen"></div>
+		  {/if}	
+          </div>
+		  
+          <div class="info">
+          	 <a href="{url x="index" r="duobao" p="data_id=$item.id"}">
+            <header>{if $item.is_topspeed}
+                <em style="background-color:#ff2300;padding: 3px 5px;color: #fff;font-size: 12px;">极速</em>
+                {/if}{$item.name}</header>
+            <progress max="{$item.max_buy}" value="{$item.current_buy}"></progress>
+            <p class="fl">总需<span class="all">{$item.max_buy}</span></p>
+            <p class="fr">剩余<span class="rest">{$item.surplus_buy}</span></p>
+			</a>
+          </div>
+		 
+		  <a class="right-box add_cart_item" buy_num="{$item.min_buy}" data-id="{$item.id}">参与</a>
+		  </div>
+		  
+        </li>
+        {/foreach}
+      </ul>
+	  {if $pages}
+	<div class="fy scroll_bottom_page">
+		{$pages}
+	</div>
+	{/if}
+	{else}
+	<!-- 无数据↓ -->
+    <div class="null_data">
+      <p class="icon"><i class="iconfont">&#xe6e8;</i></p>
+      <p class="message">暂无数据</p>
+    </div>
+	{/if}
+    </div>
+</div>
+
+{if $ajax_refresh==0}
+{include file="inc/footer_menu.html"}
+{include file="inc/add_to_list.html"}
+{/if}

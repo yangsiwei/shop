@@ -1,0 +1,63 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_consignee.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_consignee.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_consignee.js";
+?>
+{include file="inc/header.html"}
+<script>
+var AJAX_URL	= '{url x="index" r="ajax"}';
+</script>
+<script type="text/javascript" src="{$APP_ROOT}/public/runtime/region.js"></script>
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav f_l ">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<ul class="web-map clearfix">
+			<li>当前位置：</li>
+			<li><a href="{url x="index" r="uc_center"}">我的购买</a> ></li>
+			<li><a href="{url x="index" r="uc_consignee"}">收货地址</a> ></li>
+			<li class="txt-red">增加地址</li>
+		</ul>
+		<div class="setting_user_info">
+			<div class="blank30"></div>
+			<div class="content">
+				<form name="my_address" method="post" action="{url x="index" r="uc_consignee#save"}">
+					<input type="hidden" value="{$consignee_id}" name="id"  />
+					<div id="cart_consignee" rel="{$consignee_id}">
+					</div>
+					<dl class="submit_dl">
+						<dt></dt>
+						<dd>
+						<button type="button" value="确定"  rel="orange" name="commit"  id="sub_address" class="btn btn-main noform"  >保存地址</button>
+						</dd>
+					</dl>
+				</form>
+			</div>
+			<div class="blank20"></div>
+		</div>
+		</div>
+	</div>
+</div>
+{include file="inc/footer.html"}

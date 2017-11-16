@@ -1,0 +1,97 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main">
+<div class="main_title"><if condition="$order_info['order_status'] eq 0">{%DEAL_ORDER_HANDLE}<else />{%DEAL_ORDER_VIEW}</if>{$order_info.order_sn}</div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data" >
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=3 class="topTd"></td>
+	</tr>
+	<tr>
+		<th colspan=3>{%DEAL_GOODS_LIST}</th>
+	</tr>
+	<tr>
+		<th>{%CHOICE}</th>
+		<th>{%DEAL_NAME}</th>
+		<th>{%NUMBER}</th>
+	</tr>
+	<foreach name="order_deals" item="deal_item">
+	<tr>
+		<td><input type="checkbox" name="order_deals[]" value="{$deal_item.id}" /> <if condition="$deal_item['delivery_status'] eq 1">{%DELIVERYED}</if></td>
+		
+		<td>{$deal_item.name}</td>
+		<td>{$deal_item.number}</td>
+
+	</tr>
+	</foreach>
+	<if condition="$is_fictitious['is_fictitious'] neq 1">
+	<tr>
+		<td>{%DELIVERY_SN}:</td>
+		<td colspan="2">
+		<lable>{%SELECT_EXPRESS}
+		<select name="express_id">
+			<option value="0">{%OTHER_EXPRESS}</option>
+			<foreach name="express_list" item="express">
+				<option value="{$express.id}">{$express.name}</option>
+			</foreach>
+		</select>
+		</lable>
+			
+		<input type="text" class="textbox" name="delivery_sn" required="required" />
+		
+		<span class="tip_span">{%DELIVERY_SN_TIP}</span>
+		<!--<br />
+		<lable><input type="checkbox" value="1" name="send_goods_to_payment" />{%SEND_GOODS_TO_PAYMENT}</lable>-->
+		
+		
+		</td>
+	</tr>
+	<elseif condition="$is_fictitious['is_fictitious'] eq 1"/>
+	<tr>
+		<td>{%IS_FICTITIOUS_INFO}:</td>
+		<td colspan="2">
+		<textarea rows="3" cols="20" name="fictitious_info" required="required" style="width:318px;height:60px"></textarea>
+		<span class="tip_span">{%IS_FICTITIOUS_TIP}</span>
+		</td>
+	</tr>
+	</if>
+	<!--  
+	<tr>
+		<td>{%DELIVERY_MEMO}</td>
+		<td colspan=2><textarea class="textarea" name="memo" ></textarea></td>
+	</tr>
+	-->
+	<tr>
+		<td colspan=3>
+			<input type="hidden" name="order_id" value="{$order_info.id}" />
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="DealOrder" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="do_delivery" />
+			<input type="submit" name="submit_form" class="button" value="{%CONFIRM_DELIVERY}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=3 class="bottomTd"></td>
+	</tr>
+</table>
+</form>
+</div>
+<script>
+
+$(document).ready(function(){
+	$("input[name='submit_form']").click(function(){
+		var delivery_sn =  $.trim( $("input[name='delivery_sn']").val() );
+		var delivery_sn_rule =  /^[0-9a-zA-Z]+$/;
+		if(delivery_sn){
+			if(! delivery_sn_rule.test(delivery_sn)){
+				alert("请填写正确的快递号！");
+				return false;
+			}
+		}
+		
+	});
+});
+
+</script>
+<include file="Public:footer" />

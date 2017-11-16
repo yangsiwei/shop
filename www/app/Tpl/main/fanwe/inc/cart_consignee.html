@@ -1,0 +1,74 @@
+<div class="form_panel">
+			<dl class="clearfix panel-item">
+				<dt><span class="txt-red">*&nbsp;</span>所在地区</dt>
+				<dd>
+					<select name="region_lv1" class="region_select " height="300" style="display:none;">
+					<option value="0">={lang v="SELECT_PLEASE"}=</option>
+						<option selected="selected" value="1">中国</option>
+				  	</select>
+					<select name="region_lv2" class="ui-select region_select" height="300">
+						<option value="0">={lang v="SELECT_PLEASE"}=</option>
+						{foreach from=$region_lv2 item=lv2}
+						<option {if $lv2.selected eq 1}selected="selected"{/if} value="{$lv2.id}">{$lv2.name}</option>
+						{/foreach}
+					  </select>
+					<select name="region_lv3" class="ui-select region_select" height="300">
+						<option value="0">={lang v="SELECT_PLEASE"}=</option>
+						{foreach from=$region_lv3 item=lv3}
+						<option {if $lv3.selected eq 1}selected="selected"{/if} value="{$lv3.id}">{$lv3.name}</option>
+						{/foreach}
+					 </select>
+					<select name="region_lv4" class="ui-select region_select" height="300">
+						<option value="0">={lang v="SELECT_PLEASE"}=</option>
+						{foreach from=$region_lv4 item=lv4}
+						<option {if $lv4.selected eq 1}selected="selected"{/if} value="{$lv4.id}">{$lv4.name}</option>
+						{/foreach}
+					  </select>
+				</dd>
+			</dl>
+			<dl class="clearfix panel-item" style="height: 96px">
+				<dt><span class="txt-red">*&nbsp;</span>街道地址</dt>
+				<dd>
+					<textarea name="address" value="{$consignee_info.address}" class="ui-textbox" holder="不需要重复填写省/市/区" >{$consignee_info.address}</textarea>
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+			<dl class="clearfix panel-item">
+				<dt>邮政编码</dt>
+				<dd>
+					<input  name="zip" value="{$consignee_info.zip}" class="ui-textbox" />
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+			<dl class="clearfix panel-item">
+				<dt><span class="txt-red">*&nbsp;</span>收货人</dt>
+				<dd>
+					<input class="ui-textbox" value="{$consignee_info.consignee}" name="consignee" holder="请使用真实姓名，长度不超过8个字" />
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+			<dl class="clearfix panel-item">
+				<dt>身份证号码</dt>
+				<dd>
+					<input  name="id_card" value="{$consignee_info.id_card}" class="ui-textbox"/>
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+			<dl class="clearfix panel-item">
+				<dt><span class="txt-red">*&nbsp;</span>手机号码</dt>
+				<dd>
+					<input  name="mobile" value="{$consignee_info.mobile}" class="ui-textbox" holder="手机号码必须填" />
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+			<input type="hidden" name="consignee_id" value="{$consignee_info.id}" />
+	</div>
+<div class="defaut-set">
+						<label>
+							<input type="checkbox" name="is_default" value="1" {if $consignee_info.is_default eq 1}checked="checked"{/if}>
+							<span>设置为默认收货地址</span>
+						</label>
+					</div>
+
+
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+<!-- Mobile Devices Support @begin -->
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="false" name="twcClient" id="twcClient">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<!--允许全屏模式-->
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<!--指定sari的样式-->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta content="telephone=no" name="format-detection" />
+<!-- Mobile Devices Support @end -->
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+	
+		function show_qrcode()
+		{
+			var qrcode_url = '__qr_code__'; 
+			document.getElementById("qrcode_div").style.display = "block";
+			document.getElementById("wx_tip").style.display = "none";
+			document.getElementById("qrcode").src=qrcode_url;
+		}
+ 		//调用微信JS api 支付
+		function jsApiCall()
+		{
+			WeixinJSBridge.invoke(
+				'getBrandWCPayRequest',
+				__jsApiParameters__,
+				function(res){
+					if(res.err_msg=='get_brand_wcpay_request:fail'){
+						show_qrcode();
+						//alert('支付失败');
+						//location.href="__pay_url__";
+					}
+					if(res.err_msg=='get_brand_wcpay_request:cancel'){
+						show_qrcode();
+						//alert('支付取消');	
+						//location.href="__pay_url__";				
+					}
+					if(res.err_msg=='get_brand_wcpay_request:ok'){
+						alert('恭喜您支付成功');
+						location.href="__pay_url__";
+					}
+ 				}
+			);
+		}
+
+		function callpay()
+		{
+			if (typeof WeixinJSBridge == "undefined"){
+			    if( document.addEventListener ){
+			        document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+			    }else if (document.attachEvent){
+			        document.attachEvent('WeixinJSBridgeReady', jsApiCall); 
+			        document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+			    }
+			}else{
+			    jsApiCall();
+			}
+		}
+		
+		callpay();
+
+</script>
+</head> 
+<body>
+<div style="padding:5px; text-align:center; line-height:25px;" id="wx_tip">等待微信支付页面</div>
+<div id="qrcode_div" style="border:#ccc solid 1px; margin-top:15px; display:none;">
+	<div style="height:35px; line-height:35px; text-align:center; border-bottom:#ccc solid 1px; background:#f2f2f2;">微信扫码支付</div>
+	<div>
+		<div style="line-height:25px; text-align:center; margin-top:15px;">长时间未弹出支付窗体？<br />
+		<!--<a href="__pay_url__" style="color:#666; font-size:12px; text-decoration:none;">点击 [返回]重新发起支付</a></div>-->
+		<div style="line-height:22px; font-size:12px; text-align:center; padding:15px; color:#f30;">请扫码或长按二维码识别后支付</div>
+		<div style="text-align:center">
+			<img src="" id="qrcode" />
+		</div>
+		<div style="line-height:22px; font-size:12px; padding:15px; color:#666;">无支付弹窗的原因有跨号支付,设备微信版本兼容等原因。跨号支付并不影响您的购买，请放心支付，扫码后支付或长按二维码点击<span style="color:#f30;">识别图中二维码</span>发起支付。</div>
+	</div>
+</div>
+
+</body>
+</html>

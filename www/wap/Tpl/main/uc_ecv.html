@@ -1,0 +1,131 @@
+{if $ajax_refresh==0}
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_ecv.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pull_refresh.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_ecv.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/uc_ecv.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/lib/touche.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+
+?>
+{include file="inc/header_evc_index.html"}
+<script>
+var ajax_url  = '{$ajax_url}';
+var n_valid = '{$n_valid}';
+</script>
+<a href="{url x="index" r="uc_ecv#exchange"}" class="exchange">红包兑换</a>
+<div class="wrap">
+<nav style="position: relative; z-index: 10;" class="ecv_criteria_tab">
+   <ul class="ecv_tab_box" >
+       <li class="{if $n_valid eq 0}this{/if}"><a href="{url x="index" r="uc_ecv#index" }">可使用</a></li>
+   	     <li class="{if $n_valid eq 1}this{/if}"><a href="{url x="index" r="uc_ecv#index" p="&n_valid=1"}">已失效</a></li>					   	     
+   </ul>
+</nav>
+{/if}
+
+<div class="loading_container" id="loading_container">
+	{if $ecv_list}
+	{if $n_valid eq 0}
+	<ul class="evc-list avilable scroll_bottom_list">
+	    {foreach from=$ecv_list item=item}
+		<li>
+	
+			<div class="evc-info split-line">
+				<div class="evc-count">&yen;<span class="evc-count-sum">{$item.money}</span></div>
+				<div class="evc-count-info">
+					<h2>{$item.name}</h2>
+					{if $item.memo}<p>{$item.memo}</p>{/if}
+					{if $item.meet_amount eq 0}
+					<p >订单金额无限制</p>
+					{else if}
+					<p >订单满{$item.meet_amount}夺宝币可用</p>
+					{/if}
+					{if $item.is_all}
+					<p >所有区可用</p>
+					{else if}
+					<p >{$item.range_value1}{$item.range_value2}{$item.range_value3}{$item.range_value4}{$item.range_value5}{$item.range_value6}{$item.range_value7}可用</p>
+					{/if}
+				</div>
+			</div>
+			<div class="evc-time">
+				<p>
+				{$item.datetime}
+				</p>
+			</div>
+			<div class="evc-border">
+			</div>
+		</li>
+	        {/foreach}
+	</ul>
+	{else}
+	<ul class="evc-list unavilable scroll_bottom_list">
+	    {foreach from=$ecv_list item=item}
+		<li>
+			<div class="evc-info split-line">
+				<div class="evc-count">&yen;<span class="evc-count-sum">{$item.money}</span></div>
+				<div class="evc-count-info">
+					<h2>{$item.name}</h2>
+					{if $item.memo}<p>{$item.memo}</p>{/if}
+					{if $item.meet_amount eq 0}
+					<p >订单金额无限制</p>
+					{else if}
+					<p >订单满{$item.meet_amount}夺宝币可用</p>
+					{/if}	
+					{if $item.is_all}
+					<p >所有区可用</p>
+					{else if}
+					<p >{$item.range_value7}{$item.range_value2}{$item.range_value3}{$item.range_value4}{$item.range_value5}{$item.range_value6}{$item.range_value1}可用</p>
+					{/if}
+				</div>
+			</div>
+			<div class="evc-time">
+				<p>
+				{$item.datetime}
+				</p>
+			</div>
+			<div class="evc-border">
+			</div>
+		</li>
+	        {/foreach}
+	</ul>
+	{/if}
+	{if $pages}
+	                <div class="fy scroll_bottom_page">
+	                        {$pages}
+	                </div>
+	              
+	  {/if}
+	  {else}
+	    <div class="lose">
+	    <div class="bgbox">
+	    </div>
+	    <h1>您还没有红包</h1>
+	    <a href="{url x="index" r="index#index"}"><button>立即夺宝</button></a>
+	  </div>
+	
+	  {/if}   
+	  
+</div>
+
+{if $ajax_refresh==0}
+{include file="footer_index"}
+{/if}

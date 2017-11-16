@@ -1,0 +1,79 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_money_index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/redset.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/redset.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/redset.js";
+
+
+
+?>
+{include file="inc/header_title_home.html"}
+<div class="uc_money_body">
+	<div class="null_data">
+		<p class="icon"><img src="{$TMPL}/images/redset-ico.png" height="80" width="80"></p>
+		{if $data.send_ecv}
+		<p class="money" style="color:#d93a55;">{$data.send_ecv}</p>
+		<div class="user_info1" style="color:#999;font-size:0.5rem;margin:0 auto;text-align: center;margin-top:.3rem;"><span>红包已放入当前账号</span>
+			 <a class="use_for" href="{url r="index" p="index" }">立即使用</a>
+			 <p class="draw_money">每个用户每天可以领：{$data.draw_count}次</p>
+		</div>
+		{elseif $data.has }
+		<p class="money"></p>
+		<div class="login-btn_p">
+			<p class="money">您还未登录，请先<a href="{url r="index" r="user#login"}" class="login-btn1" >登录</a></p>
+	 	</div>
+	 	{elseif $data.id }
+	 	<p class="money"></p>
+		<form action="{url x="index" r="redset#dophlogin"}" id="ph_login_box">
+		<div class="login-btn-box">
+			<input type="hidden"  id="pid" class="mobile" name="order_sn" value="{$data.order_sn}" >
+	 		<input id="ph_login_box" type="submit" value="立即领取" class="login-btn1">
+	 	</div>
+	 	</form>
+	 	<p class="draw_money">每个用户每天可以领：{$data.draw_count}次</p>
+	 	{else}
+	 	<p class="end" style="font-size:1rem;">{$data.name}</p>
+		{/if}
+	</div>
+</div>
+<div class="redset-list">
+	<div class="hd"><span>看朋友们手气如何</span></div>
+	{if $data.user_ecv}
+	{foreach from=$data.user_ecv item=value}
+	<ul>
+		<li class="flex-box split-line">
+			<div class="user-img"><img src="{$value.avatar}" alt=""></div>
+			<div class="user-info flex-1">
+				<p class="user-name flex-box flex-1">
+					<span class="name">{$value.user_name}</span>
+					<span class="time flex-1">{$value.get_time}</span>
+				</p>
+				<p class="user-tip">红包领得好，夺宝没烦恼</p>
+			</div>
+			<p class="ecv-num">{$value.money}夺宝币</p>
+		</li>
+	</ul>
+	{/foreach}
+	{else if}
+	<p class="nobaody">当前还无人领取红包</p>
+	{/if}
+</div>
+{include file="inc/no_footer.html"}

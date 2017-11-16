@@ -1,0 +1,107 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/cart_index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_consignee.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/goods_item.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/zone.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/lazyload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/totalbuy_consignee.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/totalbuy_consignee.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/totalbuy.js";
+ 
+?>
+{include file="inc/header_cart_zg.html"}
+<script type="text/javascript">
+var main_url='{url r="index"}';
+var totalbuy_cart_url='{url i="index" r="totalbuy"}';
+</script>
+<script type="text/javascript" src="{$APP_ROOT}/public/runtime/region.js"></script>
+<div class="{function name="load_wrap" t=$wrap_type} cate_row">
+	<div class="blank20"></div>
+	
+		<div class="wrap">
+         {if $is_number_choose!=1&&$is_pk!=1}
+			{if $cart_result.cart_data&&$cart_result.cart_data.is_fictitious neq 1}
+			<h2 class="order-title choose-address">选择收货地址</h2>
+			<div class="content">
+				<div class="address-list-wrap">
+					<ul class="address-list clearfix">
+						{foreach from=$consignee_list item=item}
+						<li data-id="{$item.id}" {if $item.is_default == 1}class="current"{/if}>
+							<div class="address-content">
+								<div class="receiver">
+									<span>{$item.consignee}</span>
+									<a url="{url x="index" r="uc_consignee#set_default" p="id=$item.id"}" class="set-default" href="javascript:void(0)">设为默认</a>
+								</div>
+								<p>{$item.region_lv2}&nbsp;{$item.region_lv3}&nbsp;{$item.region_lv4} </p>
+								<p class="address">{$item.address}</p>
+								<p>{$item.mobile}</p>
+								<div class="operation">
+									<a url="{$item.id}" class="save-consignee" href="javascript:void(0)">修改</a>
+									<a url="{url x="index" r="uc_consignee#del" p="id=$item.id"}" class="del-consignee" href="javascript:void(0)">删除</a>
+								</div>
+								<i class="check-ico"></i>
+							</div>
+						</li>
+						{/foreach}
+					</ul>
+					<a href="javascript:;" class="add-address">+ 添加收货地址</a>
+				</div>
+			</div>
+			 {elseif $cart_result.cart_data&&$cart_result.cart_data.is_fictitious eq 1}
+			 <h2 class="order-title choose-address">虚拟商品无需收货地址，可直接购买</h2>
+			 {/if}
+			 {if $cart_result.cart_data.is_fictitious neq 1}
+			<div class="content set-add-consignee {if $consignee_list}display-none{else}display-block{/if}">
+				<h2 class="order-title add-address">新增收货地址</h2>
+				<form id="my_address" name="my_address" method="post" action="{url x="index" r="totalbuy#save_consignee"}">
+					<input type="hidden" value="{$consignee_id}" name="id"  />
+					<div id="cart_consignee" rel="{$consignee_id}">
+					</div>
+					<dl class="submit_dl">
+						<dt></dt>
+						<dd>
+						<button type="button" value="确定"  rel="orange" name="commit"  id="sub_address" class="btn btn-main noform"  >保存地址</button>
+						</dd>
+					</dl>
+				</form>
+			</div>
+			{/if}
+         {/if}
+            {if $is_pk==1}
+            <form name="buy_form" id="buy_form" action="{url x="index" r="pk#done"}" method="post">
+            {elseif $is_number_choose==1}
+            <form name="buy_form" id="buy_form" action="{url x="index" r="number_choose#done"}" method="post">
+            {else}
+			<form name="buy_form" id="buy_form" action="{url x="index" r="totalbuy#done"}" method="post">
+			{/if}
+            <div id="cart_form">
+				<div class="blank20"></div>
+				<h2 class="order-title confirm-order">确认订单信息</h2>
+				{include file="inc/cart_list_zg.html"}
+			</div>
+			</form>
+		</div>
+</div>
+{include file="inc/footer.html"}

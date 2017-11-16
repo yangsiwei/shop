@@ -1,0 +1,83 @@
+@CHARSET "UTF-8";
+.g-side{ float: left;margin-top: 10px;width: 240px;color:@shadow_color;}
+
+.w-msg-news{ margin-bottom: 10px;padding: 5px 10px;height: 39px;border: 4px solid @border_color;}
+
+.font_h3{ font-size: 22px;font-weight: normal;color: @main_color;margin: 0;padding: 0;}
+
+.w-msg-catlog{ border: 1px solid @border_color;border-top: 3px solid @main_color;}
+
+.w-msg-catlog-hd{padding: 0 16px;height: 60px;}
+
+.font_h3s{color: @main_color;font-size: 22px;color: #000000;line-height: 60px;font-weight: normal;}
+
+.w-msg-catlog-list{margin: 0;padding: 0;}
+
+.font_dt{padding: 8px 0 9px 12px;height: 22px;line-height: 22px;font-size: 16px;font-weight: bold;border-top: 1px solid @border_color;background-color: #f2f2f2;color:#3c3c3c;margin: 0;}
+
+.font_dd{padding: 5px 0 5px 40px;line-height: 24px;margin: 0;}
+.font_dd a{color:#333;}
+.font_ol{list-style:none;-webkit-margin-before: 1em;-webkit-margin-after: 1em;-webkit-margin-start: 0px;-webkit-margin-end: 0px;-webkit-padding-start: 40px;}
+
+.font_lis{color: @main_color;}
+
+.w-msg-more{padding: 18px 20px 20px;border: 1px solid @border_color;border-top: 0;background-color: #f2f2f2;}
+
+.w-msg-more-wrap{margin-top: 10px;
+    padding: 5px 0 5px 30px;
+    background-color:@box_color;}
+
+.w-msg-more-call{padding: 4px 0;
+    height: 18px;
+    line-height: 18px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "MicroSoft Yahei";
+    background-position: -235px -26px;}
+
+.w-msg-more-phoneNum{    font-style: italic;
+    color: @main_color;
+    font-size: 16px;
+    font-weight: bold;}
+
+.g-main{float: none;margin-left: 250px;padding-top: 10px;}
+
+.w-dir{padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    line-height: 30px;
+    font-family: 'Microsoft Yahei',verdana;}
+
+.m-helpcenter-detail{padding: 20px 30px;height: auto;min-height: 710px;border: 1px solid @border_color;}
+
+.m-helpcenter-detail-hd{padding: 7px 0 10px;border-bottom: 2px solid @border_color;line-height: 24px;font-size: 24px;}
+
+.m-helpcenter-detail-hd h4{padding-left: 12px;font-weight: normal;border-left: 6px solid @main_color;color: @main_color;font-family: "Microsoft Yahei";}
+
+.m-helpcenter-detail-bd{padding-top: 20px;font-size: 14px;line-height: 26px;}
+
+.m-new-list{margin-bottom: 25px;list-style: none;}
+.m-news-bd img{
+	display: inline;
+    margin: 0;
+}
+.m-news-bd{
+	padding: 25px 0;
+    font-size: 14px;
+    color: @shadow_color;
+	white-space: normal;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.m-news-list-list{padding: 20px 0;width: 100%;border-bottom: 1px dotted @border_color;line-height: 25px;font-size: 14px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+
+.date{display: inline-block;position: relative;margin-right: 25px;padding: 0 5px;width: 75px;font-weight: normal;border-radius: 3px;background: @main_color;color:@box_color;font-size: 12px;}
+
+.date:after{content: '';display: block;position: absolute;top: 8px;right: -4px;width: 8px;height: 8px;background: @main_color;transform: rotate(45deg);}
+
+.font_span{    width: 100%;
+    font-weight: bold;
+    color: #3b3b3b;overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;font-size:15px;}

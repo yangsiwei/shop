@@ -1,0 +1,65 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/totalbuy_lists.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/duoobao_item_num.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/duoobao_item_num.js";
+?>
+{include file="inc/header_title_home.html"}
+
+<script type="text/javascript">
+var totalbuy_cart_url='{url x="index" r="totalbuy#index"}';
+
+  //减少移动端触发"Click"事件时300毫秒的时间差
+window.addEventListener('load', function() {
+    FastClick.attach(document.body);
+}, false);
+</script>
+
+<div class="totalbuy-lists content">
+	 {if $list}
+	<ul class="flex-box scroll_bottom_list">
+		{foreach from=$list item=item}
+		<li>
+			<div class="list-info">
+				<div class="goods-img"> <a href="{url x="index" r="duobao" p="data_id=$item.id"}"><img src="{$item.icon}" alt=""></a></div>
+				<p class="goods-name">{$item.name}</p>
+				<a href="javascript:;" data_id="{$item.id}" onclick="add_total_buy_cart_item(this)" class="buy-btn zg-btn">立即购买</a>
+			</div>
+		</li>
+		{/foreach}
+	</ul>
+	
+	
+	{if $pages}
+	<div class="fy scroll_bottom_page">
+		{$pages}
+	</div>
+	{/if}
+	{else}
+	<!-- 无数据↓ -->
+    <div class="null_data">
+      <p class="icon"><i class="iconfont">&#xe6e8;</i></p>
+      <p class="message">暂无数据</p>
+    </div>
+	{/if}
+	
+	
+</div>
+{include file="inc/footer_menu.html"}
+{include file="inc/footer_index.html"}

@@ -1,0 +1,7 @@
+{foreach from=$data.feeinfo item=feeinfo name=feeinfo}
+<div class="item-common list-li" {if $smarty.foreach.feeinfo.last}style="border-bottom:none;"{/if}>
+    <span class="item-label fl">{$feeinfo.name}</span>
+    <div class="item-content red fr">{$feeinfo.value}</div>
+	<div class="clear"></div>
+</div>
+{/foreach}

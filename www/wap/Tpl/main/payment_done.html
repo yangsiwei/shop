@@ -1,0 +1,86 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/payment.css";
+ 
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+
+?>
+{include file="inc/header_title_home.html"}
+<script>
+$(document).ready(function(){
+	$("#cfm_new_pwd").click(function(){
+		$("input[name='cfm_new_pwd']:text").select();
+		document.execCommand("Copy");
+ 	});
+});
+</script>
+
+<div class="pay_order_index">
+{if $data.pay_type eq 3}
+	<div class="pay_info">
+		<div class="h font-fc8">订单编号：{$data.order_sn}</div>
+		<div style="line-height:20px;" class="h font-fc8">已购商品：{$data.pay_info}</div>
+	</div>
+	</div>
+	{if $data.split_red_money}
+		<div class="linlin flex-box" style="width:95%;">
+		<input  class="testing flex-1" type="text" name="cfm_new_pwd" id="cfm_new_pwd" value="{$data.url}" placeholder="分享链接" readonly="readonly">
+		</div>
+		<p class="testing-tip">复制链接分享给好友领红包</p>
+	{/if}
+	{if $data.pay_status eq 1}
+	 	<div class="btn_login" style="text-align: center;">
+	    	<a href="{url x="index" r="uc_totalbuy#index"}" p="&pay_status=1">
+	    		<input style="width:90%;"type="submit" value="购买记录">
+			</a>
+		</div>
+	{else}
+	<form id="form" onsubmit="return check_form();" method="post" action="{url x="index" r="totalbuy#pay_check" p="id=$data.order_id"}">
+	    <div class="btn_login">
+	    	<input id="input_submit" type="submit" value="{$data.pay_info}，继续付款">
+		</div>
+	</form>
+	{/if}
+{else}
+	<div class="pay_info">
+		<div class="h font-fc8">订单编号：{$data.order_sn}</div>
+	
+	</div>
+	{if $data.split_red_money}
+		<div class="linlin flex-box" >
+		<input  class="testing flex-1" type="text" name="cfm_new_pwd"  id="cfm_new_pwd" value="{$data.url}" placeholder="分享链接" readonly="readonly">
+		</div>
+		<p class="testing-tip">复制链接分享给好友领红包</p>
+	{/if}
+    {if $data.pay_status eq 1}
+    <div class="btn_login">
+        <a href="{url x="index" r="uc_duobao_record#index"}" p="&pay_status=1">
+        <input type="submit" value="{$data.pay_info}">
+        </a>
+    </div>
+	{else}
+	<form id="form" onsubmit="return check_form();" method="post" action="{url x="index" r="cart#order" p="id=$data.order_id"}">
+	    <div class="btn_login">
+	    	<input id="input_submit" type="submit" value="{$data.pay_info}，继续付款">
+		</div>
+	    </form>
+	{/if}
+{/if}
+</div>
+
+{include file="inc/footer_index.html"}

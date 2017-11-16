@@ -1,0 +1,289 @@
+{if $ajax_refresh==0}
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/duobao.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/relate_goods.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/layer.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pull_refresh.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pk_show_pkgoods_status.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/TouchSlide.1.1.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/onload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/swipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/duobao.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/duobao.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/relate_goods.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/relate_goods.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/layer.m/layer.m.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/layer.m/layer.m.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/lib/touche.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pk_show_pkgoods_status.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pk_show_pkgoods_status.js";
+?>
+{include file="inc/header_title_home.html"}
+<script type="text/javascript">
+    var cart_conf_json = {$cart_conf_json};
+    var cart_data_json = {$cart_data_json};
+    var to_cart_url = "{url x="index" r="cart#index"}";
+    var totalbuy_cart_url='{url x="index" r="totalbuy#index"}';
+    var duobao_detail_info = 1;
+</script>
+
+{/if}
+<div class="wrap page_detail loading_container" id="loading_container">
+
+    <div class="content">
+        <!--关于商品-->
+        <div class="goods-box goods-abbr">
+            <div class="top">
+                {if $item_data.unit_price eq 100}<div class="hundredyen"></div>{/if}
+                <div class="tenyen"></div>
+                <div class="flash" id="containerFlashAnimation">
+                    <section>
+                        <div id="banner_box" class="banner_box banner_box_half {if $item_data.deal_gallery}has_img{/if}">
+                            <div class="bd">
+                                <ul>
+                                    {foreach from=$item_data.deal_gallery item=img}
+                                    <li style="vertical-align: top; width: 100%; display: table-cell;height:8.5rem">
+                                        <img src="{$img}" style="height:8.5rem;margin:0 auto;display:block;"/>
+                                    </li>
+                                    {/foreach}
+                                </ul>
+                            </div>
+                            <div class="hd"><ul></ul></div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            {if $item_data.duobao_status eq 0}
+            <!-- 进行中 -->
+            <div class="good-on">
+                <em class="on">进行中</em>
+                <p>{if $item_data.is_topspeed}
+                    <em style="background-color:#ff2300;padding: 3px 5px;color: #fff;font-size: 12px;">极速</em>
+                    {/if}{$item.name}{$item_data.name} <span>{$item_data.brief}</span>
+
+                </p>
+                {if $item_data.unit_price eq 100}
+
+                <span style="color:#df5667; display:block; margin-bottom:.2rem;">1人次=100夺宝币&nbsp;&nbsp; {if $item_data.user_max_buy gt 0}每人限购 {$item_data.user_max_buy} 次{/if} </span>
+                {/if}
+                <div class="progress">
+                    <p>期号：{$item_data.id}</p>
+                    <progress max="{$item_data.max_buy}" value="{$item_data.current_buy}"></progress>
+                    <p class="fl">总需<em id="pro-max">{$item_data.max_buy}</em>人次</p>
+                    <p class="fr">剩余<span id="pro-rest">{$item_data.surplus_count}</span></p>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            {elseif $item_data.duobao_status eq 1}
+            <!-- 倒计时 -->
+            <div class="good-countdown">
+                <em class="countdown">倒计时</em>
+                <p>{$item_data.name} <span>{$item_data.brief}</span>
+                </p>
+                <div class="countdown-box">
+                    <p>期号：{$item_data.id} </p>
+                    <p class="fl">揭晓倒计时</p>
+                    <time class="fl w-countdown-nums" duobao_item_id="{$item_data.id}" nowtime="{$item_data.now_time}" endtime="{$item_data.lottery_time}"></time>
+                    <a href="{url x="index" r="duobao#detail" p="data_id=$item_data.id"}">计算详情</a>
+                </div>
+            </div>
+            {elseif $item_data.duobao_status eq 2}
+            <!-- 已揭晓 -->
+            <div class="good-announced">
+                <em class="announced">已揭晓</em>
+                <p>{$item_data.name} <span>{$item_data.brief}</span>
+                </p>
+                <div class="announced-box">
+                    <div class="announcer">
+                    </div>
+                    <div class="imgbox" style="background:url({function name="get_user_avatar" uid=$item_data.luck_lottery.user_id type="small"});background-size: contain">
+
+                </div>
+                <ul>
+                    <li>
+                        <p>获奖者：</p>
+                        <div class="fl">
+                            <a href="{url x="index" r="anno_user_center" p="lucky_user_id=$item_data.luck_user_id"}">{$item_data.luck_lottery.user_name}</a>
+                            <em>{$item_data.luck_lottery.duobao_ip}({$item_data.luck_lottery.duobao_area})</em>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                    <li>
+                        <p>用户ID：</p>{$item_data.luck_user_id}（唯一不变标识）
+                    </li>
+                    <li>
+                        <p>期 &nbsp;&nbsp;&nbsp;号：</p>
+                        {$item_data.id}
+                    </li>
+                    <li>
+                        <p>本期参与：</p>
+                        <span>{$item_data.luck_lottery.user_total}</span>人次
+                    </li>
+                    <li>
+                        <p>揭晓时间：</p>
+                        {$item_data.lottery_time_format}
+                    </li>
+                </ul>
+                <div class="clear"></div>
+                <div class="luckycode">
+                    <p class="fl">幸运号码：
+                    </p>
+                    <em class="fl">{$item_data.lottery_sn}</em>
+                    <a href="{url x="index" r="duobao#detail" p="data_id=$item_data.id"}">计算详情</a>
+                </div>
+            </div>
+        </div>
+        <!-- 已揭晓 -->
+        {/if}
+
+        {if $data.user_login_status eq 0}
+        <div class="login-to-check">
+            <p><a href="{url x="index" r="user#login"}">登录</a>以查看你的夺宝号码~</p>
+        </div>
+        <!-- 未登录 -->
+        {else}
+        {if !$data.my_duobao_log}
+        <div class="notin">
+            <p>您没有参与本期夺宝哦！</p>
+        </div>
+        <!-- 未参与 -->
+
+        {else}
+        <div class="joined">
+            <p>您参与了：<span>{$data.my_duobao_count}</span>人次</p>
+            <dl id="duobao_sn_list">
+                <dt>夺宝号码：</dt>
+                {foreach from=$data.my_duobao_log item=log}
+                <dd>{$log.lottery_sn}</dd>
+                {/foreach}
+            </dl>
+            <a id="func" href="javascript:void(0);" style="float:right; margin-right:.36rem;color:#39f;margin-top:.4rem;font-size: .52rem;">展开<i class="iconfont">&#xe6c3;</i></a>
+            <div class="clear"></div>
+        </div>
+        {/if}
+        <!-- 参与信息 -->
+        {/if}
+    </div>
+    {if $item_data.is_total_buy eq 1 && $item_data.total_buy_stock > 0 && $item_data.duobao_status eq 0}
+    <div class="zg-area">
+        <div class="zg-info">
+            <h2>全价购买</h2>
+            <p>无需等待，直接获得商品！</p>
+            <p class="price txt-red">&yen;{$item_data.total_buy_price}</p>
+        </div>
+        <a href="javascript:;"  data_id="{$item_data.id}" onclick="add_total_buy_cart_item(this)"  class="zg-btn">全价购买</a>
+    </div>
+    {/if}
+    <div class="infomation">
+        <ul>
+            <li><a href="{url x="index" r="duobao#more" p="data_id=$item_data.id"}">图文详情<i class="iconfont">&#xe6fa;</i><span class="fr">建议在wifi下查看</span></a></li>
+            <!--<div class="info-border"></div>-->
+            <!--<li><a href="{url x="index" r="duobao#duobao_record" p="data_id=$item_data.duobao_id"}">往期揭晓<i class="iconfont">&#xe6fa;</i></a></li>-->
+            <!--<div class="info-border"></div>-->
+            <!--<li><a href="{url x="index" r="share#index" p="data_id=$item_data.duobao_id"}">晒单记录<i class="iconfont">&#xe6fa;</i></a></li>-->
+        </ul>
+    </div>
+    <!-- 信息 -->
+    {if $data.duobao_order_list}
+    <div class="join-data ">
+        <div class="all-data split-line">
+            所有参与记录<span class="fr">(<time>{$item_data.create_time_format}</time>开始)</span>
+        </div>
+        <dl >
+            <dt>
+                <time>{$item_data.create_time_format}</time>
+            </dt>
+            <div class="scroll_bottom_list">
+
+
+                {foreach from=$data.duobao_order_list item=duobao_order}
+                <dd>
+                    <div class="imgbox" style="background:url({function name="get_user_avatar" uid=$duobao_order.user_id type="small"});background-size: contain"></div>
+            <div class="txtbox">
+                <!-- <a href="javascript:void(0);">{$duobao_order.user_name}</a> -->
+                <a href="{url x="index" r="anno_user_center" p="lucky_user_id=$duobao_order.user_id"}">{$duobao_order.user_name}</a>
+                <!-- <a href="{url x="index" r="anno_user_center" p="lucky_user_id=$item.luck_user_id"}">{$item.luck_user_name}</a> -->
+                <em>({$duobao_order.duobao_area} IP:{$duobao_order.duobao_ip})</em>
+                <p>参与了本次pk <time>{$duobao_order.f_create_time}</time></p>
+            </div>
+            <div class="clear"></div>
+            </dd>
+            {/foreach}
+            <!-- 个人参与记录 -->
+    </div>
+    </dl>
+    {if $pages}
+    <div class="fy scroll_bottom_page">
+        {$pages}
+    </div>
+    {/if}
+
+</div>
+{/if}
+{if $data.my_duobao_count<1}
+<div class="joinin">
+    <div class="joinin-box">
+        {if $item_data.has_password}
+        <a class="jionin-in joinin-btn right-box pk-now"  style="margin-right: 0.4rem;" href="javascript:void(0);" url="{url x="index" r="pk#check_password" p="data_id=$item.id"}">参与pk</a>
+        {else}
+        <a class="jionin-in joinin-btn right-box submit"  style="margin-right: 0.4rem;" href="javascript:void(0);" url="{url x="index" r="pk#check_password" p="data_id=$item.id"}">参与pk</a>
+        {/if}
+    </div>
+</div>
+{/if}
+</div>
+
+</div>
+<div class="mask"></div>
+<div class="pk-box" style="display: none;">
+    <div class="pk-box-hd">
+        <h2 class="pk-box-tit">输入密码</h2>
+        <a href="javascript:void(0)" class="close-pk-box"><i class="iconfont">&#xe64f;</i></a>
+    </div>
+    <div class="pk-box-bd">
+        <div class="input-wrap flex-box">
+            <p>设置密码：</p>
+            <input type="password" name="pk_password" id="pk_password" check-login='{url x="index" r="user#check_login"}' maxlength="6" class="flex-1" placeholder="请输入密码(选填)">
+        </div>
+        <a href="javascript:void(0);" id="pk_submit" class="pk-confirm">确认</a>
+    </div>
+</div>
+{if $ajax_refresh==0}
+
+{if $item_data.duobao_status eq 0}
+{include file="inc/add_to_list.html"}
+{/if}
+
+<div class="blank50"></div>
+{include file="inc/no_footer.html"}
+
+{/if}

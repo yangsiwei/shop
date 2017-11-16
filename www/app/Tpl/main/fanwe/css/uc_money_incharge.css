@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+#cart_payment .payment_rdo{float:left; border:#f2f2f2 2px solid;  width:150px; height:40px; display:inline-block; margin:0px 33px 10px 0px; overflow:hidden; text-align:center; line-height:40px;}
+#cart_payment .payment_rdo_hover,#cart_payment .payment_rdo_checked{float:left; border:@main_color 2px solid; width:150px; height:40px; display:inline-block; margin:0px 33px 10px 0px;  overflow:hidden; text-align:center;  line-height:40px;}
+#cart_payment .payment_rdo img,#cart_payment .payment_rdo_hover img,#cart_payment .payment_rdo_checked img{ width:150px; height:40px;}
+#cart_payment .ui-textbox{ padding:5px;}
+#cart_payment .content{ padding-right:0px;}
+
+#money1 input{
+	float:left;
+	border:#FFE4E1 2px solid;
+	width:150px;
+	height:40px;
+	margin:0px 33px 10px 0px;
+	overflow:hidden;
+	text-align:center;
+	line-height:40px;
+	color: #444;
+	display: block;
+	font-size: 14px;
+	font-weight: normal;
+}
+#money1 .selected{
+	color:@main_color;
+	border-color: @main_color;
+}
+.op_box {
+  border-left: 1px dotted #e5e5e5;
+}

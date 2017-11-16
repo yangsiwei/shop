@@ -1,0 +1,23 @@
+<td colspan="6">
+	<h4>计算结果</h4>
+	<ol>
+		<li><span class="index">1、</span>求和：{$root.item_data.fair_sn_local} (上面50条参与记录的时间取值相加)</li>
+		<li><span class="index">2、</span>{if $root.item_data.fair_type eq 'wy'}第 {$root.item_data.fair_period} 期“老时时彩”{/if}幸运号码：{foreach from=$root.item_data.fair_sn_s item=fair_sn}<b class="ico ball">{$fair_sn}</b>{/foreach}</li>
+		<li><span class="index">3、</span>求余：({$root.item_data.fair_sn_local} + {foreach from=$root.item_data.fair_sn_s item=fair_sn}<b class="ico ball">{$fair_sn}</b>{/foreach}
+		) % {$root.item_data.max_buy} (商品所需人次) =
+		{foreach from=$root.item_data.luck_lottery.fixed_values item=fixed_values}<b class="square">{$fixed_values}</b>{/foreach}
+		(余数)
+			<i class="ico ico-question" style="margin-top: -2px">
+				<div class="tips-layer">
+					<i class="ico small-tip-ico"></i>
+						<b class="txt-red">余数：</b>指整数除法中，被除数未被除尽部分。“例如27除以6”，商数为4，余数为3。
+				</div>
+			</i>
+		</li>
+		<li><span class="index">4、</span>{foreach from=$root.item_data.luck_lottery.fixed_values item=fixed_values}<b class="square">{$fixed_values}</b>{/foreach}
+		(余数) + 100000001 =
+		{foreach from=$root.item_data.luck_lottery.lottery_sns item=lottery_sns}<b class="square">{$lottery_sns}</b>{/foreach}
+		</li>
+	</ol>
+	<span class="result-code">幸运号码： {$root.item_data.luck_lottery.lottery_sn}</span>
+</td>

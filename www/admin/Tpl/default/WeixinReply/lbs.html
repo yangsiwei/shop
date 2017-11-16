@@ -1,0 +1,32 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	function editReply(id)
+	{
+		location.href = '{:u("WeixinReply/editlbs")}'+"id="+id;
+	}
+</script>
+<div class="main">
+<div class="main_title">LBS回复</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%ADD}" onclick="location.href='{:u("WeixinReply/editlbs")}';" />
+	<input type="button" class="button" value="{%DEL}" onclick="foreverdel();" />
+</div>
+<div class="blank5"></div>
+
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="reply" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,address:地址:editReply,x_point:经度,y_point:纬度,scale_meter:范围(米)" 
+	actionlist="editReply:{%EDIT}, foreverdel:{%DEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

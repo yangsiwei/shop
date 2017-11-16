@@ -1,0 +1,126 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/voucher.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_voucher.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_voucher.js";
+?>
+{include file="inc/header.html"}
+
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav left_box">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<ul class="web-map clearfix">
+			<li>当前位置：</li>
+			<li><a href="{url x="index" r="uc_center"}">我的夺宝</a> ></li>
+			<li class="txt-red"><a href="{url x="index" r="uc_voucher"}">我的红包</a> ></li>
+			<li class="txt-red">红包兑换</li>
+		</ul>
+		<div class="uc_info_box">
+			{if $list}
+			<div class="info_table">
+				<table>
+					<tbody>
+						<tr>
+								<th>红包名称</th>
+								<th>红包面额</th>
+								<th>所需积分</th>
+								<th>可用积分</th>
+								<th>操作</th>
+						</tr>
+						{foreach from=$list item=voucher key=key}
+						<tr class="alt">
+                               <td>{$voucher.name} </td>
+                               <td>{function name="format_price" value=$voucher.money}</td>
+                               <td>{function name="format_score" value=$voucher.exchange_score}</td>
+                               <td>{function name="intval" p="$user_info.score"}积分</td>
+                               {if $voucher.receive eq 1}
+                               <td><p>已兑换</p></td>
+                               {else if}
+                               <td><a class="exchange" href="javascript:void(0);" url="{url x="index" r="uc_voucher#do_exchange" p="id=$voucher.id"}">{$LANG.DO_EXCHANGE}</a></td>
+                         	   {/if}
+                         </tr>
+                         {/foreach}
+
+
+					</tbody>
+				</table>
+			</div>
+			<div class="blank"></div>
+			<div class="pages">{$pages}</div>
+			{else}
+			<div class="empty_tip">没有相关的红包记录</div>
+			{/if}
+			<!--voucher exchange-->
+			<div class="blank"></div>
+			<div class="layout_box">
+				<div class="title">序列号兑换红包</div>
+				<div class="content clearfix">
+					<div class="form_panel" style="padding:25px;">
+					<div class="panel">
+					<form name="sn_exchange" id="sn_exchange"  method="post" action="{url x="index" r="uc_voucher#do_snexchange"}">
+						<div class="input-wrap">
+							<input class="ui-textbox" name="sn" holder="请输入序列号" />
+						</div>
+						<div class="blank20"></div>
+						<div class="blank20"></div>
+						<button class="btn btn-main" rel="orange" type="submit">立即兑换</button>
+					</form>
+					</div>
+					</div>
+				</div><!--end content-->
+				</div>
+			<!--end exchange-->
+			<div class="evc-rule">
+				<div class="evc-rule-hd">
+					<h1 class="title">如何使用红包</h1>
+					<div class="fold-btn fold-btn-down">
+						展开
+						<i class="ico ico-arrow-blue-m-down ico-arrow-blue-m"></i>
+					</div>
+					<div class="fold-btn fold-btn-up">
+						收起
+						<i class="ico ico-arrow-blue-m-up ico-arrow-blue-m"></i>
+					</div>
+				</div>
+				<div class="evc-rule-info"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}
+<script>
+	$(function(){
+		$(".fold-btn").click(function() {
+			$(".fold-btn").hide();
+		});
+		$(".fold-btn-down").click(function() {
+			$(".fold-btn-up").show();
+			$(".evc-rule-info").show();
+		});
+		$(".fold-btn-up").click(function() {
+			$(".fold-btn-down").show();
+			$(".evc-rule-info").hide();
+		});
+	});
+</script>

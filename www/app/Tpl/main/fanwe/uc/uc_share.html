@@ -1,0 +1,72 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_share.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_share.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_share.js";
+?>
+{include file="inc/header.html"}
+
+<script type="text/javascript" src="{$APP_ROOT}/system/region.js"></script>	
+<script>
+var UPLOAD_URL = '{url x="index" r="file#upload_avatar"}';
+</script>
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav f_l ">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<ul class="web-map clearfix">
+			<li>当前位置：</li>
+			<li><a href="{url x="index" r="uc_center"}">个人中心</a> ></li>
+			<li class="txt-red">我的晒单</li>
+		</ul>
+		<div class="share-banner"></div>
+		<div class="blank20"></div>
+		<div class="share-box">
+		{if $count eq 0 }
+			<div class="null-data">
+				<p class="txt">您暂时还没有晒单记录哦~ 您有<span class="txt-red">{$not_share_count}</span>个幸运记录可晒单</p>
+				<div class="blank20"></div>
+				{if $not_share_count gt 0}<a href="{url x="index" r="uc_luck"}" class="btn btn-main">立即查看</a>{/if}
+			</div>
+		{else}
+			<div class="share-record">
+				共有<b>{$count}</b>条晒单记录，还有<b class="txt-red">{$not_share_count}</b>个幸运记录可晒单哦~<a href="{url x="index" r="uc_luck"}" class="check">查看</a>
+			</div>
+			<div class="blank20"></div>
+			
+			<ul class="pin-layout" id="uc-share-pin-box">
+		
+			</ul>
+			<input type="hidden" name="page" id="hd_page" value="{$page}" />
+			<input type="hidden" name="step_size" id="hd_step_size" value="{$step_size}" />
+			<input type="hidden" name="step" id="hd_step" /> 
+			<input type="hidden" name="ajax_wait" id="ajax_wait" /> 
+			<div id="pin-loading" style="height:50px;text-align:center;">加载中.....</div>
+			<div class="pages">{$pages}</div>
+			{/if}
+		</div>
+
+	</div>
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

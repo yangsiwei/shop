@@ -1,0 +1,78 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	var sale_line_data_url = '{:urlencode(u("Ofc/sale_month_line",array("year"=>$cyear,"month"=>$cmonth)))}';
+</script>
+<load href='__TMPL__Common/js/balance.js' />
+<div class="main">
+<div class="main_title"> {$balance_title}报表</div>
+
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" id="balance_index_search_form" action="__APP__" method="get">
+		{%SEARCH_REFERER_TIME}：
+		<select name="year">
+			<foreach name="year_list" item="year">
+				<option value="{$year.year}" <if condition="$year['current']">selected="selected"</if>>{$year.year}年</option>
+			</foreach>
+		</select>
+		<select name="month">
+			<foreach name="month_list" item="month">
+				<option value="{$month.month}" <if condition="$month['current']">selected="selected"</if>>{$month.month}月</option>
+			</foreach>
+		</select>
+		<select name="type">					
+			<option value="2" <if condition="$type eq 2">selected="selected"</if>>会员充值明细</option>
+			<option value="4" <if condition="$type eq 4">selected="selected"</if>>会员提现明细</option>	
+			<option value="1" <if condition="$type eq 1">selected="selected"</if>>销售明细</option>		
+		</select>
+		<input type="hidden" value="Balance" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+		<input type="button" class="button" value="清空当月报表" onclick="clear_balance('{:u("Balance/foreverdelete",array("month"=>$cmonth,"year"=>$cyear))}');" />
+        <input type="button" class="button" value="导出Excel" id="export_excel" url="{:U("Balance/export_excel")}"/>
+	</form>
+</div>
+<div class="blank5"></div>
+
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=5 class="topTd"></td>
+	</tr>
+	<tr>
+		<th colspan=5>{$month_title} 运营数据<br />本月账面结余：总收入{$stat_result.income_money|format_price} - 总支出{$stat_result.out_money|format_price} = {$accout_money|format_price}</th>
+	</tr>
+	
+	<tr>
+		<td>
+			<div id="sale_line_data_chart"></div>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan=5 class="bottomTd"></td>
+	</tr>
+</table>
+
+<div class="blank5"></div>
+<div class="search_row" style="text-align:right;">
+	【{$balance_title}总计：{$sum_money|format_price}】 【{$balance_title}本页总计：{$page_sum_money|format_price}】
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="log" 
+	datasource="list" 
+	show="id:{%ID}|50px,log_info:日志,money|format_price:金额|100px,create_time|to_date:发生日期|200px" 
+	actionlist = ""
+	 />
+<div class="blank5"></div>
+<div class="search_row" style="text-align:right;">
+	【{$balance_title}总计：{$sum_money|format_price}】 【{$balance_title}本页总计：{$page_sum_money|format_price}】
+</div>
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

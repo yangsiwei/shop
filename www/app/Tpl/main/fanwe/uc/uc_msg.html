@@ -1,0 +1,87 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_msg.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_msg.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_msg.js";
+
+?>
+{include file="inc/header.html"}
+
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav f_l ">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<ul class="web-map clearfix">
+			<li>当前位置：</li>
+			<li><a href="{url x="index" r="uc_center"}">个人中心</a> ></li>
+			<li class="txt-red">我的消息</li>
+		</ul>
+		<div class="main_box">
+			<div class="content">
+				<div class="title"><span>我的消息</span></div>
+				<div class="blank20"></div>
+				
+			</div>
+			{if $list}
+			{foreach from=$list item=msg}
+			<div class="msg_row clearfix">
+				<div class="msg_icon f_l">
+					{if $msg.icon}
+						{if $msg.link}<a href="javascript:;" title="{$msg.title}" target="_blank">{/if}					
+						<img src="{function name="get_spec_image" v=$msg.icon w=50 h=50 g=1}" />
+						{if $msg.link}</a>{/if}	
+					{else}
+					<i class="iconfont">&#xe62c;</i>
+					{/if}
+				</div>
+				<div class="msg_main f_r">
+					<div class="msg_title">
+						<span class="title">
+						{if $msg.is_read eq 0}<i class="iconfont new_msg">&#xe636;</i>{/if}
+						{if $msg.title}
+							{if $msg.link}<a href="javascript:;" title="{$msg.title}" target="_blank">{/if}
+								{$msg.short_title}
+							{if $msg.link}</a>{/if}	
+						{/if}
+						</span>
+						<span class="pub_date"><i class="iconfont">&#xe621;</i> {$msg.create_time}</span>
+					</div>
+					<div class="msg_content">
+						<div class="content">{$msg.content}</div>
+						<div class="op">
+							<a href="javascript:void(0);" action="{url x="index" r="uc_msg#remove_msg" p="id=$msg.id"}"><i class="iconfont">&#xe62f;</i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			{/foreach}
+			<div class="blank"></div>
+			<div class="pages">{$pages}</div>
+			{else}
+			<div class="empty_tip">没有消息记录</div>
+			{/if}
+		</div>
+	</div>	
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

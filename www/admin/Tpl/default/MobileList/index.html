@@ -1,0 +1,46 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/js/user.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<script type="text/javascript">
+function import_csv()
+{
+	$.weeboxs.open(ROOT+'?m=MobileList&a=import_csv', {contentType:'ajax',showButton:false,title:LANG['IMPORT'],width:600,height:180});
+}
+</script>
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+<div class="search_row">
+	<input type="button" class="button" value="{%ADD}" onclick="add();" />
+	<input type="button" class="button" value="{%FOREVERDEL}" onclick="foreverdel();" />
+	{%DEAL_CITY}：
+		<select name="city_id">
+			<option value="0" <if condition="intval($_REQUEST['city_id']) eq 0">selected="selected"</if>>{%NO_SELECT_CITY}</option>
+			<foreach name="city_list" item="city_item">
+				<option value="{$city_item.id}" <if condition="intval($_REQUEST['city_id']) eq $city_item['id']">selected="selected"</if>>{$city_item.title_show}</option>
+			</foreach>
+		</select>
+	<input type="button" class="button" value="{%EXPORT}" onclick="export_csv();" />
+	<input type="button" class="button" value="{%IMPORT}" onclick="import_csv();" />
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="mobile" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,mobile:{%MOBILE_NUMBER}
+	,city_id|get_city_name:{%SUBMIT_CITY}
+	,is_effect|get_is_effect=$mobile['id']:{%IS_EFFECT}" 
+	actionlist="edit:{%EDIT}, foreverdel:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

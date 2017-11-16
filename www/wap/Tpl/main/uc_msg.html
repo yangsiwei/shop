@@ -1,0 +1,92 @@
+{if $ajax_refresh==0}
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_msg.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pull_refresh.css";			
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_msg.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/uc_msg.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/lib/touche.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+
+?>
+{include file="inc/header_title_home.html"}
+{/if}
+
+<div class="loading_container" id="loading_container">
+	<div class="wrap">
+		<div class="content">
+			{if $data.list}
+			<div class="msg_box">
+					<div class="blank"></div>
+					<div class="scroll_bottom_list">
+					{foreach from=$data.list item=msg}
+					<div class="msg">
+						<div class="msg_ico">
+							{if $msg.icon}
+								{if $msg.link}<a href="{$msg.link}"  target="_blank">{/if}					
+								<img src="{$msg.icon}" />
+								{if $msg.link}</a>{/if}	
+							{else}
+							<i class="iconfont">&#xe619;</i>
+							{/if}						
+						</div>
+						<div class="msg_main">
+							<div class="msg_title">
+							{if $msg.short_title}
+								{if $msg.link}<a href="{$msg.link}" target="_blank">{/if}
+									{$msg.short_title}
+								{if $msg.link}</a>{/if}	
+							{/if}
+							</div>
+							<div class="msg_content">
+								{$msg.content}
+							</div>
+						</div>
+						<div class="clear"></div>
+						<div class="msg_info">{$msg.create_time}<a href="javascript:void(0);" class="del_msg" action="{url x="index" r="uc_msg#remove_msg" p="id=$msg.id"}"><i class="iconfont">&#xe68d;</i></a></div>
+					</div>
+					
+					<div class="blank"></div>
+					{/foreach}
+					</div>
+			</div>
+			{else}	
+	
+			<div class="null_data">
+			<p class="icon"><i class="iconfont">&#xe6e8;</i></p> 
+			<p class="message">暂无数据</p>
+			</div>		
+	
+			{/if}
+	
+		</div>
+	</div>
+	{if $pages}
+		<div class="fy scroll_bottom_page">
+			{$pages}
+		</div>
+	{/if}
+	<div class="blank50"></div>
+</div>
+{if $ajax_refresh==0}
+{include file="inc/footer_index.html"}	
+{/if}

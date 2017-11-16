@@ -1,0 +1,72 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+function del(id)
+{
+	/*
+	if(!id)
+	{
+		idBox = $(".key:checked");
+		if(idBox.length == 0)
+		{
+			alert(LANG['DELETE_EMPTY_WARNING']);
+			return;
+		}
+		idArray = new Array();
+		$.each( idBox, function(i, n){
+			idArray.push($(n).val());
+		});
+		id = idArray.join(",");
+	}*/
+	if(confirm(LANG['CONFIRM_DELETE']))
+	$.ajax({ 
+			url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=del_withdrawal&id="+id, 
+			data: "ajax=1",
+			dataType: "json",
+			success: function(obj){
+				$("#info").html(obj.info);
+				if(obj.status==1)
+				location.href=location.href;
+			}
+	});
+}
+
+function withdrawal_edit(id)
+{
+	$.weeboxs.open(ROOT+'?m=User&a=withdrawal_edit&id='+id, {contentType:'ajax',showButton:false,title:"提现审核",width:600,height:195});
+}
+</script>
+<div class="main">
+<div class="main_title">提现申请</div>
+<div class="blank5"></div>
+<PHP>
+function get_charge_status($status,$charge)
+{
+	$id = $charge['id'];
+	if($status==0&&$charge['is_delete']==0){
+	return "待审核   <a href='javascript:withdrawal_edit(".$id.")'>已打款给会员，确认提现</a>";
+	}elseif($status==0&&$charge['is_delete']==1){
+	return "用户已删除";
+	}elseif($status==1&&$charge['is_delete']==0){
+	return "已审核";
+	}
+}
+
+</PHP>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="charge" 
+
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,money|format_price:提现金额,withdraw_method:提现款项,create_time|to_date:日期,user_id|get_user_name:会员,bank_name:银行名称,bank_account:银行账号,bank_user:银行户名,is_paid|get_charge_status=$charge:状态,is_delete|get_status:用户删除" 
+	actionlist="del:{%DEL}" 
+	/> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

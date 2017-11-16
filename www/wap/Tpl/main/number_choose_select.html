@@ -1,0 +1,82 @@
+{if $ajax_refresh==0}
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/number_choose.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pull_refresh.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/number_choose.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/number_choose.js";
+?>
+{include file="inc/header_number_choose.html"}
+<script type="text/javascript">
+    var data_total={$data.page.data_total};
+    var current_buy={$data.current_buy};
+    var count_leave={$data.count_leave};
+</script>
+
+<div class="choose-hd flex-box split-line">
+	<p class="flex-1">只显示可选号码</p>
+	<div class="show-btn">
+		<div class="show-button"></div>
+	</div>
+</div>
+{/if}
+<div class="main-content loading_container">
+	<p class="choose-tip">总共<span class="txt-red" id="total_number">0</span>个号码，剩余<span class="txt-red" id="leave_number">0</span>个可选</p>
+	<ul class="choose-list clearfix scroll_bottom_list_number_choose">
+        {foreach from=$data.list item=item}
+          <li {if $item.user_id}class="disable"{/if}>
+            <div class="code-box">
+              <p class="code ">{$item.lottery_sn}</p>
+              <div class="select-ico"></div>
+            </div>
+          </li>
+        {/foreach}
+	</ul>
+    {if $pages}
+    <div class="fy scroll_bottom_page_number_choose">
+        {$pages}
+    </div>
+    {/if}
+</div>
+
+{if $ajax_refresh==0}
+<ul class="explain flex-box split-line-top">
+	<li class="flex-box">
+		<div class="color-box can-select"></div>
+		<p>可选</p>
+	</li>
+	<li class="flex-box">
+		<div class="color-box cant-select"></div>
+		<p>不可选</p>
+	</li>
+	<li class="flex-box">
+		<div class="color-box over-select"></div>
+		<p>已选</p>
+	</li>
+</ul>
+<div class="buy-bar split-line-top flex-box">
+    <input type="hidden" id="duobao_item_id" name="duobao_item_id" value="{$data.duobao_item_id}"/>
+	<p class="flex-1">共选择<span class="txt-red" id="choose_number">0</span>个号码</p>
+	<a href="javascript:void(0);" class="buy-now" id="buy_now" url='{url i="index" r="number_choose#add_cart"}'>立即购买</a>
+</div>
+{include file="inc/footer_index.html"}
+{/if}

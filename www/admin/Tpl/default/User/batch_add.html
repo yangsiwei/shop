@@ -1,0 +1,30 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/js/script.js' />
+<load href='__TMPL__Common/js/user.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+
+<div class="main">
+	<div class="blank5"></div>
+
+	<form method="post" action="__APP__" enctype="multipart/form-data">
+		<p style="margin:2%;"></p>
+		<b>步骤：</b><br/>
+		&nbsp;&nbsp;1) 先将用户头像图片放到站点根目录下的特定位置,如:“../admin/public/robot” 路径下;否则默认无头像<br/>
+		&nbsp;&nbsp;2) 再选择xls或xlsx格式的文件<br/>
+		&nbsp;&nbsp;3) 点击“机器人导入”<br/><br/>
+		
+		<p style="margin:5%;"></p>
+		<input type="file" name="file_stu" />
+		<input type="submit" value="机器人导入" />
+		<input type="hidden" value="User" name="m" />
+		<input type="hidden" value="modify_batch_add" name="a" />
+	</form>
+	
+	<p style="margin:4%;"></p>
+	<b>注意：一定要先将图片放在指定位置，否则无头像。点击“机器人导入”是将用户的名字、ip、头像同时保存到数据库。</b><br/>
+
+</div>

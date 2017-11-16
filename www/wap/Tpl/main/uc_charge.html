@@ -1,0 +1,166 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_money_incharge.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_duobao_record.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/uc_duobao_record.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_charge.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/uc_charge.js";
+
+?>
+{include file="inc/header_getpassword.html"}
+<style>
+	.skb_sel{
+		width:60%;
+		height:30px;
+		border:1px solid #E8E8E8;
+		margin-left:6%;
+		margin-top:15px;
+	}
+</style>
+<script src="https://lib.fuqian.la/h5jssdk.4.0.js"></script>
+{if $payment_class eq skb or $payment_class eq fql}
+<form name="do_charge" action="{url r="index" p="uc_charge#idnex"}" method="post" >
+{/if}
+{if $payment_class eq shan}
+<form name="do_charge" action="{url r="index" p="uc_charge#done"}" method="post" >
+{/if}
+<h1>选择充值金额(夺宝币)</h1>
+
+<div class="money" id="money1">
+	{if $user_info.total_money}
+	<input type="text" value="10" readonly="readonly" class="select_num">
+	<input type="text" value="50" readonly="readonly" class="select_num">
+	<input type="text" value="100" readonly="readonly" class="select_num">
+	<input type="text" value="200" readonly="readonly" class="select_num">
+	<input type="text" value="500" readonly="readonly" class="select_num">
+	<input type="text" value="1000" readonly="readonly" class="select_num">
+	{else}
+	<input type="text" value="10" readonly="readonly" class="select_num">
+	<input type="text" value="100" readonly="readonly" class="select_num">
+	<input type="text" value="1000" readonly="readonly" class="select_num">
+	{/if}
+</div>
+{if $payment_class eq skb}
+<input type="hidden" name="payment_id" value="100" >
+{else}
+<input type="hidden" name="payment_id" value="200" >
+{/if}
+<input type="hidden" name="aaa" class="appId" value="ShYeR0yaXG7O1oCwtI5OsQ">
+
+<!--{if $payment_class eq skb}-->
+<!--<span style="margin-left:10%;">支付方式</span>-->
+<!--<select name="bank_code" class="skb_sel">-->
+	<!--<option value="">选择支付方式</option>-->
+	<!--<option value="ALIPAY">支付宝</option>-->
+	<!--<option value="WEBCHAT">微信支付</option>-->
+<!--</select>-->
+
+<!--{/if}-->
+{if $payment_class eq shan}
+{foreach from=$data.payment_list item=payment key=key}
+<label for="weixin"  class="pay_select">
+<input type="hidden" name="payment_id" class="payment_id" value="{$payment.id}">
+</label>
+{/foreach}
+<!--<h1>选择充值方式</h1>-->
+<!--<ul class="pay-way">-->
+    <!--{foreach from=$data.payment_list item=payment key=key}-->
+    <!--<li>-->
+        <!--<label for="weixin"  class="pay_select">-->
+            <!--<input class="payment_id" type="radio" name="payment_id" value="{$payment.id}"  {if $key eq 0}checked="checked"{/if}>{$payment.name}-->
+            <!--<span {if $key eq 0}class="checked"{/if}></span>-->
+
+        <!--</label>-->
+    <!--</li>-->
+    <!--{/foreach}-->
+<!--</ul>-->
+{/if}
+<div class="subbox">
+{if $payment_class eq skb}
+	<input type="submit" value="确认充值" style="width:70%;height:35px;border:1px solid #fff; background:#DD4E66;border-radius:5px;color:#fff;font-size:18px;text-align:center;margin-left:15%;margin-top:20px;" class="done">
+{/if}
+{if $payment_class eq fql}
+    <input type="submit" value="支付宝支付" style="width:70%;height:35px;border:1px solid #fff; background:#DD4E66;border-radius:5px;color:#fff;font-size:18px;text-align:center;margin-left:15%;margin-top:20px;" id="alipay">
+{/if}
+{if $payment_class eq shan}
+<input type="submit" value="确认充值" class="sub">
+{/if}
+</div>
+</form>
+{if $payment_class eq skb}
+<script>
+	$(function(){
+        var money;
+        $(".select_num").click(function(){
+            money = $("input[name='money']").val();
+            console.log(money);
+        });
+
+		$("form[name='do_charge']").bind("submit",function(){
+            var payment_id = $("input[name='payment_id']").val();
+            var query = $(this).serialize();
+            if(money>0){
+                $.ajax({
+                    type: "POST",
+                    url: "/wap/index.php?ctl=uc_charge&act=done_gepi&show_prog=1",
+                    data: query,
+                    dataType: "json",
+                    success: function(data){
+                        window.location.href="http://www.aliduobaodao.com/shukebao/app_post.php?money="+data.money+"&bank_code=ALIPAY&order_no="+data.order_no+"&order_time="+data.order_time+"&order_userid="+data.order_userid;
+                    }
+                });
+			}
+		});
+	});
+</script>
+{/if}
+
+{if $payment_class eq fql}
+<script type="text/javascript">
+
+
+	 $(function(){
+	 		var subject = '神州普惠';
+	 		var notifyUrl = 'http://www.aliduobaodao.com/wap/index.php?ctl=notify';
+	 		var time = Date.now()+"{$user_info.id}";
+	 		var qrCode;
+	 		var appId = $(".appId").val();
+	 		var userId = String({$user_info.id});
+
+	 		$(".select_num").click(function(){
+	 			qrCode = String($(".selected").val()*100);
+	 		});
+
+	 	document.querySelector('#alipay').addEventListener('click', e => {
+	 		FUQIANLA.init({
+	 	    'app_id': appId,
+	 	    'order_no': time,
+	 	    'channel': 'ali_pay_scan',
+	 	    'amount': qrCode,
+	 	    'subject': subject,
+	 	    'optional': userId,
+	 	    'notify_url': notifyUrl
+	 		});
+	 	});
+	 });
+</script>
+{/if}
+{include file="inc/footer_index.html"}

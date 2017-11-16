@@ -1,0 +1,195 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/duobao.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/relate_goods.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/layer.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pull_refresh.css";
+
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/jQuery.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/jQuery.js";
+
+
+
+
+
+
+?>
+
+{include file="inc/header_title_home.html"}
+
+<style>
+    .good>img{
+        width: 25%;
+        float:left;
+    }
+    .good>p{
+        color: #0E0E0E;
+        font-size: 14px;
+    }
+    .hr{
+        width: 104%;
+        height: 1px;
+        background: #e8eddd;
+        float: left;
+        margin-left: -2%;
+    }
+    .prev_db{
+        width: 100%;
+        line-height: 50px;
+    }
+    .db_xx_left{
+        float: left;
+        margin-left: 6%;
+    }
+    .db_xx_right{
+        float: right;
+        margin-right: 8%;
+    }
+    .num{
+        color:#FE9F4A;
+    }
+    .db_xx{
+        line-height:30px;
+    }
+    .jdt{
+        width: 95%;
+        height: 20px;
+        background: #fff;
+        border-radius: 20px;
+        border: 1px solid #FE9F4A;
+        margin-left: 2.5%;
+        position:relative;
+        margin-top:3%;
+    }
+    .jdt_bar{
+        width: 5%;
+        background: linear-gradient(to right, #cc5345 35%, #ff7f36 68%);
+        height: 100%;
+        border-radius: 20px;
+    }
+    .jdt_dian{
+        display: block;
+        width: 10px;
+        height: 10px;
+        border-radius: 10px;
+        background: #fff;
+        float: right;
+        margin-right: 5px;
+        margin-top: 4px;
+    }
+    .jdt_code{
+        position: absolute;
+        top: -20px;
+        border: 1px solid #FA9D49;
+        line-height: 18px;
+        border-radius: 5px;
+        background: #fff;
+    }
+    .jdt_sj{
+        position: absolute;
+        top: -10%;
+        width: 0;
+        left:1%;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 10px solid #fff;
+    }
+    .surplus{
+        width: 60%;
+        max-height: 50%;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        background: #fff;
+        border: 1px solid #FA9D49;
+        border-radius: 8px;
+        overflow: hidden;
+        display:none;
+    }
+    .surplus_code{
+        margin-left: 4%;
+        line-height: 32px;
+        float: left;
+    }
+    .surplus_close{
+        width: 16px;
+        height: 16px;
+        border: 1px solid #FA9D49;
+        text-align: center;
+        line-height: 16px;
+        border-radius: 16px;
+        position: absolute;
+        left: 79%;
+        top: 19%;
+        z-index: 100;
+        background: #fff;
+        display:none;
+    }
+    .run_chart{
+        width: 100%;
+        height: 35%;
+        background: #fff;
+        /*position: absolute;*/
+        /*margin-top: 1%;*/
+    }
+    .user{
+        width:100%;
+        margin-top:5px;
+        min-height:200px;
+    }
+    .first_tr>th{
+        border-left:1px solid #fff;
+        border-right:1px solid #fff;
+    }
+    .tr_second{
+        border-bottom: 1px solid #dac3c3;
+        line-height: 26px;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<div class="good">
+    <img src="{$res2.icon}">
+    <p style="line-height: 300%;">{$res2.name}</p>
+    <p style="margin-top:2%;">总需：<span style="color:#FE9F4A;">{$res2.max_buy}</span>人次</p>
+</div>
+<div class="clear"></div>
+<div class="hr"></div>
+<!--<div class="need">-->
+<!--<div class="good-on">-->
+<!--<div class="progress">-->
+<!--<p>期号：{$item_data.id}</p>-->
+<!--<progress max="{$item_data.max_buy}" value="{$item_data.current_buy}"></progress>-->
+<!--<p class="fl">总需<em id="pro-max">{$item_data.max_buy}</em>人次</p>-->
+<!--<p class="fr">剩余<span id="pro-rest">{$item_data.surplus_count}</span></p>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="hr"></div>-->
+<div class="prev_db">
+    <span class="db_xx_left">第{$res2.deal_id}期：</span>
+    <span class="db_xx_right">{$res2.luck_user_name}购买了<span class="num">{$res2.luck_user_buy_count}</span>人次</span>
+</div>
+<div class="clear"></div>
+<div class="hr"></div>
+
+<div style="font-size:18px;margin-top:10px">
+<span >收货信息</span>
+</div>
+<div style="background:white;margin-top:5px;">
+    <span style="padding:10px;">手机号：{$mobile}</span><br/><br/>
+    <span style="padding:10px;">卡密： *****</span>
+</div>
+<div style="width: 400px;height: 100px;text-align: center;margin-top:25px;">
+<button style="background:red;background: #fe9f4a;width: 60%;height: 30px;text-align: center;border-radius: 26px;">保存</button>
+</div>
+{include file="inc/no_footer.html"}

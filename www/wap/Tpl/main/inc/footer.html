@@ -1,0 +1,39 @@
+
+<div id="gotop" class="gotop" data-com="gotop">
+	<a href="#">
+		<i class="iconfont">&#xe609;</i>
+	</a>
+</div>
+			<div class="footer">
+				<div class="footer-t">
+					<div class="f_user f_l">
+						{if $is_login eq 0}
+						<div class="f_login"><a href="{url a="index" r="user#login"}">登录</a></div>
+						{if $is_weixin}
+						<div class="f_login"><a href="javascript:void(0);" onclick="weixin_login();">微信</a></div>
+						{/if}
+						<div class="f_register"><a href="{url a="index" r="user#register"}">注册</a></div>
+						
+						{else}
+						<span class="my_account"><a href="{url a="index" r="user_center#index"}">{$user_info.user_name}<span class="msg_count">{if $user_info.msg_count}（{$user_info.msg_count}）{/if}</span></a></span>&nbsp;&nbsp;
+						
+						<!--
+						<i style="color: #6E7D8B;">|</i>&nbsp;&nbsp;						
+						<span class="f_login_out">
+							<a href="{url a="index" r="user#loginout"}">退出</a>
+						</span>
+						-->
+						{/if}
+					</div>
+					
+				</div>
+				
+				<div class="footer_num">
+					<div class="footer_bor">
+						<div class="footer_text">{function name="app_conf" value="SHOP_TITLE"}</div>
+					</div>
+				</div>
+			</div>
+	
+	</body>
+<html>

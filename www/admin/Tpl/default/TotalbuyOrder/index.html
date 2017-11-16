@@ -1,0 +1,73 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<PHP>
+
+
+	function get_handle($id,$order_item)
+	{
+		$str = "<a href='".u("TotalbuyOrder/view_order",array("id"=>$order_item['order_id']))."'>查看详情</a>";
+		
+		return $str;
+	}
+	function get_delivery_status($status)
+	{
+		if($status==0)
+		return "未发货";
+		else
+		return "已发货";
+	}
+	function get_order_status_admin($s)
+	{
+		if($s==0){
+			return "待处理";
+		}elseif($s==1){
+			return "订单已完结";
+		}elseif($s==2){
+			return "订单已关闭";
+		}elseif($s==3){
+			return "订单已过期";
+		}
+	}
+
+
+</php>
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">{%DEAL_ORDER}</div>
+<div class="blank5"></div>
+<form name="search" action="__APP__" method="get">	
+
+<div class="search_row">
+
+		{%ORDER_SN}：<input type="text" class="textbox" name="order_sn" value="{:strim($_REQUEST['order_sn'])}" style="width:100px;" />		
+		商品名称：<input type="text" class="textbox" name="deal_name" value="{:strim($_REQUEST['deal_name'])}" style="width:100px;" />
+		会员名称：<input type="text" class="textbox" name="user_name" value="{:strim($_REQUEST['user_name'])}" style="width:100px;" />
+		发货情况：
+		<select name="delivery_status_item">
+			<option value="-1" <if condition="intval($_REQUEST['delivery_status_item']) eq '-1'">selected="selected"</if>>全部</option>
+			<option value="0" <if condition="intval($_REQUEST['delivery_status_item']) eq '0'">selected="selected"</if>>未发货</option>
+			<option value="1" <if condition="intval($_REQUEST['delivery_status_item']) eq 1">selected="selected"</if>>已发货</option>
+		</select>
+		<input type="hidden" value="TotalbuyOrder" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+
+</div>
+</form>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal_order_item" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,name:商品名称,deal_order_sn:订单编号,user_id|get_user_name:{%USER_NAME},create_time|to_date:{%ORDER_CREATE_TIME},pay_status|get_pay_status:付款状态,delivery_status_item|get_delivery_status:发货,order_status|get_order_status_admin:订单状态"	 
+	actionlist="id|get_handle=$deal_order_item" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

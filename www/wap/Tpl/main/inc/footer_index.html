@@ -1,0 +1,35 @@
+{if !$is_app}
+{if $is_show_down}
+<!--<div class="Client">-->
+
+	<!--<div class="Client_de">-->
+		<!--<a href="javascript:void(0);" class="close_but">-->
+			<!--<i class="iconfont">&#xe608;</i>-->
+		<!--</a>&lt;!&ndash;关闭扭&ndash;&gt;-->
+		<!--<div class="transcript" style="float:left;">-->
+			<!--<div class="index_footer_logo"></div>-->
+			<!--<div style="float:left; margin-left:10px;">-->
+			<!--立即下载APP<br />-->
+			<!--随时购买</div>-->
+		<!--</div>-->
+		<!--<a href="{$data.mobile_btns_download}" class="go_download" style="float:right;">-->
+			<!--立即下载-->
+		<!--</a>-->
+	<!--</div>-->
+	<!--<div class="Client_bg">-->
+	<!--</div>-->
+
+<!--</div>-->
+{/if}
+{/if}
+           <div class="gotop" data-com="gotop">
+				<a href="#">
+					<i class="iconfont"></i>
+				</a>
+			</div>
+			{if $is_lottery == 1 && $MODULE_NAME != 'uc_winlog'}
+				{$lottery_html}
+			{/if}
+			
+	</body>
+<html>

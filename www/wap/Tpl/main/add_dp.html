@@ -1,0 +1,50 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/add_dp.css";	
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/add_dp.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/add_dp.js";
+?>
+{include file="inc/header_title_home.html"}
+<div class="wrap">
+<div class="content">
+					<!--------------------------------评分星星----------20140916----------------->
+					<div class="tx_star">
+						<div class="five_star_grey">
+								<i class="iconfont" >&#xe62f;</i>
+								<i class="iconfont" >&#xe62f;</i>
+								<i class="iconfont" >&#xe62f;</i>
+								<i class="iconfont" >&#xe62f;</i>
+								<i class="iconfont" >&#xe62f;</i>
+						</div>
+						<p class="star_tip"></p>
+					</div> 
+				
+					<form name="submit_dp" action="{url r="index" p="add_dp#do_dp"}" method="post">
+					<div class="comment_list_txt">
+						<input type="hidden" name="data_id" value="{$data.data_id}" id="id">
+						<input type="hidden" name="type" value="{$data.type}" id="type">
+						<input type="hidden" name="point" id = "point" value="5">
+						<textarea name="content" id="content" maxlength = 140 placeholder="点击输入您的评论，最多140字"></textarea>
+					</div>   
+					      
+					<div class="comment_commentary dpsub_btn" >发表评论</div>	
+					</form>					 	
+				</div>
+</div>
+{include file="inc/footer_index.html"}	

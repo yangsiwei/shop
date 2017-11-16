@@ -1,0 +1,186 @@
+.add-address{
+	background:#fff;
+	padding:.5rem 0;
+	height:2.5rem;
+}
+.add-address a{
+	border-radius:5px;
+	border:1px solid @main_color;
+	color:@main_color;
+	display: block;
+	width:5rem;
+	font-size:.56rem;
+	text-align: center;
+	height:1.5rem;
+	line-height: 1.5rem;
+	margin: 0 auto;
+}
+.goods-info{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	padding:.4rem;
+	background:#fff;
+}
+.goods-info .goods-pic{
+	width:3.2rem;
+	height:3.2rem;
+	background:#000;
+}
+.goods-info .goods-pic img{
+	width:100%;
+}
+.goods-detail{
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	flex:1;
+	margin-left: .6rem;
+}
+.goods-info .goods-name{
+	font-size:.56rem;
+	color:#333;
+	line-height: .8rem;
+	height:1.6rem;
+	display:-webkit-box;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	word-break:break-all;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp:2;
+}
+.goods-info .goods-num,.goods-info .goods-price{
+	margin-top:.4rem;
+}
+.goods-info .goods-num p,.goods-info .goods-price p{
+	line-height: 1.2rem;
+	margin-right: .6rem;
+	color:#999;
+}
+.goods-info .goods-num{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	width:100%;
+}
+.goods-info .goods-num input{
+	width:2rem;
+	height:1.2rem;
+	text-align: center;
+	font-size:.6rem;
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #ddd;
+}
+.goods-info .goods-num a{
+	font-family:Helvetica;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items:center;
+	align-items:center;
+	-webkit-box-pack: center;
+	-webkit-justify-content:center;
+	justify-content:center;
+	width:1.2rem;
+	height:1.2rem;
+	border:1px solid #ddd;
+	font-size:.8rem;
+	background:#f5f5f5;
+}
+.goods-info .goods-num a:active{
+	background:#fff;
+}
+.goods-info .goods-price{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	width:100%;
+}
+.goods-info .goods-price .txt-red{
+	font-size:.6rem;
+}
+.ecv,.price{
+	background:#fff;
+	color:#333;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	width:100%;
+	height:2rem;
+	font-size:.56rem;
+	color:#333;
+	padding:0 .4rem;
+	-webkit-box-align: center;
+	-webkit-align-items:center;
+	align-items:center;
+}
+.ecv select,.ecv .no-ecv{
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	flex:1;
+	margin-left: .4rem;
+	text-align:right;
+}
+.ecv .no-ecv{
+	color:#999;
+}
+.price .txt-red{
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	flex:1;
+	margin-left: .4rem;
+	text-align:right;
+	font-size:.6rem;
+}
+.buy-bar{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height:2rem;
+	line-height: 2rem;
+	background:#fff;
+	width:100%;
+}
+.buy-bar p{
+	padding:0 .4rem;
+	font-size:.56rem;
+	color:#333;
+	float: left;
+}
+.buy-bar p span{
+	font-size:.6rem;
+}
+.buy-bar a{
+	display: block;
+	float: right;
+	height:2rem;
+	background:@main_color;
+	color:#fff;
+	width:4rem;
+	font-size:.6rem;
+	text-align: center;
+	line-height: 2rem;
+}
+.address-box{
+	padding:.4rem;
+	background:#fff;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items:center;
+	align-items:center;
+	color:#333;
+}
+.address-box .user-info{
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	flex:1;
+	line-height: 1rem;
+	margin-right: .4rem;
+	font-size:.6rem;
+}
+.address-box .user-info .uc-add{
+	color:#999;
+	font-size:.52rem;
+}

@@ -1,0 +1,17 @@
+
+<div class="nav_item_title">
+	<a href="{url x="index" r="uc_center"}">个人中心</a>
+</div>
+<hr>
+<div class="side_nav">
+{if $uc_nav_list}
+{foreach from=$uc_nav_list item=nav_item key=nav_key}
+	<dl class="nav_item">
+		{foreach from=$nav_item.node item=s_nav_item key=s_nav_key}
+			<dd><a class="{if $s_nav_item.current eq 1 }current{/if}" href="{$s_nav_item.url}">{$s_nav_item.name}</a></dd>
+		{/foreach}
+	</dl>
+{/foreach}
+{/if}
+<div class="blank20"></div>
+</div>

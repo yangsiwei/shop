@@ -1,0 +1,191 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_duobao.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_totalbuy.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_totalbuy.js";
+
+?>
+{include file="inc/header.html"}
+
+<script>
+	var url='{url r="index" r="uc_totalbuy#close" }'
+</script>
+
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav f_l ">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="m-user-frame-colMain">
+		<ul class="web-map clearfix">
+			<li>当前位置：</li>
+			<li><a href="{url x="index" r="uc_center"}">个人中心</a> ></li>
+			<li class="txt-red">购买记录</li>
+		</ul>
+		<div class="m-user-frame-content" pro="userFrameWraper">
+			<div class="m-user-duobao">
+				<div class="m-user-comm-wraper">
+					<div class="m-user-comm-cont">
+						<div class="m-user-comm-title">
+							<div class="m-user-comm-navLandscape">
+								<a href="{url r="index" r="uc_totalbuy"  }" class="i-item {if !$data.log_type}i-item-active{/if}" >所有订单&nbsp;<span class="txt-impt">{$data.success_count}</span></a>&nbsp;
+								<span class="i-sptln">|</span>&nbsp;
+								<a href="{url r="index" r="uc_totalbuy" p="log_type=1"}" class="i-item {if $data.log_type eq 1}i-item-active{/if}">未付款&nbsp;<span class="txt-impt">{$data.soon_count}</span></a>&nbsp;
+								<span class="i-sptln">|</span>&nbsp;
+								<a href="{url r="index" r="uc_totalbuy" p="log_type=2"}" class="i-item {if $data.log_type eq 2}i-item-active{/if}">待发货&nbsp;<span class="txt-impt">{$data.in_count}</span></a>&nbsp;
+								<span class="i-sptln">|</span>&nbsp;
+								<a href="{url r="index" r="uc_totalbuy" p="log_type=3"}" class="i-item {if $data.log_type eq 3}i-item-active{/if}">待收货&nbsp;<span class="txt-impt">{$data.complete_count}</span></a>&nbsp;
+								<span class="i-sptln">|</span>&nbsp;
+								<a href="{url r="index" r="uc_totalbuy" p="log_type=4"}" class="i-item {if $data.log_type eq 4}i-item-active{/if}">已收货&nbsp;<span class="txt-impt">{$data.is_arrival}</span></a>
+							</div>
+							<div class="m-user-comm-selectTitle" >
+								<span pro="text">
+									{if $data.log_time_type eq 1}今天{/if}{if $data.log_time_type eq 2}最近7天{/if}{if $data.log_time_type eq 3}最近30天{/if}{if $data.log_time_type eq 4}最近3个月{/if}{if $data.log_time_type eq 5}1年内{/if}</span><span class="w-select-arr">▼</span>
+									<div class="w-menu" tabindex="0" id="w_menu" style="display: none;">
+										<a href="{url r="index" r="uc_totalbuy" p="log_type=$data.log_type&log_time_type=1"}">
+										<div class="w-menu-item {if $data.log_time_type eq 1}w-menu-item-hover{/if}" tabindex="0" data-index="0" data-value="" id="pro-view-73">今天</div>
+										</a>
+										<a href="{url r="index" r="uc_totalbuy" p="log_type=$data.log_type&log_time_type=2"}">
+										<div class="w-menu-item {if $data.log_time_type eq 2}w-menu-item-hover{/if}" tabindex="0" data-index="1" data-value="" id="pro-view-74" >最近7天</div>
+										</a>
+										<a href="{url r="index" r="uc_totalbuy" p="log_type=$data.log_type&log_time_type=3"}">
+										<div class="w-menu-item {if $data.log_time_type eq 3}w-menu-item-hover{/if}" tabindex="0" data-index="2" data-value="" id="pro-view-75" >最近30天</div>
+										</a>
+										<a href="{url r="index" r="uc_totalbuy" p="log_type=$data.log_type&log_time_type=4"}">
+										<div class="w-menu-item {if $data.log_time_type eq 4}w-menu-item-hover{/if}" tabindex="0" data-index="3" data-value="" id="pro-view-76" >最近3个月</div>
+										</a>
+										<a href="{url r="index" r="uc_totalbuy" p="log_type=$data.log_type&log_time_type=5"}">
+										<div class="w-menu-item {if $data.log_time_type eq 5}w-menu-item-hover{/if}" tabindex="0" data-index="4" data-value="" id="pro-view-77" >1年内</div>
+										</a>
+									</div>
+							</div>
+						</div>
+
+
+
+						<div>
+						{if $list}
+
+							<div class="listCont">
+								<div id="pro-view-18">
+									<table class="m-user-comm-table">
+										<thead style="background:#f2f2f2;">
+										<tr>
+											<th class="col-info-th">商品信息</th>
+											<th class="col-period-th">下单时间</th>
+											<th class="col-period-th">订单号</th>
+											<th class="col-joinNum-th">购买数量</th>
+											<th class="col-status-th">发货状态</th>
+											<th class="col-opt-th">操作</th>
+										</tr>
+										</thead>
+									</table>
+									<div class="duobaoList">
+									<table class="m-user-comm-table">
+										<tbody>
+										{foreach from=$list item=value}
+										<tr {if $value.duobao_item.luck_user_id eq $user_info.id}class="get-win"{/if}>
+											<td class="col-info">
+												<div class="w-goods-l">
+													<div class="w-goods-pic">
+														<div class="{if $value.duobao_item.luck_user_id eq $user_info.id}ico winner-ico{/if}"></div>
+														<a href="{url r="index" r="duobao" p="id=$value.duobao_item.id"}" style="text-decoration:none;color:#3399ff;">
+															<img src="{function name="get_spec_image" v=$value.duobao_item.icon w=74 h=74 g=1}" alt="{$value.name}" width="74" height="74" style="border:0px;" />
+														</a>
+													</div>
+													<p style="line-height:70px;" class="w-goods-title">
+														<a class="{if $value.order_status==3 || $value.order_status==2}is_delete_status{/if}" title="{$value.duobao_item.name}" href="{url r="index" r="duobao" p="id=$value.duobao_item.id"}" style="text-decoration:none;color:#333333;">{$value.duobao_item.name}</a>
+													</p>
+												</div>
+											</td>
+											<td class="col-period">{$value.create_time}</td>
+											<td class="col-period">{$value.order_sn}</td>
+											<td class="col-joinNum">{$value.number}次</td>
+											<td class="col-status">
+												{if $value.pay_status neq 2}
+												<p class="{if $value.order_status==3 || $value.order_status==2}is_delete_status{/if}" style="color:red;">支付未完成</p>
+												{elseif $value.pay_status eq 2&&$value.delivery_status eq 0&&$value.is_arrival eq 0}
+												<p class="txt-yellow">等待商品派发</p>
+												{elseif $value.pay_status eq 2&&$value.delivery_status eq 1&&$value.is_arrival eq 0}
+												<p class="txt-green">已派发商品</p>
+												{elseif $value.pay_status eq 2&&$value.delivery_status eq 1&&$value.is_arrival eq 1}
+												<p class="txt-green">已签收</p>
+												{/if}
+											</td>
+											<td class="col-opt" style="">
+												{if $value.pay_status eq 2&&$value.delivery_status eq 1&&$value.is_arrival eq 1}
+												<a class="w-button-main" href="{url r="index" r="duobao" p="dbid=$value.duobao_item.duobao_id"}">参与最新</a>
+												{if $value.duobao_item.is_fictitious_id eq ''}
+												<p><a  {if app_conf("KUAIDI_TYPE") neq 1}ajax="true" kuaidi_type="{function name="app_conf" v="KUAIDI_TYPE"}"  href="javascript:void(0);" action="{url x="index" r="uc_order#check_delivery" p="item_id=$value.id"}"{else}href="{url x="index" r="uc_order#check_delivery" p="item_id=$value.id"}" target="_blank"{/if} rel="{$value.id}" class="check_delivery">查看物流</a></p>
+												{/if}
+												<p><a href="{url r="index" p="uc_totalbuy#detail" d="id=$value.id"}">查看详情</a></p>
+												{elseif $value.pay_status neq 2 && $value.order_status neq 2 && $value.order_status neq 3}
+												<p><a href="{url r="index" p="totalbuy#pay_check" d="id=$value.order_id"}">继续支付</a></p>
+												<p><a onclick="close_order(this,'{$value.order_id}');" href="javascript:;">关闭订单</a></p>
+												<p><a href="{url r="index" p="uc_totalbuy#detail" d="id=$value.id"}">查看详情</a></p>
+												{elseif $value.pay_status eq 2&&$value.delivery_status eq 1&&$value.is_arrival eq 0 && $value.order_status neq 2}
+												<a href="javascript:void(0);" class="verify_delivery btn btn-main" action="{url r="index" p="uc_totalbuy#verify_delivery" b="id=$value.id"}">确认收货</a>
+												{if $value.duobao_item.is_fictitious_id eq ''}
+												<p><a  {if app_conf("KUAIDI_TYPE") neq 1}ajax="true" kuaidi_type="{function name="app_conf" v="KUAIDI_TYPE"}"  href="javascript:void(0);" action="{url x="index" r="uc_order#check_delivery" p="item_id=$value.id"}"{else}href="{url x="index" r="uc_order#check_delivery" p="item_id=$value.id"}" target="_blank"{/if} rel="{$value.id}" class="check_delivery">查看物流</a></p>
+												{/if}
+												<p><a href="{url r="index" p="uc_totalbuy#detail" d="id=$value.id"}">查看详情</a></p>
+												{elseif $value.pay_status eq 2&&$value.delivery_status eq 0&&$value.is_arrival eq 0 && $value.order_status neq 2}
+												<p><a href="{url r="index" p="uc_totalbuy#detail" d="id=$value.id"}">查看详情</a></p>
+												{elseif $value.order_status eq 2}
+												<p>订单已关闭</p>
+												{elseif $value.order_status eq 3}
+												<p>订单已过期</p>
+												{/if}
+											</td>
+										</tr>
+										{/foreach}
+										</tbody>
+									</table>
+									</div>
+									<div class="pages">{$pages}</div>
+								</div>
+							</div>
+						{else}
+						<div class="listCont">
+							<div >
+								<div class="duobaoList">
+									<div class="m-user-comm-empty">
+										<div class="i-desc">
+											您{if $data.log_time_type eq 1}今天{/if}{if $data.log_time_type eq 2}最近7天{/if}{if $data.log_time_type eq 3}最近30天{/if}{if $data.log_time_type eq 4}最近3个月{/if}{if $data.log_time_type eq 5}1年内{/if}没有相应的购买记录哦~</div>
+										<div class="i-opt">
+											<a href="{url r="index" }" style="color:#ffffff;border:none;white-space:nowrap;font-size:18px;display:inline-block;vertical-align:middle;padding:0px 35px;height:45px;line-height:45px;border-radius:4px;cursor:pointer;font-family:'microsoft yahei', simhei;outline:none;text-decoration:none !important;background:#dd344f;">马上去逛逛</a>
+										</div>
+									</div>
+								</div>
+								<div pro="pager" class="pager" style="text-align:right;"></div>
+							</div>
+						</div>
+
+						{/if}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

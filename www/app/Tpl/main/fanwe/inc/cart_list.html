@@ -1,0 +1,107 @@
+<script type="text/javascript">
+var jsondata={$jsondata};
+</script>
+	<table id="tab" >
+	<tr>
+	<td width="46"><input type="checkbox" name="whole" {if $is_whole eq 1} checked="checked"{/if}/></td>
+	<td width="80">商品名称</td>
+	<td width="480"></td>
+	<td width="120">价值</td>
+	<td width="140">夺宝单价(夺宝币/人次)</td>
+	<td width="160">参与人次</td>
+	<td width="120">小计</td>
+	<td width="60">操作</td>
+	</tr>
+    {if $cart_result.cart_list}
+		
+	{foreach from=$cart_result.cart_list item=item}
+	<tr class="cart-list">
+		    <td><input type="checkbox" name="selected[]" value="{$item.id}" {if $item.is_effect eq 1} checked="checked"{/if}/></td>
+			<td class="split-line text_left" data-id="{$item.id}">
+				<div class="goods-img">
+					<a href="{$item.url}">
+						<img src="{function name="get_spec_image" v=$item.deal_icon w=80 h=80 g=1}" alt="{$item.deal_icon}">
+					</a>
+				</div>
+			</td>
+			<td class="text_left">
+				<div class="flex-box">
+					<p>
+					{if $item.min_buy eq 10 || $item.unit_price eq 10}
+						<span class="type-ten">十夺宝币专区</span>&nbsp;{/if}
+					{if $item.unit_price eq 100}
+						<span class="type-ten" style="background-color:red">百夺宝币专区</span>&nbsp;{/if}
+                        {if $item.is_topspeed}
+                        <em style="background-color:#ff2300;padding: 3px 5px;color: #fff;font-size: 12px;">极速专区</em>
+                        {/if}
+						<a href="{$item.url}" >{$item.name}</a> 
+					</p>
+					<p>总需<span style="color:#39f">{$item.max_buy}</span>人次参与，还剩：<span class="rest">{$item.residue_count}</span>人次</p>
+				</div>
+			</td>
+			<td>  
+					<p><span>{function name=format_price v=$item.value_price}</span></p>
+			</td>
+			<td>
+			{function name=format_price v=$item.unit_price}
+			</td>	
+			<td class="select-bar_td">
+				<div class="select-bar">
+				  	<!--<p>参与人次</p>-->
+				  	<div class="select">
+				  		<a class="num-btn minus" duobao_item_id="{$item.duobao_item_id}" buy_num="{$item.min_buy}" data-id="{$item.id}">-</a>
+				  		<input class="cart_input" name="num[{$item.id}]" class="buy_number buy-num-{$item.id}" type="text" value="{$item.number}" duobao_item_id="{$item.duobao_item_id}" buy_num="{$item.min_buy}" data-id="{$item.id}" />
+				  		<a class="num-btn plus" duobao_item_id="{$item.duobao_item_id}" buy_num="{$item.min_buy}" data-id="{$item.id}">+</a>
+				  		<!--<em>参与人次需是{$item.min_buy}的倍数</em>-->
+				  	</div>
+				  	<!--<i class="iconfont del-item-btn" data-id="{$item.id}">&#xe68d;</i>-->
+				    </div>
+			</td> 
+			<td class="select-bar_total">
+			<p><span class="txt-red">{function name=format_price v=$item.total_price}</span></p>
+			</td> 
+			<td>
+			    <a href="javascript:;" onclick="del_carts(this,{$item.id})" style="color:#808080">删除</a>
+			</td>
+	</tr>		
+	{/foreach}
+    <tr style="background:#f2f2f2">
+	<td><input type="checkbox" name="whole_2" {if $is_whole eq 1} checked="checked"{/if} /></td>
+	<td><a href="javascript:void(0);" id="del_cart_whole" style="text-decoration: none;">删除选中</a></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td colspan="2" style="text-align:right;line-height: 35px;padding-right: 15px" >
+		<div class="cart-list-footer-total">总计：<span class="txt-red">{function name=format_price v=$cart_result.total_data.total_price}</span></div>
+		
+	</td>
+	</tr>
+    {else}
+    <tr class="null_data">
+    	<td colspan="8" >
+		<div>
+		<p class="message">购物车暂无数据,<a href="{url i="index" r="index"}">马上去逛逛~</a></p>
+		</div>
+	    </td>
+    </tr>
+    {/if}
+    </table>
+    <div style="width:100%;height:30px;text-align:right;">账户余额：<span class="txt-red">{function name=format_price v=$user_money}</span>&nbsp;&nbsp;
+    {if $fx_money}
+	推广奖余额：<span class="txt-red">{$fx_money}夺宝币</span>&nbsp;&nbsp;
+	{/if}
+	{if $give_money}
+	充值赠送可用：<span class="txt-red">{$give_money}夺宝币</span>&nbsp;&nbsp;
+	{/if}
+	{if $admin_money}
+	管理奖余额：<span class="txt-red">{$admin_money}夺宝币</span>
+	{/if}
+	</div>
+	<div class="blank20"></div>
+    <div style="float:right;width:800px" >
+	<button id="button_check" class="btn f_r {if $cart_result.total_data.total_price gt 0}go_check{else}no_go_check{/if}" rel="orange">去结算</button>
+	<div class="blank15"></div>
+	<p class="text_right" style="font-size: 13px;color:#808080;">夺宝有风险，参与需谨慎</p>
+	</div>
+	<a href="{url i="index" r="index"}" class="btn btn-aside">返回首页</a>

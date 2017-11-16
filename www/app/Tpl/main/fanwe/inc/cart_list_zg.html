@@ -1,0 +1,67 @@
+	<table id="tab" >
+	<tr>
+	<td></td>
+	<td width="90" style="padding-left: 30px;text-align: left;">商品名称</td>
+	<td width="330"></td>
+	<td width="210">单价(夺宝币)</td>
+	<td width="270">数量</td>
+	<td width="170" style="padding-left: 98px;border-right:1px solid #ddd">小计(夺宝币)</td>
+	</tr>
+    {if $cart_result.cart_data}
+	 
+	<tr class="cart-list">
+		    <td></td>
+			<td class="split-line text_left" data-id="{$cart_result.cart_data.id}">
+				<div class="goods-img">
+					<a href="{$cart_result.cart_data.url}">
+						<img src="{function name="get_spec_image" v=$cart_result.cart_data.deal_icon w=74 h=74 g=1}" alt="{$cart_result.cart_data.deal_icon}">
+					</a>
+				</div>
+			</td>
+			<td class="text_left">
+				<div class="flex-box">
+					<p>
+						<a href="{$cart_result.cart_data.url}" >{$cart_result.cart_data.name}</a>
+					</p>
+				</div>
+			</td>
+			<td>
+				<p><span>{$cart_result.cart_data.unit_price_format}</span></p>
+			</td>
+			<td class="select-bar_td">
+				<div class="select-bar">
+				  	<!--<p>参与人次</p>-->
+				  	<div class="select">
+				  		<a class="num-btn {if $is_number_choose!=1&&$is_pk!=1}minus{/if}" duobao_item_id="{$cart_result.cart_data.duobao_item_id}" style="left:0;" data-id="{$cart_result.cart_data.id}">-</a>
+				  		<input class="{if $is_number_choose!=1&&$is_pk!=1}cart_input{/if}" name="num[{$cart_result.cart_data.id}]"  class="buy_number buy-num-{$cart_result.cart_data.id}" type="text" value="{$cart_result.cart_data.number}" duobao_item_id="{$cart_result.cart_data.duobao_item_id}" buy_num="{$cart_result.cart_data.min_buy}" data-id="{$cart_result.cart_data.id}" />
+				  		<a class="num-btn {if $is_number_choose!=1&&$is_pk!=1}plus{/if}" style="right:0;" duobao_item_id="{$cart_result.cart_data.duobao_item_id}" data-id="{$cart_result.cart_data.id}">+</a>
+				  	</div>
+				</div>
+			</td>
+			<td class="select-bar_total"  style="padding-left: 98px;">
+			<p><span  class="txt-red set-total-price">{$cart_result.cart_data.total_price_format}</span></p>
+			</td>
+	</tr>
+	 
+    <tr style="background:#f2f2f2">
+	<td colspan="6" style="text-align:right;line-height: 35px;padding-right: 15px" >
+		<div class="cart-list-footer-total">总计：<span class="txt-red set-total-price">{$cart_result.total_data.total_price_format}</span></div>
+		<div class="f_r">账户余额：<span class="txt-red">{function name=format_sprintf_price v=$user_money}</span></div>
+	</td>
+	</tr>
+    {else}
+    <tr class="null_data">
+    	<td colspan="8" >
+		<div>
+		<p class="message">购物车暂无数据,<a href="{url i="index" r="index"}">马上去逛逛~</a></p>
+		</div>
+	    </td>
+    </tr>
+    {/if}
+    </table>
+	<div class="blank20"></div>
+    <div style="float:right;width:800px" >
+   	<input type="hidden" name="consignee_id" value="" />
+	<button id="button_check" class="btn f_r go_check" rel="orange">去结算</button>
+	</div>
+	<a href="{url i="index" r="index"}" class="btn btn-aside">返回首页</a>

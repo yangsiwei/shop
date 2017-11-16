@@ -1,0 +1,16 @@
+
+<div class="nav_item_title" style="width:320px;">
+	<a href="{url x="index" r="home" p="id=$home_user.id"}">	Ta的夺宝联盟</a>
+</div>
+<hr>
+<div class="side_nav">
+	<dl class="nav_item">
+
+			<dd><a class="{if $MODULE_NAME eq 'home'}current{/if}" href="{url x="index" r="home" p="id=$home_user.id"}">购买记录</a></dd>
+			<dd><a class="{if $MODULE_NAME eq 'home_luck'}current{/if}" href="{url x="index" r="home_luck" p="id=$home_user.id"}">幸运记录</a></dd>
+			<dd><a class="{if $MODULE_NAME eq 'home_share'}current{/if}" href="{url x="index" r="home_share" p="id=$home_user.id"}">Ta的晒单</a></dd>
+
+	</dl>
+
+<div class="blank20"></div>
+</div>

@@ -1,0 +1,185 @@
+.txt-box{
+	  background-color: #fff;
+  position: relative;
+}
+.txt-box textarea{
+  border: 0;
+  border-width: 0;
+  background: #fff;
+  font-size: 16px;
+  padding: 10px 8px;
+  line-height: 20px;
+  font-weight: 600;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  -webkit-appearance: none;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  max-height: 80px;
+  min-height: 80px;
+  overflow: auto;
+}
+.act-box .act-item{
+	  display: -webkit-box;
+    border: 1px solid #EDEDED;
+  background-color: #fff;
+}
+.act-box .act-item .add_img{
+	  position: relative;
+}
+.act-item .add_img .file-btn{
+	  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+    opacity: 0;
+}
+.act-box .act-item .i-btn{
+	  -webkit-box-flex: 1;
+  text-align: center;
+  height: 40px;
+  color: #616161;
+}
+.act-box .act-item .i-btn.lr-border{
+	  border-left: 1px solid #EDEDED;
+  border-right: 1px solid #EDEDED;
+}
+.act-box .act-item .i-btn.curr{background-color: #F5F5F5;}
+.act-box .act-item .i-btn .iconfont{
+	  font-size: 28px;
+  line-height: 40px;
+}
+.act-box .act-item .i-sub-btn{
+	-webkit-box-flex: 2;
+  text-align: center;
+}
+.act-box .act-item .i-sub-btn button{
+	width: 100%;
+  border: 0;
+  background-color: #f80;
+  height: 40px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  font-weight: bold;
+}
+
+
+
+.content-box{
+	min-hieght:200px;
+	background-color:#fff;
+}
+
+/*表情切换*/
+.expression{
+  margin: 0 auto 10px auto;
+  padding: 10px;
+}
+.expression-show-box{
+	width: 100%;
+  overflow: hidden;
+}
+.expression-show-box .expression-show-box-viewport{
+	  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.expression-show-box .expression-show-box-viewport .expression-list{
+	margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 9999px;
+  overflow: hidden;
+	  height: 150px;
+}
+.emotion{
+}
+.emotion a{
+	padding: 2px;
+  display: inline-block;
+}
+.ibox{
+	width: 301px;
+  margin: 0 auto;
+}
+.tusiji img,.tusiji_2 img{width:40px;}
+
+.expression-nav{  text-align: center;}
+.expression-nav a.active {
+  background-color: #666;
+}
+.expression-nav .tablink {
+  display: inline-block;
+  background: #EFEFEF;
+  overflow: hidden;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  margin: 0 10px;
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  text-indent: -9999px;
+	
+}
+
+.img-show-box{display:none;min-height:300px;background-color:#fff;padding:0 10px;}
+.img-show-box .img-item{
+	  display: inline-block;
+  position: relative;
+  margin: 15px 15px 0 0;
+  text-align: center;
+  line-height: 60px;
+  vertical-align: middle;
+  width: 80px;
+  height: 120px;
+  color: #d0d2d4;
+  font-family: arial;
+  font-size: 40px;
+  box-shadow: 0 1px 3px 1px rgba(0,0,0,.2);
+}
+.img-show-box .item-add{
+  display: inline-block;
+  position: relative;
+  margin: 15px 15px 0 0;
+  text-align: center;
+  line-height: 60px;
+  vertical-align: middle;
+  width: 80px;
+  height: 120px;
+  color: #d0d2d4;
+  font-family: arial;
+  font-size: 40px;
+  border: 3px dashed #ddd;
+}
+.img-show-box .item-add .file-btn{
+	  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+    opacity: 0;
+}
+.item-add img{
+	  width: 100%;
+  vertical-align: -webkit-baseline-middle;
+}
+.img-show-box .img-item span{
+	  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+.img-show-box .img-item .close-btn{
+	display: block;
+  width: 22px;
+  height: 22px;
+  line-height: 4px;
+  background-color: rgba(0,0,0,.5);
+  border-radius: 22px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+.img-show-box .img-item .close-btn .iconfont{color:#fff;}

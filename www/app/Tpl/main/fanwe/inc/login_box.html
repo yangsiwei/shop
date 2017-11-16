@@ -1,0 +1,145 @@
+<div class="login_box clearfix">
+	
+	{if app_conf("SMS_ON") eq 1}
+	<div class="login-tab" rel="{$form_prefix}">
+		<a class="current" href="javascript:void(0);" rel="other" lk="{$form_prefix}"><span class="iconfont">&#xe617;</span>&nbsp;普通方式登录</a>
+		<a href="javascript:void(0);" rel="ph" lk="{$form_prefix}"><span class="iconfont">&#xe61a;</span>&nbsp;手机动态码登录</a>
+	</div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	{/if}
+	
+	<div class="login-panel form_panel" rel="{$form_prefix}">
+		<div class="panel" rel="other" style="display:block;">
+		<form name="{$form_prefix}_login_form" class="login" method="post" action="{url x="index" r="user#dologin"}">
+			<input type="hidden" name="form_prefix" value="{$form_prefix}" />
+			<dl>
+				<dt>用户名</dt>
+				<dd>
+					{if $user_info}				
+					<input class="ui-textbox" disabled="true" holder="请输入用户名/邮箱/手机号" value="{$user_info.user_name}" />
+					<input type="hidden" value="{$user_info.user_name}" name="user_key" />
+					{else}
+					<input class="ui-textbox" name="user_key" holder="请输入用户名/邮箱/手机号" />
+					{/if}
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+			<dl>
+				<dt>密码</dt>
+				<dd>
+					<input type="password" name="user_pwd" class="ui-textbox" holder="请输入密码" />
+					<a href="{url x="index" r="user#getpassword"}">忘记密码？</a>
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+			<dl>
+				<dt>图片验证码</dt>
+				<dd>
+					<input type="text" name="verify_code" class="ui-textbox img_verify" holder="请输入图片文字" />
+					<img src="{$APP_ROOT}/verify.php" class="verify" rel="{$APP_ROOT}/verify.php" />
+					<a href="javascript:void(0);" class="refresh_verify">看不清楚？换一张！</a>
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+			<dl class="cbo_line">
+				<dt></dt>
+				<dd>
+					<label class="ui-checkbox" rel="common_cbo"><input type="checkbox" name="auto_login" value="1" />自动登录</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt></dt>
+				<dd>
+
+					<button class="ui-button f_l" rel="orange" type="submit">登录</button>
+					{if $form_prefix eq 'ajax'}
+					<a href="{url x="index" r="user#register"}" class="regist_btn">
+					<button class="ui-button f_l" rel="blue" type="button">立即注册</button>
+					</a>
+					{/if}
+				</dd>
+			</dl>
+		</form>
+		</div>
+		
+		<div class="panel" rel="ph">
+		<form name="{$form_prefix}_ph_login_form" class="ph_login" method="post" action="{url x="index" r="user#dophlogin"}">
+			<input type="hidden" name="form_prefix" value="{$form_prefix}" />
+			<dl>
+				<dt>手机号</dt>
+				<dd>
+					<input class="ui-textbox" name="user_mobile" {if $user_info.mobile}value="{$user_info.mobile}"{else}value="{$fanwe_mobile}"{/if} holder="请输入手机号" />
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+			
+			<dl class="ph_img_verify" {if $sms_ipcount>1}style="display:block"{/if}>
+				<dt>图片验证码</dt>
+				<dd>
+					<input type="text" name="verify_code" class="ui-textbox img_verify" holder="请输入图片文字" />
+					<img src="{$APP_ROOT}/verify.php" class="verify" rel="{$APP_ROOT}/verify.php" />
+					<a href="javascript:void(0);" class="refresh_verify">看不清楚？换一张！</a>
+					<span class="form_tip"></span>
+				</dd>
+			</dl>	
+					
+			<dl>
+				<dt>验证码</dt>
+				<dd>
+					<input class="ui-textbox ph_verify" name="sms_verify" holder="请输入验证码" />
+					<button class="ui-button light ph_verify_btn f_l" rel="light" form_prefix="{$form_prefix}" lesstime="{$sms_lesstime}" type="button">发送验证码</button>
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+			<dl class="cbo_line">
+				<dt></dt>
+				<dd>
+					<label class="ui-checkbox" rel="common_cbo"><input type="checkbox" name="save_mobile" value="1" />记住手机号</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt></dt>
+				<dd>
+					<button class="ui-button f_l" rel="orange" type="submit">登录</button>					
+				</dd>
+			</dl>
+		</form>
+		</div>
+	</div>
+	{if $user_info}	
+	<div class="cop_site">
+	<div class="confirm_login_tip">
+	 {if $user_info.is_tmp eq 1}
+	 <a href="{url x="index" r="uc_account"}">请先去完善您的个人资料</a>
+	 {else}
+	 为保证账号安全，请输入密码再次确认您的账号身份
+	 {/if}
+	</div>
+	</div>
+	{else}
+	<!-- <div class="cop_site">		
+		<div class="wx_login" >
+			<div id="login_box_css" style="width:154px; height:50px;">
+				<a href="javascript:void(0);" class="iconfont" id="wx_login" rel="{url x="index" r="user#wx_login"}">&#xe632;</a>
+	
+				{if $WB_APP_KEY neq '' and $WB_APP_SECRET neq ''}
+				 <a class="iconfont" id="wb_login" href="{url x="index" r="user#wb_login"}">&#xe633;</a>
+				{/if}
+	
+				{if $QQ_HL_APPID neq '' and $QQ_HL_APPKEY neq ''}
+				<a class="iconfont" id="qq_login" href="{url x="index" r="user#qq_login"}">&#xe64a;</a>
+				{/if}
+			</div>
+		</div>
+	</div> --><!--合作站点-->
+	{/if}
+</div>
+<script>
+$(document).ready(function(){
+	// 设置登录按钮宽度
+	var al = $('#login_box_css').find('a').length;
+	$('#login_box_css').css('width', 50*al);
+});
+
+</script>

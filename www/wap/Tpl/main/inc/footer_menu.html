@@ -1,0 +1,37 @@
+<div class="footer-menu-box">
+    <div class="f_menu split-line-top">
+      <ul class="menu_box">
+        <li class="menu_item {if $MODULE_NAME eq 'index'}cur{/if}">
+          <a href="{url r="index" b="index#index"}">
+            <p style="width:2.6rem;height:2rem;"><img src="./wap/Tpl/main/images/menu/homeb.png" style="width:100%"/></p>
+          </a>
+        </li>
+          <li class="menu_item {if $MODULE_NAME eq 'anno'}cur{/if}">
+            <a href="{url r="index" b="anno#index"}">
+                <p style="width:2.6rem;height:2rem;"><img src="./wap/Tpl/main/images/menu/jieb.png" style="width:100%"/></p>
+            </a>
+          </li>
+          <li class="menu_item {if $MODULE_NAME eq 'cart'}cur{/if}">
+              <a href="{url r="index" b="cart#index"}">
+              <p style="width:2.6rem;height:2rem;"><img src="./wap/Tpl/main/images/menu/goub.png" style="width:100%"/></p>
+              </a>
+          </li>
+        <li class="menu_item {if $MODULE_NAME eq 'helps'}cur{/if}" >
+          <a href="{url r="index" b="helps#index"}">
+             <p style="width:2.6rem;height:2rem;"><img src="./wap/Tpl/main/images/menu/helpb.png" style="width:100%"/></p>
+          </a>
+        </li>
+        <li class="menu_item {if $MODULE_NAME eq 'user_center'}cur{/if}">
+          <a href="{url r="index" b="user_center#index"}" onclick="mt_rand(this);">
+            <p style="width:2.6rem;height:2rem;"><img src="./wap/Tpl/main/images/menu/meb.png" style="width:100%"/></p>
+          </a>
+        </li>
+    </ul>
+    <a href="/o2onew/wap/biz.php?ctl=more"></a>
+  </div>
+</div>
+<script type="text/javascript">
+/*  {if $signin_result}
+  show_signin_message({$signin_result});
+  {/if}*/
+</script>

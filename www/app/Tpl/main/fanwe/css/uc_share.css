@@ -1,0 +1,237 @@
+.share-banner{
+	height:96px;
+	background:url(../images/share-banner.jpg) no-repeat;
+}
+.share-box{
+	width: 904px;
+	background-color: #f7f7f7;
+	padding: 20px 65px 58px 65px;
+	border: 1px solid #ddd;
+}
+.share-box .null-data{
+	text-align: center;
+	padding: 97px 0;
+	font-size: 20px;
+	color: #999;
+}
+.share-box .null-data .btn{
+	height: 50px;
+	width: 180px;
+	line-height: 50px;
+	font-size:20px;
+	border-radius: 5px;
+	padding:0;
+}
+/* 有数据 */
+.share-record{
+	border-bottom: 2px #808080 solid;
+	font-size: 15px;
+	padding-bottom: 5px;
+}
+.share-record b{
+	font-weight: bold;
+	padding: 0 5px;
+}
+.share-record .check{
+	display: inline-block;
+	height: 26px;
+	width: 60px;
+	color: #fff;
+	background-color: #3399fe;
+	border-radius: 2px;
+	text-align: center;
+	vertical-align: top;
+	text-decoration: none;
+	margin-left: 10px;
+}
+.share-item{
+	width: 290px;
+	border: 1px solid #ddd;
+	background-color: #fff;
+}
+.share-item .share-pic{
+	padding-top: 9px;
+	width: 290px;
+	overflow: hidden;
+	text-align: center;
+	font-size: 0;
+	line-height: 0;
+	margin: 0 auto;
+}
+.share-item .share-pic table,.share-item .share-pic td{
+	width:290px;
+}
+.share-item>p{
+	padding: 0 19px;
+	line-height: 2;
+}
+.share-item .goods-name{
+	width: 220px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	padding-top: 10px;
+	color:#3c3c3c;
+}
+.share-item .goods-name a{
+	color:#3c3c3c;
+}
+.share-info{
+	background-color: #F5F5F5;
+	padding: 15px 19px;
+	line-height: 22px;
+	position: relative;
+	margin-top: 8px;
+}
+.share-info .share-title strong{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 100%;
+	display: inline-block;
+	font-size:15px;
+	color:#3c3c3c;
+}
+.share-info .time{
+	color: #adadad;
+}
+.share-info .abbr{
+	height: 68px;
+	overflow: hidden;
+	white-space: normal;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+.add-share-box{
+	border: 1px #D0D0D0 solid;
+	overflow: hidden;
+}
+.share-add-pic{
+	height:141px;
+	background:url(../images/share-add.jpg) no-repeat;
+}
+.share-add-info{
+	padding: 0 60px;
+	font-size: 14px;
+	color: #808080;
+}
+.share-add-info .title{
+	padding-top: 24px;
+	font-size: 18px;
+	color: #000;
+}
+.share-add-info p{
+	padding-left: 16px;
+}
+.share-add-info .item{
+	line-height: 20px;
+	margin-top: 12px;
+}
+.share-add-info .item .num{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	color: #fff;
+	background-color: #ed9aa5;
+	border-radius: 10px;
+	text-align: center;
+	line-height: 20px;
+}
+.share-add-btn-box{
+	text-align: center;
+}
+.add-share-box .btn{
+	width: 215px;
+	height: 50px;
+}
+.share-add-form{
+	background-color: #f7f7f7;
+	padding: 30px 30px 80px 30px;
+	position: relative;
+	border: 1px #D0D0D0 solid;
+	font-size:15px;
+	display:none;
+}
+.share-add-form .title{
+	border-bottom: 1px #000 solid;
+	padding-bottom: 10px;
+	font-size: 18px;
+	font-weight: bold;
+}
+.share-add-form .title span{
+	display: inline-block;
+	font-weight: normal;
+	font-size: 12px;
+	color: #fe7542;
+	background-color: #fff0e8;
+	width: 200px;
+	height: 20px;
+	text-align: center;
+	border: 1px #fe7542 solid;
+	border-radius: 2px;
+	margin-left: 10px;
+}
+.share-add-form .input-box{
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+}
+.share-add-form .textarea-box{
+	vertical-align:top;
+}
+.share-add-form .input-box input{
+	width: 250px;
+	padding: 8px;
+	border: 1px solid #ABABAB;
+	outline: none;
+}
+.share-add-form .textarea-box textarea{
+	width: 800px;
+	height: 150px;
+	max-width: 800px;
+	padding: 8px;
+	border: 1px solid #ABABAB;
+	outline: none;
+}
+.share-add-form .input-box input:focus,.share-add-form .input-box textarea:focus{
+	border-color: #fdc15e;
+}
+.textarea-holder{
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding: 6px 5px 6px 10px;
+	color: #999;
+}
+.pic-upload{
+	display: inline-block;
+}
+.pic-upload .btn-sim{
+	width: 100px;
+	height: 30px;
+	font-size: 15px;
+	color: #000;
+}
+.upload-tips{
+	margin-left: 10px;
+	font-size: 14px;
+	color: #808080;
+}
+.share-button{
+	margin-left:79px;
+}
+.share-button .btn{
+	display: inline-block;
+	width: 140px;
+	height: 48px;
+	font-size: 18px;
+	font-weight: normal;
+}
+
+/*上传图片集框*/
+.pub_upload_img_box{display: inline-block;*zoom:1;*display:inline;    margin-left: 80px; margin-top: 20px;width:818px;}
+.pub_upload_img_box .img_item{display: inline-block;*zoom:1;*display:inline;width: 140px;height: 140px;overflow:hidden;float: left;margin-right: 5px;margin-bottom:5px;position: relative;padding: 1px;border: #ddd 1px solid;}
+.pub_upload_img_box .img_item td{height: 140px;width: 140px;font-size: 12px;}
+.pub_upload_img_box .img_item a:hover {display: block;width: 140px;height: 140px;position: absolute;left: 1px;bottom: 1px;background-color: #000;z-index: 10;filter: alpha(opacity=50);-moz-opacity: 0.5;opacity: 0.5;-moz-transition: all 0.2s;-webkit-transition: all 0.2s;transition: all 0.2s;}
+.pub_upload_img_box .img_item a {display: block;width: 140px;height: 140px;position: absolute;left: 1px;bottom: 1px;background-color: #000;z-index: 10;filter: alpha(opacity=0);-moz-opacity: 0;opacity: 0;-moz-transition: all 0.2s;-webkit-transition: all 0.2s;transition: all 0.2s;}
+.pub_upload_img_box .img_item div.loader {width: 140px;height: 140px;position: absolute;left: 1px;top: 1px;z-index: 0;display: inline-block;background: url(../images/css_bg/loading.gif) no-repeat center center;}

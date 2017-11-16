@@ -1,0 +1,54 @@
+/*-------------------------评分星星-------------------------*/
+.tx_star{
+	text-align: center;
+	padding: 20px 0px;
+	
+}
+.tx_star .five_star_grey{display: inline-block;}
+.tx_star .five_star_grey i{
+	font-size:30px;
+	color:#e2e2e2;
+	margin:0 8px;
+}
+.tx_star .five_star_grey{
+	margin-bottom:10px;
+}
+.tx_star .star_tip{color:#adadad;}
+.tx_star .star_tip .iconfont{font-size: 30px;
+margin-right: 3px;
+}
+
+/*-------------------------评分星星-------------------------*/
+.comment_list_txt textarea{
+	width: 100%;
+	height: 200px;
+	font-size:12px;
+	color:#adadad;
+}
+
+.comment_list_txt{
+	padding: 10px;
+	background-color: white;
+}
+.comment_list_star{
+	background-color: white;
+	border-top: 1px solid #dfdfdf;
+	border-bottom: 1px solid #dfdfdf;
+	padding: 5px;
+	font-size: 18px;
+	color: #fb8602;
+}
+.bk{
+	color: #b0b0b0;
+}
+.comment_commentary{
+	
+	margin:15px 10px;
+	padding: 10px 0;
+	color: #fff;
+	background:#fb8602;
+	border-radius: 30px;
+	text-align: center;
+	font-size: 14px;
+	font-weight:bolder;
+}

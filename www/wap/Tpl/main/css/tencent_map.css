@@ -1,0 +1,92 @@
+.map_select_box{
+	background-color:#FFFFFF;
+	position:absolute;
+	height:100%;
+	width:100%;
+	overflow:hidden;
+	z-index:9;
+	display:none;
+}
+.map_address_str{
+	display:none;
+}
+
+.g-smfw{
+	margin: 0 auto;
+    max-width: 640px;
+    min-height: 100%;
+    position: relative;
+	font: 14px/22px Arial,"Microsoft YaHei";
+}
+
+.por {
+    position: relative;
+}
+.m-rfssct {
+    box-sizing: border-box;
+    padding: 0 15px;
+    position: absolute;
+    top: 25px;
+    width: 100%;
+}
+.m-rfssct input {
+    border: 1px solid #d9d7d6;
+    border-radius: 5px;
+    box-sizing: border-box;
+    line-height: 22px;
+    padding: 14px 5px 14px 38px;
+    width: 100%;
+}
+.ss {
+    background: rgba(0, 0, 0, 0) url("../images/sshico.png") no-repeat scroll 0 0 / 100% 100%;
+    display: block;
+    height: 21px;
+    left: 13px;
+    position: absolute;
+    top: 15px;
+    width: 20px;
+}
+.m-rfssct .ss {
+    left: 25px;
+}
+.ssmap {
+    background: rgba(0, 0, 0, 0) url("../images/map.png") no-repeat scroll 0 0 / 100% 100%;
+    display: inline-block;
+    height: 21px;
+    margin-top: 15px;
+    width: 19px;
+}
+
+.m-rfssct a.ssmap {
+    left: 25px;
+    position: absolute;
+    top: -2px;
+}
+
+.m-bacbtn {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: #fff none repeat scroll 0 0;
+    border-color: #ccc;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px 0;
+    bottom: 0;
+    box-sizing: border-box;
+    padding: 6px 15px;
+    position: fixed;
+    width: 100%;
+}
+.m-bacbtn a {
+    background: #FC8600 none repeat scroll 0 0;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    font-size: 14px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    width: 100%;
+}

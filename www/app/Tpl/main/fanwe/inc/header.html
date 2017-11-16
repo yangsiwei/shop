@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="Generator" />
+{* 加载浏览器兼容 *}
+{function name="load_compatible"}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{if $page_title}{$page_title} - {/if}{$site_seo.title}</title>
+<meta name="keywords" content="{if $page_keyword}{$page_keyword}{/if} {$site_seo.keyword}" />
+<meta name="description" content="{if $page_description}{$page_description}{/if} {$site_seo.description}" />
+
+<METAHTTP-EQUIV="Pragma"CONTENT="no-cache">
+
+<METAHTTP-EQUIV="Cache-Control"CONTENT="no-cache">
+
+<METAHTTP-EQUIV="Expires"CONTENT="0">
+<script type="text/javascript">
+var APP_ROOT = '{$APP_ROOT}';
+var AJAX_LOGIN_URL	= '{url x="index" r="user#ajax_login"}';
+var AJAX_URL	= '{url x="index" r="ajax"}';
+
+ //关于图片上传的定义
+var LOADER_IMG = '{$TMPL}/images/loader_img.gif';
+var UPLOAD_SWF = '{$TMPL}/js/utils/Moxie.swf';
+var UPLOAD_XAP = '{$TMPL}/js/utils/Moxie.xap';
+var MAX_IMAGE_SIZE = '{function name='app_conf' v='MAX_IMAGE_SIZE'}';
+var ALLOW_IMAGE_EXT = '{function name='app_conf' v='ALLOW_IMAGE_EXT'}';
+var UPLOAD_URL = '{url x="index" r="file#upload"}';
+var QRCODE_ON = '{function name='app_conf' v='QRCODE_ON'}';
+var cart_url='{url i="index" r="cart"}';
+</script>
+<link rel="stylesheet" type="text/css" href="http://122.114.94.153/app/Tpl/main/fanwe/css/bottom.css">
+<link rel="stylesheet" type="text/css" href="http://122.114.94.153/app/Tpl/main/fanwe/css/online.css">
+<link rel="stylesheet" type="text/css" href="http://122.114.94.153/app/Tpl/main/fanwe/css/sidebar.css">
+<script type="text/javascript" src="{$APP_ROOT}/public/runtime/app/lang.js"></script>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$pagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$pagejs" c="$cpagejs"}"></script>
+<style type="text/css">
+	#jd{
+		display: inline-block;
+		line-height: 31px;
+		margin-top: 5px;
+
+	}
+	.cate_tree{background: rgb(219, 54, 82);}
+	.nav_bar .main_nav {background: rgb(219, 54, 82); width: 960px;}
+	/*.nav_bar {border-bottom: 3px solid #2b71c2;}*/
+	.nav_bar .main_nav ul li.current{background-color: rgb(219, 54, 82);}
+	.nav_bar .main_nav ul li.current a {color: #fff;}
+	.nav_bar .main_nav ul li a {color:#fff;}
+	.nav_bar .drop_nav .drop_title {border-bottom: 1px solid rgb(219, 54, 82);background:rgb(219, 54, 82); }
+	.nav_bar .main_nav ul li .discover {color: #fff;}
+	/*.cate_tree ul li {border-bottom: 1px solid rgb(219, 54, 82);border-top: 1px solid rgb(219, 54, 82);}*/
+</style>
+</head>
+<body>
+<img src="{$TMPL}/images/loader_img.gif" style="display:none;" /><!--延时加载的替代图片生成-->
+<div class="top_nav">
+	<div class="wrap_full_w">
+		<!-- <span class="f_l">欢迎来到{function name="app_conf" v="SHOP_TITLE"}</span> -->
+		<span class="f_l" style="color:blue; ">夺宝联盟战略合作伙伴</span>&nbsp;&nbsp;
+		<img src="app/Tpl/main/fanwe/images/jd.png" id="jd">
+		<span class="f_r">
+			<ul class="head_tip">
+				<li class="user_tip" id="head_user_tip">{insert name="load_user_tip"}</li>
+			</ul>
+		</span>
+	</div>
+</div><!--顶部横栏-->
+<div class="wrap_full_w clearfix" style="height: 80px;position: relative;z-index:51;">
+	<div class="logo f_l">
+	<a class="link" href="{$APP_ROOT}/">
+		<?php
+			$this->_var['logo_image'] = app_conf("SHOP_LOGO")?app_conf("SHOP_LOGO"):$this->_var['TMPL']."/images/default_logo.png";
+		?>
+		{function name="load_page_png" v=$logo_image }
+	</a>
+	</div>
+
+	<div class="cart_tip_margin f_r">
+		<a href="javascript:void(0);" class="cart_tip">
+		<i class="ico ico-mini-cart"></i>
+		<span class="cart_title">购物车</span>
+		<div class="cart-count-wrap" style="float:right;">
+		<i class="ico ico-white-solid ico-white-solid-l"></i>
+		<b class="cart_count">
+		{$cart_info.cart_item_num}
+		</b>
+		</div>
+		</a>
+	</div>
+	<div class="f_r" style="position:relative;">
+		<div class="top_search search key_words_search_display">
+			<form action="{url x="index"}" name="search_form" method=get class="key_words_search_display" >
+			<input type="hidden" name="ctl"  value="duobaos" />
+
+			<input type="text" name="keyword" autocomplete="off" class="ui-textbox search_keyword f_l key_words_search_display" holder="请输入您要搜索的关键词" {if $data.keyword}value="{$data.keyword}"{/if} />
+
+			<button class="search_btn f_l" rel="search_btn" type="submit"><i class="search-ico iconfont">&#xe63a;</i></button>
+			</form>
+		</div>
+	</div>
+	<div class="top_cart_list " id="top_cart_list">
+	</div>
+</div><!--logo与头部搜索-->
+<div class="nav_bar fix_nav_bar">
+	<div class="wrap_full_w clearfix">
+
+		<div class="drop_nav" ref="{$drop_nav}">
+			<span class="drop_title" style="background: rgb(219, 54, 82);">全部分类<i class="ico"></i></span>
+			<div class="drop_box">
+				{function name="load_cate_tree" c=0}
+			</div>
+		</div><!--下拉菜单-->
+
+		<div class="main_nav" style="background:rgb(219, 54, 82);">
+			<ul>
+				{foreach from=$nav_list.one item=nav_item}
+				<li {if $nav_item.current eq 1}class="current"{/if}><a href="{$nav_item.url}" {if $nav_item.blank}target="_blank"{/if}>{$nav_item.name}</a></li>
+				{/foreach}
+				<li><a href="http://122.114.94.153/">超级抽奖</a></li>
+				<!-- {if $nav_list.two}
+				<li class="discover-wrap">
+					<a href="javascript:;" class="discover">发现 <i class="iconfont">&#xe647;</i></a>
+					<ul class="discover-box">
+						{foreach from=$nav_list.two item=nav_item}
+							<li {if $nav_item.current eq 1}class="current"{/if}><a href="{$nav_item.url}" {if $nav_item.blank}target="_blank"{/if}>{$nav_item.name}</a></li>
+						{/foreach}
+					</ul>
+				</li>
+				{/if} -->
+			</ul>
+		</div>
+
+
+	</div>
+</div>
+
+<div class="nav_bar float_nav_bar">
+	<div class="wrap_full_w clearfix">
+		{if !$no_nav}
+		<div class="drop_nav" ref="{$drop_nav}">
+			<span class="drop_title">全部分类<i class="ico"></i></span>
+			<div class="drop_box">
+				{function name="load_cate_tree" c=0}
+			</div>
+		</div><!--下拉菜单-->
+		{/if}
+		<div class="main_nav">
+			<ul>
+				{foreach from=$nav_list.one item=nav_item}
+				<li {if $nav_item.current eq 1}class="current"{/if}><a href="{$nav_item.url}" {if $nav_item.blank}target="_blank"{/if}>{$nav_item.name}</a></li>
+				{/foreach}
+				<li><a href="http://122.114.94.153/">超级抽奖</a></li>
+			<!-- 	{if $nav_list.two}
+				<li class="discover-wrap">
+					<a href="javascript:;" class="discover">发现 <i class="iconfont">&#xe647;</i></a>
+					<ul class="discover-box">
+						{foreach from=$nav_list.two item=nav_item}
+							<li {if $nav_item.current eq 1}class="current"{/if}><a href="{$nav_item.url}" {if $nav_item.blank}target="_blank"{/if}>{$nav_item.name}</a></li>
+						{/foreach}
+					</ul>
+				</li>
+				{/if} -->
+			</ul>
+		</div>
+
+		<a href="javascript:void(0);" class="cart_tip f_r">
+			<i class="ico ico-mini-cart"></i>
+			<span class="cart_title">购物车</span>
+			<div class="cart-count-wrap" style="float:right;">
+			<i class="ico ico-white-solid ico-white-solid-l"></i>
+				
+				<b class="cart_count">
+					{$cart_info.cart_item_num}
+				</b>
+			</div>
+		</a>
+
+	</div>
+</div>
+
+

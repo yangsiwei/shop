@@ -1,0 +1,65 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<PHP>
+
+
+	function get_handle($id,$order)
+	{
+		$str = "<a href='".u("DuobaoOrder/view_order_history",array("id"=>$order['id']))."'>查看详情</a>";
+		
+		return $str;
+	}
+	
+	function get_is_delete($is_delete)
+	{
+		if($is_delete)
+		return "交易关闭";
+		else
+		return "正常订单";
+	}
+	
+	function get_order_item_history($item)
+	{
+		$items = unserialize($item);
+		if(count($items)>1)
+		return $items[0]['name']." 等".count($items)."期夺宝活动";
+		else
+		return $items[0]['name'];
+	}
+
+</php>
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">{%DEAL_ORDER}</div>
+<div class="blank5"></div>
+<form name="search" action="__APP__" method="get">	
+
+<div class="search_row">
+
+		{%ORDER_SN}：<input type="text" class="textbox" name="order_sn" value="{:strim($_REQUEST['order_sn'])}" style="width:100px;" />		
+
+		<input type="hidden" value="DuobaoOrder" name="m" />
+		<input type="hidden" value="trash" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+		<input type="button" class="button" value="删除" onclick="foreverdel();" />
+
+</div>
+</form>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	checkbox="true" 
+	style="dataTable" 
+	name="deal_order" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,history_deal_order_item|get_order_item_history:活动名称,order_sn:订单编号,user_id|get_user_name:{%USER_NAME},total_price|format_price:购买人次,create_time|to_date:{%ORDER_CREATE_TIME},pay_status|get_pay_status:付款状态,is_delete|get_is_delete:状态"	 
+	actionlist="id|get_handle=$deal_order" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

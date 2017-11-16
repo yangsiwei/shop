@@ -1,0 +1,84 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<PHP>
+
+	
+	function get_has_lottery($has_lottery){
+		if($has_lottery == 1){
+			$str = '已开奖';
+		}else{
+			$str = '未开奖';
+		}
+		return $str;
+	}
+	function get_is_luck($luck){
+		if($luck == 1){
+			$str = '是';
+		}else{
+			$str = '否';
+		}
+		return $str;
+	}
+	
+	
+	function get_current_buy($current_id, $duobao_id){
+		$str = "<a href='".u("DuobaoItemLog/index",array("duobao_id"=>$duobao_id))."'>".$current_id."</a>";
+		return $str;
+	}
+	function get_duobao_deal_name($id)
+	{
+		return "<span class='duobao_deal_name'></span>";
+	}
+</php>
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".duobao_deal_name").html('{$duobao_name}');
+});
+</script>
+<div class="main">
+<div class="main_title">夺宝活动列表</div>
+<div class="blank5"></div>
+<form name="search" action="__APP__" method="get">	
+<div class="blank5"></div>
+<div class="search_row">
+
+		<input type="hidden" class="textbox" name="duobao_item_id" value="{:strim($_REQUEST['duobao_item_id'])}" style="width:100px;" />
+		会员名:<input type="text" class="textbox" name="user_name" value="{:strim($_REQUEST['user_name'])}" style="width:100px;" />
+
+		<input type="hidden" value="DuobaoItemLog" name="m" />
+		<input type="hidden" value="index" name="a" />
+		
+		<input type="submit" class="button" value="{%SEARCH}" />
+</div>
+</form>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="duobaoItem" 
+	checkbox="true" 
+	datasource="list" 
+	show="duobao_id:夺宝编号
+			,duobao_item_id:夺宝期号
+			,id|get_duobao_deal_name:商品名称
+			,lottery_sn:幸运号
+			,user_id|get_user_name:会员名
+			,order_id:订单编号
+			,order_item_id:订单商品编号
+			,create_time|to_date:购买时间
+			,is_luck|get_is_luck:是否中奖
+			,duobao_ip:IP
+			,duobao_area:夺宝归属地"
+ />
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

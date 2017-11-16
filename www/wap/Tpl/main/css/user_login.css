@@ -1,0 +1,217 @@
+#header_back_btn{
+	font-size: .52rem;
+	padding: 0 .5rem;
+	line-height: 2rem;
+}
+.back_bt{
+	font-size: .52rem;
+	padding: 0 .5rem;
+	line-height: 2rem;
+}
+body{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	 -webkit-box-orient: vertical;	      
+	-webkit-flex-direction:column;
+	flex-direction:column;
+}
+.wrap{
+	-webkit-flex:1;
+	-webkit-box-flex:1;  
+	flex:1;
+	padding-top: .4rem;
+	padding-bottom: 2rem;
+}
+.header-blank{
+	width: 2rem;
+}
+.cut_city{
+	width: auto !important;
+}
+.input-list{
+	background: #fff;
+}
+.input-list li{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-align-items:center;
+	align-items:center;
+	-webkit-box-align: center;
+	width: 100%;
+	height: 1.82rem;
+}
+.input-list li .iconfont{
+	font-size: .8rem;
+	display: block;
+	height: .8rem;
+	vertical-align: text-top;
+	text-align: center;
+	width: 1.52rem;
+	color: #666;
+}
+.input-list li .input-box{
+	height: 1.82rem;
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	flex:1;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-align-items:center;
+	align-items:center;
+	-webkit-box-align: center;
+	font-size: .64rem;
+}
+.input-list li .input-box label{
+	display: block;
+	height: 1.82rem;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-align-items:center;
+	align-items:center;
+	-webkit-box-align: center;
+}
+.input-list li .input-box label .mobile,.input-list li .input-box label .password{
+	-webkit-flex:1;
+	display: block;
+	-webkit-box-flex:1;
+	flex:1;
+	outline: none;
+}
+.input-list li .input-box .com-input{
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	flex:1;
+	margin-right:.4rem;
+}
+.input-list li .input-box .com-input input{
+	display:block;
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	flex:1;
+}
+.input-list li .input-box .com-input input::-webkit-input-placeholder{
+color: #c7c7cd;
+}
+.input-list li .input-box .btn_phone{
+	-webkit-appearance:none;
+	background: none;
+	color: @main_color;
+	margin-right: .5rem;
+}
+.btn_phone-red{
+	color: #d93a55 !important;
+}
+.login-btn-box{
+	margin-top: .6rem;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-align-items:center;
+	align-items:center;
+	-webkit-box-align: center;
+	padding: 0 .5rem;
+}
+.login-btn{
+	border-radius: 5px;
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	flex:1;
+	-webkit-appearance:none;
+	background: #ececee;
+	display: block;
+	text-align: center;
+	font-size: .6rem;
+	color: #bababc;
+        line-height: 1.6rem;
+}
+.login-btn-red{
+	border-radius: 5px;
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	flex:1;
+	-webkit-appearance:none;
+	background: #d93a55 !important;
+	display: block;
+	text-align: center;
+	font-size: .6rem;
+	color: #fff;
+        line-height: 1.6rem;
+}
+section .a-box{
+	padding: 0 .5rem;
+}
+section .a-box a{
+	color: #737373;
+	font-size: .52rem;
+	line-height: 1.74rem;
+}
+.con-2{display: none;}
+.third-login{
+	padding: 0 .4rem .5rem;
+	width: 100%;
+}
+.third-login p{
+	width: 100%;
+	text-align: center;
+	position: relative;
+}
+.third-login p span{
+	color: #737373;
+	padding: 0 .4rem;
+	background: #f8f8f8;
+	position: relative;
+	z-index: 2;
+}
+.third-login p::after{
+	content: '';
+	width: 100%;
+	border-top: 1px solid #d2d2d2;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	-webkit-transform: translateY(-50%) scaleY(.5);
+	        transform: translateY(-50%) scaleY(.5);
+	-webkit-transform-origin: 0 50%;
+	        transform-origin: 0 50%;
+	z-index: 1;
+}
+.third-login .third-login-info{
+	text-align: center;
+	margin-top: 1.2rem;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-justify-content:center;
+	-webkit-box-pack: center; 
+	justify-content:center;
+}
+.third-login .third-login-info .weixin-login{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction:column;
+    flex-direction:column;/*���򲼾�*/
+    -webkit-box-align: center;
+	-webkit-align-items:center;
+	align-items:center;
+	width:2rem;
+}
+.third-login .third-login-info .weixin-login i{
+	width: .8rem;
+	height: .8rem;
+	text-align: center;
+	line-height: .8rem;
+	border-radius: 50%;
+	background: #31ce39;
+	color: #fff;
+	display:block;
+	font-size: .5rem;
+}
+.third-login .third-login-info .weixin-login span{
+	line-height: 1.4rem;
+}

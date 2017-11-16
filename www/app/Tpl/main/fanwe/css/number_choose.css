@@ -1,0 +1,147 @@
+.number-choose-box{
+	 display: none;
+}
+.mask{
+	background: #000;
+	filter: alpha(opacity=60);
+	-moz-opacity: 0.6;
+	-khtml-opacity: 0.6;
+	opacity: 0.6;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+}
+.number-choose-box .choose-number{
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    border-radius: 10px;
+    border: 5px solid #999;
+    z-index: 1001;
+    width: 620px;
+    height: 600px;
+    margin-top: -300px;
+    margin-left: -300px;
+}
+.number-choose-box .close-choose{
+    position: absolute;
+    width: 34px;
+    height: 38px;
+    background: url(../images/number_choose/close.png) no-repeat;
+    right: -16px;
+    top: -16px;
+    cursor: pointer;
+}
+.number-choose-box .hd{
+	line-height: 50px;
+	height: 50px;
+	border-bottom: 1px solid #ECECEC;
+	font-size: 16px;
+	padding: 0 20px;
+	position: relative;
+}
+.number-choose-box .hd .choose-btn{
+	position: absolute;
+	background: @main_color;
+	color:#fff;
+	top: 10px;
+	right: 0;
+}
+.number-choose-box .hd .choose-btn:hover{
+	background: @hover_color;
+	color:#fff;
+}
+.number-choose-box .hd a{
+	color:#333;
+	margin-right: 20px;
+}
+.number-choose-box .hd .cancel-all-choose{
+	display: none;
+}
+.number-choose-box .hd a:hover{
+	text-decoration: none;
+	color:@main_color;
+}
+.number-choose-box .hd .active{
+	color:@main_color;
+}
+.number-choose-box .number-list{
+	height: 483px;
+	overflow-y: auto;
+	padding: 7px 7px 8px 8px;
+}
+.number-list li{
+	width: 100px;
+	line-height: 32px;
+	border:1px solid #ddd;
+	text-align: center;
+	float: left;
+	margin:8px 8px 7px 7px;
+	border-radius: 3px;
+	color:#999;
+	cursor: pointer;
+}
+.number-list .active{
+	background: @main_color;
+	color:#fff;
+	border-color: @main_color;
+}
+.number-list .active{
+	background: @main_color;
+	color:#fff;
+	border-color: @main_color;
+}
+.number-list .disable{
+	background: #ddd;
+	color:#fff;
+	cursor: auto;
+}
+.number-list .hide{
+	display: none;
+}
+.choose-tip{
+	border-top:1px solid #ddd;
+	line-height: 50px;
+	height: 50px;
+	text-align: center;
+}
+.choose-tip li{
+	display: inline-block;
+	vertical-align: top;
+}
+.choose-tip li{
+	*display: inline;
+	font-size: 16px;
+	margin: 0 20px;
+}
+.choose-tip li .tip-ico{
+	width: 10px;
+	height: 10px;
+	border-radius: 2px;
+	border: 1px solid #ddd;
+	float: left;
+	margin-top: 19px;
+	margin-right: 5px;
+}
+.choose-tip li .tip-ico-cant{
+	background: #ddd;
+}
+.choose-tip li .tip-ico-ready{
+	background: @main_color;
+	border-color: @main_color;
+}
+.choose-tip li p{
+	float: left;
+}
+.page-load{
+    text-align: center;
+    display: block;
+    line-height: 1;
+    margin: .4rem;
+    color: #b0b0b0;
+    width: 100%;
+    float: left;
+}

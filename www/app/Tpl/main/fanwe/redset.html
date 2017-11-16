@@ -1,0 +1,96 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/zone.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/goods_item.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/redset.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.SuperSlide.2.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/lazyload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/index.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/index.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/redset.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/redset.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/slider.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/slider.js";
+
+?>
+{include file="inc/header.html"}
+<div class="blank15"></div>
+<div class="wrap_full_w clearfix">
+	<div class="redset">
+		<div class="hd">拆分红包</div>
+		<div class="redset-ico"><img src="{$TMPL}/images/redset/redset-ico.png" alt=""></div>
+		{if $redset.send_ecv}
+		<p class="evc-num">{$redset.send_ecv}</p>
+		<div class="subed">
+			<p class="subed-tip">红包已放入当前账号</p>
+			<a href="{url r="index" r="index" }" class="btn redset-btn">立即使用</a>
+			<p class="subed-tip">每个用户每天可以领：{$redset.draw_count}次</p>
+		</div>
+		{elseif $redset.has }
+		<!-- 未提交 且未登录-->
+		<p class="evc-num"></p>
+		<div class="not-sub">
+			<p class="evc-tip">您还未登录，请先登录</p>
+			<div class="login-btn-box">
+			<a href="{url r="index" r="user#login"}" class="btn redset-btn" >登录</a>
+	 		</div>
+		</div>
+		{elseif $redset.id }
+		<!-- 未提交 且已登录-->
+		<p class="evc-num"></p>
+		<form action="{url x="index" r="redset#dophlogin"}" id="ph_login_box">
+		<div class="not-sub">
+			<input type="hidden"  id="pid"  name="order_sn" value="{$redset.order_sn}" >
+			<div class="login-btn-box">
+	 		<input id="ph_login_box" type="submit" value="立即领取" class="btn redset-btn">
+	 		</div>
+		</div>
+		</form>
+		<p class="subed-tip">每个用户每天可以领：{$redset.draw_count}次</p>
+		{else}
+	 	<p class="end" style="font-size:1rem;">{$redset.name}</p>
+		{/if}
+	</div>
+	<div class="redset-list">
+		<div class="hd">看看朋友们手气如何</div>
+		{if $user_ecv}
+		{foreach from=$user_ecv item=value}
+		<ul>
+			<li class="clearfix">
+				<div class="user-img"><img src="{$value.avatar}" alt="" width="40" height="40"></div>
+				<div class="user-info">
+					<p class="user-name">
+						<span class="name">{$value.user_name}</span>
+						<span class="time">{$value.get_time}</span>
+					</p>
+					<p class="user-tip">红包领得好，夺宝没烦恼</p>
+				</div>
+				<p class="ecv-num">{$value.money}夺宝币</p>
+			</li>
+		</ul>
+		{/foreach}
+		{else if}
+		<p class="nobaody">当前还无人领取红包</p>
+		{/if}
+	</div>
+</div>
+<script>
+	$(".redset-list").slide({mainCell:"ul",autoPage:true,effect:"top",autoPlay:true,vis:8});
+</script>
+{include file="inc/footer.html"}

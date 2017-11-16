@@ -1,0 +1,146 @@
+<!--index_zt1_p1-->
+<!--index_zt1_p2-->
+<!--index_zt1_p3-->
+<!--index_zt1_p4-->
+<style type="text/css">
+
+.index_zt1_title{ 
+	width:100%; 
+}
+.index_zt1_title:after{
+	content: "";
+	display: block;
+	height:0;
+	width: 100%;
+	clear: both;
+}
+.index_zt1_title .title{
+	float: left; 
+	border-left:#f60 .1rem solid; 
+	padding-left: .46rem;   
+	font-size: .6rem;
+	margin-bottom: .32rem;
+	margin-top: .32rem;
+	line-height: .8rem;
+}
+.index_zt1_title  .more{float: right;padding-right: .2rem;font-size: .4rem;}
+.index_zt1_title a{
+padding-left: 1rem;
+font-size: .5rem;
+height: auto;
+	line-height: .8rem;
+	padding-bottom: .32rem;
+	padding-top: .32rem;
+
+}
+.index_zt1_title .iconfont{ font-size: .3rem;float: right;}
+   
+/*新品展示*/
+.newproduct{
+  width: 100%;
+  margin: 0;
+  padding: 0px;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  position: relative;
+}
+.newproduct:before{
+	content: "";
+	display: block;
+	height:100%;
+	border-left:1px solid #ccc;
+	width: 0;
+	position: absolute;
+	z-index: 3;
+	top: 0;
+	right: 50%;
+	clear: both;
+}
+.newproduct:after{
+	content: "";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.wbox {
+  display: -webkit-flex!important;
+  display: -webkit-box;
+}
+.wbox-flex {
+  -webkit-flex: 1!important;
+  -webkit-box-flex: 1;
+  word-wrap: break-word;
+  word-break: break-all;
+  width: 50%;
+}
+
+.index_zt1_title a,.newproduct a{
+	display:block;
+}
+
+.index_zt1{ width:100%;  margin:0;padding:0px;}
+.index_zt11{width:50%;float:left;}
+.index_zt1_p1{position: relative;width:50%;border-left:none;float:left;}
+.index_zt1_p2{position: relative;width:100%;float:left;}
+.index_zt1_p3{position: relative;width:50%;float:left;}
+.index_zt1_p4{position: relative;width:50%;float:left;}
+.index_zt1_p2:after{
+	content: "";
+	display: block;
+	height:0;
+	border-bottom:1px solid #ccc;
+	width: 100%;
+	position: absolute;
+	z-index: 3;
+	bottom: -.5;
+	left: 0;
+	clear: both;
+}
+.index_zt1_p3:after{
+	content: "";
+	display: block;
+	height:100%;
+	border-left:1px solid #ccc;
+	width:0;
+	position: absolute;
+	z-index: 3;
+	top: 0;
+	right: -.5px;
+	clear: both;
+}
+.index_zt1_p4{}
+.index_zt1 img{ width:100%; border:0px;}
+.index_zt1_p1 img,
+.index_zt1_p2 img,
+.index_zt1_p3 img,
+.index_zt1_p4 img{width: 100%;}
+
+
+
+</style>
+<body style="margin:0px;">
+{if $url neq '' or $title neq ''}
+<div class="index_zt1_title">
+{if $title}
+	<div class="title">{$title}</div>
+{/if}
+{if $url}
+	<div class="more"><a href="{$url}">更多<i class="iconfont">&#xe685;</i></a></div>
+{/if}
+<div class="clear"></div>
+</div>
+{/if}
+<div class="newproduct lazyimg">
+	<div class="index_zt1_p1">
+			<a href="{$index_zt1_p1_a}"><img src="{$index_zt1_p1_img}" /></a>
+	</div>
+	<div class="index_zt11">
+		<div class="index_zt1_p2"><a href="{$index_zt1_p2_a}"><img src="{$index_zt1_p2_img}" /></a></div>
+		<div class="index_zt1_p3"><a href="{$index_zt1_p3_a}"><img src="{$index_zt1_p3_img}" /></a></div>
+		<div class="index_zt1_p4"><a href="{$index_zt1_p4_a}"><img src="{$index_zt1_p4_img}" /></a></div>
+
+	</div>
+</div>
+
+</body>

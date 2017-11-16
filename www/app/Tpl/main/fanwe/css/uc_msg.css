@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+.msg_row{ padding:10px; border-bottom:solid @border_color 1px;}
+.msg_row_hover{ background:#fafafa; }
+.msg_icon{ width:50px; padding:0px; text-align:center; }
+.msg_icon img{ border:@border_color solid 1px;}
+.hover img{ border:@main_color solid 1px;}
+
+.msg_icon .iconfont{ font-size:30px; line-height:50px; }
+.hover .iconfont{ color:@main_color;}
+
+.msg_main{ width:700px; } 
+.msg_title{ height:25px; line-height:25px; }
+.msg_title .title{ float:left; position:relative;}
+.msg_title .title a{ color:@main_color;}
+.msg_title .title a:hover{ color:@dark_color;}
+.msg_title .pub_date{ float:right; }
+.msg_content{ line-height:25px; }
+
+.new_msg{ color:@main_color; font-size:16px; position:absolute; right:-20px; top:-5px;}
+
+.msg_content .content{ float:left; width:650px; }
+.msg_content .op{ float:right;  }
+.msg_content .op a{ display:none;}
+.msg_content .op i.iconfont{ font-size:20px; }

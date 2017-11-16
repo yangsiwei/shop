@@ -1,0 +1,177 @@
+﻿{// 引入标签库 }
+<tagLib name="html" />
+
+<include file="Public:header" />
+<div class="main">
+	<div class="main_title">{%VIEW} <a href="{:u("DuobaoItem/index")}" class="back_list">{%BACK_LIST}</a></div>
+</div>
+<div class="blank5"></div>
+<form name="robot_share_edit" action="__APP__" method="post" enctype="multipart/form-data" >
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">{%TITLE}:</td>
+		<td>
+			<input type="text" class="text" name="title" style="width:600px; height:20px;" holder="不少于6个字" placeholder="不少于6个字"/>
+		</td>
+	</tr>	
+
+	<tr>
+		<td class="item_title">{%CONTENT}:</td>
+		<td>
+			<textarea class="textarea" name="content" style="width:600px; height:50px; padding:1px;" holder="文字内容不少于30字" placeholder="文字内容不少于30字" ></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">期号:</td>
+		<td>{$vo.id}</td>
+	</tr>
+	<tr>
+		<td class="item_title">机器人:</td>
+		<td>{$vo.luck_user_name}</td>
+	</tr>
+
+	 <tr>
+		<td class="item_title">{%TOPIC_IMG}:</td>
+		<td class="item_input">
+			<html:imgUpload name = 'img[]' id='img00' value='$img_list.0' />
+			<html:imgUpload name = 'img[]' id='img10' value='$img_list.1' />
+			<html:imgUpload name = 'img[]' id='img20' value='$img_list.2' />
+			<html:imgUpload name = 'img[]' id='img30' value='$img_list.3' />
+			<div class="blank5"></div>			
+			<html:imgUpload name = 'img[]' id='img40' value='$img_list.4' />
+			<html:imgUpload name = 'img[]' id='img50' value='$img_list.5' />
+			<html:imgUpload name = 'img[]' id='img60' value='$img_list.6' />
+			<html:imgUpload name = 'img[]' id='img70' value='$img_list.7' />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">有效:</td>
+		<td>
+			<select name="is_effect">
+				<option value="0" <if condition="$share['is_effect'] eq 0">selected="selected"</if>>否</option>
+				<option value="1" selected="selected" <if condition="$share['is_effect'] eq 1">selected="selected"</if>>是</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">推荐:</td>
+		<td>
+			<select name="is_recommend">
+				<option value="0" <if condition="$share['is_recommend'] eq 0">selected="selected"</if>>否</option>
+				<option value="1" selected="selected" <if condition="$share['is_recommend'] eq 1">selected="selected"</if>>是</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">置顶:</td>
+		<td>
+			<select name="is_top">
+				<option value="0" <if condition="$share['is_top'] eq 0">selected="selected"</if>>否</option>
+				<option value="1" selected="selected" <if condition="$share['is_top'] eq 1">selected="selected"</if>>是</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">首页显示:</td>
+		<td>
+			<select name="is_index">
+				<option value="0" <if condition="$share['is_index'] eq 0">selected="selected"</if>>否</option>
+				<option value="1" selected="selected" <if condition="$share['is_index'] eq 1">selected="selected"</if>>是</option>
+			</select>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="duobao_item_id" value="{$vo.id}" />
+			<input type="hidden" name="user_name" value="{$vo.luck_user_name}" />
+			<input type="hidden" name="user_id" value="{$vo.luck_user_id}" />
+			<input type="hidden" name="is_robot" value="{$vo.is_robot}" />
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="DuobaoItem" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="robot_share_edit" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>
+<div class="blank5"></div>
+</form>
+<script>
+$(document).ready(function(){
+	$("form[name='robot_share_edit'],form.ajax_form").bind("submit",function(){
+		// 判断晒单内容
+		var title =  $.trim( $("input[name='title']").val() );
+		var content =  $.trim( $("textarea[name='content']").val() );
+		var on_submit = $(this).attr("on_submit");
+		var img_count=0;
+		
+		$("img[title='删除']").each(function(){
+			if($(this).css("display")!="none")
+				img_count=img_count+1;
+		});
+
+		if( title==''||title.length <6 ){
+			alert('标题至少6个字');
+			return false;
+		}
+		if( content==''||content.length <5 ){
+			alert('文字内容至少5个字');
+			return false;
+		}
+		if(img_count<3){
+			alert("至少上传3张照片");
+			return false;
+		} 
+		if(on_submit)
+		{
+			var fn = window[on_submit];
+			var result = fn();
+			if(!result)
+			{
+				return result;
+			}
+		}
+		if(check_require())
+		{
+			if(confirm("确认要保存吗？"))
+			{
+				for(var idx=0;idx<keids.length;idx++)
+				{
+					KE.util.setData(keids[idx])
+				}
+				var url = $(this).attr("action");
+				var query = $(this).serialize()+"&ajax=1";
+				$.ajax({
+					url:url,
+					data:query,
+					dataType:"json",
+					type:"POST",
+					success:function(obj){
+						if(obj.status)
+						{
+							isrefresh = false;
+							alert(obj.info);
+							location.href = obj.jumpUrl;
+						}
+						else
+						{
+							alert(obj.info);
+						}
+					}
+				});
+			}
+		}		
+		return false;
+	});
+});
+</script>
+<include file="Public:footer" />

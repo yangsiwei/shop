@@ -1,0 +1,50 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main_title">{$title_name}</div>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div class="container-fluid">
+    <form action="{:U('edit')}" method="post">
+    <table class="table table-bordered table-hover">
+        <tr class="active">
+            <th>名称</th>
+            <th>等级</th>
+        </tr>
+        <tr>
+            <td>pk夺宝</td>
+            <td> <input type="text" class="form-control" value="{$info.pk}" name="pk"></td>
+        </tr>
+        <tr>
+            <td>10元专区</td>
+            <td><input type="text" class="form-control"  value="{$info.ten}" name="ten"></td>
+        </tr>
+        <tr>
+        <tr>
+            <td>百元专区</td>
+            <td><input type="text" class="form-control"  value="{$info.hundred}" name="hundred"></td>
+        </tr>
+        <tr>
+            <td>极速专区</td>
+            <td><input type="text" class="form-control"  value="{$info.fast}" name="fast"></td>
+        </tr>
+        <tr>
+            <td>选号专区</td>
+            <td><input type="text" class="form-control"  value="{$info.choose}" name="choose"></td>
+        </tr>
+        <tr>
+            <td>商品全价购</td>
+            <td><input type="text" class="form-control" value="{$info.max}" name="max"></td>
+        </tr>
+        <tr>
+            <td>5倍专区</td>
+            <td><input type="text" class="form-control" value="{$info.coron5}" name="coron5"></td>
+        </tr>
+        <tr>
+            <td>操作</td>
+            <td><button type="submit" class="btn btn-primary">确认修改</button></td>
+        </tr>
+    </table>
+    </form>
+</div>

@@ -1,0 +1,221 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/js/user.js' />
+
+<load href='__TMPL__Common/style/weebox.css' />
+<script type="text/javascript">
+function del(id)
+{
+
+	if(confirm(LANG['CONFIRM_DELETE']))
+	$.ajax({ 
+			url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=del_withdrawal&id="+id, 
+			data: "ajax=1",
+			dataType: "json",
+			success: function(obj){
+				$("#info").html(obj.info);
+				if(obj.status==1)
+				location.href=location.href;
+			}
+	});
+}
+
+function edit(id)
+{
+	var is_can = true;
+	$.ajax({ 
+		url: ROOT+'?m=FxUser&a=edit_referrer&id='+id, 
+		data: "ajax=1",
+		dataType: "json",
+		async: true,
+		success: function(obj){
+
+			if(data.status==0)
+			{
+				is_can = false;
+				alert('无法修改推荐人');
+				
+			}
+		}
+	});
+	
+	if(is_can){
+		$.weeboxs.open(ROOT+'?m=FxUser&a=edit_referrer&id='+id, {contentType:'ajax',showButton:false,title:"修改推荐人",width:600,height:150});
+	}
+	
+}
+
+function edit_remark(id)
+{
+	$.weeboxs.open(ROOT+'?m=FxUser&a=edit_remark&id='+id, {contentType:'ajax',showButton:false,title:"渠道标注",width:600,height:150});
+}
+
+function toogle_status(id,domobj,field)
+{
+	$.ajax({ 
+		url: ROOT+"?"+VAR_MODULE+"="+'User'+"&"+VAR_ACTION+"=toogle_status&field="+field+"&id="+id, 
+		data: "ajax=1",
+		dataType: "json",
+		success: function(obj){
+
+			if(obj.data=='1')
+			{
+				$(domobj).html(LANG['YES']);
+			}
+			else if(obj.data=='0')
+			{
+				$(domobj).html(LANG['NO']);
+			}
+			else if(obj.data=='')
+			{
+				
+			}
+			$("#info").html(obj.info);
+		}
+	});
+}
+
+function close_fx_all(){
+	if(!confirm("确定“关闭”所有用户渠道二维码功能？")){
+		return false;
+	}
+	 
+	$.ajax({ 
+		url: ROOT+"?"+VAR_MODULE+"="+'FxUser'+"&"+VAR_ACTION+"=close_fx_all", 
+		data: "ajax=1",
+		dataType: "json",
+		success: function(obj){
+			if(obj.status == 1){
+				location.reload();
+			}else{
+				alert('设置失败');
+			}
+			 
+		}
+	});
+}
+
+function open_fx_all(){
+	if(!confirm("确定“开启”所有用户渠道二维码功能？")){
+		return false;
+	}
+ 
+	$.ajax({ 
+		url: ROOT+"?"+VAR_MODULE+"="+'FxUser'+"&"+VAR_ACTION+"=open_fx_all", 
+		data: "ajax=1",
+		dataType: "json",
+		success: function(obj){
+			if(obj.status == 1){
+				location.reload();
+			}else{
+				alert('设置失败');
+			}
+		}
+	});
+}
+
+</script>
+<php>
+
+	function get_referrals_name($user_id)
+	{
+		$user_name = M("User")->where("id=".$user_id)->getField("user_name");
+		if($user_name)
+		return $user_name;
+		else
+		return l("NO_REFERRALS");
+	}
+	
+	function get_money($user_id, $pid)
+	{
+		$m = new Model();
+		$result = $m->query("select  round(ifnull(sum(money),0), 2)  total_money from ".DB_PREFIX."fx_user_reward where user_id=".$user_id." and  pid = ".$pid);
+		return $result[0]['total_money'];
+	}
+	
+	function subordinate($id, $is_open_scan)
+	{
+		$str= "&nbsp;<a href='".u("FxUser/index",array("user_id"=>$id))."'>查看下线会员</a>&nbsp;";
+		$str.= "&nbsp;<a href='".u("FxUser/money_log",array("user_id"=>$id))."'>查看分销资金日志</a>&nbsp;";
+		if($is_open_scan){
+			$str.= "&nbsp;<a href='".u("FxUser/get_scan",array("user_id"=>$id))."'>渠道二维码</a>&nbsp;";
+		}
+		$str.= '&nbsp;<a href=javascript:edit_remark("'.$id.'")>渠道标注</a>&nbsp;'; 
+		$str.= "&nbsp;<a href='".u("DuobaoOrder/index",array("user_id"=>$id))."'>查看订单</a>&nbsp;";
+		
+		return $str;
+	}	
+	
+</php>
+<div class="main">
+<div class="main_title">分销会员</div>
+<div class="blank5"></div>
+<div class="button_row">
+	
+	
+</div>
+
+<div class="blank5"></div>
+<if condition="intval($_REQUEST['user_id']) ">
+给上级用户（{$user_name}）的推广奖统计:<br /><br />
+
+累积营业额：{$money_data.fx_total_money}， 累积利润：{$money_data.fx_total_balance}<br /><br />
+
+一级分销推广奖：{$money_data.one_info.total_money}，
+一级分销订单金额：{$money_data.one_info.total_order_money}
+<br /><br />
+二级分销推广奖：{$money_data.two_info.total_money}，
+二级分销订单金额：{$money_data.two_info.total_order_money}
+<br /><br />
+三级分销推广奖：{$money_data.three_info.total_money}，
+三级分销订单金额：{$money_data.three_info.total_order_money}<br /><br />
+</if>
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		用户ID：<input type="text" class="textbox" name="id" value="{:strim($_REQUEST['id'])}" style="width:100px;" />
+		{%USER_NAME}：<input type="text" class="textbox" name="user_name" value="{:strim($_REQUEST['user_name'])}" style="width:100px;" />
+		{%USER_EMAIL}：<input type="text" class="textbox" name="email" value="{:strim($_REQUEST['email'])}" style="width:100px;" />
+		{%USER_MOBILE}：<input type="text" class="textbox" name="mobile" value="{:strim($_REQUEST['mobile'])}" style="width:100px;" />
+		{%REFERRALS_NAME}：<input type="text" class="textbox" name="pid_name" value="{:strim($_REQUEST['pid_name'])}" style="width:100px;" />
+		渠道标注：<input type="text" class="textbox" name="remark_name" value="{:strim($_REQUEST['remark_name'])}" style="width:100px;" />  
+<!-- 		{%USER_GROUP}:  -->
+<!-- 		<select name="group_id"> -->
+<!-- 				<option value="0" <if condition="intval($_REQUEST['group_id']) eq 0">selected="selected"</if>>{%ALL}</option> -->
+<!-- 				<foreach name="group_list" item="group_item"> -->
+<!-- 					<option value="{$group_item.id}" <if condition="intval($_REQUEST['group_id']) eq $group_item['id']">selected="selected"</if>>{$group_item.name}</option> -->
+<!-- 				</foreach> -->
+<!-- 		</select> -->
+		
+		<input type="hidden" value="FxUser" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+	<br />
+	 
+		渠道： 
+		<span style="color:black;font-size:12px; font-weight:normal">全部</span>
+		<button onclick="open_fx_all();">开启</button>
+		<button onclick="close_fx_all();" >关闭</button>
+	 
+</div>
+
+<div class="blank5"></div>
+
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="user" 
+
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,user_name:{%USER_NAME},fx_total_money|format_price:分销历史总营业额,fx_total_balance|format_price:分销历史累计利润,id|get_money=$user['pid']:给上级的利润,pid|get_referrals_name:{%REFERRALS_NAME},remark_name:渠道标注,is_fx|get_is_effect=$user['id']:分销状态,is_open_scan|get_toogle_status=$user['id']#is_open_scan:渠道开启" 
+	actionlist="edit:修改推荐人,id|subordinate=$user['is_open_scan']" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,25 @@
+<div class="control-group cf clearfix" id="relate_table_div" <if condition="!$relate_goods">style="display:none;"</if> >
+	<div class="controls" id="relate_goods_box">
+ 		<if condition="$relate_goods">
+		<table id="relate_table" class="dataTable">
+			<tr>
+				<th>操作</th>
+				<th>缩略图</th>
+				<th>商品名称</th>
+			</tr>
+ 			<foreach name="relate_goods" item="relate_good">
+			<tr>
+				<td width="40"><a class="remove_relate" href="javascript:void(0);">删除</a></td>
+				<td width="130">
+					<input type="hidden" value="{$relate_good.id}" name="relate_goods_id[]" id="relate_goods_id_{$relate_good.id}">
+					<span class="dl_img">
+						<a href="{$relate_good.url}" title="{$relate_good.name}" target="_blank"><img src="{$relate_good.img}" width="100" heigth="70" /></a>
+					</span>
+				</td>
+				<td><a href="{$relate_good.url}" title="{$relate_good.name}" target="_blank">{$relate_good.name}</a></td>
+			</tr>
+			</foreach>
+		</table>
+		</if>
+	</div>
+</div>

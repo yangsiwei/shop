@@ -1,0 +1,84 @@
+<script>
+var max_page={$max_page};
+var new_p={$new_page};
+</script>
+{if $duobao_records}
+<div class="record-content">
+<!-- 顶部时钟 -->
+	{if $new_page eq 1}
+	<div class="content-hd">
+		<i class="ico ico-clock"></i>
+	</div>
+	{/if}
+<!-- 列表 -->
+	{foreach from=$duobao_records key=key item=duobao_record}
+	<div class="content-bd">
+		<div class="time-today">{$key}
+		<!-- 实心点 -->
+			<i class="ico ico-dot ico-dot-solid"></i>
+		</div>
+		<ul class="record-list">
+		<!-- （循环50个后翻页） -->
+			{foreach from=$duobao_record item=duobao_record_one}
+			<li class="clearfix">
+				<span class="time f_l">{$duobao_record_one.create_time_date}</span>
+				<!-- 空心点 -->
+				<i class="ico ico-dot ico-dot-hollow"></i>
+				<div class="record-user-info f_l">
+					<div class="inner">
+					<p>
+					<!-- 用户头像 -->
+						<span class="user-pic">
+							<img src="{function name="get_user_avatar" uid=$duobao_record_one.user_id type="big"}" width="20" height="20">
+						</span>
+					<!-- 用户名 -->
+						<a href="{url i="index" r="home" p="id=$duobao_record_one.user_id"}" target="_blank" title="{$duobao_record_one.user_name}(ID:{$duobao_record_one.user_id})">{$duobao_record_one.user_name}</a>
+						 (<!-- {$duobao_record_one.duobao_area} --> IP：{$duobao_record_one.duobao_ip}) 参与了<b class="times txt-red">{$duobao_record_one.number}人次</b>
+					<!-- 点击查看号码 -->
+						<a class="btn btn-sim btn-checkcode">所有云号码
+						<i class="ico ico-arrow-gray ico-arrow-gray-down"></i></a>
+					</p>
+					<!-- 关闭查看号码 -->
+					<a class="btn-close">x</a>
+					<!-- 号码 -->
+					<p class="codes">
+						{foreach from=$duobao_record_one.duobao_item_log item=duobao_item_log}
+						<span>{$duobao_item_log.lottery_sn}</span>
+						{/foreach}
+					</p>
+					<!-- 号码超过一定数量需要点击展开 -->
+					<p class="folder-btn" style="padding: 0">
+					<!-- 展开 -->
+						<a class="btn-unfold">
+							展开查看全部
+							<i class="ico ico-arrow-blue ico-arrow-blue-down"></i></a>
+					<!-- 关闭 -->
+						<a class="btn-fold">
+							收起
+							<i class="ico ico-arrow-blue ico-arrow-blue-up"></i>
+						</a>
+					</p>
+					</div>
+				</div>
+			</li>
+			{/foreach}
+		</ul>
+	</div>
+	{/foreach}
+	{if $max_page eq $new_page}
+	<div class="content-hd">
+		<i class="ico ico-clock"></i>
+	</div>
+	{/if}
+</div>
+<!-- 翻页 -->
+<div class="pages">{$pages}</div>
+{else}
+<div class="empty">
+	<div class="empty-info">
+		<i class="littleU littleU-cry"></i>
+		&nbsp;&nbsp;暂时还没有参与记录
+	</div>
+</div>
+{/if}
+				

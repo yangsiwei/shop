@@ -1,0 +1,141 @@
+@CHARSET "UTF-8";
+/* 广告 */
+.banner{
+    text-align: center;
+    position: relative;
+    background: #F05759 url('../images/share.png') center top no-repeat;
+    height: 180px;
+}
+.banner .share-banner{
+    height: 100%;
+    position: relative;
+}
+.banner .share-footer{
+    position: absolute;
+    z-index: 2;
+    bottom: -18px;
+    right: 88px;
+}
+.banner .share-bolan{
+    height: 3px;
+    overflow: hidden;
+    background-position: 0 -12px;
+    background-repeat:repeat-x;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+}
+/* 标题-晒单数量 */
+.main-title{
+    position: relative;
+    height: 40px;
+    border-bottom: 2px solid #888888;
+    z-index: 1;
+}
+.main-title h1{
+    line-height: 40px;
+    font-size: 18px;
+    color: #000;
+    font-weight: bold;
+}
+/* 晒单瀑布流 */
+.null-data{
+	text-align: center;
+	padding: 97px 0;
+	font-size: 20px;
+	color: #999;
+}
+#share-pin-box{
+    position:relative;
+    margin-top:20px;
+}
+
+.pin-layout .group {
+    width: 292px;
+	position: relative;
+}
+.pin-box{
+    width: 290px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+.pin-box .pic-box{
+    width: 290px;
+    padding-top: 9px;
+    overflow: hidden;text-align: center;font-size: 0;line-height: 0;margin: 0 auto;
+}
+.pin-box .pic-box table, .pin-box .pic-box td {
+    width: 290px;
+}
+.pin-box .pic-box img{
+
+}
+.pin-box .name,.pin-box .code{
+	padding: 0 19px;
+    line-height: 2;
+}
+
+.pin-box .name{
+	white-space: nowrap;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-top: 10px;
+}
+.pin-box .name a{
+    color: #3C3C3C;
+}
+.pin-box .name a:hover{
+    color:@main_color;
+}
+.pin-box .lottery-info{
+	background-color: #F5F5F5;
+    padding: 15px 19px;
+    line-height: 22px;
+    position: relative;
+    margin-top: 8px;
+}
+.pin-box .lottery-info .title {
+    font-size: 14px;
+    color: #3C3C3C;
+}
+.pin-box .lottery-info .title a {
+    font-size: 15px;
+}
+.pin-box .lottery-info .title a strong {
+    -webkit-transition: all .5s ease;
+       -moz-transition: all .5s ease;
+        -ms-transition: all .5s ease;
+         -o-transition: all .5s ease;
+            transition: all .5s ease;
+    color:#3c3c3c;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: inline-block;
+}
+.pin-box .lottery-info .title a strong:hover{
+    color:@main_color;
+}
+.pin-box .lottery-info .author{position: relative;}
+.pin-box .lottery-info .author a:hover{
+    color: @main_color;
+}
+.pin-box .lottery-info .author .time {
+    font-weight: normal;
+    color: #adadad;
+    padding-bottom: 0px;
+	position: absolute;
+    right: 0;
+    top: 0;
+}
+.pin-box .lottery-info .abbr{
+	    height: 68px;
+    overflow: hidden;
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-all;
+}

@@ -1,0 +1,169 @@
+/* 最新揭晓列表 */
+.result-goods-list{
+	width:910px;
+	padding-top:12px;
+}
+.null-data{
+	width:910px;
+	padding-top:12px;
+	text-align: center;padding: 97px 0;font-size: 20px;color: #999;
+}
+/* 标题 */
+.result-goods-list h1{
+	line-height: 40px;
+	margin-bottom:20px;
+	border-bottom:2px solid #888;
+}
+/* 列表子夺宝币素 */
+.result-goods-list .result-goods{
+	width: 294px;
+	height: 450px;
+	border: 1px solid #ddd;
+	background: #f5f5f5;
+	position: relative;
+	color:#808080;
+}
+/* 商品信息 */
+.result-goods-list .result-goods .goods-info{
+	padding: 10px 20px 10px 20px;
+	background: #fff;
+	_zoom: 1;
+}
+.result-goods-list .result-goods .goods-info .imgbox{
+	margin-bottom:10px;
+}
+.result-goods-list .result-goods .goods-info .goods-title,.result-goods-list .result-goods .goods-info .p-price{
+	line-height: 24px;
+}
+/* 开奖结果 */
+.result-goods-list .result-goods .record,.result-goods-list .result-goods .countdown{
+	padding:20px;
+}
+.result-goods-list .result-goods .record .user-pic{
+	margin-top:5px;
+	width:40px;
+	height:40px;
+}
+.result-goods-list .result-goods .record .record-info{
+	margin-left:50px;
+	line-height: 22px;
+}
+.result-goods-list .result-goods .record .record-info p{
+	line-height: 18px;
+}
+.result-goods-list .result-goods .record .record-info .owner-info{
+	height: auto;
+	_height: 36px;
+	max-height: 36px;
+	overflow: hidden;
+	white-space: normal;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+.result-goods-list .result-goods .record .record-info .check-info{
+	padding: 0 8px;
+	height: 24px;
+	line-height: 24px;
+	font-size: 12px;
+	font-weight: normal;
+	font-family: "Verdana";
+	color: #808080;
+	border: 1px solid #cccccc;
+	border-radius: 2px;
+	background: #F5F5F5;
+	margin-top:5px;
+}
+.result-goods-list .result-goods .countdown-title{
+	margin-bottom: 15px;
+	font-size: 18px;
+	color: #808080;
+	font-weight: bold;
+	vertical-align: middle;
+}
+.result-goods-list .result-goods .countdown-title .ico-countdown{
+	margin-right:5px;
+}
+.result-goods-list .result-goods .countdown-nums{
+	color: #db3652;
+	font-size: 30px;
+	margin-bottom: 16px;
+	text-align: center;
+}
+.result-goods-list .result-goods .countdown-nums b{
+	background: @main_color;
+	border-radius: 4px;
+	color: #fff;
+	display: inline-block;
+	font-size: 25px;
+	line-height: 37px;
+	margin-right: 2px;
+	text-align: center;
+	width: 28px;
+}
+/* 最快揭晓侧边栏 */
+.result-lottery-list{
+	width:270px;
+}
+.result-lottery-list .result-lottery{
+	background: #f2f2f2;
+	border: 1px solid #ddd;
+}
+/* 标题 */
+.result-lottery-list .title{
+	padding-left: 22px;
+	height: 40px;
+	font-size: 16px;
+	line-height: 40px;
+	color: #666633;
+	background-color: #e3e3e3;
+	background: -webkit-gradient(linear,left top,left bottom,from(#f0f0f0),to(#e3e3e3));
+	background: -moz-linear-gradient(top,#f0f0f0,#e3e3e3);
+	background: -o-linear-gradient(top,#f0f0f0,#e3e3e3);
+	background: -ms-linear-gradient(top,#f0f0f0,#e3e3e3);
+}
+.result-lottery-list .title h1{
+	font-weight:bold;
+}
+.result-lottery-list .result-bolan{
+	width:100%;
+	position: relative;
+	z-index: 1;
+	height: 4px;
+	overflow: hidden;
+	background-position: 0 -8px;
+	background-repeat: repeat-x;
+}
+/* 列表 */
+.result-lottery-list .new-result-list{
+	padding: 20px 9px 18px 9px;
+}
+.result-lottery-list .new-result-list .goods{
+	margin-bottom: 10px;
+	padding: 10px 24px;
+	position: relative;
+	background: #ffffff;
+	width:auto;
+	border:none;
+}
+.result-lottery-list .new-result-list .goods-title{
+	font-weight:bold;
+	font-size:14px;
+}
+.result-lottery-list .new-result-list .progress{
+	margin-bottom:.5px;
+}
+.result-lottery-list .new-result-list .btn-box{
+	margin-top:20px;
+}
+.result-lottery-list .new-result-list .btn-box .finished{
+	padding: 0 20px;
+	height: 35px;
+	line-height: 35px;
+	font-size: 16px;
+	width: 70px;
+	border-radius: 4px;
+	background:@main_color;
+}
+.result-lottery-list .new-result-list .btn-box .finished:hover{
+	background:@hover_color;
+}

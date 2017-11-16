@@ -1,0 +1,61 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<PHP>
+	function get_is_paid($status)
+	{
+		if($status == 0)
+		return l("NO");
+		else
+		return l("YES");
+	}
+	function format_pay_price($money,$payment_notice){
+		if(intval($payment_notice['payment_id'])==0){
+			return format_coupons_price($payment_notice['coupons']);
+		}
+		else{
+			return format_price($money);
+		}
+	}
+</PHP>
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		{%ORDER_SN}：<input type="text" class="textbox" name="order_sn" value="{:strim($_REQUEST['order_sn'])}" />
+		{%PAYMENT_NOTICE_SN}：<input type="text" class="textbox" name="notice_sn" value="{:strim($_REQUEST['notice_sn'])}" />
+		会员名称：<input type="text" class="textbox" name="user_name" value="{:strim($_REQUEST['user_name'])}" />
+		{%PAYMENT_METHOD}：
+		<select name="payment_id">
+			<option value="0" <if condition="intval($_REQUEST['payment_id']) eq 0">selected="selected"</if>>{%ALL}</option>
+			<foreach name="payment_list" item="payment_item">
+				<option value="{$payment_item.id}" <if condition="intval($_REQUEST['payment_id']) eq $payment_item['id']">selected="selected"</if>>{$payment_item.name}</option>
+			</foreach>
+		</select>
+		<input type="hidden" value="PaymentNotice" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="payment_notice" 
+	datasource="list" 
+	show="id:{%ID}|50px,notice_sn:{%PAYMENT_NOTICE_SN},create_time|to_date:{%CREATE_TIME}
+	,pay_time|to_date:{%PAY_TIME}
+	,is_paid|get_is_paid:{%IS_PAID}
+	,order_id|get_order_sn_with_link:{%ORDER_SN}
+	,user_id|get_user_name:{%USER_NAME}
+	,payment_id|get_payment_name:{%PAYMENT_METHOD}
+	,money|format_pay_price=$payment_notice:{%PAYMENT_MONEY}
+	,outer_notice_sn:{%OUTER_NOTICE_SN}
+	,memo:{%PAYMENT_MEMO}" 
+	actionlist="del:{%DEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

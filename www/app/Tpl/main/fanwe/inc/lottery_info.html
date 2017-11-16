@@ -1,0 +1,23 @@
+{if $lottery_info.luck_user_id gt 0}
+
+	<div class="goods-record">
+	<p class="owner">获得者：<a href="">{$lottery_info.user_name}</a></p>
+	<p>本期参与：{$lottery_info.current_buy}人次</p>
+	<p>幸运号码：{$lottery_info.lottery_sn}</p>
+	</div>
+{else}
+
+	<div class="goods-counting">
+	<div class="goods-countdown">
+		揭晓倒计时：
+		<div class="countdown">
+			<span class="countdown-nums">
+				<time class="w-countdown-nums" nowtime="{$now_time}" endtime="{$lottery_info.lottery_time}" id="{$lottery_info.id}">
+				正在揭晓中
+			    </time>
+
+			</span>
+		</div>
+	</div>
+	</div>
+{/if}

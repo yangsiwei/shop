@@ -1,0 +1,27 @@
+{if $result_list.cart_list}
+<div class="cart_tip_result_title">最近加入的商品</div>
+<div class="cart_tip_result_list">
+{foreach from=$result_list.cart_list item=cart_item}
+<div class="cart_tip_result_item clearfix">
+	<div class="cart_tip_result_img f_l"><a href="{url x="index" r="duobao" p="id=$cart_item.duobao_item_id"}"><img src="{function name="get_spec_image" v=$cart_item.deal_icon w=74 h=74 g=1}" /></a></div>
+	<div class="cart_tip_result_cnt">
+		<span><a href="{url x="index" r="duobao" p="id=$cart_item.duobao_item_id"}">{function name="msubstr" v=$cart_item.name b=0 e=40}</a></span>
+	</div>
+	<div>
+		<div class="cart_tip_result_desc f_l">
+		{function name="round" v=$cart_item.total_price e=2}夺宝币  × 1期
+		</div>
+		<div class="cart_tip_result_op f_r">
+		<a href="javascript:del_cart({$cart_item.id});">删除</a>
+		</div>
+	</div>
+</div>
+{/foreach}
+</div>
+<div class="cart_tip_result_bar">
+<div class="cart_tip_result_count">共有{$result_list.total_data.cart_item_number}件商品，金额总计：<span>{function name="round" v=$result_list.total_data.total_price t=2}夺宝币</span></div>
+<a href="{url x="index" r="cart"}" class="cart_tip_result_btn btn">查看清单并计算</a>
+</div>
+{else}
+<div class="empty">您的清单中还没有任何商品</div>
+{/if}

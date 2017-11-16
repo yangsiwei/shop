@@ -1,0 +1,48 @@
+{if $item_data.duobao_status eq 2}
+        <!-- 已揭晓 -->
+        <div class="good-announced">
+             <em class="announced">已揭晓</em>
+             <p>{$item_data.name} <span>{$item_data.brief}</span>
+             </p>
+             <div class="announced-box">
+                <div class="announcer">
+                </div>
+                 <div class="imgbox" style="background:url({function name="get_user_avatar" uid=$item_data.luck_lottery.user_id type="small"});background-size: contain">
+
+                 </div>
+                 <ul>
+                     <li>
+                         <p>获奖者：</p>
+                         <div class="fl">
+                             <a href="{url x="index" r="anno_user_center" p="lucky_user_id=$item_data.luck_user_id"}">{$item_data.luck_lottery.user_name}</a>
+                             <em>{$item_data.luck_lottery.duobao_ip}({$item_data.luck_lottery.duobao_area})</em>
+                         </div>
+                         <div class="clear"></div>
+                     </li>
+                     <li>
+                         <p>用户ID：</p>{$item_data.luck_user_id}（唯一不变标识）
+                     </li>
+                     <li>
+                         <p>期 &nbsp;&nbsp;&nbsp;号：</p>
+                         {$item_data.id}
+                     </li>
+                     <li>
+                         <p>本期参与：</p>
+                         <span>{$item_data.luck_lottery.user_total}</span>人次
+                     </li>
+                     <li>
+                     <p>揭晓时间：</p>
+                     {$item_data.lottery_time_format}
+                     </li>
+                 </ul>
+                 <div class="clear"></div>
+                 <div class="luckycode">
+                     <p class="fl">幸运号码：
+                     </p>
+                     <em class="fl">{$item_data.lottery_sn}</em>
+                     <a href="{url x="index" r="duobao#detail" p="data_id=$item_data.id"}">计算详情</a>
+                 </div>
+             </div>
+        </div>
+        <!-- 已揭晓 -->
+{/if}

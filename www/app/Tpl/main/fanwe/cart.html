@@ -1,0 +1,94 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/cart_index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/goods_item.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/zone.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/lazyload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/cart_index.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/cart_index.js";
+?>
+{include file="inc/header_cart.html"}
+<script type="text/javascript">
+var main_url='{url r="index"}';
+var jsondata={$jsondata};
+</script>
+<div class="{function name="load_wrap" t=$wrap_type} cate_row">
+<div class="blank20"></div>
+	<form name="buy_form" id="buy_form" action="{url x="index" r="cart#check"}" method="post">
+		<input type="hidden" value="{$type}" name="type"/>
+		<div class="wrap">
+		{if $type eq 'free'}
+			<div id="cart_form">
+				{include file="inc/cart_list_free.html"}
+			</div>
+		{else}
+			<div id="cart_form">
+				{include file="inc/cart_list.html"}
+			</div>
+		{/if}
+		
+			<div class="blank5"></div>
+			{if $is_cart_agreement eq 0}
+				<div class="f_r">
+					<input type="checkbox" name="check_agreement" {if $is_new_member eq 0 && $type eq 'free'}disabled{/if} /> 我已阅读并同意《服务协议》
+				</div>
+				<div class="blank5"></div>
+				<div id="agreement" style="padding: 10px 20px;height: 330px;border: 2px solid #ddd;overflow-y: auto;" >
+				{$agreement.agreement}
+				</div>
+			{/if}
+		    <div class="blank15"></div>
+		    <div class="wrap_full_w">
+			    {if $recomend_list}
+				<div class="index-new-goods-list" style="width: 1201px">
+					<h1 class="main-title">推荐夺宝
+						<a href="javascript:void(0);" id="new"  class="title-more"><i class="iconfont">&#xe624;</i>换一批</a>
+					</h1>
+					<ul class="ui-list" width="241" pin_col_init_width="0" wSpan="-1" hSpan="1">
+						{foreach from=$recomend_list item=recomend}
+						<li class="goods ui-item">
+						<div class="hover_line">
+							<div class="ten-logo-box"></div>
+							<div class="goods-wrap">
+								<div class="imgbox">
+									<a href="{url r="index" r="duobao" p="id=$recomend.id"}">
+										<img src="{$recomend.icon}" width="200" height="200" lazy="true" />
+									</a>
+								</div>
+								<a href="{url r="index" r="duobao" p="id=$recomend.id"}" class="goods-title">
+									{$recomend.duobaoitem_name}
+								</a>
+								<div class="p-price f_l">
+									总需：{$recomend.max_buy}人次
+								</div>
+							</div>
+							</div>
+						</li>
+						{/foreach}
+					</ul>
+				</div>
+				{/if}
+		    </div>
+	    </div>
+	</form>
+</div>
+
+{include file="inc/footer.html"}

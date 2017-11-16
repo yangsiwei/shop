@@ -1,0 +1,77 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/fx_user_deal.js' />
+<php>
+
+//状态的显示
+function get_fx_type($type)
+{
+	if($type == 1)
+	{
+		return "比率";
+	}
+	else
+	{
+		return "定额";
+	}
+}
+</php>
+<script type="text/javascript">
+//改变分销商品状态
+function log_delete(id)
+{
+	if(!id)
+	{
+		idBox = $(".key:checked");
+		if(idBox.length == 0)
+		{
+			alert(LANG['DELETE_EMPTY_WARNING']);
+			return;
+		}
+		idArray = new Array();
+		$.each( idBox, function(i, n){
+			idArray.push($(n).val());
+		});
+		id = idArray.join(",");
+	}
+	if(confirm(LANG['CONFIRM_DELETE']))
+	$.ajax({ 
+			url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=log_delete&id="+id, 
+			data: "ajax=1",
+			dataType: "json",
+			success: function(obj){
+				$("#info").html(obj.info);
+				if(obj.status==1)
+				location.href=location.href;
+			}
+	});
+}
+</script>
+
+
+<div class="main">
+<div class="main_title">会员{$user_name}的分销资金日志</div> 
+<div class="blank5"></div>
+<div class="button_row">
+
+
+
+
+<input type="button" class="button" value="{%DEL}" onclick="log_delete();" />	
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="fx_list" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:编号|50px,order_sn:订单号,fx_level:分销等级,fx_salary_type|get_fx_type:分销类型,money|format_price:获得推广奖,order_money|format_price:订单金额,create_time|to_date:操作时间"
+	actionlist="log_delete:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

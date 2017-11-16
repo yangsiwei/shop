@@ -1,0 +1,12 @@
+{foreach from=$ecv_list item=row}
+  	<li class="ecv-item">
+  		<div class="e-info">
+  			<div class="ei-pirce"><span class="i-price">&yen;</span><span class="v-price">{$row.money}</span></div>
+  			<div class="ei-note">
+  				<p>{$row.name}</p>
+  				<p>兑换积分：{$row.exchange_score}</p>
+  			</div>
+  			<div class="ei-status" onclick="do_exchange({$row.id},this)" score-data="{$row.exchange_score}">兑换</div>
+  		</div>
+  	</li>
+{/foreach}

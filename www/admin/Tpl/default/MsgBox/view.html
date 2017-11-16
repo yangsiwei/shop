@@ -1,0 +1,35 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main">
+<div class="main_title">{%VIEW} <a href="{:u("MsgBox/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+
+	<tr>
+		<td class="item_title">生成时间:</td>
+		<td class="item_input">
+			{$vo.create_time|to_date}
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%MSG_CONTENT}:</td>
+		<td class="item_input">		
+			{$vo.content}
+		</td>
+	</tr>	
+	
+	
+	
+	
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

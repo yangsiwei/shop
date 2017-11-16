@@ -1,0 +1,39 @@
+<div class="cate_tree">
+<!-- {foreach from=$cate_tree item=nav name=cate_loop}
+{if ($count > 0 && $smarty.foreach.cate_loop.iteration <= $count) or $count==0}
+<dl class="{if $smarty.foreach.cate_loop.last or $count eq $smarty.foreach.cate_loop.iteration}no_border{/if}">
+	<dt><a href="{$nav.url}">{if $nav.iconfont}<i class="diyfont">{$nav.iconfont}</i>&nbsp;{/if}{$nav.name}</a></dt>
+	{if $nav.sub_nav}
+	<dd class="sub_nav {if !$nav.pop_nav}no_arrow{/if}">
+		<ul>
+			{foreach from=$nav.sub_nav item=sub_nav}
+			<li><a href="{$sub_nav.url}" {if $sub_nav.is_recommend eq 1}class="heavy"{/if} >{$sub_nav.name}</a></li>
+			{/foreach}
+		</ul>
+	</dd>
+	{/if}
+	{if $nav.pop_nav}
+	<dd class="pop_nav">
+		<span><a href="{$nav.url}">{$nav.name}</a></span>
+		<ul>
+			{foreach from=$nav.pop_nav item=pop_nav}
+			<li><a href="{$pop_nav.url}" {if $pop_nav.is_recommend eq 1}class="heavy"{/if}>{$pop_nav.name}</a>&nbsp;&nbsp;|</li>
+			{/foreach}
+		</ul>
+	</dd>
+	{/if}
+</dl>
+{/if}
+{/foreach} -->
+<ul>
+<li>
+		<a href="{url r="index" r="duobaos"}">{if $nav.iconfont}<i class="diyfont">{$nav.iconfont}</i>&nbsp;{/if}全部商品</a>
+</li>
+{foreach from=$cate_tree item=nav name=cate_loop}
+	<li>
+		<a href="{url r="index" r="duobaos" p="id=$nav.id"}">{if $nav.iconfont}<i class="diyfont">{$nav.iconfont}</i>&nbsp;{/if}{$nav.name}</a>
+	</li>
+{/foreach}
+</ul>
+</div>
+<div class="ico nav-bolan"></div>

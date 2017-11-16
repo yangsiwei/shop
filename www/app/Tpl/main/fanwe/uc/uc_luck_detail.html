@@ -1,0 +1,314 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_consignee.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_luck_detail.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_msg.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_msg.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_consignee.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_consignee.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_luck_detail.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_luck_detail.js";
+
+?>
+{include file="inc/header.html"}
+<script type="text/javascript" src="{$APP_ROOT}/public/runtime/region.js"></script>	
+<div class="blank20"></div>
+<div class="wrap_full_w">
+	<ul class="web-map clearfix">
+		<li>当前位置：</li>
+		<li><a href="{url x="index" r="uc_center"}">个人中心</a><span>></span></li>
+		<li><a href="{url x="index" r="uc_luck"}">幸运记录</a><span>></span></li>
+		<li>记录详情</li>
+	</ul>
+	<div class="detail-wrap">
+	<!-- 进度 -->
+	<!-- 虚拟 -->
+		{if $order.cate_id}
+		<div class="detail-progress">
+			<ol class="inner">
+				<li class="step step-1 act">
+					<p class="step-hd">1. 等待发货</p>
+					<i class="detail-ico"></i>
+				</li>
+				<li class="step step-2 {if ($order.is_arrival eq 1) || ($order.is_set_consignee  eq 1 && $order.delivery_status eq 0) || ($order.is_arrival eq 0 && $order.delivery_status eq 1)}act{/if}">
+					<p class="step-hd">2. 商品派发</p>
+					<i class="detail-ico"></i>
+					<div class="line"></div>
+				</li>
+				<li class="step step-3 {if ($order.is_arrival eq 1) || ($order.is_arrival eq 0 && $order.delivery_status eq 1)}act{/if}">
+					<p class="step-hd">3. 确认收货</p>
+					<i class="detail-ico"></i>
+					<div class="line"></div>
+				</li>
+				<li class="step step-4 {if ($order.is_arrival eq 1) }act{/if}">
+					<p class="step-hd">4. 晒单分享</p>
+					<i class="detail-ico"></i>
+					<div class="line"></div>
+				</li>
+			</ol>
+		</div>
+		{else}
+		<!-- 非虚拟 -->
+		<div class="detail-progress">
+			<ol class="inner">
+				<li class="step step-1 act">
+					<p class="step-hd">1. 获得商品</p>
+					<i class="detail-ico"></i>
+				</li>
+				<li class="step step-2 act">
+					<p class="step-hd">2. 确认收货地址</p>
+					<i class="detail-ico"></i>
+					<div class="line"></div>
+				</li>
+				<li class="step step-3 {if ($order.is_arrival eq 1) || ($order.is_set_consignee  eq 1 && $order.delivery_status eq 0) || ($order.is_arrival eq 0 && $order.delivery_status eq 1)}act{/if}">
+					<p class="step-hd">3. 商品派发</p>
+					<i class="detail-ico"></i>
+					<div class="line"></div>
+				</li>
+				<li class="step step-4 {if ($order.is_arrival eq 1) || ($order.is_arrival eq 0 && $order.delivery_status eq 1)}act{/if}">
+					<p class="step-hd">4. 确认收货</p>
+					<i class="detail-ico"></i>
+					<div class="line"></div>
+				</li>
+				<li class="step step-5 {if ($order.is_arrival eq 1) }act{/if}">
+					<p class="step-hd">5. 晒单分享</p>
+					<i class="detail-ico"></i>
+					<div class="line"></div>
+				</li>
+			</ol>
+		</div>
+		{/if}
+	<!-- 当前状态 -->
+	<!-- 虚拟 -->
+	{if $order.cate_id }
+		<div class="status">
+			<div class="status-hd">
+				
+				{if $order.is_arrival eq 0 && $order.delivery_status eq 0 }
+				当前状态：等待商品派发
+				{/if}
+				{if $order.is_arrival eq 0 && $order.delivery_status eq 1}
+				当前状态：等待确认收货
+				<a href="javascript:void(0);" class="detail btn btn-main" action="{url r="index" p="uc_order#verify_delivery" b="id=$order.id"}">确认收货</a>
+				{/if}
+				{if $order.is_arrival eq 1 && $order.delivery_status eq 1}
+				当前状态：已签收
+				{/if}
+			</div>
+			{if $order.is_arrival eq 0 && $order.delivery_status eq 1}
+			<p class="tips">
+				我们已将商品发往您填写/确认的配送地址信息，请您耐心等候！
+			</p>
+			{/if}
+			{if $order.is_arrival eq 0 && $order.is_set_consignee eq 1 && $order.delivery_status eq 0}
+			<p class="tips">已收到您填写/确认的配送地址信息，我们会尽快处理，请您耐心等候！</p>
+			{/if}
+		</div>
+		
+		<!-- 非虚拟 -->
+	{else}
+		<div class="status">
+			<div class="status-hd">
+				{if  $order.is_set_consignee  eq 0}
+				当前状态：确认收货地址
+				{/if}
+				{if $order.is_arrival eq 0 && $order.delivery_status eq 0 && $order.is_set_consignee  eq 1}
+				当前状态：等待商品派发
+				{/if}
+				{if $order.is_arrival eq 0 && $order.delivery_status eq 1}
+				当前状态：等待确认收货
+				<a href="javascript:void(0);" class="verify_delivery btn btn-main" action="{url r="index" p="uc_order#verify_delivery" b="id=$order.id"}">确认收货</a>
+				{/if}
+				{if $order.is_arrival eq 1 && $order.delivery_status eq 1}
+				当前状态：已签收
+				{/if}
+			</div>
+			{if $order.is_arrival eq 0 && $order.delivery_status eq 1}
+			<p class="tips">
+				我们已将商品发往您填写/确认的配送地址信息，请您耐心等候！
+			</p>
+			{/if}
+			{if $order.is_arrival eq 0 && $order.is_set_consignee eq 1 && $order.delivery_status eq 0}
+			<p class="tips">已收到您填写/确认的配送地址信息，我们会尽快处理，请您耐心等候！</p>
+			{/if}
+		</div>
+	{/if}
+	<!-- 虚拟商品信息 -->
+	{if $order.cate_id}
+	{if $order.delivery_status eq 1  && $order.is_arrival eq 0}
+		<div class="address-info">
+			<div class="address-hd"><strong>虚拟商品</strong></div>
+			<div class="address-bd">
+			<p>虚拟商品信息：收货后可见</p>
+			</div>
+		</div>
+	{elseif $order.delivery_status eq 1  && $order.is_arrival eq 1}
+	<div class="address-info">
+			<div class="address-hd"><strong>虚拟商品</strong></div>
+			<div class="address-bd">
+			<p>虚拟商品信息：{$delivery_notice.fictitious_info}</p>
+			</div>
+		</div>
+	{/if}
+	<!-- 收货信息和物流信息 -->
+	{else}
+	{if $order.delivery_status eq 1}
+	{if $order.is_arrival eq 0 && $order.delivery_status eq 1}
+		<div class="address-info">
+			<div class="address-hd"><strong>收货信息</strong></div>
+			<div class="address-bd">
+				<p>收 货 人：{$order.consignee}</p>
+				<p>联系电话：{$order.mobile}</p>
+				<p>收货地址：{$order.region_info} ,{$order.zip}</p>
+			</div>
+		</div>
+		{/if}
+			{if $delivery_notice}
+			<div class="address-info">
+				<div class="address-hd"><strong>物流信息</strong></div>
+				<div class="address-bd">
+					<p>物流公司：{$delivery_notice.express_name}</p>
+					<p>运单号码：{$delivery_notice.notice_sn}</p>
+				</div>
+			</div>
+			{/if}
+		{/if}
+		{/if}
+		<!-- 添加地址 -->
+		{if $order.is_set_consignee eq 0}
+	<div class="uc_luck_add_consignee" {if $count_consignee gt 0}style="display:none;"{/if}>
+		<form name="my_address" method="post" action="{url x="index" r="uc_consignee#save"}">
+			<div id="cart_consignee" rel="{$consignee_id}">
+	
+					</div>
+			<dl class="submit_dl">
+				<dt></dt>
+				<dd style="text-align: left">
+				<input type="hidden" name="jump_type" value="uc_luck_detail"/>
+				<input type="hidden" name="order_item_id" value="{$order.id}"/>
+				<button type="button" value="保存地址"  rel="orange" name="commit"  id="sub_address" class="btn btn-main noform"  >保存地址</button>
+				</dd>
+			</dl>
+		</form>	
+		<div class="blank30">	</div>
+	</div>
+				
+				{if !$order.cate_id  &&  $consignee_list}
+						<div class="info_table">
+							<div class="address-title">
+								<h1><strong>我的地址</strong><span>已保存了<b>{$count_consignee}</b>条地址，还可以保存<b><?php echo (5-$this->_var['count_consignee']);?></b>条哦~</span>
+								{if $count_consignee lt 5}<a href="javascript:luck_add_consignee();" target="_blank" class="f_r">新增地址>></a>{/if}
+								</h1>
+							</div>
+							<table class="address-list">
+								<tbody>
+									<tr>
+											<th width="183">收货人</th>
+											<th width="344">所在地区</th>
+											<th width="216">手机</th>
+											<th width="221" style="padding-left: 30px;">操作</th>
+									</tr>
+									{foreach from=$consignee_list item=item key=key}
+									<tr class="alt {if $item.is_default eq 1}checked{/if}" data-id="{$item.id}">
+											<td>{$item.consignee}</td>
+											<td class="region">{$item.region_lv2}&nbsp;{$item.region_lv3}&nbsp;{$item.region_lv4} {$item.address}{if $item.zip} ,{$item.zip}{/if}</td>
+											<td class="mobile" width="80">{$item.mobile}</td>
+											<td class="operate" style="padding: 0 25px">
+												{if $item.is_default eq 1}<span class="default-add">默认地址</span>{else}<a href="javascript:void(0);" class="default" dfurl="{$item.dfurl}">设为默认地址</a>{/if}
+												<a href="{url x="index" r="uc_consignee#add" p="id=$item.id"}">修改</a> | <a href="javascript:void(0);" class="del" url="{$item.del_url}">{$LANG.DELETE}</a>
+												<div class="check-ico"></div>
+											</td>
+			                         </tr>
+			                         {/foreach}
+								</tbody>
+							</table>
+						</div>
+						<dl class="submit_dl">
+							<dt></dt>
+							<dd>
+							<input type="hidden" name="order_item_id" value="{$order.id}"/>
+							<button type="button" value="确认收货地址"  rel="orange" name="commit"  id="confirm_address" class="btn btn-main noform">确认收货地址</button>
+							</dd>
+						</dl>
+						
+						{/if}
+					{/if}
+				
+	<!-- 商品信息 -->
+		<table class="goods-info">
+			<thead>
+				<tr>
+		            <th class="col1">商品</th>
+		            <th class="col2"></th>
+		            <th class="col3">价格(云币)</th>
+		            <th class="col4">数量</th>
+		            <th class="col5">商品状态</th>
+		        </tr>
+	    	</thead>
+			<tbody>
+				<tr>
+		            <td class="col1">
+		            	<div class="goods-pic">
+		            		<a href="{url r="index" r="duobao" p="id=$duobao_item.id"}"><img src="{$order.deal_icon}" width="74" height="74"></a>
+		            	</div>
+		            </td>
+		            <td class="col2">
+		            	<div class="good-info">
+		            		<p class="txt-over good-title"><a href="{url r="index" r="duobao" p="id=$duobao_item.id"}" style="color:#333">{$duobao_item.name}</a></p>
+		            		<p class="code">幸运号码：<strong class="txt-red">{$duobao_item.lottery_sn}</strong></p>
+		            		<p class="time">揭晓时间：{function name="to_date" value="$duobao_item.lottery_time"}</p>
+		            	</div>
+		            </td>
+		            <td class="col3">{$duobao_item.value_price}</td>
+		            <td class="col4">1</td>
+		            <td class="col5">
+		            <!-- 虚拟 -->
+		            {if $order.cate_id}
+		            {if $order.is_arrival eq 0 && $order.delivery_status eq 0 }<p>等待商品派发</p>{/if}
+		            {if $order.is_arrival eq 0 && $order.delivery_status eq 1}<p>待确认收货</p>{/if}
+		            {if $order.is_arrival eq 1 && $order.delivery_status eq 1}<p>已签收 {if $order.is_send_share eq 1}<a  href="{url x="index" r="share#detail" p="id=$order.share_id"}">查看晒单</a>{else}<a  href="{url x="index" r="uc_share#add" p="id=$order.id"}">晒单</a>{/if}</p>{/if}
+		            <!-- end -->
+		            {else}
+		            	{if $order.is_arrival eq 0 && $order.delivery_status eq 0}<p>等待商品派发</p>{/if}
+		            	{if $order.is_arrival eq 0 && $order.delivery_status eq 1}<p>待确认收货</p>{/if}
+		            	{if $order.is_arrival eq 0 && $order.is_set_consignee eq 0}<p>待确认收货地址</p>{/if}
+		            	{if $order.is_arrival eq 1 && $order.delivery_status eq 1}<p>已签收 {if $order.is_send_share eq 1}<a  href="{url x="index" r="share#detail" p="id=$order.share_id"}">查看晒单</a>{else}<a  href="{url x="index" r="uc_share#add" p="id=$order.id"}">晒单</a>{/if}</p>{/if}
+		            {/if}
+		            </td>
+		        </tr>
+	    	</tbody>
+		</table>
+	</div>
+</div>
+<!-- 确认收货地址弹出框 -->
+<div class="confirm-address-weebox" style="display:none;">
+	<div class="address-weebox-content">
+		<div class="aw-title"><h2>确定提交以下地址吗？</h2></div>
+		<div class="aw-info">
+			<div class="addr-item">收货人: <span></span></div>
+			<div class="addr-item">联系电话: <span></span></div>
+			<div class="addr-item">收货地址: <span></span></div>
+			<div class="addr-item red">(注意：确认之后不能修改!)</div>
+		</div>
+		
+	</div>
+</div>
+
+{include file="inc/footer.html"}

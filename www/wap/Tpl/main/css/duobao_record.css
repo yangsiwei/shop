@@ -1,0 +1,84 @@
+.record-wrap{
+	padding: 0 .4rem;
+	background: #fff;
+}
+.recording>li{
+	color: #6e5803;
+	padding-left: .5rem;
+	margin-top: .2rem;
+	font-size: .56rem;
+	line-height: 1.5rem;
+	background: #fcf3cc;
+}
+.recording>li>em{
+	display: inline-block;
+	padding-right: .5rem;
+}
+.recorded>li{
+	margin-top: .2rem;
+	position: relative;
+}
+.recorded>li::after{
+	content: '';
+	position: absolute;
+	top: 0;
+	left:0;
+	width: 200%;
+    -webkit-transform:scale(0.5) ;
+            transform:scale(0.5);
+    -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+	height: 200%;
+	z-index: 899;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	border: 1px solid #e8e8e8;
+	pointer-events: none;
+
+}
+.recorded>li>header{
+	color: #3c3c3c;
+	font-size: .56rem;
+	height: 1rem;
+	line-height: 1rem;
+	background: #e7e7e7;
+	padding-left: .5rem;
+	vertical-align: middle;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis}
+.recorded li section{
+	padding: .5rem;
+}
+.recorded li section .head-pic{
+	display: inline-block;
+	width: 1.8rem;
+	height: 1.8rem;
+	border-radius: .15rem;
+	float: left;
+	background: url(../images/Annie_Square_0.png) no-repeat left top;
+	background-size: cover;
+}
+.recorded li section .head-pic img{
+	width: 100%;
+	display: block;
+}
+.recorded li section ul{
+	float: left;
+	margin-left: .6rem;
+}
+.recorded li section ul li{
+	font-size: .56rem;
+	color: #525252;
+	line-height: .9rem;
+	vertical-align: middle;
+}
+.recorded li section ul li .user{
+	color:#3273c3; 
+}
+.recorded li section ul .ip-ad{
+	color: #528d00;
+}
+.recorded li section ul li span{
+	color: #df5667;
+}

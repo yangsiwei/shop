@@ -1,0 +1,56 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<PHP>
+
+
+	function get_handle($id,$order_item)
+	{
+		$str = "<a href='".u("FreebuyOrder/view_order",array("id"=>$order_item['order_id']))."'>查看详情</a>";
+		
+		return $str;
+	}
+	
+	function get_is_delete($is_delete)
+	{
+		if($is_delete)
+		return "交易关闭";
+		else
+		return "正常订单";
+	}
+
+</php>
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">{%DEAL_ORDER}</div>
+<div class="blank5"></div>
+<form name="search" action="__APP__" method="get">	
+
+<div class="search_row">
+
+		{%ORDER_SN}：<input type="text" class="textbox" name="order_sn" value="{:strim($_REQUEST['order_sn'])}" style="width:100px;" />		
+		夺宝活动期号：<input type="text" class="textbox" name="duobao_item_id" value="{:strim($_REQUEST['duobao_item_id'])}" style="width:100px;" />
+		用户名：<input type="text" class="textbox" name="user_name" value="{:strim($_REQUEST['user_name'])}" style="width:100px;" />
+		
+		<input type="hidden" value="FreebuyOrder" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+
+</div>
+</form>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal_order_item" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,name:活动名称,order_sn:订单编号,duobao_item_id:期号,user_id|get_user_name:{%USER_NAME},total_price|format_coupons_price:购买人次,create_time|to_date:{%ORDER_CREATE_TIME},pay_status|get_pay_status:付款状态,is_delete|get_is_delete:状态"	 
+	actionlist="id|get_handle=$deal_order_item" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,60 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_fxinvite.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+?>
+{include file="inc/header_title_home.html"}
+<style>
+    .prize{
+        width: 50%;
+        background: #1a4bde;
+        float: left;
+        border: 4px solid #ccdacb;
+        overflow: hidden;
+    }
+    .red_packet{
+        width: 50%;
+        background: #e81010;
+        float: left;
+        border: 4px solid #bb8282;
+        overflow: hidden;
+    }
+    img{
+        width:100%;
+    }
+    .look{
+        width: 50%;
+        float: left;
+        border: 4px solid #486ae0;
+        overflow: hidden;
+    }
+</style>
+<div class="box">
+    <div class="prize">
+        <a href="{url i="index" r="prize"}"><img src="./wap/Tpl/main/images/19_01.png" alt=""></a>
+    </div>
+    <div class="red_packet">
+        <a href="{url i="index" r="uc_qdhb"}"><img style="margin-top: 10%;margin-left: 4%;" src="./wap/Tpl/main/images/36.png" alt=""></a>
+    </div>
+    <div class="look">
+        <a href=""><img src="./wap/Tpl/main/images/qidai.jpg" alt=""></a>
+    </div>
+</div>
+{include file="inc/footer_index.html"}

@@ -1,0 +1,39 @@
+<div class="pin-box">
+			<div class="pic-box">
+				<table>
+					<tbody>
+						<tr>
+							<td valign="middle" align="center"><a href="{url x="index" r="share#detail" p="id=$row.id" }" target="_blank" title="{$row.title}">
+							<img  src="{function name="get_spec_image" v=$row.img.o_path w=255 h=255}"   width="270" height="<?php echo intval(270/$this->_var['row']['img']['width']*$this->_var['row']['img']['height']); ?>" ></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="duobao-info">
+				<div class="name"><a target="_blank" href="{url x="index" r="share#detail" p="id=$row.id" }">{$row.duobao_item.name}</a></div>
+				<div class="code">幸运号码：<strong class="txt-impt">{$row.duobao_item.lottery_sn}</strong></div>
+			</div>
+			<div class="lottery-info">
+				<div class="title">
+					<a target="_blank" href="{url x="index" r="share#detail" p="id=$row.id" }">
+						<strong>{$row.title}</strong>
+					</a>
+				</div>
+				<div class="author">
+					<a target="_blank" href="{url x="index" r="home#index" p="id=$row.user_id" }" title="{$row.user_name}(ID:{$row.user_id})">{$row.user_name}</a>
+					<span class="time">
+					 <?php 
+		               if(isset($_SESSION["saitime"])){
+		                 echo $_SESSION["saitime"];
+		               }else{ ?>
+		                {function name="to_date" v=$share_info.create_time}
+		               
+		               <?php } ?>
+					</span>
+				</div>
+				<div class="abbr">
+                	{$row.content}
+            	</div>
+			</div>
+		</div>
+		

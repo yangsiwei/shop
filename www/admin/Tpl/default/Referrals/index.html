@@ -1,0 +1,52 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<PHP>
+function getReferralsUserName($user_id)
+{
+	$user_name =  M("User")->where("id=".$user_id." and is_delete = 0")->getField("user_name");
+	if(!$user_name)
+	$user_name = l("NO_USER");
+	
+	return "<a href='".u("User/index",array("user_name"=>$user_name))."'>".$user_name."</a>";
+}
+function get_pay_link($id)
+{
+	$data = M("Referrals")->getById($id);
+
+	if(intval($data['pay_time']) == 0)
+	{
+		return "<a href='javascript:pay(".$id.")'>".l("PAY_BY_ADMIN")."</a>";
+	}
+	else
+	return '';
+}
+</PHP>
+<script type="text/javascript">
+	function pay(id)
+	{
+		if(confirm("{%CONFIRM_PAY}"))
+		location.href = ROOT+"?"+VAR_MODULE+"=Referrals&"+VAR_ACTION+"=pay&id="+id;
+	}
+</script>
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%FOREVERDEL}" onclick="foreverdel();" />
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="referrals" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,user_id|getReferralsUserName:{%REFERRALS_USER},rel_user_id|getReferralsUserName:{%BUY_USER},money|format_price:{%REFERRALS_MONEY},score|format_score:{%REFERRALS_SCORE},order_id|get_order_sn:{%ORDER_SN},create_time|to_date:{%REFERRALS_TIME},pay_time|to_date:{%REFERRALS_PAY_TIME}" 
+	actionlist="id|get_pay_link, foreverdel:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

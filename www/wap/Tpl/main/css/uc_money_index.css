@@ -1,0 +1,121 @@
+.buy-btn{
+	-webkit-appearance:none;
+	text-align: center;
+		-webkit-flex:1;
+		flex:1;
+	/* 	for  uc */
+		-webkit-box-flex:1;      
+	display: block;
+	background: #d01e41;
+	color: #fff;
+	margin:0.2rem;
+	height: 1.2rem;
+	border-radius: .3rem;
+	margin-top: .4rem;
+	font-size: .6rem;
+	line-height: 1.2rem;
+	
+}
+.null_data .money{
+	color:#333;
+	font-size: .8rem;
+}
+.null_data .message{
+	padding:5px 0;
+	color:#333;
+}
+.pay-record li{
+	padding: .4rem .35rem;
+	background: #fff;
+	position: relative;
+}
+.pay-record li::after{
+	content: '';
+	border-bottom: 1px solid #e8e8e8;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	-webkit-transform: scaleY(0.5);
+	        transform:scaleY(0.5) ;
+	        -webkit-transform-origin:0 100%;
+	                transform-origin:0 100%;
+
+}
+.pay-record li span{
+	line-height: 2.3rem;
+	color: #df5667;
+	font-size: .6rem;
+	display: inline-block;
+}
+.pay-record li .pay-way{
+	font-size: .6rem;
+	line-height: .88rem;
+	color: #555;
+}
+.pay-record li time,.pay-record li .payed{
+	display: block;
+	line-height: .68rem;
+	color: #8e8e8e;
+}
+.mobile{
+	height: 1.1rem;
+	-webkit-box-flex:1;
+	flex:1;
+	display: flex;
+	align-items:center;
+	-webkit-box-align: center;
+	font-size: .64rem;
+	margin: 0 auto;
+	width: 6rem;
+	text-align: center;
+}
+.login-btn-box{
+	margin-top: .6rem;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-align-items:center;
+	align-items:center;
+	-webkit-box-align: center;
+	padding: 0 .5rem;
+}
+.login-btn{
+	border-radius: 5px;
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	flex:1;
+	-webkit-appearance:none;
+	background: #ececee;
+	display: block;
+	text-align: center;
+	font-size: .6rem;
+	color: #bababc;
+    line-height: 1.6rem;
+}
+.login-btn-red{
+	border-radius: 5px;
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	flex:1;
+	-webkit-appearance:none;
+	background: #d93a55 !important;
+	display: block;
+	text-align: center;
+	font-size: .6rem;
+	color: #fff;
+    line-height: 1.6rem;
+}
+.red-btn{
+    line-height: 1.3rem; 
+    font-size: 1rem;
+    border: 1px solid #d93a55;
+    color: #d93a55;
+    border-radius: 3px;
+    margin: 0 auto;
+    height: 1.5rem;
+    margin-top: 1rem;
+    width: 10rem;
+    display: block;
+    text-align: center;
+}

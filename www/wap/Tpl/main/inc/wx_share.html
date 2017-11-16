@@ -1,0 +1,33 @@
+<script type="text/javascript">
+	{if $is_weixin && $signPackage.appId}
+	var appId = '{$signPackage.appId}';
+	var timestamp = '{$signPackage.timestamp}';
+	var nonceStr = '{$signPackage.nonceStr}';
+	var signature = '{$signPackage.signature}';
+	
+	
+	{if $item_data.name}
+	var page_title = '{$item_data.name}';
+	{else}
+	var page_title = '{$data.page_title}';
+	{/if}
+	
+	var shar_url = '{$wx_share_url}';
+	
+		{if $data.advs.0.img}
+			var imgUrl = '{$data.advs.0.img}';
+		{elseif $item_data.deal_gallery.0}
+			var imgUrl = '{$item_data.deal_gallery.0}';
+		{elseif $data.share_register_qrcode}
+			var imgUrl = '{$data.share_register_qrcode}';
+		{else}
+			var imgUrl = '';
+		{/if}
+		
+	{/if}
+
+</script>
+
+{if $is_weixin && $signPackage.appId}
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+{/if}

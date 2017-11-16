@@ -1,0 +1,85 @@
+{if $ajax_refresh==0}
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_share.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pull_refresh.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_duobao_record.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/uc_duobao_record.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/lib/touche.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+
+?>
+{include file="inc/header_title_home.html"}
+<!-- 有数据 -->
+{/if}
+
+<div class="luck-data loading_container" id="loading_container">
+	<!-- 晒单列表 -->
+	{if $data.list}
+	<ul class="share-list scroll_bottom_list">
+		{foreach from=$list item=share}
+		<li class="item">
+			<a class="avatar"><img src="{$share.user_avatar}"></a>
+			<a class="user-name">{$share.user_name}</a>
+			<p class="time">{$share.create_time}</p>
+			<div class="clear"></div>
+			<a href="{url i="index" r="share#detail" p="id=$share.id"}" class="share-info">
+				<div class="content">
+					<div class="arrow-ico"></div>
+					<h2 class="share-title">{$share.title}</h2>
+					<p class="goods-name">{$share.duobao_item.name}</p>
+					<p class="code">期号：{$share.duobao_item_id}</p>
+					<p class="share-txt">{$share.content}</p>
+					{if $share.image_list}
+					<ul class="share-pic clearfix">
+						{foreach from=$share.image_list item=image}
+						<li>
+							<img src="{$image.path}">
+						</li>
+						{/foreach}
+					</ul>
+					{/if}
+				</div>
+			</a>
+		</li>
+		{/foreach}
+		<div class="clear"></div>
+	</ul>
+	{if $pages}
+	<div class="fy scroll_bottom_page">
+		{$pages}
+	</div>
+	{/if}
+	
+	{else}
+    <div class="null_data">
+      <p class="icon"><i class="iconfont">&#xe6e8;</i></p>
+      <p class="message">暂无数据</p>
+    </div>
+    
+	{/if}
+</div>
+
+{if $ajax_refresh==0}
+{include file="inc/footer_index.html"}
+{/if}

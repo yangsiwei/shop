@@ -1,0 +1,32 @@
+.money_box { 
+	background: none repeat scroll 0 0 #fffce0; 
+	border: 1px solid #fcf5be;
+	padding: 10px; 
+	margin:10px 10px 10px 0;
+}
+
+.info_table table{
+	width:100%
+}
+.info_table table th{   
+	height:1.6rem;
+	width:33%;
+    background-color: #f7f7f7;
+    font-size:.56rem;
+    text-align: center;
+    color: #808080;}
+
+.info_table table tbody{
+	height: 36px;
+    background-color: #f7f7f7;
+    font-size: 14px;
+    text-align: center;
+    color: ;
+}
+.info_table table tbody .alt,.info_table table tbody .alt td{
+	height:1.6rem;
+	margin:10px auto;
+}
+
+
+    

@@ -1,0 +1,66 @@
+.process_head_zg{
+	background-position:0 -56px;
+}
+.zg-check-hd{
+	border: 1px solid #ddd;
+	padding: 30px 40px;
+}
+.zg-check-hd .check-msg{
+	height: 95px;
+	color: #343434;
+}
+.zg-check-hd .check-msg .title{
+	font-size: 20px;
+	line-height: 32px;
+	font-weight:bold;
+	padding-top: 7px;
+}
+.zg-check-hd .check-msg .desc{
+	font-size: 14px;
+	line-height: 32px;
+	padding-top: 8px;
+	color: #808080;
+}
+.zg-check-hd .check-info{
+	position: relative;
+	padding: 20px 0;
+	border-top: #DDDDDD 1px solid;
+}
+.zg-check-hd .check-info p{
+	font-size: 14px;
+	color: #333;
+}
+.zg-pay{
+	font-size: 16px;
+	margin-top: 20px;
+	border: 1px solid #ddd;
+}
+.zg-pay .zg-pay-hd{
+	padding: 30px 40px;
+}
+.zg-pay .zg-pay-hd .price{
+	margin-bottom: 20px;
+}
+.zg-pay .zg-pay-hd .price b,.zg-pay .zg-pay-bd .still-pay b{
+	font-size: 20px;
+	vertical-align: middle;
+}
+.zg-pay .zg-pay-hd .useCoin {
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+.zg-pay .zg-pay-hd .useCoin label{
+	color:#808080;
+}
+.zg-pay .zg-pay-bd{
+	padding-top: 30px;
+	background: #F5F5F5;
+	padding:30px 40px ;
+}
+.zg-pay .zg-pay-bd .zg-btn{
+	padding: 0 35px;
+	height: 45px;
+	line-height: 45px;
+	font-size: 18px;
+	border-radius: 4px;
+}

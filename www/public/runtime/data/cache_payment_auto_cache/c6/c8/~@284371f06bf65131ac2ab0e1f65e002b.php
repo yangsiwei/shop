@@ -1,0 +1,3 @@
+<?php
+//000000086400a:1:{i:0;a:17:{s:2:"id";s:1:"1";s:10:"class_name";s:7:"Account";s:9:"is_effect";s:1:"1";s:10:"online_pay";s:1:"0";s:10:"fee_amount";s:6:"0.0000";s:4:"name";s:12:"余额支付";s:11:"description";s:0:"";s:12:"total_amount";s:11:"225718.0000";s:6:"config";s:2:"N;";s:4:"logo";s:0:"";s:4:"sort";s:1:"1";s:8:"fee_type";s:1:"0";s:13:"is_default_pc";s:1:"0";s:14:"is_default_wap";s:1:"0";s:14:"is_default_app";s:1:"0";s:12:"display_code";s:362:"<p>帐户余额+可用赠送金额+推广奖+管理奖：<b>1000元</b>，使用余额支付 <input type='text' style='width: 50px; margin-bottom:-5px;' value='' name='account_money' class='ui-textbox' id='account_money'>，<label class='ui-checkbox' rel='common_cbo'><input type='checkbox'  id='check-all-money' name='all_account_money'>全额支付</label></p>";s:7:"is_bank";i:0;}}
+?>

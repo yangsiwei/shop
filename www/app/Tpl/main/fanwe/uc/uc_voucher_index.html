@@ -1,0 +1,211 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/voucher.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+?>
+{include file="inc/header.html"}
+
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav left_box">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<ul class="web-map clearfix">
+			<li>当前位置：</li>
+			<li><a href="{url x="index" r="uc_center"}">个人中心</a> ></li>
+			<li class="txt-red">我的红包</li>
+		</ul>
+		<div class="uc_info_box">
+			<div class="evc-nav clearfix">
+				<div class="evc-tab f_l">
+					<a {if $type neq '1'}href="{url r="index" r="uc_voucher" p="type=1"}"{/if} class="{if $type eq '1'}current{/if} usable">可使用<b>{$count.1}</b></a>
+					<span class="mid-line">|</span>
+					<a {if $type neq '2'}href="{url r="index" r="uc_voucher" p="type=2"}"{/if} class="{if $type eq '2'}current{/if} unusable">已用完/过期<b>{$count.2}</b></a>
+				</div>
+				<div class="f_r"><a href="{url x="index" r="uc_voucher#exchange"}" class="btn btn-main">红包兑换</a></div>
+			</div>
+			{if $list}
+			{if $type eq '1'}
+			<div class="voucher_box usable-box">
+				{foreach from=$list item=voucher key=key}
+				<div class="voucher_item">
+					<div class="voucher_bg">
+						<table>
+							<tr>
+								<td>
+									 
+									<i class="evc-num-ico evc-num-11"></i>
+									 
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="voucher_info">
+						<div class="title">
+							<p class="title-info">{$voucher.name} {if $voucher.use_limit gt 0}x{$voucher.use_limit}{/if}</p>
+						</div>
+						<a class="use-evc" href="{url x="index" r="duobaos"}" target="_blank">马上使用</a>
+						<p class="evc-txt">面额：{function name="format_price" value=$voucher.money}</p>
+						<p class="evc-txt">有效期：
+							{if $voucher.begin_time eq 0 and $voucher.end_time eq 0}
+							无限
+							{else}
+								{if $voucher.begin_time eq 0 and $voucher.end_time neq 0}
+									{function name="to_date" value=$voucher.end_time}截止
+								{/if}
+								{if $voucher.begin_time neq 0 and $voucher.end_time eq 0}
+									{function name="to_date" value=$voucher.begin_time}开始
+								{/if}
+								{if $voucher.begin_time neq 0 and $voucher.end_time neq 0}
+									{function name="to_date" value=$voucher.begin_time}{$LANG.TO} {function name="to_date" value=$voucher.end_time}
+								{/if}
+							{/if}</p>
+						{if $voucher.meet_amount eq 0}
+						订单金额无限制
+						{else if}
+						订单满{$voucher.meet_amount}夺宝币可用
+						{/if}
+						{if $voucher.is_all}
+						<p class="evc-txt">所有区可用</p>
+						{else if}
+						<p class="evc-txt">{$voucher.range_value7}{$voucher.range_value2}{$voucher.range_value3}{$voucher.range_value4}{$voucher.range_value5}{$voucher.range_value6}{$voucher.range_value1}可用</p>
+						{/if}
+						{if $voucher.use_count}
+						<p class="evc-txt">已使用：{$voucher.use_count}次</p>
+						{/if}
+						{if $voucher.memo}
+						<p class="evc-txt">红包备注：{$voucher.memo}</p>
+						{/if}
+					</div>
+				</div>
+				{/foreach}
+			</div>
+			{/if}
+			<!-- 已使用 -->
+			{if $type eq '2'}
+			<div class="voucher_box unusable-box">
+				{foreach from=$list item=voucher key=key}
+				<div class="voucher_item">
+					<div class="voucher_bg">
+						<table>
+							<tr>
+								<td>
+									 
+									<i class="evc-num-ico evc-num-11"></i>
+								 
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="voucher_info">
+						<div class="title">
+							<p class="title-info">{$voucher.name} {if $voucher.use_limit gt 0}x{$voucher.use_limit}{/if}</p>
+						</div>
+						{if $voucher.use_limit gt 0 and $voucher.use_limit eq $voucher.use_count}
+						<i class="evc-ico used-ico"></i>
+						{else}
+						{if $voucher.end_time lt $new_time}
+						<i class="evc-ico out-ico"></i>
+						{/if}
+						{/if}
+						<p class="evc-txt">面额：{function name="format_price" value=$voucher.money}</p>
+						<p class="evc-txt">有效期：
+						{if $voucher.begin_time eq 0 and $voucher.end_time eq 0}
+							无限
+							{else}
+								{if $voucher.begin_time eq 0 and $voucher.end_time neq 0}
+									{function name="to_date" value=$voucher.end_time}截止
+								{/if}
+								{if $voucher.begin_time neq 0 and $voucher.end_time eq 0}
+									{function name="to_date" value=$voucher.begin_time}开始
+								{/if}
+								{if $voucher.begin_time neq 0 and $voucher.end_time neq 0}
+									{function name="to_date" value=$voucher.begin_time}{$LANG.TO} {function name="to_date" value=$voucher.end_time}
+								{/if}
+							{/if}</p>
+						{if $voucher.meet_amount eq 0}
+						订单金额无限制
+						{else if}
+						订单满{$voucher.meet_amount}夺宝币可用
+						{/if}	
+						{if $voucher.is_all}
+						<p class="evc-txt">所有区可用</p>
+						{else if}
+						<p class="evc-txt">{$voucher.range_value1}{$voucher.range_value2}{$voucher.range_value3}{$voucher.range_value4}{$voucher.range_value5}{$voucher.range_value6}{$voucher.range_value7}可用</p>
+						{/if}
+						{if $voucher.use_count}
+						<p class="evc-txt">已使用：{$voucher.use_count}次</p>
+						{/if}
+						{if $voucher.memo}
+						<p class="evc-txt">红包备注：{$voucher.memo}</p>
+						{/if}
+					</div>
+				</div>
+				{/foreach}
+			</div>
+			{/if}
+			<div class="pages">{$pages}</div>
+			{else}
+			<div class="empty_tip">没有相关的红包记录</div>
+			{/if}
+			<div class="evc-rule">
+				<div class="evc-rule-hd">
+					<h1 class="title">如何使用红包</h1>
+					<div class="fold-btn fold-btn-down">
+						展开
+						<i class="ico ico-arrow-blue-m-down ico-arrow-blue-m"></i>
+					</div>
+					<div class="fold-btn fold-btn-up">
+						收起
+						<i class="ico ico-arrow-blue-m-up ico-arrow-blue-m"></i>
+					</div>
+				</div>
+				<div class="evc-rule-info"></div>
+			</div>
+		</div>
+	</div>
+</div>
+{include file="inc/footer.html"}
+<script>
+	$(function(){
+	// 	$(".evc-tab a").click(function() {
+	// 		$(".evc-tab a").removeClass('current');
+	// 		$(this).addClass('current');
+	// 		$(".voucher_box").hide();
+	// 	});
+	// 	$(".usable").click(function() {
+	// 		$(".usable-box").show();
+	// 	});
+	// 	$(".unusable").click(function() {
+	// 		$(".unusable-box").show();
+	// 	});
+		$(".fold-btn").click(function() {
+			$(".fold-btn").hide();
+		});
+		$(".fold-btn-down").click(function() {
+			$(".fold-btn-up").show();
+			$(".evc-rule-info").show();
+		});
+		$(".fold-btn-up").click(function() {
+			$(".fold-btn-down").show();
+			$(".evc-rule-info").hide();
+		});
+	});
+</script>

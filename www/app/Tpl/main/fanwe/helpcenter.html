@@ -1,0 +1,155 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/helpcenter.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/zone.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/goods_item.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.SuperSlide.2.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/lazyload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/index.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/index.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/slider.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/slider.js";
+
+
+
+?>
+{include file="inc/header.html"}
+<div class="blank15"></div>
+<div class="wrap_full_w clearfix">
+    <div class="g-side"  >
+        <div class="w-msg-news"  >
+            <i class="diyfont"></i>
+            <a href="{url r="index" r="news" p="t=notice"}"><span class="font_h3" >
+                系统公告
+            </span></a>
+        </div>
+        <div class="w-msg-news"  >
+            <i class="diyfont"></i>
+            <a href="{url r="index" r="news" p="t=agreement"}"><span class="font_h3" >
+                服务协议
+            </span></a>
+        </div>
+        <div class="w-msg-catlog">
+            <div class="w-msg-catlog-hd" >
+                <span class="font_h3s" >
+                    帮助中心
+                </span>
+            </div>
+            {if $deal_help }
+            <div>
+                <dl class="w-msg-catlog-list" >
+                {foreach from=$deal_help item=web_article_cate}
+                {if $web_article_cate}
+                <dt class="font_dt" >
+                    <i class="diyfont">{$web_article_cate.iconfont}</i>
+                    {$web_article_cate.title}
+                </dt>
+                {/if}
+                {foreach from=$web_article_cate.help_list item=web}
+                <dd class="font_dd" >
+                        {if $web_article_id eq $web.id}
+                            <p class="txt-red">{$web.title}</p>
+                        {else}
+                            <a href="{url r="index" r="help" p="id=$web.id"}">
+                                {$web.title}
+                            </a>
+                        </li>
+                        {/if}
+                </dd>
+                {/foreach}
+                {/foreach}
+                </dl>
+            </div>
+            {/if}
+        </div>
+        <div class="w-msg-more" >
+            <p>如果不能再帮助内容中找到答案，<br/>您还可以拨打：</p>
+            <div class="w-msg-more-wrap">
+                <p class="w-msg-more-call">
+                    <i class="diyfont"></i>服务热线
+                </p>
+                <p class="w-msg-more-phoneNum">{$shptel}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="g-main">
+		<ul class="web-map clearfix" style="padding-top:10px;margin-bottom:0px;padding-bottom:15px;font-size:14px;font-family:'Microsoft Yahei',verdana;">
+			{if $is_agreement eq 'notice'}
+				<li><a href="{url x="index" r="news" p="t=notice"}">系统公告</a> ></li>
+				{if $web_article_id}
+					<li class="txt-red">{function name=to_date v=$agreement_one.create_time f="Y-m-d"} 公告详情</li>
+				{else}
+					<li class="txt-red">列表</li>
+				{/if}
+			{/if}
+			{if $is_agreement eq 'agreement'}
+				<li><a href="{url x="index" r="news" p="t=agreement"}">服务协议</a> ></li>
+				{if $web_article_id}
+					<li class="txt-red">{function name=to_date v=$agreement_one.create_time f="Y-m-d"} 协议详情</li>
+				{else}
+					<li class="txt-red">列表</li>
+				{/if}
+			{/if}
+			{if !$is_agreement}
+				<li><a href="{url x="index"}">首页</a> ></li>
+				<li><a href="{url x="index" r="help"}">帮助中心</a> ></li>
+				<li class="txt-red">{$title}</li>
+			{/if}
+		</ul>
+        <div class="m-helpcenter-detail" >
+        {if $is_agreement}
+            {if $agreement_one}
+            <ul class="m-new-list">
+                <li class="m-news-list-list">
+                    <span class="date">{function name=to_date v=$agreement_one.create_time f="Y-m-d"}<span>
+                    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="font_span" >{$agreement_one.agreement_name}</sapn>
+                </li>
+            </ul>
+                <div class="m-news-bd" >
+                    {$agreement_one.agreement}
+                </div>
+            {else}
+            <ul class="m-new-list">
+                {foreach from=$agreement_list item=agreement}
+                <li class="m-news-list-list">
+                    <span class="date">{function name=to_date v=$agreement.create_time f="Y-m-d"}<span>
+                    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{url r="index" r="news" p="t=$is_agreement&id=$agreement.id"}"><span class="font_span" >{$agreement.agreement_name}</sapn></a>
+                </li>
+                {/foreach}
+            </ul>
+            <div class="pages">{$pages}</div>
+            {/if}
+        {else}
+        {if $content.content}
+            <div class="m-helpcenter-detail-hd" >
+                <h4>{$content.title}</h4>
+            </div>
+            <div class="m-helpcenter-detail-bd">
+                {$content.content}
+            </div>
+        
+        {/if}
+        {/if}
+        </div>
+    </div>
+</div>
+{include file="inc/footer.html"}

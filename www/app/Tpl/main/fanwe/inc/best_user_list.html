@@ -1,0 +1,16 @@
+	{foreach from=$uc_u_list item=u_item}
+		<div class="u_item">
+			<div class="avatar">{function name="show_avatar" uid=$u_item.id  type="small" }</div>
+			<div class="u_info">
+				<p><span class="u_name">{$u_item.user_name}</span></p>
+				<p>
+					{if $u_item.focused eq 1}
+							<a href="javascript:;" onclick="focus_user({$u_item.id},this);" class="remove_focus" style="margin:0px 5px; _margin-top:-1px;">取消关注</a>
+					{else}
+							<a href="javascript:;" onclick="focus_user({$u_item.id},this);" class="add_focus"  style="margin:0px 5px;  _margin-top:-1px;">加关注</a>
+					{/if}
+				</p>
+			</div>
+		</div>
+	{/foreach}
+<div class="blank10"></div>

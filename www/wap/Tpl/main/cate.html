@@ -1,0 +1,60 @@
+{if $ajax_refresh==0}
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/deal_cate.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pull_refresh.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/lib/touche.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+
+?>
+{include file="inc/header_title_home.html"}
+</script>
+
+{/if}
+
+<div class="wrap loading_container" id="loading_container">
+	<div class="content">
+		<div class="search">
+			<a class="search-wrap" href="{url x="index" r="search"}">
+				<i class="iconfont">&#xe662;</i>
+				<div class="search-bar">搜索商品</div>
+			</a>
+		</div>
+		<!-- 搜索 -->
+		<div class="allgoods">
+                    <a href="{url r="index" p="duobaos#index"}"><i class="iconfont">&#xe62e;</i><h1>全部商品</h1></a>
+			<p>分类浏览</p>
+		</div>
+		<ul class="goods-list">
+			{foreach from=$data.list item=cate}
+			<li>
+			<a href="{url r="index" p="duobaos#index" p="data_id=$cate.id"}"><i class="diyfont" style="color: {$cate.iconcolor}">{$cate.iconfont}</i><h2>{$cate.name}</h1></a>
+			</li>
+			{/foreach}
+			
+		</ul>
+	</div>
+</div>
+{if $ajax_refresh==0}
+{include file="inc/footer_index.html"}
+{/if}

@@ -1,0 +1,70 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_fx.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_invite.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_invite.js";
+?>
+{include file="inc/header.html"}
+<script>
+var MEDAL_BOX_URL = '{url x="index" r="uc_medal#load_medal"}';
+</script>
+<div class="blank20"></div>
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav f_l ">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<ul class="web-map clearfix">
+			<li>当前位置：</li>
+			<li><a href="{url x="index" r="uc_center"}">我的夺宝</a> ></li>
+			<li><a href="{url x="index" r="uc_fx"}">我的邀请</a> ></li>
+			<li class="txt-red">我的邀请用户</li>
+		</ul>
+		{if $data.amount_data}
+		<div class="main_box setting_user_info">
+			<div class="fx-title clearfix">
+				<h1 class="f_l">我的邀请用户</h1>
+			</div>
+			<ul class="user-info-list">
+				<li class="user-info-hd clearfix">
+					<div class="f_l user-avatar">用户头像</div>
+					<div class="f_l user-name">用户名称</div>
+					<div class="f_l user-info-item">今日充值</div>
+					<div class="f_l user-info-item">今日推广奖</div>
+					<div class="f_l user-info-item">累计推广奖</div>
+				</li>
+				{foreach from="$data.amount_data" item="ad"}
+				<li class="clearfix user-info-bd">
+					<div class="f_l user-avatar"><img src="{if $ad.user_logo}{$ad.user_logo}{else}{$data.no_user_logo}{/if}"></div>
+					<div class="f_l user-name">{$ad.user_name}</div>
+					<div class="f_l user-info-item txt-red">{$ad.today_money}</div>
+					<div class="f_l user-info-item txt-red">{$ad.order_number}</div>
+					<div class="f_l user-info-item txt-red">{$ad.amount_money}</div>
+				</li>
+				{/foreach}
+			</ul>
+		</div>
+		{/if}
+		</div>
+	</div>
+</div>
+<div id="layer">{include file="inc/layer.html"}</div>
+{include file="inc/footer.html"}

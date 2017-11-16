@@ -1,0 +1,129 @@
+.goods-list{
+	background: #fff;
+}
+.goods-list li{
+	position: relative;
+}
+.goods-list li>div{
+	padding:0 .4rem;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-align-items:center;
+	align-items:center;/*横向布局水平居中对齐*/
+	-webkit-box-align: center;
+	position: relative;
+	z-index: 1;
+}
+.goods-list li::after{
+	border-bottom: 1px solid #e8e8e8;
+	width: 100%;
+	content:'';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	-webkit-transform: scaleY(0.5);
+	        transform: scaleY(0.5);
+	-webkit-transform-origin:0 100%;
+	        transform-origin:0 100%;
+	z-index: 1;	
+}
+.goods-list li .imgbox{
+	width: 2.5rem;
+	height: 4.2rem;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-align-items:center;
+	align-items:center;/*横向布局水平居中对齐*/
+	-webkit-box-align: center;
+	position: relative;
+}
+.goods-list li .imgbox .tenyen{
+    width: 1.2rem;
+    height: 1.2rem;
+    background: url(../images/10yuan.png) no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.goods-list li .imgbox .hundredyen{
+    width: 1.2rem;
+    height: 1.2rem;
+    background: url(../images/100yuan.png) no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.goods-list li .imgbox img{
+	width: 100%;
+}
+.goods-list li .info{
+	-webkit-flex:1;
+	flex:1;
+	/* 	for  uc */
+	-webkit-box-flex:1;      
+	padding:.5rem;
+}
+.goods-list li .info header{
+	display:-webkit-box !important;
+	overflow:hidden;	
+	text-overflow:ellipsis;
+	word-break:break-all;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+	margin-top: .2rem;
+	line-height: .68rem;
+	font-size:.56rem;
+	color: #666;
+	height: 1.32rem;
+}
+.goods-list li .info progress{
+	margin-top: .22rem;
+	display: block;
+	width:100%;
+	height: .26rem;
+}
+.goods-list li .info progress{ -webkit-appearance: none; }
+.goods-list li .info ::-webkit-progress-bar {
+	background: #efedee;
+	border-radius: .2rem;
+}
+.goods-list li .info ::-webkit-progress-value { 
+	background: #ffca3e; 
+	border-radius: .2rem;
+}
+.goods-list li .info p{
+	color: #999;
+	line-height: 1rem;
+}
+.goods-list li .info p .rest{
+	color: #3273c3;
+
+}
+.goods-list li div button{
+	border: none;
+	background: none;
+	display: block;
+	width: 2.7rem;
+	height: 1.1rem;
+	text-align: center;
+	font-size: .4rem;
+	color: #df5667;
+	z-index: 999;
+	position: relative;
+}
+
+.goods-list li .add_cart_item{
+	display: block;
+	height: .9rem;
+	line-height: .9rem;
+	padding: 0 .2rem;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 1px solid #d93a55;
+	border-radius: 5px;
+	color: #d93a55;
+}

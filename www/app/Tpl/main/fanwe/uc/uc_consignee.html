@@ -1,0 +1,82 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_consignee.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_consignee.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_consignee.js";
+?>
+{include file="inc/header.html"}
+<script>
+var AJAX_URL	= '{url x="index" r="ajax"}';
+</script>
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav f_l ">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+			<div class="content">
+				<ul class="web-map clearfix">
+					<li>当前位置：</li>
+					<li><a href="{url x="index" r="uc_center"}">个人中心</a> ></li>
+					<li class="txt-red">配送地址</li>
+				</ul>
+				<div class="blank20"></div>
+
+				<a style="line-height: 40px;height:40px;" class="btn btn-main" href="{url x="index" r="uc_consignee#add"}" title="新增地址">新增地址</a>
+				<div class="blank10"></div>
+				{if $consignee_list}
+				<div class="info_table">
+					<div class="address-title">
+						<h1><strong>我的地址</strong><span>已保存了<b>{$count_consignee}</b>条地址，还可以保存<b><?php echo (5-$this->_var['count_consignee']);?></b>条哦~</span></h1>
+					</div>
+					<table>
+						<tbody>
+							<tr>
+									<th width="183">收货人</th>
+									<th width="344">所在地区</th>
+									<th width="216">手机</th>
+									<th width="221" style="padding-left: 30px;">操作</th>
+							</tr>
+							{foreach from=$consignee_list item=item key=key}
+							<tr class="alt">
+									<td>{$item.consignee}</td>
+									<td class="region">{$item.region_lv2}&nbsp;{$item.region_lv3}&nbsp;{$item.region_lv4} {$item.address}</td>
+									<td class="mobile" width="80">{$item.mobile}</td>
+									<td class="operate" style="padding: 0 25px">
+										{if $item.is_default eq 1}<span class="default-add">默认地址</span>{else}<a href="javascript:void(0);" class="default" dfurl="{$item.dfurl}">设为默认地址</a>{/if}
+										<a href="{url x="index" r="uc_consignee#add" p="id=$item.id"}">修改</a> | <a href="javascript:void(0);" class="del" url="{$item.del_url}">{$LANG.DELETE}</a>
+									</td>
+	                         </tr>
+	                         {/foreach}
+						</tbody>
+					</table>
+				</div>
+				{else}
+				<div class="empty_tip">暂无地址</div>
+				{/if}
+			</div>
+		<div class="blank20"></div>
+		</div>
+	</div>
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

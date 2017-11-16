@@ -1,0 +1,179 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_consignee.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_luck_detail.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_msg.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_msg.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_consignee.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_consignee.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_totalbuy_detail.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_totalbuy_detail.js";
+
+?>
+{include file="inc/header.html"}
+<script type="text/javascript" src="{$APP_ROOT}/public/runtime/region.js"></script>	
+<div class="blank20"></div>
+<div class="wrap_full_w">
+	<ul class="web-map clearfix">
+		<li>当前位置：</li>
+		<li><a href="{url x="index" r="uc_center"}">个人中心</a><span>></span></li>
+		<li><a href="{url x="index" r="uc_totalbuy"}">购买记录</a><span>></span></li>
+		<li>记录详情</li>
+	</ul>
+	<div class="detail-wrap">
+	<!-- 进度 -->
+		<div class="detail-progress">
+			<ol class="inner">
+				<li class="step step-1 {if ($order.pay_status eq 2) }act{/if}">
+					<p class="step-hd">1. 支付状态</p>
+					<i class="detail-ico"></i>
+				</li>
+				<li class="step step-2 {if ($order.pay_status eq 2) }act{/if}">
+					<p class="step-hd">2. 获得商品</p>
+					<i class="detail-ico"></i>
+					<div class="line"></div>
+				</li>
+				<li class="step step-3 {if ($order.is_arrival eq 0 && $order.delivery_status eq 1 && $order.pay_status eq 2) || ($order.is_arrival eq 1 && $order.pay_status eq 2)}act{/if}">
+					<p class="step-hd">3. 商品派发</p>
+					<i class="detail-ico"></i>
+					<div class="line"></div>
+				</li>
+				<li class="step step-4 {if ($order.is_arrival eq 1 && $order.pay_status eq 2) }act{/if}">
+					<p class="step-hd">4. 确认收货</p>
+					<i class="detail-ico"></i>
+					<div class="line"></div>
+				</li>
+			</ol>
+		</div>
+	<!-- 当前状态 -->
+		<div class="status">
+			<div class="status-hd">
+				{if  $order.pay_status neq 2}
+				当前状态：支付未完成 <a class="btn btn-main"  href="{url r="index" p="totalbuy#pay_check" d="id=$order.order_id"}">继续支付</a>
+				{/if}
+				{if $order.is_arrival eq 0 && $order.delivery_status eq 0 && $order.pay_status eq 2}
+				当前状态：等待商品派发
+				{/if}
+				{if $order.is_arrival eq 0 && $order.delivery_status eq 1 && $order.pay_status eq 2}
+				当前状态：等待确认收货
+				<a href="javascript:void(0);" class="verify_delivery btn btn-main" action="{url r="index" p="uc_totalbuy#verify_delivery" b="id=$order.id"}">确认收货</a>
+				{/if}
+				{if $order.is_arrival eq 1 && $order.pay_status eq 2 && $order.delivery_status eq 1}
+				当前状态：已签收
+				{/if}
+			</div>
+			{if $order.is_arrival eq 0 && $order.delivery_status eq 1}
+			<p class="tips">
+				我们已将商品发往您填写/确认的配送地址信息，请您耐心等候！
+			</p>
+			{/if}
+			{if $order.is_arrival eq 0 && $order.is_set_consignee eq 1 && $order.delivery_status eq 0}
+			<p class="tips">已收到您填写/确认的配送地址信息，我们会尽快处理，请您耐心等候！</p>
+			{/if}
+		</div>
+	<!-- 虚拟商品信息 -->
+	{if $order.cate_id}
+	{if $order.delivery_status eq 1  && $order.is_arrival eq 0}
+		<div class="address-info">
+			<div class="address-hd"><strong>虚拟商品</strong></div>
+			<div class="address-bd">
+			<p>虚拟商品信息：收货后可见</p>
+			</div>
+		</div>
+	{elseif $order.delivery_status eq 1  && $order.is_arrival eq 1}
+	<div class="address-info">
+			<div class="address-hd"><strong>虚拟商品</strong></div>
+			<div class="address-bd">
+			<p>虚拟商品信息：{$delivery_notice.fictitious_info}</p>
+			</div>
+		</div>
+	{/if}
+	<!-- 收货信息和物流信息 -->
+	{else}
+		<div class="address-info">
+			<div class="address-hd"><strong>收货信息</strong></div>
+			<div class="address-bd">
+				<p>收 货 人：{$order.consignee}</p>
+				<p>联系电话：{$order.mobile}</p>
+				<p>收货地址：{$order.region_info} ,{$order.zip}</p>
+			</div>
+		</div>
+		{if $delivery_notice}
+			<div class="address-info">
+				<div class="address-hd"><strong>物流信息</strong></div>
+				<div class="address-bd">
+					<p>物流公司：{$delivery_notice.express_name}</p>
+					<p>运单号码：{$delivery_notice.notice_sn}</p>
+				</div>
+			</div>
+		{/if}
+	{/if}
+	<!-- 商品信息 -->
+		<table class="goods-info">
+			<thead>
+				<tr>
+		            <th class="col1">商品</th>
+		            <th class="col2"></th>
+		            <th class="col3">下单时间</th>
+		            <th class="col3">总价(云币)</th>
+		            <th class="col4">数量</th>
+		            <th class="col5">商品状态</th>
+		        </tr>
+	    	</thead>
+			<tbody>
+				<tr>
+		            <td class="col1">
+		            	<div class="goods-pic">
+		            		<a href="{url r="index" r="duobao" p="id=$duobao_item.id"}"><img src="{$order.deal_icon}" width="74" height="74"></a>
+		            	</div>
+		            </td>
+		            <td style="vertical-align:middle;"  class="col2">
+		            	<div class="good-info">
+		            		<p class="txt-over good-title"><a href="{url r="index" r="duobao" p="id=$duobao_item.id"}" style="color:#333">{$order.name}</a></p>
+		            	</div>
+		            </td>
+		            <td style="vertical-align:middle;"  class="col3">{$order.create_time}</td>
+		            <td style="vertical-align:middle;"  class="col3">{$order.total_price}</td>
+		            <td style="vertical-align:middle;"  class="col4">{$order.buynumber}</td>
+		            <td style="vertical-align:middle;"  class="col5">
+		            {if $order.pay_status eq 2}
+			            <!-- 虚拟 -->
+			            {if $order.cate_id}
+			            {if $order.is_arrival eq 0 && $order.delivery_status eq 0 }<p>等待商品派发</p>{/if}
+			            {if $order.is_arrival eq 0 && $order.delivery_status eq 1}<p>待确认收货</p>{/if}
+			            {if $order.is_arrival eq 1 && $order.delivery_status eq 1}<p>已签收 <!-- {if $order.is_send_share eq 1}<a  href="{url x="index" r="share#detail" p="id=$order.share_id"}">查看晒单</a>{else}<a  href="{url x="index" r="uc_share#add" p="id=$order.id"}">晒单</a>{/if} --></p>{/if}
+			            <!-- end -->
+			            {else}
+			            	{if $order.is_arrival eq 0 && $order.delivery_status eq 0}<p>等待商品派发</p>{/if}
+			            	{if $order.is_arrival eq 0 && $order.delivery_status eq 1}<p>待确认收货</p>{/if}
+			            	{if $order.is_arrival eq 0 && $order.is_set_consignee eq 0}<p>待确认收货地址</p>{/if}
+			            	{if $order.is_arrival eq 1 && $order.delivery_status eq 1}<p>已签收 <!-- {if $order.is_send_share eq 1}<a  href="{url x="index" r="share#detail" p="id=$order.share_id"}">查看晒单</a>{else}<a  href="{url x="index" r="uc_share#add" p="id=$order.id"}">晒单</a>{/if} --></p>{/if}
+			            {/if}
+			         {else}
+			         	<p>待付款</p>
+			         {/if}
+		            </td>
+		        </tr>
+	    	</tbody>
+		</table>
+	</div>
+</div>
+
+{include file="inc/footer.html"}

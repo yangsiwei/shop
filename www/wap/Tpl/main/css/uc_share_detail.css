@@ -1,0 +1,48 @@
+.share-detail-wrap{
+	padding:.4rem;
+}
+.share-detail{
+	border:1px solid #ddd;
+	background:#fff;
+}
+.detail-hd{
+	padding:.2rem .4rem;
+	line-height: 1rem;
+}
+.detail-hd .title{
+	font-size:.56rem;
+	color:#333;
+}
+.detail-hd .user-name{
+	float: left;
+	color:#09f;
+}
+.detail-hd .time{
+	float: right;
+	color:#999;
+}
+/* 商品信息 */
+.goods-info{
+	padding:.3rem .4rem;
+	background:#f4f4f4;
+	line-height: .7rem;
+	color:#666;
+}
+.goods-info .goods-name{
+	color:#09f;
+}
+.share-txt{
+	padding:.4rem;
+	line-height: .8rem;
+	font-size:.52rem;
+	color:#555;
+}
+.share-pic{
+	padding:0 .4rem;
+}
+.share-pic li{
+	margin-bottom:.4rem;
+}
+.share-pic li img{
+	width:100%;
+}

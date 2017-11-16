@@ -1,0 +1,207 @@
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".send_test_btn").bind("click",function(){
+			var row = $(this).parent();
+			var query = new Object();
+			query.weixin_user = row.find("input[name='weixin_user']").val();
+			query.template_id_short = row.find("input[name='template_id_short']").val();
+			$.ajax({
+				url:"{$send_test_template_url}",
+				data:query,
+				dataType:"json",
+				type:"post",
+				success:function(obj){
+					if(obj.status)
+					{
+						alert("发送成功");
+					}
+					else
+					{
+						alert(obj.info);
+					}
+				}
+				
+			});
+		});
+	});
+	
+</script>
+<div class="main">
+<div class="main_title">微信配置</div>
+<div class="blank5"></div>
+   <if condition="$config">
+	<form method='post' id="form" name="form" action="__APP__">
+	<table cellpadding="4" cellspacing="0" border="0" class="form">
+		<tr>
+			<td colspan="2" class="topTd"></td>
+		</tr>
+		<if condition="$config.nick_name">
+	 		<tr>
+	 			<td  class="item_title">公众号名称</td>
+				<td class="item_input">
+					 {$config.nick_name}
+				</td>
+	 		</tr>
+		</if>
+		<if condition="$config.user_name">
+	 		<tr>
+	 			<td  class="item_title">授权方公众号的原始ID</td>
+				<td class="item_input">
+					 {$config.user_name}
+				</td>
+	 		</tr>
+		</if>
+		<if condition="$config.head_img">
+	 		<tr>
+	 			<td  class="item_title">授权方公众号的头像</td>
+				<td class="item_input">
+					<a href="{$config.head_img}" target="_blank"><img src="{$config.head_img}" width="50" height="50"></a>
+				</td>
+	 		</tr>
+		</if>
+		<!--
+		<if condition="$config.qrcode_url">
+	 		<tr>
+	 			<td  class="item_title">授权方公众号的二维码</td>
+				<td class="item_input">
+					<a href="{$config.qrcode_url}" target="_blank"><img src="{$config.qrcode_url}" width="50" height="50"></a>
+				</td>
+	 		</tr>
+		</if>
+		-->
+		<if condition="$verify_type">
+		<tr>		
+			<td class="item_title" style=" width:200px;">授权方认证类型</th>
+			<td class="item_input">
+				 {$verify_type}
+ 			</td>
+		</tr>
+		</if>
+		<if condition="$service_type">
+ 		<tr>		
+			<td class="item_title" style=" width:200px;">授权方公众号类型</th>
+			<td class="item_input">
+				{$service_type}
+	 		</td>
+		</tr>
+		<tr>
+		</if>
+		<if condition="$config.authorizer_appid">
+ 		<tr>		
+			<td class="item_title" style=" width:200px;">授权方appid</th>
+			<td class="item_input">
+				 {$config.authorizer_appid}
+ 			</td>
+		</tr>
+		</if>
+		<if condition="$config.authorizer_access_token">
+		<tr>		
+			<td class="item_title" style=" width:200px;">授权方access_token</th>
+			<td class="item_input">
+				 {$config.authorizer_access_token}
+ 			</td>
+		</tr>
+		</if>
+		<if condition="$config.authorizer_refresh_token">
+		<tr>		
+			<td class="item_title" style=" width:200px;">授权方refresh_token</th>
+			<td class="item_input">
+				 {$config.authorizer_refresh_token}
+ 			</td>
+		</tr>
+		</if>
+		<if condition="$config.user_name eq ''">
+	 		<tr>
+	 			<td  class="item_title"></td>
+				<td class="item_input">
+					<input type="button" onclick="window.location.reload();" value="获取公众号信息">
+				</td>
+	 		</tr>
+ 		</if>
+		<tr>		
+			<td class="item_title" style=" width:200px;">公众号解绑</th>
+			<td class="item_input">
+				 <input type="button" value="解绑绑定" onclick="location.href='{$unbind_url}';" class="button" />
+ 			</td>
+		</tr>
+		
+		
+		<if condition="$industry_list">
+		<tr>		
+			<th colspan="2">行业设置</th>
+		</tr>		
+		<foreach name="industry_list" key="key" item="industry">
+		<tr>		
+			<td class="item_title" style=" width:200px;">行业{$key}</th>
+			<td class="item_input">
+				 {$industry}
+ 			</td>
+		</tr>
+		</foreach>
+		<tr>		
+			<td class="item_title" style=" width:200px;"></th>
+			<td class="item_input">
+				<input type="button" value="同步行业设置" onclick="location.href='{$syn_industry_url}';" class="button" />
+				<br />
+				<span class="tip_span">*同步公众账号服务所处的2个行业以便可以设置消息模板，同步一次后无需修改，如在其他平台同步过行业信息，则需一个月之后才可以同步</span>
+ 			</td>
+		</tr>
+		</if>
+		
+		<if condition="$template_list">
+		<tr>		
+			<th colspan="2">消息模板设置</th>
+		</tr>		
+		<PHP>$tp_idx = 1;</PHP>
+		<foreach name="template_list" key="key" item="template">
+		<tr>		
+			<td class="item_title" style=" width:200px;">消息模板{$tp_idx}</th>
+			<td class="item_input">
+				模板编号：{$key},&nbsp; 名称： {$template.name}
+				<if condition="$template['data']">
+					&nbsp;已安装，模板ID:{$template.data.template_id}
+					<br />
+					<div class="send_test">
+						会员名：<input type="text" name="weixin_user" />
+						<input type="button" value="发送测试消息"  class="button send_test_btn" />
+						<input type="hidden" value="{$key}" name="template_id_short" />
+						<span class="tip_span">*该会员必需已在平台使用微信登录授权过</span>
+					</div>
+				</if>
+ 			</td>
+		</tr>
+		<PHP>$tp_idx++;</PHP>
+		</foreach>
+		<tr>		
+			<td class="item_title" style=" width:200px;"></th>
+			<td class="item_input">
+				<input type="button" value="同步消息模板" onclick="location.href='{$syn_template_url}';" class="button" />
+				<input type="button" value="删除消息模板" onclick="location.href='{$del_template_url}';" class="button" />
+				<br />
+				<span class="tip_span">*一键同步本平台在微信公众平台所必需的业务消费模板，同步模板前必需保证行业已同步成功</span>
+ 			</td>
+		</tr>
+		</if>
+		
+		<tr>
+			<td colspan="2" class="bottomTd"></td>
+		</tr>
+	</table>
+	</form>
+	<else />
+		<if condition="$sq_url neq ''">
+			<table cellpadding="4" cellspacing="0" border="0" class="form">
+				<tr>		
+				<td class="item_input">
+					<a href="{$sq_url}" target="_blank"><input type="button"  class="button" value="进行授权绑定"></a>
+				</td>
+				</tr>
+			</table>			
+		<else />
+			{$error}
+		</if>
+	</if>
+</div>
+<include file="Public:footer" />

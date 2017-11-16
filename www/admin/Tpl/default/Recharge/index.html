@@ -1,0 +1,47 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<!-- <load href='__TMPL__Common/js/fx_salary.js' /> -->
+<div class="main">
+<div class="main_title">{$title_name}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	
+</div>
+<div class="blank5"></div>
+<form name="edit" action="{:U('edit')}" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	
+	
+	<tr>
+		<td class="item_title">单笔充值最低金额:</td>
+		<td><input type="text" name="lowest_recharge" value="{$res.lowest_recharge}">等于0是表示不限制
+		</td>
+		
+	</tr>
+	
+	<tr>
+		<td class="item_title">单笔充值最高金额:</td>
+		<td>
+		<input type="text" name="highest_recharge" value="{$res.highest_recharge}">最高充值金额
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">日充值上限:</td>
+		<td>
+		<input type="text" name="day_highest_recharge" value="{$res.day_highest_recharge}">等于0表示不限制
+		</td>
+	</tr>
+	
+	<tr>
+		<td></td>
+		<td><input type="submit" value="确定"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

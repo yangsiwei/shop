@@ -1,0 +1,76 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/cart_index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/cart_order.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/zone.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/lazyload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/payment_pay.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/payment_pay.js";
+?>
+
+{include file="inc/header_cart.html"}
+
+<script type="text/javascript">
+var APP_ROOT = '{$APP_ROOT}';
+var CART_URL = '{url x="index" r="cart"}';
+var CART_CHECK_URL = '{url x="index" r="cart#check"}';
+{if app_conf("APP_MSG_SENDER_OPEN") eq 1}
+var send_span = {function name="app_conf" v="SEND_SPAN"}000;
+var IS_RUN_CRON = 1;
+var DEAL_MSG_URL = '{url x="index" r="cron#deal_msg_list"}';
+{/if}
+var AJAX_LOGIN_URL	= '{url x="index" r="user#ajax_login"}';
+var AJAX_URL	= '{url x="index" r="ajax"}';
+var LOADER_IMG = '{$TMPL}/images/loader_img.gif';
+var order_id = {function name="intval" value=$order_info.id};
+var PAY_TIP = '{url x="index" r="payment#tip" p="id=$payment_notice.id"}';
+</script>
+<div class="blank20"></div>
+<div class="{function name="load_wrap" t=$wrap_type}">
+
+		<div class="layout_box payment">
+			<div class="title" style="text-align: center;">{$page_title}</div>
+			<div class="content">
+				<div class="blank20"></div>
+				<p  class="order-check-form">
+				{lang v="PAY_NOW"}
+				[&nbsp;&nbsp;{lang v="NOTICE_SN"} ：<b class="txt-red">{$payment_notice.notice_sn}</b>&nbsp;&nbsp;]
+				</p>
+				<div class="payment_code">
+				<span>
+				{$payment_code}
+				</span>
+				</div>
+				<div  class="order-check-form">
+				{if $order.type == 3}
+				<a href="{url x="index" r="totalbuy#pay_check" p="id=$order.id"}">
+				{else}
+				<a href="{url x="index" r="cart#order" p="id=$order.id"}">
+				{/if}
+				{lang v="MODIFY_PAYMENT_TYPE"}
+				</a>
+				</div>
+			</div>
+		</div>
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

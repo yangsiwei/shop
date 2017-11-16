@@ -1,0 +1,27 @@
+.m-more-list{
+	background:#fff;
+	margin-top:.5rem ;
+}
+.m-more-item{
+	height:3.3rem;
+	padding:0 .4rem;
+}
+.m-more-item .u-more-img{
+	width:2.2rem;
+	height:2.2rem;
+	margin-right: .4rem;
+}
+.m-more-item .u-more-img img{
+	width:100%;
+	height:100%;
+}
+.m-more-item .u-more-tit{
+	font-size:.56rem;
+	line-height: .88rem;
+	color:#333;
+}
+.m-more-item .u-more-tip{
+	line-height: .74rem;
+	font-size:.4rem;
+	color:#999;
+}

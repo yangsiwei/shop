@@ -1,0 +1,160 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/goods_item.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/anno.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.SuperSlide.2.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/lazyload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/anno.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/anno.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/slider.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/slider.js";
+
+?>
+{include file="inc/header.html"}
+<div class="wrap_full_w clearfix">
+	{if $lastet_list}
+		<div class="result-goods-list f_l">
+			<h1 class="main-title">最近三天揭晓的所有商品</h1>
+			<ul class="ui-list" width="296" pin_col_init_width="0" wSpan="11" hSpan="12">
+			{foreach from=$lastet_list item=lastet_duobao}
+				<li class="result-goods ui-item">
+					<div class="ten-logo-box"></div>
+					<div class="goods-info">
+					<div class="imgbox">
+						<a href="{url r="index" r="duobao" p="id=$lastet_duobao.id"}">
+							<img src="{$lastet_duobao.icon}" lazy="true" width="200" height="200" />
+						</a>
+					</div>
+						<a href="{url r="index" r="duobao" p="id=$lastet_duobao.id"}" class="goods-title">
+                        {if $lastet_duobao.is_topspeed==1}
+                        <em style="background-color:#ff2300;padding: 3px 5px;color: #fff;font-size: 12px;">极速</em>
+                        {/if}
+                        {if $lastet_duobao.is_number_choose==1}
+                        <em style="background-color:#ff2300;padding: 3px 5px;color: #fff;font-size: 12px;">选号</em>
+                        {elseif $lastet_duobao.is_pk==1}
+                        <em style="background-color:#ff2300;padding: 3px 5px;color: #fff;font-size: 12px;">PK</em>
+                        {/if}{$lastet_duobao.name}
+						</a>
+						<p class="p-price">
+							总需：{$lastet_duobao.max_buy}人次
+						</p>
+						<p class="code">
+							期号：{$lastet_duobao.id}
+						</p>
+					</div>
+					<!-- 揭晓结果 -->
+					<div class="record" >
+					{if !$lastet_duobao.luck_user_id}
+					<!-- 倒计时 -->
+					<div class="countdown">
+						<div class="countdown-title">
+							<i class="ico countdown-ico countdown-ico-gray"></i>
+							揭晓倒计时
+						</div>
+						<time class="countdown-nums" nowtime="{$now_time}" endtime="{$lastet_duobao.lottery_time}" id="{$lastet_duobao.id}">
+							<b>0</b><b>0</b>:<b>0</b><b>0</b>:<b>0</b><b>0</b>
+						</time>
+					</div>
+					{else}
+					<!-- 用户头像 -->
+						<div class="user-pic f_l">
+							<a href="{url i="index" r="home" p="id=$lastet_duobao.luck_user_id"}" target="_blank">
+								<img src="{function name="get_user_avatar" uid=$lastet_duobao.luck_user_id type="small"}" width="40" height="40">
+							</a>
+						</div>
+					<!-- 中奖信息 -->
+						<div class="record-info">
+							<p class="owner-info">
+								恭喜<a href="{url i="index" r="home" p="id=$lastet_duobao.luck_user_id"}" target="_blank">{$lastet_duobao.luck_user_name}</a>获得该商品
+							</p>
+							<p>幸运号码：<b class="txt-red">{$lastet_duobao.lottery_sn}</b></p>
+							<p>本期参与：<b class="txt-red">{$lastet_duobao.luck_user_buy_count}</b>人次</p>
+							<p>揭晓时间：{function name=to_date v=$lastet_duobao.lottery_time f="Y-m-d"}</p>
+							<a href="{url r="index" r="duobao" p="id=$lastet_duobao.id"}" class="btn check-info" target="_blank">查看详情</a>
+						</div>
+					{/if}
+					</div>
+				</li>
+			{/foreach}
+			</ul>
+			<div class="pages">{$pages}</div>
+		</div>
+	{else}
+	<div class="null-data f_l">
+		<p class="txt">暂时还没有最新揭晓哦~</p>
+		<div class="blank20"></div>
+	</div>
+	{/if}
+	<div class="result-lottery-list f_r">
+		<div class="result-lottery">
+			<div class="title">
+				<h1>最快揭晓</h1>
+			</div>
+			<div class="ico result-bolan"></div>
+			<ul class="new-result-list">
+			{foreach from=$unopen_list item=unopen_duobao}
+				<li class="goods">
+				<div class="ten-logo-box"></div>
+					<div class="goods-wrap">
+					<div class="imgbox">
+						<a href='{url r="index" r="duobao" p="id=$unopen_duobao.id"}' title="{$unopen_duobao.duobaoitem_name}">
+							<img src="{$unopen_duobao.icon}" lazy="true" width="200" height="200" />
+						</a>
+					</div>
+						<a href="{url r="index" r="duobao" p="id=$unopen_duobao.id"}" class="goods-title" title="{$unopen_duobao.duobaoitem_name}">
+                        {if $unopen_duobao.is_topspeed}
+                        <em style="background-color:#ff2300;padding: 3px 5px;color: #fff;font-size: 12px;">极速专区</em>
+                        {/if}{$unopen_duobao.duobaoitem_name}
+						</a>
+						<div class="p-price f_l">
+							总需：{$unopen_duobao.max_buy}人次
+						</div>
+						<div class="clear"></div>
+						<!-- 进度条 -->
+						<div class="progressBar">
+						<!-- 进度条外层 -->
+							<div class="progress" title="{$unopen_duobao.progress}%">
+							<!-- 进度条内层 -->
+								<div class="progress-bar" style="width:{$unopen_duobao.progress}%"></div>
+							</div>
+						</div>
+						<ul class="person-info">
+							<li class="f_l">
+								<p class="num">{$unopen_duobao.current_buy}</p>
+								<p class="info">已参与人次</p>
+							</li>
+							<li class="f_r tar">
+								<p class="num">{$unopen_duobao.less_buy}</p>
+								<p class="info">剩余人次</p>
+							</li>
+							<div class="clear"></div>
+						</ul>
+						<div class="btn-box">
+							<a class="btn finished" buy_num="{$unopen_duobao.less_buy}" data_id="{$unopen_duobao.id}" onclick="add_cart(this,1)">我来包尾</a>
+						</div>
+					</div>
+				</li>
+			{/foreach}
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+{include file="inc/footer.html"}

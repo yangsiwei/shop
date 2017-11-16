@@ -1,0 +1,85 @@
+.fx-title{
+	line-height: 36px;
+	height:36px;
+	border-bottom:2px solid #e5e5e5;
+}
+.fx-title h1{
+	font-size:16px;
+	border-bottom:2px solid @main_color;
+}
+.my-fx-list .fx-title a{
+	color:#808080;
+	font-size:14px;
+	vertical-align:top;
+}
+.my-fx-list .fx-title a:hover{
+	text-decoration:none;
+}
+.user-list li{
+	width:25%;
+	float: left;
+	padding:25px 0 12px;
+	text-align: center;
+}
+.user-list li .user-avatar{
+	width:72px;
+	height: 72px;
+	border-radius:72px;
+	overflow: hidden;
+}
+.user-list li .user-name{
+	line-height: 30px;
+	font-size: 16px;
+}
+.fx-info{
+	text-align: center;
+	padding-bottom:55px;
+}
+.fx-info p{
+	line-height: 24px;
+}
+.fx-rule .rule-info{
+	padding-top:20px;
+	line-height: 25px;
+	font-size:14px;
+}
+.user-info-list{
+	padding:20px 10px 0;
+}
+.user-info-list li{
+	border-bottom:1px solid #ddd;
+	font-size:16px;
+}
+.user-info-list .user-info-hd{
+	font-size:16px;
+	padding-bottom:20px;
+}
+.user-info-list .user-info-bd{
+	font-size:16px;
+	line-height: 90px;
+}
+.user-info-list .user-avatar{
+	text-align: center;
+	width:15%;
+}
+.user-info-list .user-info-bd .user-avatar{
+	padding:10px 0;
+}
+
+.user-info-list .user-info-bd .user-avatar img{
+	width:70px;
+	height: 70px;
+}
+.user-info-list .user-name{
+	text-align: center;
+	width:25%;
+}
+.user-info-list .user-info-bd .user-name{
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+.user-info-list .user-info-item{
+	text-align: center;
+	width:20%;
+} 

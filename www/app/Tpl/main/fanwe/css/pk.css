@@ -1,0 +1,183 @@
+
+.goods-list{
+	width: 960px;
+}
+input::-ms-clear{display:none;}
+.goods .goods-wrap{
+	height: 320px;
+}
+.goods .btn-box .pk-now{
+	width: 96px;
+	color: #fff;
+	margin: 0 auto;
+	text-align: center;
+	background: #dd344f;
+	padding: 0 20px;
+	height: 35px;
+	line-height: 35px;
+	font-size: 16px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.goods .p-price{
+	margin-bottom: 0;
+}
+.duobao-rule {
+    padding-top: 0;
+    width: 230px;
+}
+.pk-type{
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+}
+.pk-type a{
+	font-size: 16px;
+	color: #333;
+	line-height: 30px;
+	width: 116px;
+	margin-right: 20px;
+	text-align: center;
+	float: left;
+	cursor: pointer;
+	display: block;
+	border-radius: 3px;
+}
+.pk-type a:hover{
+	text-decoration: none;
+}
+.pk-type .active{
+	background: #dd2726;
+	color: #fff;
+}
+.pk-box{
+	display: none;
+}
+.mask{
+	background: #000;
+	filter: alpha(opacity=60);
+	-moz-opacity: 0.6;
+	-khtml-opacity: 0.6;
+	opacity: 0.6;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+}
+.start-pk{
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    border-radius: 10px;
+    border: 5px solid #999;
+    z-index: 1001;
+    width: 516px;
+    height: 370px;
+    margin-top: -185px;
+    margin-left: -258px;
+}
+.start-pk .hd{
+	position: relative;
+	line-height: 50px;
+	border-bottom: 1px solid #ECECEC;
+	font-size: 16px;
+	padding: 0 20px;
+}
+.start-pk .close-pk{
+    position: absolute;
+    width: 34px;
+    height: 38px;
+    background: url(../images/pk/close.png) no-repeat;
+    right: -16px;
+    top: -16px;
+    cursor: pointer;
+}
+.start-pk .pk-tit{
+	font-size: 18px;
+	text-align: center;
+	margin: 20px 10px 15px;
+	color:@main_color;
+}
+.start-pk .pk-num{
+	text-align: center;
+	font-size: 14px;
+	color: #999;
+}
+.start-pk .pk-num span{
+	color:#333;
+}
+.start-pk .pk-set{
+	color: #333;
+	padding: 0 46px;
+	font-size: 14px;
+	margin-top: 25px;
+}
+.start-pk .pk-set p{
+	display: inline-block;
+	vertical-align:top;
+	width: 180px;
+	font-size: 14px;
+	color: #333;
+	text-align: right;
+	line-height: 34px;
+}
+.start-pk .pk-set p{
+	*display: inline;
+}
+.start-pk .pk-set input{
+	width: 187px;
+	border: 1px solid #e1e1e1;
+	font-size: 14px;
+	height: 32px;
+	line-height: 32px;
+	padding: 0 10px;
+}
+.start-pk .start-pk-btn{
+	display: block;
+	text-align: center;
+	margin: 40px auto 0;
+	color: #fff;
+	background:@main_color;
+	width: 154px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+}
+.start-pk .pk-num-count{
+	width:145px;
+	padding:0 32px;
+	display: inline-block;
+	position: relative;
+}
+.start-pk .pk-num-count{
+	*display:inline;
+}
+.start-pk .pk-num-count input{
+	width:123px;
+	text-align: center;
+}
+.start-pk .pk-num-count .num-btn{
+	font-size: 18px;
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	text-decoration: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+	*top:1px;
+	text-align: center;
+	overflow: hidden;
+	background: #F5F5F5;
+	color: #9e9e9e;
+	border: 1px solid #e0e0e0;
+}
+.start-pk .pk-num-count .num-btn-min{
+	right: auto;
+	left: 0;
+}
+input:-webkit-autofill {
+ -webkit-box-shadow: 0 0 0px 1000px white inset;
+}

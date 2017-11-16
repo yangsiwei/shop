@@ -1,0 +1,184 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_fx.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_invite.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_invite.js";
+?>
+{include file="inc/header.html"}
+<script>
+var MEDAL_BOX_URL = '{url x="index" r="uc_medal#load_medal"}';
+</script>
+<div class="blank20"></div>
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav f_l ">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<ul class="web-map clearfix">
+			<li>当前位置：</li>
+			<li><a href="{url x="index" r="uc_center"}">我的夺宝</a> ></li>
+			<li class="txt-red">我的邀请</li>
+		</ul>
+
+		<div class="level" style="border: 1px solid #fcf5be;padding: 5px;margin: 5px 5px 5px 0;background: none repeat scroll 0 0 #fffce0;">
+			<span style="font-size:14px;">我的等级  </span>
+			<strong style="font-size:14px;color:#dd344f;font-family: verdana;">{$level}</strong>
+		</div>
+		<div class="main_box setting_user_info">
+
+			<div class="my-fx-list my-fx-list1">
+				<div class="fx-title clearfix">
+					<h1 class="f_l">一级邀请用户</h1>
+					<a href="{url x="index" r="uc_fx#user_list_one" p="id=$u.id"}" class="f_r">
+						<span class="txt-red">全部共{$data.first_user_count}人</span>
+						<i class="iconfont">&#xe660;</i>
+					</a>
+				</div>
+				<!-- 只显示4个，套完数据删掉这行 -->
+				<ul class="user-list clearfix">
+					{foreach from="$data.first_fx_user" item="u"}
+					<li>
+						<a href="{url x="index" r="home" p="id=$u.id"}" >
+						<img src="{if $u.user_logo}{$u.user_logo}{else}{$data.no_user_logo}{/if}" class="user-avatar">
+						<p class="user-name">{$u.user_name}</p>
+						</a>
+					</li>
+					{/foreach}
+				</ul>
+				<div class="fx-info">
+					<p>今日我的一级邀请用户充值：</p>
+					<p><span class="txt-red">{if $data.first_money.money}{$data.first_money.money}{else}0{/if}</span>夺宝币，<span class="txt-red">{if $data.first_money.num}{$data.first_money.num}{else}0{/if}</span>个订单数，按照{$data.fx_salary.first}%的推广奖，我收入<span class="txt-red">{$data.first_fx_money}</span>个夺宝币</p>
+				</div>
+			</div>
+			{if $user_info.fx_level gt 1}
+			<div class="my-fx-list my-fx-list2">
+				<div class="fx-title clearfix">
+					<h1 class="f_l">二级邀请用户</h1>
+					<a href="{url x="index" r="uc_fx#user_list_two" p="id=$u.id"}" class="f_r">
+						<span class="txt-red">全部共{$data.second_user_count}人</span>
+						<i class="iconfont">&#xe660;</i>
+					</a>
+				</div>
+				<!-- 只显示4个，套完数据删掉这行 -->
+				<ul class="user-list clearfix">
+					{if $data.second_user_count}
+					{foreach from="$data.second_fx_user" item="u"}
+					<li>
+						<a href="{url x="index" r="home" p="id=$u.id"}" >
+						<img src="{if $u.user_logo}{$u.user_logo}{else}{$data.no_user_logo}{/if}" class="user-avatar">
+						<p class="user-name">{$u.user_name}</p>
+						</a>
+					</li>
+					{/foreach}
+					{/if}
+				</ul>
+				<div class="fx-info">
+					<p>今日我的二级邀请用户充值：</p>
+					<p><span class="txt-red">{if $data.second_money.money}{$data.second_money.money}{else}0{/if}</span>夺宝币，<span class="txt-red">{if $data.second_money.num}{$data.second_money.num}{else}0{/if}</span>个订单数，按照{$data.fx_salary.second}%的推广奖，我收入<span class="txt-red">{$data.second_fx_money}</span>个夺宝币</p>
+				</div>
+			</div>
+			{/if}
+			{if $user_info.fx_level gt 2}
+			<div class="my-fx-list my-fx-list3">
+				<div class="fx-title clearfix">
+					<h1 class="f_l">三级邀请用户</h1>
+					<a href="{url x="index" r="uc_fx#user_list_three" p="id=$u.id"}" class="f_r">
+						<span class="txt-red">全部共{$data.three_user_count}人</span>
+						<i class="iconfont">&#xe660;</i>
+					</a>
+				</div>
+				<!-- 只显示4个，套完数据删掉这行 -->
+				<ul class="user-list clearfix">
+				
+					{if $data.three_user_count}
+					{foreach from="$data.three_fx_user" item="u"}
+					<li>
+						<a href="{url x="index" r="home" p="id=$u.id"}" >
+						<img src="{if $u.user_logo}{$u.user_logo}{else}{$data.no_user_logo}{/if}" class="user-avatar">
+						<p class="user-name">{$u.user_name}</p>
+						</a>
+					</li>
+					{/foreach}
+					{/if}
+					 
+				</ul>
+				<div class="fx-info">
+					<p>今日我的三级邀请用户充值：</p>
+					<p><span class="txt-red">{if $data.third_money.money}{$data.third_money.money}{else}0{/if}</span>夺宝币，<span class="txt-red">{if $data.third_money.num}{$data.third_money.num}{else}0{/if}</span>个订单数，按照{$data.fx_salary.third}%的推广奖，我收入<span class="txt-red">{$data.third_fx_money}</span>个夺宝币</p>
+				</div>
+			</div>
+			{/if}
+
+			<div class="fx-rule">
+				  <p style="color:red;font-size:14px;color:#dd344f !important;background: none repeat scroll 0 0 #fffce0;border: 1px solid #fcf5be; padding: 10px;margin: 10px 10px 10px 0;">注意：以下推广奖比例为假设非准确数据，实际情况以实际情况为准</p>
+				<div class="fx-title clearfix">
+					<h1 class="f_l">
+						邀请用户规则
+					</h1>
+				</div>
+				<div class="rule-info">
+					<p>一级邀请用户：</p>
+					<p>◆ 指我直接邀请的用户</p>
+				</div>
+				<div class="rule-info">
+					<p>二级邀请用户：</p>
+					<p>◆ 指我的一级邀请用户邀请的用户</p>
+				</div>
+				<div class="rule-info">
+					<p>三级邀请用户：</p>
+
+					<p>◆ 指我的二级邀请用户邀请的用户</p>
+				</div>
+				 <!-- <div class="rule-info">
+					<p class="txt-red">比如，我邀请A，A邀请B，B邀请C，C邀请D。A是我的一级邀请用户，B是我的二级邀请用户，C是我的三级邀请用户。</p>
+					<p class="txt-red">如果A消费100夺宝币，我将获得3%的推广奖即3夺宝币。</p>
+					<p class="txt-red">如果B消费100夺宝币，A将获得3%的推广奖即3夺宝币，我将获得2%的推广奖即2夺宝币。</p>
+					<p class="txt-red">如果C消费100夺宝币，B将获得3%的推广奖即3夺宝币，A将获得2%的推广奖即2夺宝币，我将获得1%的推广奖即1夺宝币。</p>
+					<p class="txt-red">如果D消费100夺宝币，C将获得3%的推广奖即3夺宝币，B将获得2%的推广奖即2夺宝币，A将获得1%的推广奖即1夺宝币，我不获得推广奖。</p>
+				</div> -->
+			</div>
+		</div>
+		</div>
+
+
+	</div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var fx_level = {$fx_level_my};
+		if(fx_level == 0){
+			$(".my-fx-list1").hide();
+			$(".my-fx-list2").hide();
+			$(".my-fx-list3").hide();
+		}
+		if(fx_level == 1){
+			$(".my-fx-list2").hide();
+			$(".my-fx-list3").hide();
+		}
+		if(fx_level == 2){
+			$(".my-fx-list3").hide();
+		}
+	});
+</script>
+
+<div id="layer">{include file="inc/layer.html"}</div>
+{include file="inc/footer.html"}

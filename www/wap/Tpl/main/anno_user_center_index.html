@@ -1,0 +1,167 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/anno_user_center.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+?>
+{include file="inc/header_title_home.html"}
+<header class="uc-info-head">
+    <div class="head-pic fl">
+    <img src="{function name="get_user_avatar" uid=$user_info.id type="small"}"  width="100%" height="100%">
+    </div>
+    <div class="user-box fl">
+	    <p class="user-name">{$user_info.user_name}</p>
+	    <p class="user-id">ID:<span>{$user_info.id}</span></p>
+    </div>
+</header>
+<div class="slider-nav split-line">
+  <ul>
+    <li class="nav-item"><a href="{url x="index" r="anno_user_center#index" p="lucky_user_id=$user_info.id"}" {if $log_type eq 0}class="cur"{/if}>夺宝记录</a></li>
+    <li class="nav-item"><a href="{url x="index" r="anno_user_center#index" p="log_type=1&lucky_user_id=$user_info.id"}" {if $log_type eq 1}class="cur"{/if}>幸运记录</a></li>
+    <li class="nav-item"><a href="{url x="index" r="anno_user_center#index" p="log_type=2&lucky_user_id=$user_info.id"}"  {if $log_type eq 2}class="cur"{/if}>充值记录</a></li>
+  </ul>
+</div>
+
+{if $list and $log_type neq 2}
+	<div class="m-content">
+		<ul class="scroll_bottom_list">
+			{foreach from=$list item=item}
+			<li class="dblist {if $item.success_time eq 0}inprogress{else}finish{/if}">
+				<div class="dblistimg">
+					{if $item.min_buy eq 10}
+						<div class="tenyen"></div>
+					{/if}
+					{if $item.min_buy eq 100}
+						<div class="hundred"></div>
+					{/if}
+					<a href="{url x="index" r="duobao" p="data_id=$item.id"}"><img alt="" src="{$item.icon}"/></a>
+				</div>
+				<div class="dblistmain">
+					<a class="tit" href="{url x="index" r="duobao" p="data_id=$item.id"}">{if $item.is_topspeed}
+                    <em style="background-color:#ff2300;padding: 3px 5px;color: #fff;font-size: 12px;">极速</em>
+                    {/if}
+                    {if $item.is_number_choose==1}
+                    <em style="background-color:#ff2300;padding: 3px 5px;color: #fff;font-size: 12px;">选号</em>
+                    {/if}
+                    {if $item.is_pk==1}
+                    <em style="background-color:#ff2300;padding: 3px 5px;color: #fff;font-size: 12px;">PK</em>
+                    {/if}{$item.name}</a>
+					<div class="prl">
+						<div class="lable">期号&nbsp;:&nbsp;{$item.id}</div>
+						<div class="progressBar">
+		                    <span class="bar" style="width:{$item.progress}%"><i class="color"></i></span>
+		                </div>
+						<div class="lable fl">总需&nbsp;:&nbsp;{$item.max_buy}人次</div>
+						<div class="lable fl surplus">剩余&nbsp;:&nbsp;<em>{$item.less}</em>人次</div>
+							<a class="tacked" href="{url x="index" r="duobao" p="data_id=$item.id"}">跟买</a>
+						</div>
+					{if $item.has_lottery eq 1 and $log_type eq 0}
+					<div class="prl">
+						<div class="partake fl">本期参与&nbsp;:&nbsp;<em>{$item.number}</em>人次</div>
+						<a class="lookno fr" href="{url x="index" r="anno_user_center#my_no" p="id=$item.id&uid=$user_info.id"}">查看夺宝号码</a>
+					</div>
+					<div class="announce">
+						<div class="mline" style="width: 264px; overflow: hidden; text-overflow:ellipsis; white-space: nowrap;">获得者&nbsp;:&nbsp;<span><a href="{url x="index" r="anno_user_center" p="lucky_user_id=$item.luck_user_id"}">{$item.luck_user_name}</a></span> </div>
+						<div class="mline">本期参与&nbsp;:&nbsp;<em>{$item.number}</em>人次</div>
+						<div class="mline" style="width: 264px; overflow: hidden; text-overflow:ellipsis; white-space: nowrap;">幸运号码&nbsp;:&nbsp;<em>{$item.lottery_sn}</em> </div>
+						<div class="mline">揭晓时间&nbsp;:&nbsp;{$item.lottery_time}</div>
+					</div>
+					{elseif  $log_type eq 1}
+					<div class="prl">
+						<div class="partake fl">本期参与&nbsp;:&nbsp;<em>{$item.number}</em>人次</div>
+					</div>
+					<div class="mline">幸运号码&nbsp;:&nbsp;<em>{$item.lottery_sn}</em></div>
+					<div class="mline">揭晓时间&nbsp;:&nbsp;{$item.lottery_time}</div>
+					{else}
+						<div class="announce">
+							<div class="mline">等待开奖</div>
+						</div>
+					{/if}
+				</div>
+			</li>
+			{/foreach}
+		</ul>
+	</div>
+{elseif empty($list) and $log_type neq 2}
+	<div class="content">
+	<div class="null_data">
+		<p class="icon"><i class="iconfont">&#xe6e8;</i></p>
+		<p class="message">暂无数据</p>
+	</div>
+</div>
+{/if}
+
+{if $charge_log and $log_type eq 2}<!-- 他人的夺宝中心，只显示审核通过的晒单 -->
+	<div class="m-content">
+		<table style="width:90%;margin:15px auto;font-size:14px;text-align:left;line-height:25px;">
+			<tr style="background:#cbcce0;">
+				<th style="width:45%;">充值订单号</th>
+				<th style="width:30%;">充值时间</th>
+				<th style="width:25%;">充值金额</th>
+			</tr>
+			{foreach from=$charge_log item=ch}
+				<tr style="border-top:5px solid #fff;background:#eae7e6;">
+					<td>{$ch.order_sn}</td>
+					<td>{$ch.create_time}</td>
+					<td> <span style="color:#eb606d;">{$ch.pay_amount}</span> 夺宝币</td>
+				</tr>
+			{/foreach}
+		</table>
+		<!--<ul class="share-list scroll_bottom_list">-->
+			<!--{foreach from=$share_list item=ome}-->
+			<!--<li class="item">-->
+				<!--<div class="clear"></div>-->
+				<!--<a href="{url r="index" r="share#detail" p="id=$ome.share_id"}" class="share-info">-->
+					<!--<div class="content">-->
+						<!--<h2 class="share-title">{$ome.title}</h2>-->
+						<!--<p class="goods-name">{$ome.name}</p>-->
+						<!--<p class="code">期号：{$ome.duobao_item_id}</p>-->
+						<!--<p class="share-time">晒单时间：{$ome.create_time}</p>-->
+						<!--<p class="share-txt">{$ome.content}</p>-->
+						<!--{if $ome.image_list}-->
+						<!--<ul class="share-pic clearfix">-->
+							<!--{foreach from=$ome.image_list item=ome}-->
+							<!--<li>-->
+								<!--<img src="{$ome.path}">-->
+							<!--</li>-->
+							<!--{/foreach}-->
+						<!--</ul>-->
+						<!--{/if}-->
+					<!--</div>-->
+				<!--</a>-->
+			<!--</li>-->
+			<!--{/foreach}-->
+		<!--</ul>-->
+	</div>
+{elseif empty($charge_log) and $log_type eq 2}
+<div class="content">
+	<div class="null_data">
+		<p class="icon"><i class="iconfont">&#xe6e8;</i></p>
+		<p class="message">暂无数据</p>
+	</div>
+</div>
+{/if}
+
+{if $pages}
+	<div class="fy scroll_bottom_page">
+		{$pages}
+	</div>
+{/if}
+{include file="inc/footer_menu.html"}
+{include file="inc/footer_index.html"}

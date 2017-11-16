@@ -1,0 +1,40 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_money_index.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+
+?>
+{include file="inc/header_title_home.html"}
+<div class="uc_money_body">
+	<div class="null_data">
+		<p class="icon"><img src="{$TMPL}/images/ico_withdrawals.png" height="80" width="80"></p>
+		<p class="message">账 户 余 额 ￥{$data.user_money}</p>
+		<p class="message">赠 送 金 额 ￥{$data.give_money}</p>
+		<p class="message">奖 励 金 ￥{$data.fx_money}</p>
+		<p class="message">管 理 奖 ￥{$data.admin_money}</p>
+		<!--<p class="money"></p>-->
+		<p class="message" style="font-size:13px;color:red;">当前可提现  <span>余额：{$data.money}夺宝币</span> <br> <span>赠送金额：{$data.can_use_give_money}夺宝币</span> <br> <span>推广奖：{$data.fx_money}夺宝币</span> <br> <span>管理奖：{$data.admin_money}夺宝币</span></p>
+	</div>
+	<div class="subbox">
+		  <a href="{url a="index" r="uc_money_cash#withdraw_bank_list" }" class="buy-btn" style="color:#fff;">提现</a>
+	</div>
+</div>
+{include file="inc/no_footer.html"}

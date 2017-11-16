@@ -1,0 +1,73 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<php>
+	function get_fair_type($fair_type)
+	{
+		$cname = $fair_type."_fair_fetch";
+		require_once APP_ROOT_PATH."system/fair_fetch/".$cname.".php";
+		$fetch_obj = new $cname;
+		return $fetch_obj->name;
+	}
+	function view_result($id)
+	{
+		$data =  $GLOBALS['db']->getRow("select * from ".DB_PREFIX."fair_fetch where id = ".$id);
+		$cname = $data['fair_type']."_fair_fetch";
+		require_once APP_ROOT_PATH."system/fair_fetch/".$cname.".php";
+		$fetch_obj = new $cname;
+		$url = $fetch_obj->get_check_link($data['drawdate']);
+		return "<a href='".$url."' target='_blank'>开奖查询</a>";
+	}
+</php>
+<script type="text/javascript">
+	function start_fetch()
+	{
+		$.ajax({ 
+			url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=start_fetch", 
+			data: "ajax=1",
+			dataType:"json",
+			success: function(obj){
+				
+				alert(obj.info);
+
+			}
+	});
+	}
+</script>
+<div class="main">
+<div class="main_title">第三方开奖结果</div>
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		
+		指定日期：
+		<input type="text" class="textbox" name="drawdate" id="drawdate" value="{$drawdate}" onfocus="return showCalendar('drawdate', '%Y%m%d', false, false, 'btn_drawdate');" />
+		<input type="button" class="button" id="btn_drawdate" value="{%SELECT_TIME}" onclick="return showCalendar('drawdate', '%Y%m%d', false, false, 'btn_drawdate');" />	
+		期号:
+		<input type="text" value="{:strim($_REQUEST['period'])}" name="period" />
+			
+		<input type="hidden" value="FairFetch" name="m" />
+		<input type="hidden" value="index" name="a" />
+		
+		<input type="submit" class="button" value="{%SEARCH}" />
+		<input type="button" class="button"  value="启动采集任务" onclick="start_fetch();" />
+	</form>
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="log" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,fair_type|get_fair_type:开奖源,period:期号,drawtime:开奖时间,number:开奖号码" 
+	actionlist="id|view_result" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

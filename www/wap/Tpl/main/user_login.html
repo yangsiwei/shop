@@ -1,0 +1,217 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/user_login.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user_login.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user_login.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/sms_verify.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/sms_verify.js";
+
+?>
+{include file="inc/header_login.html"}
+{include file="inc/sms_verify_code.html"}
+<div class="wrap">
+
+	{if $user_info.is_tmp eq 1 and $user_info.mobile eq ''}
+	<!--请绑定手机-->
+	<form action="{url x="index" r="user#dophbind"}" id="ph_login_box">
+	<section class="login-phone ">
+		<ul class="input-list split-line-top split-line">
+			<li>
+				<i class="iconfont">&#xe6eb;</i>
+				<div class="input-box split-line">
+				<label class="com-input">
+					 <input type="tel" maxlength="11" id="mobile" class="mobile" name="mobile" placeholder="请输入手机号">
+				</label>
+				<label>
+					<input class="btn_phone" type="Button"  id="sms_btn" unique="1" value="点击获取验证码" lesstime="{$sms_lesstime}" />
+				</label>
+				</div>
+			</li>
+			<li>
+				<i class="iconfont">&#xe6f0;</i>
+				<div class="input-box split-line">
+				<label class="com-input">
+                                    <input class="testing third" maxlength="6" type="tel" id = "sms_verify" name="sms_verify"  placeholder="请输入手机短信中的验证码" style="width: 60%;">
+				</label>
+				</div>
+			</li>
+		</ul>
+		<div class="login-btn-box">
+		<input id="ph_login_box" type="submit" value="绑定手机" class="login-btn">
+		</div>
+	</section>
+	</form>
+	{else}
+		 {if $user_info }
+		 
+		 {if $user_info.mobile}
+		 <!--手机验证登录-->
+		 <form action="{url x="index" r="user#dologin"}" id="com_login_box">
+		 <section class="login-phone">
+	 		<ul class="input-list split-line-top split-line">
+	 			<li>
+	 				<i class="iconfont">&#xe6eb;</i>
+	 				<div class="input-box split-line">
+	 				<label class="com-input">
+	 					 <input type="tel" maxlength="11" id="mobile" class="mobile" name="mobile" placeholder="请输入手机号">
+	 				</label>
+	 				<label>
+	 					<input class="btn_phone" type="Button"  id="sms_btn" unique="0" value="点击获取验证码" lesstime="{$sms_lesstime}" />
+	 				</label>
+	 				</div>
+	 			</li>
+	 			<li>
+	 				<i class="iconfont">&#xe6f0;</i>
+	 				<div class="input-box split-line">
+	 				<label class="com-input">
+	 					<input class="testing third" type="tel" maxlength="6" id = "sms_verify" name="sms_verify"  placeholder="请输入手机短信中的验证码"  style="width: 60%;">
+	 				</label>
+	 				</div>
+	 			</li>
+	 		</ul>
+	 		<div class="login-btn-box">
+	 		<input  id="ph_login_box" type="submit" value="登录" class="login-btn">
+	 		</div>
+			<div class="a-box">
+			<a href="javascript:void(0);" class="swich fl">手机登录</a>
+			<div class="clear"></div>
+			</div>
+	 	</section>
+	</form>
+		 {/if}
+		 {else}
+		 <!--手机账户邮箱登录-->
+<form action="{url x="index" r="user#dologin"}" id="com_login_box">
+		<section class="login-normal con-1">
+		<ul class="input-list split-line-top split-line">
+			<li>
+				<i class="iconfont">&#xe6f1;</i>
+				<div class="input-box split-line">
+				<label class="com-input">
+					<input type="text" name="user_key" class="mobile" placeholder="请输入手机号 / 邮箱 / 用户名" >
+				</label>
+				</div>
+			</li>
+			<li>
+				<i class="iconfont">&#xe6ef;</i>
+				<div class="input-box split-line">
+				<label class="com-input">
+					<input type="password" placeholder="请输入密码" class="password" name="user_pwd">
+				</label>
+				</div>
+			</li>
+		</ul>
+                    <div class="login-btn-box" >
+                            <a  id="com_login_box" type="button" class="login-btn" onclick="$(this).submit();">登录</a>
+			</div>
+			<div class="a-box">
+			<a href="#" class="swich fl">手机账号登录</a>
+			<a href="{url x="index" r="user#getpassword"}" class="forget fr">忘记密码？</a>
+			<div class="clear"></div>
+			</div>
+		</section>
+	</form>
+
+	<!--手机验证登录-->
+	<form action="{url x="index" r="user#dophlogin"}" id="ph_login_box">
+	<section class="login-phone con-2">
+	 <ul class="input-list split-line-top split-line">
+		 <li>
+			 <i class="iconfont">&#xe6eb;</i>
+			 <div class="input-box split-line">
+			 <label class="com-input">
+				 <input type="tel" maxlength="11" id="mobile" class="mobile" name="mobile" placeholder="请输入手机号">
+			 </label>
+			 <label>
+				 <input class="btn_phone" type="Button"  id="sms_btn" unique="0" value="点击获取验证码" lesstime="{$sms_lesstime}" />
+			 </label>
+			 </div>
+		 </li>
+		 <li>
+			 <i class="iconfont">&#xe6f0;</i>
+			 <div class="input-box split-line">
+			 <label class="com-input">
+				 <input class="testing third" type="tel" maxlength="6" id = "sms_verify" name="sms_verify"  placeholder="请输入手机短信中的验证码"  style="width: 60%;">
+			 </label>
+			 </div>
+		 </li>
+	 </ul>
+	 <div class="login-btn-box">
+	 <input id="ph_login_box" type="submit" value="登录" class="login-btn">
+	 </div>
+	 <div class="a-box">
+	 <a href="javascript:void(0);" class="swich fl">手机登录</a>
+	 <a href="{url x="index" r="user#getpassword"}" class="forget fr">忘记密码？</a>
+	 <div class="clear"></div>
+	 </div>
+ </section>
+</form>
+		 {/if}
+	{/if}
+</div>
+<!-- <div class="third-login">
+	<p><span>第三方登录</span></p>
+	<div class="third-login-info">
+		{if $is_weixin}
+		<a href="javascript:void(0);" onclick="weixin_login();" class="weixin-login">
+			<i class="iconfont">&#xe6f7;</i>
+			<span>微信</span>
+		</a>
+		{/if}
+		{if $is_app and $m_config.wx_mappid neq '' and $m_config.wx_mappsecret neq ''}
+		<a href="javascript:void(0);" onclick="weixin_login_app();" class="weixin-login">
+			<i class="iconfont">&#xe6f7;</i>
+			<span>微信</span>
+		</a>
+		{/if}
+
+
+		{if !$is_app and $WB_APP_KEY neq '' and $WB_APP_SECRET neq ''}
+		<a href="{url x="index" r="user#wb_login"}" class="weixin-login">
+			<i style="background: #F5101B;" class="iconfont">&#xe6a2;</i>
+			<span>微博</span>
+		</a>
+		{/if}
+
+		{if $is_app and $m_config.sina_app_key neq '' and $m_config.sina_app_secret neq ''}
+		<a href="javascript:void(0);" onclick="weibo_login_app();" class="weixin-login">
+			<i style="background: #F5101B;" class="iconfont">&#xe6a2;</i>
+			<span>微博</span>
+		</a>
+		{/if}
+
+		{if !$is_app and $QQ_HL_APPID neq '' and $QQ_HL_APPKEY neq ''}
+		<a href="{url x="index" r="user#qq_login"}" class="weixin-login">
+		<i style="background: #21c11e;" class="iconfont">&#xe6a0;</i>
+		<span>QQ</span>
+		</a>
+		{/if}
+
+		{if $is_app and $m_config.qq_app_secret neq '' and $m_config.qq_app_key neq ''}
+		<a href="javascript:void(0);" onclick="qq_login_app();" class="weixin-login">
+			<i style="background: #21c11e;" class="iconfont">&#xe6a0;</i>
+			<span>QQ</span>
+		</a>
+		{/if}
+
+
+	</div>
+</div> -->
+
+
+{include file="inc/footer_index.html"}

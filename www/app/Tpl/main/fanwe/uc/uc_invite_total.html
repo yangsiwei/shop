@@ -1,0 +1,100 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_invite.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_invite.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_invite.js";
+?>
+{include file="inc/header.html"}
+<script>
+var MEDAL_BOX_URL = '{url x="index" r="uc_medal#load_medal"}';
+</script>
+
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav f_l ">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<ul class="web-map clearfix">
+			<li>当前位置：</li>
+			<li><a href="{url x="index" r="uc_center"}">我的夺宝</a> ></li>
+			<li class="txt-red">我的邀请</li>
+		</ul>
+		<div class="main_box setting_user_info">
+			<div class="content">
+				
+				<div class="money_box">
+						{$LANG.TOTAL_REFERRALS}：
+						<strong>{function name="format_price" value=$referrals_data.money}</strong>
+						<strong>{function name="format_score" value=$referrals_data.score}</strong>
+						<strong>{function name="format_coupons_price" value=$referrals_data.coupons}</strong>
+						<div class="btn" id="my-invite" style="float:right">
+							<a href="{url x="index" r="uc_invite"}" style="color:#ffffff">返回</a>
+						</div>
+				</div>	
+				<div class="blank20"></div>		
+				
+				<div class="info_table">
+					{if $total_list}
+					<table >
+						<tbody>
+							<tr>
+								<th>{$LANG.USER_TITLE_USER_NAME}</th>
+								<th>{$LANG.REFERRALS_STATUS}</th>
+								<th>返优惠币</th>
+							</tr>
+							{foreach from=$total_list item=invite key=key}
+							<tr class="alt">
+								<td>{$invite.user_name}</td>
+								<td>
+								{if $invite.score gt 0}
+									{function name="format_score" value=$invite.score}
+								{else}无{/if}
+								</td>
+								<td>
+								{if $invite.coupons gt 0}
+									{function name="format_coupons_price" value=$invite.coupons}
+								{else}无{/if}
+								</td>
+	                         </tr>
+	                         {/foreach}
+						</tbody>
+					</table>
+					
+					<div class="blank"></div>
+					<div class="pages">{$pages}</div>
+					{else}
+					<div class="empty_tip">没有相关的邀请返利记录</div>
+					{/if}					
+				</div>
+				
+			</div>				
+				
+		</div>
+
+		<div class="blank20"></div>
+		</div>
+	</div>	
+</div>
+<div class="blank20"></div>
+<div id="layer">{include file="inc/layer.html"}</div>
+{include file="inc/footer.html"}

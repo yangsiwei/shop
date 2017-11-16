@@ -1,0 +1,106 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_address.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_address.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/uc_address.js";
+
+?>
+{include file="inc/header_title_home.html"}
+<script type="text/javascript" src="{$APP_ROOT}/public/runtime/region.js"></script>
+<div class="wrap">
+	<div class="content">
+					<form name="my_address" method="post" action="{url x="index" r="uc_address#save"}">
+						<input type="hidden" value="{$order_item_id}" name="order_item_id"  />
+						<input type="hidden" value="{$data.consignee_info.id}" name="region_id"  />
+                        <input type="hidden" name="post_xpoint" id="post_xpoint" value="{$data.consignee_info.xpoint}"/>
+                        <input type="hidden" name="post_ypoint" id="post_ypoint" value="{$data.consignee_info.ypoint}"/>
+						<dl class="address_input">
+							<dt>收<em></em>件<em></em>人</dt>
+							<dd>
+								<input class="ui-textbox" value="{$data.consignee_info.consignee}" name="consignee" holder="请输入收货人姓名" />
+							</dd>
+
+							<dt>省<em></em>市<em></em>区</dt>
+							<dd class="select-address">
+
+								<div class="p_c_r" style="display:none;">
+								<select name="region_lv1" class="region_select">
+                                	<option value="1">中国</option>
+<!--								    <option value="0">=请选择=</option>
+									{foreach from=$data.region_lv1 item=lv1}
+									<option {if $lv1.selected eq 1}selected="selected"{/if} value="{$lv1.id}">{$lv1.name}</option>
+									{/foreach}-->
+							  	</select>
+							  	</div>
+
+								<div class="p_c_r">
+									<select name="region_lv2" class="region_select" >
+										<option value="0">=请选择=</option>
+										{foreach from=$data.region_lv2 item=lv2}
+										<option {if $lv2.selected eq 1}selected="selected"{/if} value="{$lv2.id}">{$lv2.name}</option>
+										{/foreach}
+									  </select>
+								</div>
+								<div class="p_c_r">
+									<select name="region_lv3" class="region_select" >
+										<option value="0">=请选择=</option>
+										{foreach from=$data.region_lv3 item=lv3}
+										<option {if $lv3.selected eq 1}selected="selected"{/if} value="{$lv3.id}">{$lv3.name}</option>
+										{/foreach}
+									 </select>
+								 </div>
+								<div class="p_c_r">
+									<select name="region_lv4" class="region_select" >
+										<option value="0">=请选择=</option>
+										{foreach from=$data.region_lv4 item=lv4}
+										<option {if $lv4.selected eq 1}selected="selected"{/if} value="{$lv4.id}">{$lv4.name}</option>
+										{/foreach}
+									  </select>
+								  </div>
+
+							</dd>
+
+							<dt>详细地址</dt>
+							<dd>
+								<input  name="address" value="{$data.consignee_info.address}" class="ui-textbox" holder="请输入收货地址" />
+
+							</dd>
+
+							<dt>邮<em></em><em></em><em></em><em></em>编</dt>
+							<dd>
+								<input  name="zip" value="{$data.consignee_info.zip}" class="ui-textbox" holder="请输入邮编" />
+
+							</dd>
+
+							<dt>手<em></em><em></em><em></em><em></em>机</dt>
+							<dd>
+								<input  name="mobile" value="{$data.consignee_info.mobile}" class="ui-textbox" holder="请输入收货人手机" />
+
+							</dd>
+							<dd>
+
+							</dd>
+						</dl>
+						<input type="hidden" name="is_total_buy" value="1" />
+                        <div style="padding: 0 10px;"><button type="button" value="确定"   name="commit"  id="sub_address" class="sub_address"  >确定</button></div>
+
+
+
+				</form>
+	</div>
+</div>
+{include file="inc/footer_index.html"}

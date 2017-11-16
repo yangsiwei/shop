@@ -1,0 +1,119 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/icolorpicker.js' />
+<script type="text/javascript">	
+	var nav_cfg = {$nav_cfg|json_encode};	
+	var adv_type = 0;
+	var data_json = new Object();
+</script>
+<load href='__TMPL__Common/js/mnav_cfg.js' />
+<div class="main">
+<div class="main_title">{%ADD} <a href="{:u("MIndex/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%NAME}:</td>
+		<td class="item_input">
+			<input type="text" class="textbox require" name="name"  />
+		</td>
+	</tr>
+	
+	<tr style="display:none;">
+		<td class="item_title">手机类型:</td>
+		<td class="item_input">
+			<select name=mobile_type id = "mobileTypeSelect">
+				<foreach name="nav_cfg" item="cfg">
+					<option value="{$cfg.mobile_type}" <if condition="$vo['mobile_type'] eq $cfg['mobile_type']">selected="selected"</if>>{$cfg.name}</option>					
+				</foreach>
+			</select>
+		</td>
+	</tr>
+		
+	<tr style="display:none;">
+		<td class="item_title">所属城市:</td>
+		<td class="item_input">
+		<select name="city_id">
+			<option value="0" <if condition="$vo['city_id'] eq 0">selected="selected"</if>>全部显示</option>
+			<foreach name="city_list" item="city_item">
+				<option value="{$city_item.id}" <if condition="$city_item['pid'] eq 0">disabled="disabled"</if>>{$city_item.title_show}</option>
+			</foreach>
+		</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">wap分类图标与色块配置:</td>
+		<td class="item_input">
+			<a href="javascript:void(0);" class="ui_upload upload_iconfont">上传新的图标库</a>				
+			<span id="ui_iconfont" >		
+				<span class="diyfont" id="diyfont"></span>
+				<input type="hidden" name="iconfont" value="" />
+			</span>
+			
+			<span class="color_pick">
+			<input type="text" id="color" name="iconcolor" value="" rel="diyfont" class="iconfont_color textbox" />
+			<img id="icp_color" onclick="iColorShow('color','icp_color');" src="__TMPL__Common/images/color.png" style="margin:5px 0 0 0;cursor:pointer;" />
+			</span>
+			<div class="ui_iconfont_select_title">请从以下图标库中选取</div>
+			<div id="ui_iconfont_select">				
+			
+			</div>	
+		</td>
+	</tr>
+		
+	<tr style="display:none;">
+		<td class="item_title">{%NAV_IMAGE}:</td>
+		<td class="item_input">
+			<html:imgUpload name = 'img' id='img' />
+			<span class='tip_span'>[背景图规格为 160px x 160px]</span>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">{%ADV_TYPE}:</td>
+		<td class="item_input">
+			<select name="type" id='typeSelect'>
+				<foreach name="nav_list" item="nav">
+					<option value="{$nav.type}" <if condition="$vo['type'] eq $nav['type']">selected="selected"</if>>{$nav.name}</option>					
+				</foreach>
+			</select>
+		</td>
+	</tr>
+	
+	
+	
+	<tr id="type" style="display:none;">
+		<td class="item_title"></td>
+		<td class="item_input">
+			<input type="text" class="textbox " name=""  />
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">{%SORT}:</td>
+		<td class="item_input">
+			<input type="text" class="textbox " name="sort" value="{$new_sort}"  />
+		</td>
+	</tr>	
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="MIndex" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="insert" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%ADD}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

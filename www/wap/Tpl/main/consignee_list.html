@@ -1,0 +1,51 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/consignee_list.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/TouchSlide.1.1.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/onload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/swipe.js";
+?>
+{include file="inc/header_title_home.html"}
+<script>
+	$(document).ready(function(){
+		$('.address-list li').click(function(){
+			$(this).children('i').removeClass('txt-white').addClass('txt-red');
+			$(this).siblings().children('i').removeClass('txt-red').addClass('txt-white');
+		});
+	});
+</script>
+<ul class="address-list">
+	{foreach from="$data.consignee_list" item="item"}
+	<li class="split-line">
+		
+		<i class="iconfont default {if $item.is_select eq 1}txt-red{else}txt-white{/if}">&#xe70a;</i>
+		
+		<a href="{$item.url}" class="user-info">
+			<p class="user-name fl">{$item.consignee}</p>
+			<p class="user-phone fr">{$item.mobile}</p>
+			<div class="clear"></div>
+			<p class="uc-add">{if $item.is_default eq 1}<span class="de-add">[默认]</span>{/if}{$item.address}</p>
+		</a>
+		<a href="{url x="index" r="totalbuy#add_consignee" p="id=$item.id"}" class="edit txt-red">编辑</a>
+	</li>
+	{/foreach}
+</ul>
+{include file="inc/no_footer.html"}

@@ -1,0 +1,3 @@
+<foreach name="sub_cate_list" item="cate">
+<label>{$cate.name}<input type="checkbox" name="deal_cate_type_id[]" value="{$cate.id}" <if condition="$cate['checked']">checked="checked"</if> /> </label>
+</foreach>

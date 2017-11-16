@@ -1,0 +1,7 @@
+.money_box { background: none repeat scroll 0 0 #fffce0; border: 1px solid #fcf5be; padding: 10px; margin:10px 10px 10px 0;}
+.money_box strong{ color:@main_color;font-size: 14px;font-family: verdana;margin-right:10px;}
+
+.info_table .ui-textbox{padding:5px;}
+.info_table .formbutton {background: @main_color;border-color: @border_color;border-style: solid;border-width: 2px;color: #FFFFFF;cursor: pointer;letter-spacing: 0.1em;padding: 4px 1em;}
+.info_table td.dashed{border-left: 1px dotted #E5E5E5;border-right: 1px dotted #E5E5E5;}
+.info_table table th{font-size: 13px;}

@@ -1,0 +1,24 @@
+{if $lottery_info_anno.luck_user_id gt 0}
+<div class="user-pic f_l">
+	<a href="" target="_blank">
+		<img src="{$lottery_info_anno.avatar}" width="40" height="40">
+	</a>
+</div>
+<div class="record-info">
+	<p class="owner-info">
+		恭喜<a href="" target="_blank">{$lottery_info_anno.user_name}</a>获得该商品</p>
+	<p>幸运号码：<b class="txt-red">{$lottery_info_anno.lottery_sn}</b></p>
+	<p>本期参与：<b class="txt-red">{$lottery_info_anno.current_buy}</b>人次</p>
+	<p>揭晓时间：{function name=to_date v=$lottery_info_anno.lottery_time f="Y-m-d"}</p>
+	<a href="" class="btn check-info" target="_blank">查看详情</a>
+	</div>
+{else}
+<div class="countdown">
+	<div class="countdown-title">
+		<i class="ico countdown-ico countdown-ico-gray"></i>
+		揭晓倒计时
+	</div>
+	<span style="font-size:25px;" >正在揭晓中</span>
+	</time>
+</div>
+{/if}

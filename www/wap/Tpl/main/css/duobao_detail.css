@@ -1,0 +1,90 @@
+.formula-wrap{
+	padding:.6rem .4rem;
+}
+.formula{
+	padding: .2rem .3rem;
+	border-radius: .2rem;
+	background:#db3652;
+	color: #fff;
+	line-height: .92rem;
+}
+.content h1{
+	font-size: .56rem;
+}
+.info-list li{
+	background: #fff;
+	padding: .2rem .3rem;
+	line-height: .92rem;
+}
+.info-list li p{
+	color: #999;
+}
+.info-list li p .check{
+	padding-left: .4rem;
+}
+.info-list li span{
+	font-weight: bold;
+	color: #df5667;
+}
+.info-list li em{
+	color: #ff9e08;
+}
+.info-list li .open-box,.info-list li .close-box,.info-list li p .check{
+	color: #0079fe;
+}
+.info-list li .close-box{display:none;}
+.info-list li p .iconfont{
+	display: inline-block;
+	font-size: .8rem;
+	vertical-align: middle;
+}
+.info-list li h2{
+	text-align: center;
+	font-size: .6rem;
+	padding-bottom: .92rem;
+
+}
+.blank-line{
+	height: .4rem;
+	background:#f8f8f8;
+}
+.info-list dl{
+	color: #999;
+}
+.info-list dl dt{
+	padding: 0 .4rem;
+	line-height: .8rem;
+}
+.info-list dl dt p{
+	width: 10rem;     
+}
+.info-list dl dd{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-align-items:center;
+	align-items:center;
+	-webkit-box-align: center;
+	height: .8rem;
+	padding: 0 .4rem;
+
+}
+.info-list dl dd .txtbox{
+	width: 10rem;
+}
+.info-list dl dd .iconfont{
+	display: inline-block;
+	vertical-align: top;
+	font-size: .4rem;
+	vertical-align: middle;
+}
+.info-list dl dd span{     
+	color: #df5667;
+}
+.info-list dl dd .user-name{
+	
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+.info-list .user-list{display:none;}

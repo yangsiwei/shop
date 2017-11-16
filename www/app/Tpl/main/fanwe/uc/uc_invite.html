@@ -1,0 +1,134 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_invite.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_invite.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_invite.js";
+?>
+{include file="inc/header.html"}
+<script>
+var MEDAL_BOX_URL = '{url x="index" r="uc_medal#load_medal"}';
+</script>
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav f_l ">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<ul class="web-map clearfix">
+			<li>当前位置：</li>
+			<li><a href="{url x="index" r="uc_center"}">我的夺宝</a> ></li>
+			<li class="txt-red">邀请链接</li>
+		</ul>
+		<div class="main_box setting_user_info">
+			<div class="content">
+				
+				<div class="money_box">
+						{$LANG.TOTAL_REFERRALS}：
+						<strong>{function name="format_price" value=$referrals_data.money}</strong>
+						<strong>{function name="format_score" value=$referrals_data.score}</strong>
+						<strong>{function name="format_coupons_price" value=$referrals_data.coupons}</strong>
+						<div class="btn" id="my-invite" style="float:right">
+							<a href="{url x="index" r="uc_invite#invite_user_list"}" style="color:#ffffff">我邀请的人</a>
+						</div>
+				</div>	
+				<div class="blank20"></div>		
+				<div class="jiaocheng">
+					<img src="./image/fenxiang.png" alt="" style="width:100%;height:250px;">
+				</div>
+				<div class="info_table">
+				
+					<div id="referrals">
+								<div class="blk im refers" style="text-align:center">
+									
+										<h4>{$LANG.SHARE_LINK}：</h4>
+										<input type="text" onfocus="this.select()" class="ui-textbox" id="share-copy-text" size="40" value="{$share_url}">
+										<input type="button" class="formbutton" id="share-copy-button" value="{$LANG.COPY}">
+								
+								</div>
+					</div>
+					<div><img src="{function name="gen_qrcode" value=$share_url}" isload="true"></div>
+					<div class="blank20"></div>				
+					{if $list}
+					<table>
+						<tbody>
+							<tr>
+									<th>{$LANG.USER_TITLE_USER_NAME}</th>
+									<!-- <th>{$LANG.REGISTER_TIME}</th>
+									<th>{$LANG.REFERRALS_GEN}</th>
+									<th>{$LANG.REFERRALS_PAID}</th> -->
+									<th>{$LANG.REFERRALS_TYPE}</th>
+									<th>{$LANG.REFERRALS_ORDER}</th>
+									<th>{$LANG.REFERRALS_GEN_TIME}</th>
+									<!-- <th>{$LANG.REFERRALS_PAID_TIME}</th> -->
+									<th>{$LANG.REFERRALS_STATUS}</th>
+									<th>返优惠币</th>
+							</tr>
+							{foreach from=$list item=invite key=key}
+							<tr class="alt">
+								<td>{$invite.i_user_name}</td>
+								<!-- <td class="dashed">{function name="to_date" value=$invite.i_reg_time}</td>
+								<td>{if $invite.i_referral_count gt 0}{$LANG.YES}{else}{$LANG.NO}{/if}</td>
+								<td class="dashed">{if $invite.i_pay_time gt 0}{$LANG.YES}{else}{$LANG.NO}{/if}</td> -->
+								<td class="dashed">{if $invite.i_order_sn}购买返利{else}{if $invite.i_referral_time}邀请返利{else}邀请注册{/if}{/if}</td>
+								<td>{if $invite.name}{$invite.name}{else}无{/if}</td>
+								<td class="dashed">{if $invite.i_referral_time}{function name="to_date" value=$invite.i_referral_time}{else}无{/if}</td>
+								<!-- <td>{function name="to_date" value=$invite.i_pay_time}</td> -->
+								<td>
+								{if $invite.i_referral_time}
+									{if $invite.i_money gt 0}
+										{function name="format_price" value=$invite.i_money}
+									{/if}
+									{if $invite.i_score gt 0}
+										{function name="format_score" value=$invite.i_score}
+									{else}无
+									{/if}
+								{else}无
+								{/if}
+								</td>
+								<td>
+								{if $invite.i_coupons gt 0}
+									{function name="format_coupons_price" value=$invite.i_coupons}
+								{else}无{/if}
+								</td>
+	                         </tr>
+	                         {/foreach}
+						</tbody>
+					</table>
+					
+					
+					<div class="blank"></div>
+					<div class="pages">{$pages}</div>
+					{else}
+					<div class="empty_tip">没有相关的邀请返利记录</div>
+					{/if}						
+				</div>
+				
+			</div>				
+				
+		</div>
+		<div class="blank20"></div>
+		</div>
+	</div>	
+</div>
+<div class="blank20"></div>
+<div id="layer">{include file="inc/layer.html"}</div>
+{include file="inc/footer.html"}

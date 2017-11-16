@@ -1,0 +1,85 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<PHP>
+	function get_handle($id, $duobao)
+	{
+		$str = "<a href='".u("Duobao/edit",array("id"=>$id))."'>编辑</a>";
+		$str.="&nbsp;&nbsp;<a href='javascript:foreverdel(".$id.");'>".l("DEL")."</a>";
+		return $str;
+	}
+	
+	function get_current_schedule($schedule, $duobao_id){
+		$str = "<a href='".u("DuobaoItem/index",array("duobao_id"=>$duobao_id))."'>".$schedule."</a>";
+		return $str;
+	}
+</php>
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">夺宝列表</div>
+<div class="blank5"></div>
+<form name="search" action="__APP__" method="get">	
+<div class="button_row">
+	<input type="button" class="button" value="新增" onclick="add();" />
+	<input type="button" class="button" value="删除" onclick="foreverdel();" />
+</div>
+<div class="blank5"></div>
+<div class="search_row">
+
+		编号：<input type="text" class="textbox" name="id" value="{:strim($_REQUEST['id'])}" style="width:100px;" />
+		商品名称：<input type="text" class="textbox" name="duobao_name" value="{:strim($_REQUEST['duobao_name'])}" style="width:100px;" />
+		分类名称：<input type="text" class="textbox" name="cate_name" value="{:strim($_REQUEST['cate_name'])}" style="width:100px;" />
+		品牌名称：<input type="text" class="textbox" name="brand_name" value="{:strim($_REQUEST['brand_name'])}" style="width:100px;" />
+		
+		专区：
+		<select name="classify">
+			<option value="-1" <if condition="intval($_REQUEST['classify']) eq '-1'">selected="selected"</if>>全部</option>
+			<option value="1" <if condition="intval($_REQUEST['classify']) eq 1">selected="selected"</if>>一元</option>
+			<option value="10" <if condition="intval($_REQUEST['classify']) eq 10">selected="selected"</if>>十元</option>
+			<option value="100" <if condition="intval($_REQUEST['classify']) eq 100">selected="selected"</if>>百元</option>
+		</select>
+		
+		特殊专区
+		<select name="special_classify">
+			<option value="-1" <if condition="intval($_REQUEST['special_classify']) eq '-1'">selected="selected"</if>>全部</option>
+			<option value="1" <if condition="intval($_REQUEST['special_classify']) eq 1">selected="selected"</if>>免费购</option>
+			<option value="2" <if condition="intval($_REQUEST['special_classify']) eq 2">selected="selected"</if>>选号</option>
+			<option value="3" <if condition="intval($_REQUEST['special_classify']) eq 3">selected="selected"</if>>PK</option>
+			<option value="4" <if condition="intval($_REQUEST['special_classify']) eq 4">selected="selected"</if>>五倍开奖</option>
+		</select>
+		
+		<input type="hidden" value="Duobao" name="m" />
+		<input type="hidden" value="index" name="a" />
+		
+		<input type="submit" class="button" value="{%SEARCH}" />
+</div>
+</form>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="duobao" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+			,duobao_name:商品名称
+			,cate_name:分类名称
+			,brand_name:品牌名称
+			,max_buy:总需人次
+		 	,min_buy:最小投单量
+		 	,max_schedule:最大举办期数
+		 	,current_schedule|get_current_schedule=$duobao['id']:已开期数
+		 	,robot_is_db|get_status:夺宝机器人
+		 	,is_effect|get_toogle_status=$duobao['id']#is_effect:有效"
+	actionlist="id|get_handle=$duobao" />
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

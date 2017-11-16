@@ -1,0 +1,87 @@
+.status-list{
+	background:#fffff6;
+	padding:0 .4rem;
+}
+.status-list li{
+	line-height: 1.6rem;
+	color:#444;
+	font-size:.52rem;
+}
+section{
+	background:#fff;
+	padding:0 .4rem;
+}
+section .title{
+	line-height: 1.6rem;
+	font-size:.52rem;
+	color:#333;
+}
+.user-info{
+	padding-top:.2rem;
+	line-height:1rem;
+	color:#444;
+}
+.address-info{
+	padding-bottom:.4rem;
+}
+.address{
+	color:#999;
+	line-height: .6rem;
+	padding-bottom:.4rem;
+}
+.goods-info .flex-box{
+	height:3.4rem;
+}
+.goods-info .goods-img{
+	width:3rem;
+	height:3rem;
+}
+.goods-info .goods-img img{
+	width:100%;
+	height:100%;
+}
+.goods-info .goods-detail{
+	width:50%;
+	padding:0 .6rem;
+}
+.goods-info .goods-detail p{
+	line-height: .7rem;
+	color:#999;
+	font-size:.44rem;
+}
+.goods-info .goods-detail .goods-name{
+	font-size:.5rem;
+	color:#444;
+	line-height: 1.2rem;
+}
+.pay-price{
+	line-height: 1.6rem;
+	font-size:.6rem;
+	color:#444;
+	text-align:right;
+}
+.btn-box{
+	position: fixed;
+	bottom:0;
+	left:0;
+	background:#fff;
+	height:1.6rem;
+	padding:.25rem .4rem;
+	width:100%;
+	text-align:right;
+}
+.btn-box a{
+	display: inline-block;
+	line-height: 1.2rem;
+	font-size:.5rem;
+	border:1px solid @main_color;
+	color:@main_color;
+	padding:0 .4rem;
+	border-radius:3px;
+	margin-left:.4rem;
+	height:1.2rem;
+}
+.btn-box .red-btn{
+	background:@main_color;
+	color:#fff;
+}

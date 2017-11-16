@@ -1,0 +1,54 @@
+{if $used_item_data.has_lottery eq 0}
+		<!-- 期号 -->
+		<div class="history-code f_l">
+			期号s {$used_item_data.id}
+		</div>
+		<!-- 中奖信息 -->
+		<div class="f_l history-info">
+			<div class="countdown">
+				<span class="countdown-title">揭晓倒计时</span>
+				{if $used_item_data.lottery_time gt $now_time}
+				<time class="countdown-nums" nowtime="{$now_time}" endtime="{$used_item_data.lottery_time}" id="{$used_item_data.id}">
+					<b>0</b><b>0</b>:<b>0</b><b>0</b>:<b>0</b><b>0</b>
+				</time>
+				{else}
+					正在揭晓中
+					{/if}
+				</div>
+		</div>
+		<!-- 幸运号码信息 -->
+		<div class="f_l history-result">
+		</div>
+		<!-- 查看详情 -->
+		<div class="f_r history-check">
+		<a href="{url r="index" r="duobao" p="id=$used_item_data.id"}" target="_blank">查看详情</a>
+		</div>
+	</li>
+	{else}
+		<!-- 期号 -->
+		<div class="history-code f_l">
+			期号 {$used_item_data.id}
+		</div>
+		<!-- 中奖信息 -->
+		<div class="f_l history-info">
+			<img src="{function name="get_user_avatar" uid=$used_item_data.luck_user_id type="big"}" width="70" height="70" class="f_l">
+			<div class="f_l history-info-txt">
+				<p>恭喜
+					<a href="{url i="index" r="home" p="id=$used_item_data.luck_user_id"}" target="_blank">{$used_item_data.luck_user_name}</span></a>（<span class="history-info-add">{$used_item_data.duobao_area}</span>）获得了本期商品
+					</a>
+				</p>
+				<p>用户ID：{$used_item_data.luck_user_id}（ID为用户唯一不变标识）</p>
+				<p>本期参与：<b class="txt-red">{$used_item_data.user_duobao_count}人次</b></p>
+			</div>
+		</div>
+		<!-- 幸运号码信息 -->
+		<div class="f_l history-result">
+			<p>幸运号码：<b class="txt-red">{$used_item_data.lottery_sn}</b></p>
+			<p>揭晓时间：{$used_item_data.lottery_time_data}</p>
+			<p>购买时间：{$used_item_data.create_time}</p>
+		</div>
+		<!-- 查看详情 -->
+		<div class="f_r history-check">
+			<a href="{url r="index" r="duobao" p="id=$used_item_data.id"}" target="_blank">查看详情</a>
+		</div>
+	{/if}

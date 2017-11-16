@@ -1,0 +1,165 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/winlog.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/jquery.confirm.css";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.spanr.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.confirm.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/anno.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/anno.js";
+
+?>
+
+{include file="inc/header_title_home.html"}
+
+<div class="wrap">
+    <div class="content">
+      <header class="uc-info-head">
+        <div class="head-pic fl">
+        <img src="{function name="get_user_avatar" uid=$data.user_id type="small"}"  width="100%" height="100%">
+        </div>
+        <div class="user-box fl">
+        <p class="user-name">{$data.user_name}</p>
+        <p class="user-id">ID:<span>{$data.user_id}</span></p>
+        </div>
+      </header>
+        {if $duobao}
+        <ul class="win-list scroll_bottom_list">
+            {foreach from=$duobao item=item}
+
+            <li class="split-line">
+                <a href="{$item.url}">
+                    <div class="goods-img">
+                        <img src="{$item.icon}" alt="">
+                    </div>
+                </a>
+                <div class="txtbox">
+                    <a href="{$item.url}">
+                        <div class="flex-box">
+                            <h2>{$item.name}</h2>
+                        </div>
+                    </a>
+                    <dl>
+
+                        <dd>参与期号:<span class="code">{$item.id}</span></dd>
+                        <dd>幸运号码:<span class="luckycode">{$item.lottery_sn2}</span></dd>
+
+                        <dd>下单时间:<span>{$item.create_time}</span></dd>
+                        {if $item.take_effect eq 0}
+                                 <dd>状态:<span class="status_info"><a href="http://www.gagoods.cn/wap/index.php?ctl=uc_address&show_prog=1" style="color:#df5667;">未发货,请填写地址</a>
+                            {else}
+                                <dd>状态:<span class="status_info">已发货
+                        {/if}
+              </span></dd>
+                    </dl>
+                </div>
+                <div class="clear"></div>
+            </li>
+            </a>
+            {/foreach}
+        </ul>
+        {/if}
+
+      {if $data.list}
+      <ul class="win-list scroll_bottom_list">
+        {foreach from=$data.list item=item}
+
+        <li class="split-line">
+        <a href="{$item.url}">
+          <div class="goods-img">
+            <img src="{$item.deal_icon}" alt="">
+          </div>
+          </a>
+          <div class="txtbox">
+          <a href="{$item.url}">
+          <div class="flex-box">
+            <h2>{$item.name}</h2>
+          </div>
+          </a>
+            <dl>
+
+              <dd>参与期号:<span class="code">{$item.duobao_item_id}</span></dd>
+              <dd>幸运号码:<span class="luckycode">{$item.lottery_sn}</span></dd>
+
+              <dd>下单时间:<span>{$item.create_time}</span></dd>
+              <dd>状态:<span class="status_info">
+              {if $item.cate_id }
+                 {if $item.delivery_status eq 0}
+                等待商品派发
+               {elseif $item.is_arrival eq 0 and $item.delivery_status eq 1}
+            <a href='{url a="index" r="uc_order#verify_delivery" p="item_id=$item.id"}' class="confirm">确认收货</a>
+            待收货
+         {elseif $item.is_arrival eq 1 and $item.delivery_status eq 1 }
+         <a class="fictitious_info" href="javascript:;" action="{$item.fictitious_info}">查看信息</a> 
+         {if $item.is_send_share eq 0}
+         <a href='{url a="index" r="uc_share#rule" p="id=$item.duobao_item_id"}'>晒单</a>
+         {/if}
+         已收货
+         {/if}
+              {else}
+                {if $item.delivery_status eq 5}
+                无需发货
+               {/if}
+         {if $item.delivery_status eq 0}
+            {if $item.is_set_consignee eq 0}
+            <!-- 请完善配送地址或联系客服，否则奖品在7天后失效 <a href='{url a="index" r="uc_address"}'>&nbsp;完善地址</a> -->
+            <a href='{url a="index" r="uc_winlog#winlog_address" p="order_item_id=$item.id"}'>选择配送地址</a>
+            {else}
+            等待商品派发
+            {/if}
+         {/if}
+         {if $item.is_arrival eq 0 && $item.delivery_status eq 1}
+              <a href="{url a="index" r="uc_order#check_delivery" p="item_id=$item.id"}" >查看物流</a>
+              <a href="{url a="index" r="uc_order#verify_delivery" p="item_id=$item.id"}" class="confirm">确认收货</a>
+
+         {/if}
+         {if $item.is_arrival eq 1}
+            已收货
+          {if $item.is_send_share eq 0}
+          <a href='{url a="index" r="uc_share#rule" p="id=$item.duobao_item_id"}'>晒单</a>
+          {/if}
+           {/if}
+         {if $item.is_arrival eq 2}
+           维权中
+         {/if}
+               {/if}
+              </span></dd>
+            </dl>
+          </div>
+          <div class="clear"></div>
+        </li>
+        </a>
+    {/foreach}
+      </ul>
+      {if $pages}
+      <div class="fy scroll_bottom_page">
+        {$pages}
+      </div>
+    {/if}
+<div class="clear"></div>
+{else}
+        {if $duobao or  $data.list}{else}
+  <!-- 无数据↓ -->
+    <div class="lose">
+      <div class="bgbox">
+      </div>
+      <h1>您还没有中奖记录</h1>
+      <a href='{url a="index"}'><button>立即夺宝</button></a>
+    </div>
+        {/if}
+        {/if}
+
+    </div>
+</div>
+{include file="inc/footer_menu.html"}
+{include file="inc/footer_index.html"}

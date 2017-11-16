@@ -1,0 +1,220 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/duobao.js' />
+<div class="main">
+<div class="main_title">编辑夺宝计划 <a href="{:u("Duobao/index")}" class="back_list"> 返回列表</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">商品名称:</td>
+		<td class="item_input">
+			<select class="require" name="deal_id">
+				<option value="0">==未选取商品==</option>
+				<if condition="$result">
+					<option value="{$result.deal_id}" selected="selected" price="{$result.origin_price}">{$result.duobao_name}</option>
+				</if>
+			</select>
+			<input type="text" class="textbox" name="deal_key" /> 
+			<input type="button" name="deal_key_btn" class="button" value="搜索" />
+		</td>
+	</tr>
+	
+	
+	 
+	<tr>
+		<td class="item_title">专区:</td>
+		<td class="item_input">
+			<select class="require" name="buy_type">
+				<option <if condition="$result['buy_type'] eq 1">selected="selected"</if> value="1">一元购</option>
+				<option <if condition="$result['buy_type'] eq 10">selected="selected"</if> value="10">十元区</option>
+				<option <if condition="$result['buy_type'] eq 100">selected="selected"</if> value="100">百元区</option>
+			</select><!-- 新字段，数据库不存在，一元购：min_buy为1，unit_price为1,  十元区：min_buy为10，unit_price为1,  百元区：min_buy为1，unit_price为100 -->
+			<span class="tip_span">[ 总次数  / 专区数 = 总需人次 ]</span>
+		</td>
+	</tr>
+	<!--<tr>-->
+		<!--<td class="item_title">免费购专区:</td>-->
+		<!--<td class="item_input">-->
+			<!--<lable>是<input type="radio" name="is_coupons" value="1" <if condition="$result['is_coupons']==1">checked='checked'</if> /></lable>-->
+			<!--<lable>否<input type="radio" name="is_coupons" value="0" <if condition="$result['is_coupons'] eq 0">checked="checked"</if> /></lable>-->
+		<!--</td>-->
+	<!--</tr>-->
+	<tr id="tr_totalbuy">
+		<td class="item_title">参与直购:</td>
+		<td class="item_input">
+			<lable>是<input type="radio" name="is_total_buy" value="1" <if condition="$result['is_total_buy'] eq 1">checked="checked"</if> /></lable>
+			<lable>否<input type="radio" name="is_total_buy" value="0" <if condition="$result['is_total_buy'] eq 0">checked="checked"</if> /></lable>
+			<span class="tip_span">参与直购的活动，需要在“商品管理”设置库存</span>
+		</td>
+	</tr>
+	
+	<tr id="total_buy_price">
+		<td class="item_title">直购价格:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="total_buy_price" value="{$result.total_buy_price}" />
+			<span class="tip_span">直购一次性购买的价格</span>
+		</td>
+	</tr>
+	
+	<tr id="tr_limit_buy">
+		<td class="item_title">限购:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="user_max_buy" value="{$result.user_max_buy}" />
+			<span class="tip_span">非直购商品，每人可购人次，0表示不限购</span>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">总需人次:</td>
+		<td class="item_input">
+			<input type="text" class="textbox require" name="max_buy" value="{$result.real_max_buy}" />
+			<span class="tip_span">[ × <span class="set_min_buy">{$result['min_buy']}</span> ]</span>
+		</td>
+	</tr>
+	 
+	<tr>
+		<td class="item_title">最大举办期数:</td>
+		<td class="item_input">
+			<input type="text" class="textbox require" name="max_schedule" value="{$result.max_schedule}" />
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">夺宝返还积分:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="duobao_score" value="{$result.duobao_score}" />
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">推荐人积分:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="invite_score" value="{$result.invite_score}" />
+		</td>
+	</tr>
+
+    <tr>
+        <td class="item_title">极速专区:</td>
+        <td class="item_input">
+            <lable>是<input type="radio" name="is_topspeed" value="1" <if condition="$result['is_topspeed']==1">checked='checked'</if> /></lable>
+            <lable>否<input type="radio" name="is_topspeed" value="0" <if condition="$result['is_topspeed']==0">checked='checked'</if>/></lable>
+        </td>
+    </tr>
+    <tr>
+        <td class="item_title">特殊专区:</td>
+        <td class="item_input">
+            <select name="spectial_area">
+                <option value="0" <if condition="$result['is_number_choose']==0&&$result['is_pk']==0&&$result['is_coupons']==0">selected="selected"</if> >==不选择==</option>
+                <option value="1" <if condition="$result['is_number_choose']==1">selected="selected"</if> >选号专区</option>
+                <option value="2" <if condition="$result['is_pk']==1">selected="selected"</if> >pk专区</option>
+                <option value="3" <if condition="$result['is_coupons']==1">selected="selected"</if> >免费云购</option>
+            	<option value="4" <if condition="$result['is_five']==1">selected="selected"</if> >五倍专区</option>
+
+
+            </select>
+            <span class="tip_span">开启极速专区之后,该专区的活动不显示在极速专区</span>
+        </td>
+    </tr>
+    <tr id="tr_pk_min_number" style="display:none;">
+        <td class="item_title">pk专区最小购买人数:</td>
+        <td class="item_input">
+            <input type="text" class="textbox" size=5 min="1" name="pk_min_number" value="{$result['pk_min_number']}" />
+            <span class="tip_span">最小购买人数为总人次的约数,否则最小购买人数会偏大</span>
+        </td>
+    </tr>
+	<tr id="fair_type">
+		<td class="item_title">数值B开奖方式:</td>
+		<td class="item_input">
+			<select name="fair_type">
+				<option value="wy" <if condition="$result['fair_type'] eq 'wy'">selected</if>>时时彩</option>
+				<option value="yydb" <if condition="$result['fair_type'] eq 'yydb'">selected</if>>站内开奖（可人工指定）</option>
+				<option value="five" <if condition="$result['fair_type'] eq 'five'">selected</if>>五倍开奖</option>
+
+			</select>
+		</td>
+	</tr>
+	
+	<tr id="tr_is_robot">
+		<td class="item_title">开启机器人:</td>
+		<td class="item_input">
+			<lable>是<input type="radio" name="robot_is_db" value="1" <if condition="$result['robot_is_db'] eq 1">checked="checked"</if> /></lable>
+			<lable>否<input type="radio" name="robot_is_db" value="0" <if condition="$result['robot_is_db'] eq 0">checked="checked"</if> /></lable>
+			
+			<label id="robot_is_lottery"> 机器人必中 <input type="checkbox" name="robot_is_lottery" value="1" <if condition="$result['robot_is_lottery'] eq 1">checked="checked"</if> /></label>
+		</td>
+	</tr>
+	
+	<tr id="robot_type">
+		<td class="item_title">机器人夺宝方式:</td>
+		<td class="item_input">
+			<select name="robot_type">
+				<option value="0" <if condition="$result['robot_type'] eq '0'">selected</if>>按截止时间</option>
+				<option value="1" <if condition="$result['robot_type'] eq '1'">selected</if>>按指定频率</option>
+			</select>
+		</td>
+	</tr>
+	
+	<tr id="robot_buy_time">
+		<td class="item_title">机器人每次下单间隔:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" size=5 value="{$result.robot_buy_min_time}" name="robot_buy_min_time"  />
+			-
+			<input type="text" class="textbox" size=5 value="{$result.robot_buy_max_time}" name="robot_buy_max_time" /> 秒
+		</td>
+	</tr>
+	
+	<tr id="robot_buy">
+		<td class="item_title">机器人每次下单数量:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" size=5 value="{$result.robot_buy_min}" name="robot_buy_min" />
+			-
+			<input type="text" class="textbox" size=5 value="{$result.robot_buy_max}" name="robot_buy_max" /> 次
+		</td>
+	</tr>
+	<tr id="tr_is_recomend">
+		<td class="item_title">前台推荐:</td>
+		<td class="item_input">
+			<lable>是<input type="radio" name="is_recomend" value="1" <if condition="$result['is_recomend'] eq 1">checked="checked"</if> /></lable>
+			<lable>否<input type="radio" name="is_recomend" value="0" <if condition="$result['is_recomend'] eq 0">checked="checked"</if> /></lable>
+		</td>
+	</tr>
+	
+	<tr id="robot_is_db_box">
+		<td class="item_title">夺宝时长:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="robot_end_time" value="{$result.robot_end_time}" />
+			<span class="tip_span">[单位：分钟]</span>
+		</td>
+	</tr>
+	
+	 
+	
+	
+	 
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->			
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="Duobao" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="update" />
+			<input type="hidden" name="id" value="{$result['id']}" />
+			<input type="hidden" name="is_effect" value="1" />
+            <input type="hidden" name="min_buy" value="{$result['min_buy']}" />
+            <input type="hidden" name="unit_price" value="{$result['unit_price']}"/>
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="编辑" />
+			<input type="reset" class="button" value="重置" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

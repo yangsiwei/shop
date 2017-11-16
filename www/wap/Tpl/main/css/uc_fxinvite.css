@@ -1,0 +1,188 @@
+.invit-info{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items:center;
+	align-items:center;
+	height: 4.9rem;
+	background: url(../images/invit_bg_02.jpg) no-repeat;
+	-webkit-background-size:cover;
+	background-size: cover;
+}
+.invit-info li{
+	-webkit-box-flex:1;  
+	-webkit-flex:1;
+	flex:1;
+	width: 50%;
+	display: block;
+	color: #fff;
+	text-align: center;
+}
+.invit-info li h1{
+	font-size: .52rem;
+	line-height: 1;
+}
+
+.invit-info li .num-info{
+	font-size: 1rem;
+	line-height: .8rem;
+	margin-top: .8rem;
+}
+.invit-info li .info-border-box{
+	position: relative;
+}
+.invit-info li .info-border-box::after{
+	content: '';
+	height: 100%;
+	border-right: 1px solid #fff;
+	position: absolute;
+	top: 0;
+	right: 0;
+	-webkit-transform:scaleX(.5) translateX(50%);
+	        transform:scaleX(.5) translateX(50%);
+	-webkit-transform-origin:50% 0;
+	        transform-origin:50% 0;
+	-webkit-opacity:.35;
+	opacity: .35;
+}
+.invit-info li .other-info{
+	font-size: .44rem;
+	line-height: 1;
+	margin-top:.8rem; 
+}
+.farmer-info{
+	margin-top: .4rem;
+	background: #fff;
+}
+.title-bar{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items:center;
+	align-items:center;
+	line-height: 1.84rem;
+	padding:0 .5rem;
+}
+.title-bar::after{
+	color: #e1e1e1;
+}
+.title-bar .main-icon{
+	font-size: .72rem;
+	margin-right: .2rem;
+	color: @main_color;
+}
+.farmer-info a .myfarmer{
+	-webkit-flex:1;
+	-webkit-box-flex:1;  
+	flex:1;
+	font-size: .52rem;
+}
+.farmer-info a row-right{
+	font-size: .4rem;
+}
+.farmer-info a .farmer-num{
+	font-size: .44rem;
+	color: @main_color;
+}
+
+.farmers{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items:center;
+	align-items:center;
+	height: 3.84rem;	
+	width: 100%;
+}
+.farmers a{
+	display: block;
+	width: 25%;
+}
+.farmers a .imgbox{
+	margin: 0 auto;
+	width: 2rem;
+	height: 2rem;
+	overflow: hidden;
+	-webkit-border-radius2rem;
+	border-radius:2rem;
+}
+.farmers a .imgbox img{
+	width: 100%;
+	height: 100%;
+}
+.farmers a .farmer-name{
+	color: #666;
+	margin-top: .2rem;
+	font-size: .44rem;
+	text-align: center;
+	line-height: 1;
+}
+.farmer-info .other-info{
+	padding:.36rem .5rem;
+}
+.farmer-info .other-info p{
+	text-align: center;
+	line-height: .68rem;
+}
+.farmer-info .other-info .defult-info{
+	font-size:.44rem;
+}
+.farmer-info .other-info .deal-info span{
+	color: @main_color;
+}
+.rule{
+	background: #fff;
+	margin-top: .4rem;
+	overflow: hidden;
+}
+.rule .rule-info{
+	padding: 0 .5rem;
+}
+.rule .rule-info p{
+	line-height: .7rem;
+}
+.rule .rule-info .rule-title{
+	margin-top: .48rem;
+}
+.rule .rule-info p span{
+	color: @main_color;
+}
+.rule .rule-info .last-rule-title{
+	color: @main_color;
+	margin-bottom: .48rem;
+}
+.htg-farmer{
+	background: #fff;
+	margin-top: .4rem;
+	padding-bottom: .64rem;
+}
+.htg-farmer .htg-farmer-info{
+	padding:0 .5rem;
+}
+.htg-farmer .htg-farmer-info p{
+	margin:.44rem 0;
+}
+.htg-farmer .htg-farmer-info .img-info{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-box-pack:justify;
+	-webkit-justify-content:space-around;
+	justify-content:space-around;
+}
+.htg-farmer .htg-farmer-info .img-info .imgbox{
+	height: 11.04rem;
+	width: 6.24rem;
+	-webkit-background-size:cover;
+	background-size:cover;
+	background-repeat: no-repeat;
+}
+.htg-farmer .htg-farmer-info .img-info .imgbox-1{
+	background-image: url(../images/htg_farmer_bg_03.jpg);
+}
+.htg-farmer .htg-farmer-info .img-info .imgbox-2{
+	background-image: url(../images/htg_farmer_bg_05.jpg);
+}

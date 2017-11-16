@@ -1,0 +1,67 @@
+<div id="{if $root.is_login} my-layer{else}others-layer{/if}">
+	<div class="box_container others-code">
+		<span id="my_duobao" style="display: none;">
+		<a class="box_container-close">×</a>
+		<div class="msgbox-hd">我的云号码</div>
+		<div class="msgbox-bd">
+			<div class="msgbox-info">
+				<div class="msgbox-info-hd">我本期共参与了{$root.duobao_recode_count}人次</div>
+				<div class="code-list">
+					<dl class="items">
+					{foreach from=$root.duobao_recode_list item=duobao_recode}
+						<dt class="items-time">{$duobao_recode.create_time}</dt>
+						<dd>
+							{foreach from=$duobao_recode.list item=duobao_recode_row}
+								<span class="itemcode {if $duobao_recode_row.lottery_sn eq $root.item_data.luck_lottery.lottery_sn}txt-impt{/if}">{$duobao_recode_row.lottery_sn}</span>
+							{/foreach}
+						</dd>
+					{/foreach}
+					</dl>
+				</div>
+			</div>
+		</div>
+		</span>
+		<span id="ta_duobao" style="display: none;">
+			{if $root.is_login neq 1}
+		<a class="box_container-close">×</a>
+		<div class="msgbox-hd">Ta的云号码</div>
+		<div class="msgbox-bd">
+			<div class="msgbox-info">
+				<div class="msgbox-info-hd">Ta本期共参与了{$root.ta_duobao_recode_count}人次</div>
+				<div class="code-list">
+					<dl class="items">
+					{foreach from=$root.ta_duobao_recode_list item=ta_duobao_recode}
+						<dt class="items-time">{$ta_duobao_recode.create_time}</dt>
+						<dd>{foreach from=$ta_duobao_recode.list item=ta_duobao_recode_row}
+							<span class="itemcode {if $ta_duobao_recode_row.lottery_sn eq $root.item_data.luck_lottery.lottery_sn}txt-impt{/if}">{$ta_duobao_recode_row.lottery_sn}</span>
+							{/foreach}
+						</dd>
+					{/foreach}
+					</dl>
+				</div>
+			</div>
+		</div>
+			{else}
+			<a class="box_container-close">×</a>
+		<div class="msgbox-hd">我的云号码</div>
+		<div class="msgbox-bd">
+			<div class="msgbox-info">
+				<div class="msgbox-info-hd">我本期共参与了{$root.duobao_recode_count}人次</div>
+				<div class="code-list">
+					<dl class="items">
+					{foreach from=$root.duobao_recode_list item=duobao_recode}
+						<dt class="items-time">{$duobao_recode.create_time}</dt>
+						<dd>
+							{foreach from=$duobao_recode.list item=duobao_recode_row}
+								<span class="itemcode {if $duobao_recode_row.lottery_sn eq $root.item_data.luck_lottery.lottery_sn}txt-impt{/if}">{$duobao_recode_row.lottery_sn}</span>
+							{/foreach}
+						</dd>
+					{/foreach}
+					</dl>
+				</div>
+			</div>
+		</div>
+			{/if}
+		</span>
+	</div>
+</div>

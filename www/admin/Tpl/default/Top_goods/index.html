@@ -1,0 +1,115 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<!-- <load href='__TMPL__Common/js/fx_salary.js' /> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div class="container">
+    <div class="main_title">{$title_name}</div>
+    <table class="table table-bordered" style="text-align: center;">
+        <tr>
+            <th>序号</th>
+            <th>商品名称</th>
+            <th>总需人次</th>
+            <th>商品原价</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td>商品1：</td>
+            <td>
+                <div class="input-group">
+                    <div class="input-group-addon"></div>
+                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="商品名称" value="{$res1['name']}">
+                    <div class="input-group-addon"></div>
+                </div>
+            </td>
+            <td> <p>{$res1['max_buy']}</p> </td>
+            <td> <p>{$res1['origin_price']}</p> </td>
+            <td>
+                <a href="{:U('choose',array('id'=>1))}"><button type="button" class="btn btn-primary">编辑</button></a>
+                <a href="{:U('delete',array('id'=>1))}"><button type="button" class="btn btn-danger">删除</button></a>
+            </td>
+        </tr>
+        <tr>
+            <td>商品2：</td>
+            <td>
+                <div class="input-group">
+                    <div class="input-group-addon"></div>
+                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="商品名称"  value="{$res2['name']}">
+                    <div class="input-group-addon"></div>
+                </div>
+            </td>
+            <td> <p>{$res2['max_buy']}</p> </td>
+            <td> <p>{$res2['origin_price']}</p> </td>
+            <td>
+                <a href="{:U('choose',array('id'=>2))}"><button type="button" class="btn btn-primary">编辑</button></a>
+                <a href="{:U('delete',array('id'=>2))}"><button type="button" class="btn btn-danger">删除</button></a>
+            </td>
+        </tr>
+        <tr>
+            <td>商品3：</td>
+            <td>
+                <div class="input-group">
+                    <div class="input-group-addon"></div>
+                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="商品名称" value="{$res3['name']}">
+                    <div class="input-group-addon"></div>
+                </div>
+            </td>
+            <td> <p>{$res3['max_buy']}</p> </td>
+            <td> <p>{$res3['origin_price']}</p> </td>
+            <td>
+                <a href="{:U('choose',array('id'=>3))}"><button type="button" class="btn btn-primary">编辑</button></a>
+                <a href="{:U('delete',array('id'=>3))}"><button type="button" class="btn btn-danger">删除</button></a>
+            </td>
+        </tr>
+        <tr>
+            <td>商品4：</td>
+            <td>
+                <div class="input-group">
+                    <div class="input-group-addon"></div>
+                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="商品名称" value="{$res4['name']}">
+                    <div class="input-group-addon"></div>
+                </div>
+            </td>
+            <td> <p>{$res4['max_buy']}</p> </td>
+            <td> <p>{$res4['origin_price']}</p> </td>
+            <td>
+                <a href="{:U('choose',array('id'=>4))}"><button type="button" class="btn btn-primary">编辑</button></a>
+                <a href="{:U('delete',array('id'=>4))}"><button type="button" class="btn btn-danger">删除</button></a>
+            </td>
+        </tr>
+        <tr>
+            <td>商品5：</td>
+            <td>
+                <div class="input-group">
+                    <div class="input-group-addon"></div>
+                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="商品名称" value="{$res5['name']}">
+                    <div class="input-group-addon"></div>
+                </div>
+            </td>
+            <td> <p>{$res5['max_buy']}</p> </td>
+            <td> <p>{$res5['origin_price']}</p> </td>
+            <td>
+                <a href="{:U('choose',array('id'=>5))}"><button type="button" class="btn btn-primary">编辑</button></a>
+                <a href="{:U('delete',array('id'=>5))}"><button type="button" class="btn btn-danger">删除</button></a>
+            </td>
+        </tr>
+        <tr>
+            <td>商品6：</td>
+            <td>
+                <div class="input-group">
+                    <div class="input-group-addon"></div>
+                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="商品名称" value="{$res6['name']}">
+                    <div class="input-group-addon"></div>
+                </div>
+            </td>
+            <td> <p>{$res6['max_buy']}</p> </td>
+            <td> <p>{$res6['origin_price']}</p> </td>
+            <td>
+                <a href="{:U('choose',array('id'=>6))}"><button type="button" class="btn btn-primary">编辑</button></a>
+                <a href="{:U('delete',array('id'=>6))}"><button type="button" class="btn btn-danger">删除</button></a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<include file="Public:footer" />

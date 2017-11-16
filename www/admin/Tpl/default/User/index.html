@@ -1,0 +1,64 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/js/script.js' />
+<load href='__TMPL__Common/js/user.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<php>
+	
+	function get_referrals_name($user_id)
+	{
+		$user_name = M("User")->where("id=".$user_id)->getField("user_name");
+		if($user_name)
+		return $user_name;
+		else
+		return l("NO_REFERRALS");
+	}
+	function get_is_robot($is)
+	{
+		if($is)return "是";
+		else
+		return "否";
+	}
+</php>
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%ADD}" onclick="add();" />
+	<input type="button" class="button" value="批量添加机器人" onclick="batch_add();" />
+	<input type="button" class="button" value="{%DEL}" onclick="foreverdel();" />
+</div>
+
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		用户ID：<input type="text" class="textbox" name="id" value="{:strim($_REQUEST['id'])}" style="width:100px;" />
+		{%USER_NAME}：<input type="text" class="textbox" name="user_name" value="{:strim($_REQUEST['user_name'])}" style="width:100px;" />
+		{%USER_EMAIL}：<input type="text" class="textbox" name="email" value="{:strim($_REQUEST['email'])}" style="width:100px;" />
+		{%USER_MOBILE}：<input type="text" class="textbox" name="mobile" value="{:strim($_REQUEST['mobile'])}" style="width:100px;" />
+		{%REFERRALS_NAME}：<input type="text" class="textbox" name="pid_name" value="{:strim($_REQUEST['pid_name'])}" style="width:100px;" />
+		
+		
+		<input type="hidden" value="User" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="user" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,user_name:{%USER_NAME}:edit,email:{%USER_EMAIL},mobile:{%USER_MOBILE},is_robot|get_is_robot:机器人,money|format_price:{%USER_MONEY},coupons:优惠币,score|format_score:{%USER_SCORE},total_score|format_score:累积积分,pid|get_referrals_name:{%REFERRALS_NAME},create_time|to_date:注册时间,login_time|to_date:{%LOGIN_TIME},is_effect|get_is_effect=$user['id']:{%IS_EFFECT}" 
+	actionlist="edit:{%EDIT}, del:{%DEL}, account:{%USER_ACCOUNT},account_detail:{%USER_ACCOUNT_DETAIL},inte_detail:我邀请的用户" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

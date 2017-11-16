@@ -1,0 +1,106 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_duobao.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/home_luck.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/home.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_msg.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_msg.js";
+
+?>
+{include file="inc/header.html"}
+
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav f_l ">
+		{include file="inc/home_nav_list.html"}
+	</div>
+	{if $list}
+	<div class="f_r luck_main">
+	{include file="inc/home_info.html"}
+		<div  class="m-win-user">
+			
+			<div class="m-user-comm-wrapers">
+				<div class="m-user-comm-titleHasBdr">
+					<h2 class="title">幸运记录
+						<span class="txt-gray">共有&nbsp;<strong pro="total">{$total}</strong>&nbsp;条幸运记录~</span>
+					</h2>
+				</div>
+				{foreach from=$list item=value}
+				<div class="w-goods">
+					<div class="w-goods-pics">
+					    <a title="{$value.name}" href="{url r="index" r="duobao" p="id=$value.id"}" style="text-decoration:none;color:#3399ff;">
+						<img src="{function name="get_spec_image" v=$value.icon w=200 h=200 g=1}" alt="{$value.name}" style="border:0px;width:200px;" />
+						</a>
+					</div>
+					<div class="w-goods-content">
+						<p class="w-goods-title">
+							<a title="{$value.name}" href="{url r="index" r="duobao" p="id=$value.id"}" style="text-decoration:none;color:#333333;font-size:14px;font-weight:bold;">{$value.name}</a>
+						</p>
+						<p class="w-goods-price" >期号：{$value.id}</p>
+						<p class="w-goods-price" >总需：{$value.max_buy}人次</p>
+						<p class="w-goods-price" >幸运号码：<strong class="txt-impt">{$value.lottery_sn}</strong></p>
+						<p class="w-goods-price" >总共参与：<strong class="txt-dark">{$value.luck_user_buy_count}</strong>人次</p>
+						<p class="w-goods-price" >揭晓时间：{function name="to_date" v=$value.lottery_time}</p>
+					</div>
+				</div>
+				{/foreach}
+				
+				
+			</div>
+			<div class="pages">{$pages}</div>
+		</div>
+	</div>
+	{else}
+	<div class="f_r luck_main">
+	{include file="inc/home_info.html"}
+	<div class="blank"></div>
+	<div class="m-user-frame-colMain">
+		
+		<div class="m-user-frame-content" pro="userFrameWraper">
+			<div class="m-user-duobao">
+				<div class="m-user-comm-wraper">
+					<div class="m-user-comm-cont">
+						<div>
+						
+						<div class="listCont">
+							<div >
+								<div class="duobaoList">
+									<div class="m-user-comm-empty" id="pro-view-11" style="text-align:center;padding:100px 0px 128px;">
+										<div class="i-desc">Ta还没有此记录哦~</div>
+										<div class="i-opt">
+											<a href="{url r="index" }" class="w-button w-button-main w-button-xl" style="color:#ffffff;border:none;white-space:nowrap;font-size:18px;display:inline-block;vertical-align:middle;padding:0px 35px;height:45px;line-height:45px;border-radius:4px;cursor:pointer;font-family:'microsoft yahei', simhei;outline:none;text-decoration:none !important;background:#dd344f;">马上试试运气</a>
+										</div>
+									</div>
+								</div>
+								<div pro="pager" class="pager" style="text-align:right;"></div>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	{/if}
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

@@ -1,0 +1,40 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<PHP>
+	function get_is_arrival($status)
+	{
+		if($status == 0)
+		return l("NO");
+		else
+		return l("YES");
+	}
+	function get_deal_order_item_name($id)
+	{
+		$item = M("DealOrderItem")->getById($id);
+		$str = get_order_sn_with_link($item['order_id']);
+		return $str."&nbsp;&nbsp;".$item['name']."[".l("NUMBER").":".$item['number']."]";
+	}
+</PHP>
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="delivery_notice" 
+	datasource="list" 
+	show="id:{%ID}|50px,notice_sn:{%DELIVERY_SN}
+	,order_item_id|get_deal_order_item_name:{%DEAL_ORDER_ITEM_NAME}
+	,delivery_time|to_date:{%DELIVERY_TIME}
+	,is_arrival|get_is_arrival:{%IS_ARRIVAL}
+	,arrival_time|to_date:{%ARRIVAL_TIME}	
+	,user_id|get_user_name:{%USER_NAME}
+	,memo:{%DELIVERY_MEMO}" 
+	actionlist="del:{%DEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

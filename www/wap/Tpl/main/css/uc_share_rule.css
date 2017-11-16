@@ -1,0 +1,16 @@
+body{
+	background:#f7fcf6;
+}
+.rule-img img{
+	width:100%;
+}
+.share-start{
+	margin:0 .4rem;
+	display:block;
+	background:@main_color;
+	font-size:.6rem;
+	color:#fff;
+	text-align: center;
+	line-height: 1.8rem;
+	border-radius:5px;
+}

@@ -1,0 +1,161 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/cart_check.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/cart_check.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/cart_check.js";
+
+
+?>
+{include file="inc/header_title_home.html"}
+
+<script type="text/javascript">
+	var ajaxing = false; //ajax计算中，true是不允许提交订单
+	var order_id = '{$data.order_id}';  //订单号
+    var is_number_choose='{$data.is_number_choose}';
+    var is_pk='{$data.is_pk}';
+</script>
+<div class="wrap">
+	<input type="hidden" value="{$payment_id}" name="payment_id"/>
+	<input type="hidden" value="{$account_id}" name="account_id"/>
+    <!-- {if $data.is_number_choose}
+    <form  action="{url a="index" r="number_choose#done"}" method="POST"  id="pay-form" class="pay-form">
+    {elseif $data.order_id}
+        <form  action="{url a="index" r="cart#order_done"}" method="POST"  id="pay-form" class="pay-form">
+        <input name="order_id" type="hidden" value="{$data.order_id}" />
+    {else}
+        <form  action="{url a="index" r="cart#free_done"}" method="POST"  id="pay-form" class="pay-form">
+    {/if} -->
+    <form  action="{url a="index" r="cart#free_done"}" method="POST"  id="pay-form" class="pay-form">
+	<div class="back-white">
+	<div class="goodsum list-li">
+	<header>
+		<i class="iconfont up-btn order-info-btn fr">&#xe6c4;</i>
+		<i class="iconfont down-btn order-info-btn fr">&#xe6c3;</i>
+
+		<p>订单明细</p>
+		<div class="clear"></div>
+	</header>
+	</div>
+	<section class="goodsum-info split-line">
+		<div class="info">
+			<h2>注：请确认如下订单明细</h2>
+			<div class="txtbox">
+      {foreach from=$data.cart_list item=item}
+      		<div class="txtbox-info">
+			<p class="fl txt-over">{$item.name}</p>
+			<p class="fr"><span>{$item.number}</span>人次</p>
+			<div class="clear"></div>
+			</div>
+      {/foreach}
+            </div>
+
+		</div>
+	</section>
+	<div class="blank-bar"></div>
+	<!--留言-->
+        <!--
+	<div class="normal-fieldset">
+		<h4 class="mj-title m-t10 list-li">留言信息</h4>
+		<div class="textarea-box split-line">
+		<textarea name="content" placeholder="请填写附加要求">{$data.order_memo}</textarea>
+		</div>
+    </div>
+        ==>
+	<!--end 留言-->
+
+
+	
+	<div class="blank-line" style="color: #000"></div>
+		<div class="normal-fieldset">
+	       <h4 class="mj-title m-t10 list-li">优惠币支付</h4>
+	        <section class="items-common common-radio-box">
+	            <div class="item-common list-li" style="border-bottom:none;">
+	                <label class="pay-ways" rel="all_account_money"><span class="payment-name checked"></span>剩余优惠币：<b>{$user_info.coupons}</b>（使用优惠币支付）</label>
+	                
+	            </div>
+	        </section>
+	    </div>
+		
+		
+	
+		<!-- {if $coupons gt 0}
+		<div id="make_coupons_submit">
+			<input type="hidden" value="{$user_info.id}" name="id" />
+			<button id="make_coupons_done" class="btn btn-main f_r" rel="blue" type="button">优惠币不足,点击领优惠币</button>
+		</div>获得优惠币
+		{/if}
+		{if $coupons eq 0}
+		<div id="cart_submit">
+			<input type="hidden" value="{$order_info.id}" name="id" />
+			<button id="order_done" class="btn btn-main f_r" rel="blue" type="button">{$LANG.CONFIRM_ORDER_AND_PAY}</button>
+		</div>
+		{/if} -->
+	<!--end 优惠币-->
+
+
+	<div class="blank-line"></div>
+	<!--总计-->
+	<!-- <div id="cart_total"></div> -->
+	<div><div class="item-common list-li" style="border-bottom:none;">
+	    <span class="item-label fl">总计</span>
+	    <div class="item-content red fr">{$data.total_data.total_price}优惠币</div>
+		<div class="clear"></div>
+	</div>
+	</div>
+	<!--end总计-->
+	
+	{if $data.total_data.total_price gt $data.account_money}
+	<div class="btn_order">
+		<input class="sub" type="button" style="background-color: #dddddd;" value="优惠币不足">
+	</div>
+	{else}
+	<div class="btn_order">
+		<input class="sub" type="submit" value="去结算">
+	</div>
+	{/if}
+	
+	</div>
+	</form>
+<div class="blank50"></div>
+</div>
+
+	<div class="am-layer ">
+	    <div class="am-layer-title"><span class="title-txt">支付提示</span><a href="{$data.cencel_url}"><div class="cencel-btn iconfont"></div></a></div>
+	  <div class="am-layer-con">
+			<div style=" padding:0.2rem; text-align:center;" id="payment_tip">
+				<p style="font-size:0.6rem;">
+					请您在新打开的页面完成付款。				
+				</p>
+				<div class="blank10"></div>
+				<div class="blank10"></div>
+				<div class="notice" style="font-size: 0.54rem;color:#808080">
+					<p class="txt-red">付款完成前请不要关闭此窗口。</p>
+					完成付款后请根据您的情况点击下面的按钮：				</div>
+				<div class="blank10"></div>
+				<div class="blank10"></div>
+				<div class="tip_btn">
+					<a class="btn btn-blue reload-btn" href="">重新发起支付</a>
+					<a class="btn btn-red success-btn" href="">已完成付款</a>
+				</div>
+			</div>
+	  </div>
+
+
+</div>
+{include file="inc/no_footer.html"}

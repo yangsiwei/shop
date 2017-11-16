@@ -1,0 +1,24 @@
+<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=<PHP>echo app_conf("TENCENT_MAP_APPKEY");</PHP>"></script>
+<script charset="utf-8" src="__TMPL__Common/js/tencent_map.js"></script>
+<div class="control-group cf clearfix">
+	<div class="controls">
+		输入地址搜索： <input type="text" class="textbox" id="api_address" name="api_address" value="{$vo.api_address}" /> 
+		<input type="button" id="lbs_btn" class="button" value="{%SEARCH}" />
+	</div>
+	<div style="height:10px;"></div>
+    <div class="controls">    	
+			<div>
+				<div style="float:left;">覆盖范围：</div>
+				<div style="float:left; font-size:12px;">0米&nbsp;&nbsp;</div>
+				<div id="slider" style="width:350px; float:left;"></div>
+				<div style="float:left; font-size:12px;">&nbsp;&nbsp;10000米</div>
+				<div style="float:left;  font-size:12px; color:#f30; padding-left:10px;">当前<span id="show_scale_meter">{$vo.scale_meter}</span>米</div>
+				<div style="float:left;  font-size:12px; color:#f60; padding-left:10px;">0表示无限制</div>
+			</div>
+			<input type="hidden" class="textbox" name="scale_meter" value="{$vo.scale_meter}" /> 	
+			<div style="height:10px; clear:both;"></div>
+            <div id="qqmapcontainer" style="width:750px; height:300px; float:left;"></div>
+            <input type="hidden" name="xpoint" id="Xpoint" value="{$vo.xpoint}" />
+            <input type="hidden" name="ypoint" id="Ypoint" value="{$vo.ypoint}" />
+    </div>
+</div>

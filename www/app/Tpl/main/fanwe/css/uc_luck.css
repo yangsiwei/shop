@@ -1,0 +1,121 @@
+.txt-yellow{
+	color:#ff9a00;
+}
+.txt-green{
+	color:#35bc00;
+}
+.btn-s{
+	padding: 0 10px;
+	height: 22px;
+	line-height: 22px;
+	font-size: 12px;
+}
+.m-win-user
+{
+	overflow:hidden;
+	zoom:1;
+	margin-top:20px;
+}
+.m-user-comm-wrapers
+{
+	width:1036px;
+	border:1px solid #dddddd;
+	overflow:hidden;
+	zoom:1;
+}
+.m-user-comm-titleHasBdr
+{
+	height:40px;
+	border-bottom-color:#888888;
+	border-width:0px 0px 2px;
+	border-bottom-style:solid;
+	margin:0px 15px 10px;
+}
+.title
+{
+	margin:0px;
+	padding:0px;
+	font-size:18px;
+	line-height:40px;
+	color:#3c3c3c;
+}
+.txt-gray
+{
+	color:#808080;
+	font-size:12px;
+	margin-left:10px;
+	font-weight:normal;
+}
+.w-goods
+{
+	color:#7d7d7d;
+	overflow:hidden;
+	zoom:1;
+	border-bottom:1px solid #dddddd;
+	padding:30px 0;
+	font-size:14px;
+	line-height:2;
+	background:#ffffff;
+}
+.w-goods-pics
+{
+	height:150px;
+	text-align: center;
+	overflow:hidden;
+	width:120px;
+	margin-right:20px;
+	float: left;
+}
+.w-goods-content
+{
+	overflow: hidden;
+	zoom: 1;
+}
+.w-goods-content p{
+
+}
+.w-goods-title
+{
+
+}
+.w-goods-price
+{
+	margin-top:0px;
+	margin-bottom:0px;
+	padding:0px;
+}
+.txt-impt
+{
+	color:#db3652;
+}
+.txt-dark
+{
+	color:#333333;
+}
+.wraper{
+	padding:10px 20px;
+}
+.wraper .wraper-hd{
+	overflow: hidden;
+    zoom: 1;
+    font-size: 14px;
+    background: #F7F7F7;
+}
+.wraper li{
+	float: left;
+	width:100px;
+	padding: 10px 20px;
+	text-align: center;
+}
+.wraper .info{
+	width:600px;
+	text-align:left;
+}
+.wraper .opt{
+	float: right;
+}
+.check_delivery_pop,.view_submit_pop{ width:200px; border:#f2f2f2 solid 1px; background:#fff; padding:10px; 
+-moz-box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.2);/*firefox*/
+-webkit-box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.2);/*safari或chrome*/
+box-shadow:0 2px 8px 1px rgba(0, 0, 0, 0.2);/*opera或ie9*/
+}

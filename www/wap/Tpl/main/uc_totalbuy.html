@@ -1,0 +1,164 @@
+{if $ajax_refresh==0}
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/jquery.confirm.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_totalbuy.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pull_refresh.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.confirm.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_totalbuy.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/uc_totalbuy.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/lib/touche.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+
+?>
+{include file="inc/header_title_only.html"}
+<script>
+	var url='{url r="index" r="uc_totalbuy#close" }'
+	var totalbuy_cart_url='{url x="index" r="totalbuy#index"}';
+	
+
+</script>
+<div style="z-index:10;" class="tatalbuy-nav split-line">
+	<ul class="flex-box">
+		<li class="flex-1">
+			<a href="{url r="index" r="uc_totalbuy" }" {if !$data.log_type}class="active"{/if}>
+				<i class="iconfont">&#xe6ea;</i>
+				<p>全部</p>
+			</a>
+		</li>
+		<li class="flex-1">
+			<a href="{url r="index" r="uc_totalbuy" p="log_type=1"}" {if $data.log_type eq 1}class="active"{/if}>
+				<i class="iconfont">&#xe649;</i>
+				<p>待付款</p>
+			</a>
+		</li>
+		<li class="flex-1">
+			<a href="{url r="index" r="uc_totalbuy" p="log_type=2"}" {if $data.log_type eq 2}class="active"{/if}>
+				<i class="iconfont">&#xe715;</i>
+				<p>待发货</p>
+			</a>
+		</li>
+		<li class="flex-1">
+			<a href="{url r="index" r="uc_totalbuy" p="log_type=3"}" {if $data.log_type eq 3}class="active"{/if}>
+				<i class="iconfont">&#xe716;</i>
+				<p>待收货</p>
+			</a>
+		</li>
+	</ul>
+</div>
+
+{/if}
+
+<div class="loading_container" id="loading_container">
+{if $data.list}
+	<div class="totalbuy-list content">
+		
+		<ul class="scroll_bottom_list">
+			{foreach from=$data.list item=item}
+			<li class="split-line split-line-top">
+				<div class="status-box flex-box split-line">
+					<p class="time flex-1 {if $item.order_status==3 || $item.order_status==2}is_delete_status{/if}">{$item.create_time}</p>
+					{if $item.order_status==3}
+					<p class="status">已过期</p>
+					{elseif $item.order_status==2}
+					<p class="status">已关闭</p>
+					{elseif $item.pay_status==0&&$item.delivery_status==0&&$item.is_arrival==0&&$item.order_status==0}
+					<p class="status txt-red">未付款</p>
+					{elseif $item.pay_status==2&&$item.delivery_status==0&&$item.is_arrival==0}
+					<p class="status txt-red">已付款</p>&nbsp<p class="status txt-red">待发货</p>
+					{elseif $item.pay_status==2&&$item.delivery_status==1&&$item.is_arrival==0}
+					<p class="status txt-red">已发货</p>&nbsp<p class="status txt-red">待收货</p>
+					{elseif $item.pay_status==2&&$item.delivery_status==1&&$item.is_arrival==1}
+					<p class="status">已收货</p>
+					{/if}
+				</div>
+				<div class="goods-info split-line">
+					<a href="{url r="index" p="uc_totalbuy#detail" d="id=$item.id"}" class="flex-box">
+						<div class="goods-img"><img src="{$item.deal_icon}" alt=""></div>
+						<div class="flex-1 goods-detail">
+							<p class="goods-name el {if $item.order_status==3 || $item.order_status==2}is_delete_status{/if}">{$item.name}</p>
+							<p class="price {if $item.order_status==3 || $item.order_status==2}is_delete_status{/if}">单价：&yen;{$item.unit_price}</p>
+							<p class="num {if $item.order_status==3 || $item.order_status==2}is_delete_status{/if}">数量：{$item.number}件</p>
+						</div>
+					</a>
+				</div>
+				<div class="pay-info">
+					<p class="pay-price">
+						实付合计：<span class="txt-red">&yen;{$item.total_price}</span>
+					</p>
+					{if $item.cate_id}
+					<div class="pay-btn">
+						{if $item.pay_status==2}
+						<a href="{url r="index" r="duobao" p="dbid=$item.duobao_id"}">再次购买</a>
+						{else}
+						<a href="{url r="index" r="duobao" p="dbid=$item.duobao_id"}">重新购买</a>
+						{/if}
+						{if $item.pay_status==0&&$item.delivery_status==0&&$item.is_arrival==0&&$item.order_status==0}
+						<a class="close-order" href="javascript:;" action="{url r="index" p="uc_totalbuy#close" b="id=$item.order_id"}" >关闭订单</a>
+						<a class="red-btn" href="{url r="index" p="totalbuy#pay_check" d="id=$item.order_id"}">立即付款</a>
+						{/if}
+						{if $item.pay_status==2&&$item.delivery_status==1&&$item.is_arrival==0&&$item.order_status==0}
+						<a class="red-btn confirm_receipt" id="is_fictitious" href="javascript:void(0);" action="{url r="index" p="uc_totalbuy#verify_delivery" b="id=$item.id"}">确认收货</a>
+						{/if}
+						{if $item.pay_status==2&&$item.delivery_status==1&&$item.is_arrival==1}
+						<a class="fictitious_info" href="javascript:;" action="{$item.fictitious_info}">查看信息</a>
+						{/if}
+					</div>
+					{else}
+					<div class="pay-btn">
+						{if $item.pay_status==2}
+						<a href="{url r="index" r="duobao" p="dbid=$item.duobao_id"}">再次购买</a>
+						{else}
+						<a href="{url r="index" r="duobao" p="dbid=$item.duobao_id"}">重新购买</a>
+						{/if}
+						{if $item.pay_status==0&&$item.delivery_status==0&&$item.is_arrival==0&&$item.order_status==0}
+						<a class="close-order" href="javascript:;" action="{url r="index" p="uc_totalbuy#close" b="id=$item.order_id"}" >关闭订单</a>
+						<a class="red-btn" href="{url r="index" p="totalbuy#pay_check" d="id=$item.order_id"}">立即付款</a>
+						{/if}
+						{if $item.pay_status==2&&$item.delivery_status==1&&$item.is_arrival==0&&$item.order_status==0}
+						<a href="{url a="index" r="uc_order#check_delivery" p="item_id=$item.id"}">查看物流</a>
+						<a class="red-btn confirm_receipt" href="javascript:void(0);" action="{url r="index" p="uc_totalbuy#verify_delivery" b="id=$item.id"}">确认收货</a>
+						{/if}
+					</div>
+					{/if}
+				</div>
+			</li>
+			{/foreach}
+		</ul>
+		{if $pages}
+			<div class="fy scroll_bottom_page">
+				{$pages}
+			</div>
+		{/if}
+	</div>
+{else}
+	<!-- 无数据↓ -->
+    <div class="null_data">
+		<p class="icon"><i class="iconfont"></i></p>
+		<p class="message">暂无数据</p>
+	</div>
+{/if}
+</div>
+
+{if $ajax_refresh==0}
+{include file="inc/footer_menu.html"}
+{include file="inc/footer_index.html"}
+{/if}

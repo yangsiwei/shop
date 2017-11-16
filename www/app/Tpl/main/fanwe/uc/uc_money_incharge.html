@@ -1,0 +1,220 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_money_incharge.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_order.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_order.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_money_incharge.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_money_incharge.js";
+
+?>
+{include file="inc/header.html"}
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav f_l ">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<ul class="web-map clearfix">
+			<li>当前位置：</li>
+			<li><a href="{url x="index" r="uc_center"}">个人中心</a> ></li>
+			<li class="txt-red">我的资产</li>
+		</ul>
+		<div class="main_box uc_info_box">
+			<div class="main_roll f_l" id="main_roll">
+
+			<ul class="roll">
+			{adv group="slide" code="<li>__ADV_CODE__</li>" w="1000" h="96"}	
+			</ul>
+		
+			</div>
+
+			<!-- 资产标题 -->
+			<div class="info_box">
+				<div class="blank20"></div>
+				<h3>我的资产信息</h3>
+				<div class="blank10"></div>
+				<div class="bg_box growth_content">
+					
+					<div class="info_items">
+						<ul>
+							<li>
+								<label>我当前的余额是：</label><span class="main_color">{$user_info.money}夺宝币</span>
+							</li>
+							<li>
+								<label>我当前充值赠送：</label><span class="main_color">{$user_info.give_money}夺宝币</span>
+							</li>
+							{if $user_info.dealers eq 2}
+							<li>
+								<label>我当前的推广奖：</label><span class="main_color">{if $user_info.fx_money}{$user_info.fx_money}{else}0{/if}夺宝币</span>
+							</li>
+							{/if}
+							{if $user_info.fx_level gt 3}
+							<li>
+								<label>我当前的管理奖：</label><span class="main_color">{$user_info.admin_money}夺宝币</span>
+							</li>
+
+							{/if}
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="info_box">
+				<form name="incharge_form" action="{url x="index" r="uc_money#index"}" method="post" onsubmit="return false;" />
+					<div class="blank20"></div>
+					<h3>选择充值金额(夺宝币)</h3>
+					<div class="blank10"></div>
+					{if $first_pay}
+					<div class="money" id="money1">
+						<input type="text" value="10" readonly="readonly" class="select_num" name="money">
+						<input type="text" value="100" readonly="readonly" class="select_num" name="money">
+						<input type="text" value="1000" readonly="readonly" class="select_num" name="money">
+					</div>
+					{else}
+					<div class="money" id="money1">
+						<input type="text" value="10" readonly="readonly" class="select_num" name="money">
+						<input type="text" value="100" readonly="readonly" class="select_num" name="money">
+						<input type="text" value="1000" readonly="readonly" class="select_num" name="money">
+						<input type="text" value="2000" readonly="readonly" class="select_num" name="money">
+					</div>
+					{/if}
+					<input type="hidden" name="payment" value="100" >
+					<div class="blank10"></div>
+					<hr style=" height:2px;border:none;border-top:2px solid #185598;">
+				<!--<div class="blank20"></div>-->
+				<!--<h3>选择充值方式</h3>-->
+				<!--<div class="blank10"></div>-->
+
+				<!--<div id="cart_payment">-->
+					<!--{if $bank_paylist}-->
+					<!--{foreach from=$bank_paylist item=payment_item}-->
+					<!--{$payment_item.display_code}-->
+					<!--{/foreach}-->
+					<!--{/if}-->
+					<!--{if $bank_paylist && $icon_paylist}<div class="blank"></div>{/if}-->
+					<!--{if $icon_paylist}-->
+					<!--{foreach from=$icon_paylist item=payment_item}-->
+					<!--{$payment_item.display_code}-->
+					<!--{/foreach}-->
+					<!--{/if}-->
+				<!--</div>-->
+				<div class="blank10"></div>
+
+				    <div class="pay_way" style="margin-top:30px;margin-bottom:30px;">
+						<span style="font-size:16px;line-height:45px;">请选择支付方式</span>
+						<select name="bank_code" style="width:154px;height:45px;border:2px solid #FFE4E1;margin-left:20px;font-size:16px;">
+
+							<!--<option value="ALIPAY">支付宝</option>-->
+							<option value="WEBCHAT">微信</option>
+						</select>
+					</div>
+					<button class="ui-button orange" rel="orange" type="submit" id="paylist">立即支付</button>
+				</form>
+				
+			</div>
+			
+			<!-- 资产内容 -->
+			<div class="blank20"></div>
+			<div class="info_box">
+				<h3>充值记录</h3>
+				<div class="blank10"></div>
+				<div class="info_table order_table">
+					<table>
+						<tbody>
+							<tr>
+								<th width="120">时间</th>
+								<th width="auto">详情</th>
+								<th width="100">手续费</th>
+								<th width="100">操作</th>
+							</tr>
+							
+							{foreach from=$list item=row}
+							<tr class="alt">
+                                <td>
+								{function name="to_date" value=$row.create_time}
+								</td>
+                                <td class="tl">
+                                	充值订单号：<h1>{$row.order_sn}</h1><br />
+									支付单号：<h1>{$row.payment_notice.notice_sn}</h1>，支付方式：<h1>{$row.payment}</h1><br />
+									{if $row.payment_notice.outer_notice_sn}
+									支付平台单号：<h1>{$row.payment_notice.outer_notice_sn}</h1><br />
+									{/if}
+									充值金额：<h1><?PHP echo format_price($this->_var['row']['total_price']-$this->_var['row']['payment_fee']);?></h1>
+									{if $row.pay_status eq 2}
+									&nbsp;&nbsp;充值到账时间：<h1>{function name="to_date" value=$row.payment_notice.pay_time}</h1>
+									{/if}
+                                </td>
+                                <td>{function name="format_price" v=$row.payment_fee}</td>
+								<td class="op_box">
+									{if $row.pay_status eq 0}									
+									<a href="{url x="index" r="uc_money#payment_pay" p="id=$row.payment_notice.id"}">继续付款</a><br />
+									<a href="javascript:void(0);" class="del_order" action="{url x="index" r="uc_order#cancel" p="id=$row.id"}">删除</a>
+									{/if}
+									{if $row.order_status eq 1}
+									{if $row.pay_status eq 2}<br />{/if}
+									<a href="javascript:void(0);" class="del_order" action="{url x="index" r="uc_order#cancel" p="id=$row.id"}">删除</a>
+									{/if}
+								</td>
+                            </tr>
+                            {/foreach}
+                           
+                            <tr >
+                            	{if $list}
+                                <td colspan="4"><div class="pages">{$pages}</div></td>
+                                {else}
+                                <td colspan="4"><span>暂时没有充值记录</span></td>
+                                {/if}
+                            </tr>
+						</tbody>
+					</table>
+				</div>
+				
+			</div>	
+			
+			
+		</div>
+	</div>	
+</div>
+
+<script>
+    $(function(){
+        $("form[name='incharge_form']").bind("submit",function(){
+            var payment_id = $("input[name='payment_id']").val();
+            var money;
+            $(".select_num").click(function(){
+                money = $("input[name='money']").val();
+            });
+            var query = $(this).serialize();
+            $.ajax({
+                type: "POST",
+                url: "/index.php?ctl=uc_money&act=incharge_done_gepi",
+                data: query,
+                dataType: "json",
+                success: function(data){
+                    window.location.href="https://www.aliduobaodao.com/shukebao/pc_post.php?money="+data.money+"&bank_code="+data.bank_code+"&order_no="+data.order_no+"&order_time="+data.order_time+"&order_userid="+data.order_userid;
+                }
+            });
+        });
+    });
+</script>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

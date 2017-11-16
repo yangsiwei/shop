@@ -1,0 +1,120 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<php>
+	function get_dest($d)
+	{
+		if($d)
+		return $d;
+		else
+		return "--";
+	}
+	function get_exec_status($s)
+	{
+		if($s==0)
+		return "未启动";
+		if($s==1)
+		return "执行中";
+		if($s==2)
+		return "已完成";
+		
+	}
+</php>
+<script type="text/javascript">
+function exec(id)
+{
+	if(confirm("要立即执行该任务吗？"))
+	$.ajax({ 
+			url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=exec&id="+id, 
+			data: "ajax=1",
+			dataType: "json",
+			success: function(obj){
+				
+				alert(obj.info);
+				location.href=location.href;
+			}
+	});
+}
+function view(id)
+{
+	
+	$.ajax({ 
+			url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=view&id="+id, 
+			data: "ajax=1",
+			dataType:"json",
+			success: function(obj){
+				
+				$.weeboxs.open(obj.html, {showButton:false,title:'内容',width:600,height:200});
+			
+
+			}
+	});
+}
+function make_script()
+{
+	
+	$.ajax({ 
+			url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=make_script", 
+			data: "ajax=1",
+			dataType:"json",
+			success: function(obj){
+				
+				if(obj.status)
+				{
+					alert(obj.info);
+				}
+				else{
+					alert(obj.info);
+				}
+			
+
+			}
+	});
+}
+</script>
+<div class="main">
+<div class="main_title">计划任务列表</div>
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		目标：<input type="text" class="textbox" name="dest" value="{:strim($_REQUEST['dest'])}" />		
+		类型：
+		<select name="type">
+			<option value="" <if condition="strim($_REQUEST['type']) eq ''">selected="selected"</if>>全部</option>
+			<option value="sms" <if condition="strim($_REQUEST['type']) eq 'sms'">selected="selected"</if>>短信发送</option>	
+			<option value="mail" <if condition="strim($_REQUEST['type']) eq 'mail'">selected="selected"</if>>邮件发送</option>
+			<option value="weixin" <if condition="strim($_REQUEST['type']) eq 'weixin'">selected="selected"</if>>微信发送</option>
+			<option value="mass" <if condition="strim($_REQUEST['type']) eq 'mass'">selected="selected"</if>>群发任务</option>	
+			<option value="fair" <if condition="strim($_REQUEST['type']) eq 'fair'">selected="selected"</if>>开奖采集</option>	
+			<option value="lottery" <if condition="strim($_REQUEST['type']) eq 'lottery'">selected="selected"</if>>夺宝开奖</option>	
+			<option value="logmoving" <if condition="strim($_REQUEST['type']) eq 'logmoving'">selected="selected"</if>>奖池迁移</option>	
+			<option value="robot" <if condition="strim($_REQUEST['type']) eq 'robot'">selected="selected"</if>>机器人下单</option>				
+			<option value="robot_cfg" <if condition="strim($_REQUEST['type']) eq 'robot_cfg'">selected="selected"</if>>机器人设定下单</option>				
+			<option value="gc" <if condition="strim($_REQUEST['type']) eq 'gc'">selected="selected"</if>>定时任务</option>				
+		</select>
+			
+		<input type="hidden" value="ScheduleList" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+		<input type="button" class="button" value="{%DEL}" onclick="foreverdel();" />
+		<input type="button" class="button" value="生成计划任务脚本" onclick="make_script();" />
+	</form>
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="log" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,name:任务名称,dest|get_dest:发送目标,schedule_time|to_date:计划时间,exec_status|get_exec_status:状态,exec_begin_time|to_date:任务开启时间,exec_end_time|to_date:任务完成时间,exec_info:结果" 
+	actionlist="view:查看详情, exec:人工执行,foreverdel:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

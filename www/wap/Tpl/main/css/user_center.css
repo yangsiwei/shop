@@ -1,0 +1,159 @@
+.logo_img{
+	color:@main_color;
+}
+.person_account{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-align-items:center;
+	align-items:center;
+	-webkit-box-align: center;
+	overflow:hidden;
+	width:100%;
+	height:4rem;
+	position:relative;
+	background-color: #d93a55;
+}
+
+.person_account img{
+	position:absolute;
+	top:0;
+}
+
+.account_info{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-align-items:center;
+	align-items:center;
+	-webkit-box-align: center;
+	margin-left: .5rem;
+}
+
+.account_info .pic{
+   width:2.4rem;
+	height:2.4rem;
+	border-radius:2.4rem;
+	overflow:hidden;
+	position:relative;
+	background:url(../images/uc-defaut.png) no-repeat;
+	background-size:contain;
+}
+.account_info .file_img{
+   width:2.4rem;
+	height:2.4rem;
+	border-radius:2.4rem;
+	overflow:hidden;
+	position:relative;
+	background:url(../images/uc-defaut.png) no-repeat;
+	background-size:contain;
+}
+.file-btn{
+        height:256px;
+        font-size: 300px;
+        position:absolute;
+        right:0;
+        top:0;
+        opacity: 0;
+        filter:alpha(opacity=0);
+        cursor:pointer;
+}
+.account_info .name{
+	padding-left: .6rem;
+	line-height: 1.2rem;
+	color: #fff;
+}
+.account_info .name h1{
+	font-size:0.86rem;
+}
+.account_info .name p{
+	font-size: .56rem;
+}
+.account_info .name p span{
+	display: inline-block;
+	color: #ffe600;
+}
+/* 优惠币说明-start */
+.account_info .name .uc_explain{
+	font-size: .48rem;
+    display: inline-block;
+    background-color: #fff;
+    width: 1.8rem;
+    line-height: .96rem;
+    text-align: center;
+    border-radius: 2px;
+    font-weight: bold;
+	margin-left: 0.3rem;
+}
+.explain_items{
+	margin: .5rem 1rem;
+}
+.explain_items ul li{
+	line-height: 1rem;
+    padding: 2px 0 1px 0;
+}
+.explain_items ul li .ui_clr{
+	display: block;
+    zoom: 1;
+}
+/* 优惠币说明-end */
+.uc-money-box{
+	width: 100%;
+	height: 1.6rem;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-align-items:center;
+	align-items:center;
+	-webkit-box-align: center;
+	background-color: #cf334d;
+}
+.uc-money-box .uc-money-item{
+	-webkit-flex:1;
+	-webkit-box-flex:1;  
+	flex:1;
+  font-size: 0.64rem;
+  padding-left: .5rem;
+  color: #f7cad3;
+}
+.uc-money-box .uc-money-item .money-font{
+	color: #ffe600;
+}
+.uc-money-box .uc-incharge-box{
+	padding-right: .5rem;
+}
+.uc-money-box .uc-incharge-box .incharge-btn{
+	background-color: #fff;
+	width: 2.4rem;
+	line-height: .96rem;
+	border: none;
+	text-align: center;
+	border-radius: 2px;
+	color: #cf334d;
+	font-weight: bold;
+}
+
+/*副导航菜单*/
+.uc-sub-nav{
+	background-color: #fff;
+}
+.uc-sub-nav .uc-nav-list{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+}
+.uc-nav-list .uc-nav-item{
+	-webkit-flex:1;
+	-webkit-box-flex:1;  
+	flex:1;
+	text-align: center;
+	    padding: .4rem 0;
+}
+.uc-nav-list .uc-nav-item .iconfont{
+	font-size: 1rem;
+	margin-bottom: .2rem;
+}
+
+/*end 副导航菜单*/
+
+	

@@ -1,0 +1,57 @@
+.add{
+	position: fixed;
+	bottom: 0;
+	height:2rem;
+	width:100%;
+	background:@main_color;
+	line-height: 2rem;
+	text-align: center;
+}
+.add a{
+	color:#fff;
+	font-size:.68rem;
+}
+.address_list li{
+	padding:.4rem .55rem;
+	padding-right:2rem;
+}
+.address_list .address-item-hd{
+	line-height:1rem;
+	font-size:.6rem;
+}
+.address_list .user-name{
+	float: left;
+	width:12em;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+.address_list .mobile{
+	float: right;
+}
+.address-info{
+	display:-webkit-box;
+	overflow:hidden;	
+	text-overflow:ellipsis;
+	word-break:break-all;
+	-webkit-box-orient: vertical;
+	-webkit-box-pack: center;
+	-webkit-line-clamp:2;
+	height:1.2rem;
+	line-height: .6rem;
+}
+.address_list{
+	background:#fff;
+}
+.checked-ico{
+	position: absolute;
+	right: .55rem;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	        transform: translateY(-50%);
+	color:#fff;
+}
+.address-item-checked{
+	background:@main_color;
+	color:#fff !important;
+}

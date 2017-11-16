@@ -1,0 +1,38 @@
+{foreach from=$index_duobao_list item=item  key=key}
+<li class="tuan_li split-line">
+    <a class="blw" href="{url a="index" r="duobao#index" p="data_id=$item.id"}">
+    <div class="pic">
+        {if $item.min_buy == 10 || $item.unit_price==10}
+        <div class="tenyen"></div>
+        {/if}
+        {if $item.unit_price eq 100}
+        <div class="hundredyen"></div>
+        {/if}
+        <img src="{$item.icon}" lazy="true" />
+    </div>
+    </a>
+    <div class="info">
+        <div class="info-tit">
+            {if $item.is_topspeed}
+            <em style="background-color:#ff2300;padding: 3px 5px;color: #fff;font-size: 12px;">极速</em>
+            {/if}
+            {$item.name}
+        </div>
+
+        <div class="progress-box">
+            <div class="left-box">
+                <progress max="{$item.max_buy}" value="{$item.current_buy}"></progress>
+                <div class="fl">
+                    <p class="txt-red">{$item.current_buy}</p>
+                    <p>已参与人次</p>
+                </div>
+                <div class="fr">
+                    <p class="txt-red">{$item.surplus_buy}</p>
+                    <p>剩余人次</p>
+                </div>
+            </div>
+            <a data-id="{$item.id}" class="right-box add_cart_item" unit_price="{$item.unit_price}" buy_num="{$item.min_buy}" data_id="{$item.id}" rel="{$item.icon}"><i class="iconfont">&#xe658;</i></a>
+        </div>
+    </div>
+</li>
+{/foreach}

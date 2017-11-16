@@ -1,0 +1,75 @@
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".send_test_btn").bind("click",function(){
+			var row = $(this).parent();
+			var query = new Object();
+			query.weixin_user = row.find("input[name='weixin_user']").val();
+			query.template_id_short = row.find("input[name='template_id_short']").val();
+			$.ajax({
+				url:"{$send_test_template_url}",
+				data:query,
+				dataType:"json",
+				type:"post",
+				success:function(obj){
+					if(obj.status)
+					{
+						alert("发送成功");
+					}
+					else
+					{
+						alert(obj.info);
+					}
+				}
+				
+			});
+		});
+	});
+	
+</script>
+<div class="main">
+<div class="main_title">微信配置</div>
+<div class="blank5"></div>
+   
+	<form method='post' id="form" name="form" action="__APP__">
+	<table cellpadding="4" cellspacing="0" border="0" class="form">
+		<tr>
+			<td colspan="2" class="topTd"></td>
+		</tr>
+		
+		<if condition="$template_list">
+		<tr>		
+			<th colspan="2">消息模板设置</th>
+		</tr>		
+		<foreach name="template_list" key="key" item="template">
+		<tr>		
+			<td class="item_title" style=" width:200px;"> {$template.name}</th>
+			<td class="item_input">
+				模板编号：{$key}
+				
+					<div class="send_test">
+						会员名：<input type="text" name="weixin_user" />
+						<input type="button" value="发送测试消息"  class="button send_test_btn" />
+						<input type="hidden" value="{$key}" name="template_id_short" />
+						<span class="tip_span">*该会员必需已在平台使用微信登录授权过</span>
+					</div>
+ 			</td>
+		</tr>
+		</foreach>
+		<tr>		
+			<td class="item_title" style=" width:200px;"></th>
+			<td class="item_input">
+				测试发送前请前往  <a href="http://yun.fanwe.com" target="_blank">方维云平台</a> 设置公众号并同步消息模板
+ 			</td>
+		</tr>
+		</if>
+		
+		<tr>
+			<td colspan="2" class="bottomTd"></td>
+		</tr>
+	</table>
+	</form>
+
+</div>
+<include file="Public:footer" />

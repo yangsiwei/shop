@@ -1,0 +1,168 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<load href='__TMPL__Common/js/ecvtype.js' />
+<div class="main">
+<div class="main_title">{%EDIT} <a href="{:u("EcvType/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%VOUCHER_NAME}:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="name" value="{$vo.name}" /></td>
+	</tr>
+	<tr id="defaule_money" >
+		<td class="item_title">{%VOUCHER_MONEY}:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="money" value="{$vo.money}" />
+		<span class="tip_span">请填写整数</span></td>
+	</tr>
+	
+	<tr id="rand_money">
+		<td class="item_title">随机金额:</td>
+		<td class="item_input">最小金额 <input type="text" class="textbox require except_zero" name="rand_value1" value="{$vo.rand_value1}" /> -- 最大金额 <input type="text" class="textbox require except_zero" name="rand_value2" value="{$vo.rand_value2}" /></td>
+	</tr>
+	<tr id="minchange_money">
+	<td class="item_title">最小购买金额:</td>
+	<td class ="item_input"><input type="text" class="textbox" name="minchange_money" value="{$vo.minchange_money}" />&nbsp;元</td>
+	</tr>
+	<tr>
+	<td class="item_title">订单金额满多少可以该红包用:</td>
+	<td class ="item_input"><input type="text" class="textbox" name="meet_amount" value="{$vo.meet_amount}" />&nbsp;元
+	</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%VOUCHER_LIMIT}:</td>
+		<td class="item_input"><input type="text" class="textbox" name="use_limit" value="{$vo.use_limit}" /> <span class="tip_span">{%VOUCHER_LIMIT_TIP}</span></td>
+	</tr>
+	<tr id="total_limit">
+		<td class="item_title">发放总量:</td>
+		<td class="item_input"><input type="text" class="textbox" name="total_limit" value="{$vo.total_limit}" /> <span class="tip_span">不填写为不限制</span></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%VOUCHER_BEGIN_TIME}:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="begin_time" id="begin_time" value="{$vo.begin_time|to_date}" onfocus="this.blur(); return showCalendar('begin_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_begin_time');" />
+			<input type="button" class="button" id="btn_begin_time" value="{%SELECT_TIME}" onclick="return showCalendar('begin_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_begin_time');" />	
+			<input type="button" class="button" value="{%CLEAR_TIME}" onclick="$('#begin_time').val('');" />				
+			<span class="tip_span">{%VOUCHER_BEGIN_TIME_TIP}</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%VOUCHER_END_TIME}:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="end_time" id="end_time" value="{$vo.end_time|to_date}" onfocus="this.blur(); return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');" />
+			<input type="button" class="button" id="btn_end_time" value="{%SELECT_TIME}" onclick="return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');" />	
+			<input type="button" class="button" value="{%CLEAR_TIME}" onclick="$('#end_time').val('');" />
+			<span class="tip_span">{%VOUCHER_END_TIME_TIP}</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%VOUCHER_SEND_TYPE}:</td>
+		<td class="item_input">
+			<select name="send_type">
+				<option value="0" <if condition="$vo['send_type'] eq 0">selected="selected"</if>>{%ADMIN_SEND}</option>
+				<option value="1" <if condition="$vo['send_type'] eq 1">selected="selected"</if>>{%SCORE_EXCHANGE}</option>
+				<option value="2" <if condition="$vo['send_type'] eq 2">selected="selected"</if>>序列号领取</option>
+
+				<option value="4" <if condition="$vo['send_type'] eq 4">selected="selected"</if>>注册送红包</option>
+				<option value="5" <if condition="$vo['send_type'] eq 5">selected="selected"</if>>充值送红包</option>
+				<option value="6" <if condition="$vo['send_type'] eq 6">selected="selected"</if>>满返红包</option>
+				<option value="7" <if condition="$vo['send_type'] eq 7">selected="selected"</if>>分享红包</option>
+
+			</select>
+		</td>
+	</tr>
+	
+	<tr id="sm_way">
+		<td class="item_title">金额类型:</td>
+		<td class="item_input">
+			<select name="sm_way">
+				<option value="0" <if condition="$vo['sm_way'] eq 0">selected="selected"</if>>固额</option>
+				<option value="1" <if condition="$vo['sm_way'] eq 1">selected="selected"</if>>随机</option>
+				<option class="sm_way_2" value="2" <if condition="$vo['sm_way'] eq 2">selected="selected"</if>>百分比</option>
+
+			</select>
+		</td>
+	</tr>
+	<tr id="use_range">
+		<td class="item_title">指定使用范围:</td>
+		<td class="item_input">
+			<label id="range_value1" class="not_all"> PK区 <input type="checkbox" name="range_value1" value="1" <if condition="$vo['domain']['range_value1'] eq 1">checked="checked"</if> /></label>
+			<label id="range_value7" class="not_all"> 一元区 <input type="checkbox" name="range_value7" value="7" <if condition="$vo['domain']['range_value7'] eq 7">checked="checked"</if> /></label>
+			<label id="range_value2" class="not_all"> 十元区 <input type="checkbox" name="range_value2" value="2" <if condition="$vo['domain']['range_value2'] eq 2">checked="checked"</if> /></label>
+			<label id="range_value3" class="not_all"> 百元区 <input type="checkbox" name="range_value3" value="3" <if condition="$vo['domain']['range_value3'] eq 3">checked="checked"</if> /></label>
+			<label id="range_value4" class="not_all"> 直购区 <input type="checkbox" name="range_value4" value="4" <if condition="$vo['domain']['range_value4'] eq 4">checked="checked"</if> /></label>
+			<label id="range_value5" class="not_all"> 极速区 <input type="checkbox" name="range_value5" value="5" <if condition="$vo['domain']['range_value5'] eq 5">checked="checked"</if> /></label>
+			<label id="range_value6" class="not_all"> 选号区 <input type="checkbox" name="range_value6" value="6" <if condition="$vo['domain']['range_value6'] eq 6">checked="checked"</if> /></label>
+			<label id="is_all"> 全部 <input type="checkbox" name="is_all" value="1" <if condition="$vo['is_all'] eq 1">checked="checked"</if> /></label>
+		</td>
+	</tr>
+	
+	<tr id="exchange_row">
+		<td class="item_title">{%VOUCHER_SCORE_EXCHANGE}:</td>
+		<td class="item_input">
+			{%EXCHANGE_SCORE}：<input type="text" class="textbox" name="exchange_score" value="{$vo.exchange_score}" /> {%EVERY_USER_CAN_EXCHANGE} <input type="text" class="textbox" name="exchange_limit_score" value="{$vo.exchange_limit}"  />  {%EMPTY_EXCHANGE_LIMIT_TIP}
+		</td>
+	</tr>
+	<tr id="bonus_row">
+		<td class="item_title">序列号领取:</td>
+		<td class="item_input">
+			序列号：<input type="text" class="textbox" name="exchange_sn" value="{$vo.exchange_sn}" /> {%EVERY_USER_CAN_EXCHANGE} <input type="text" class="textbox" name="exchange_limit_bonus" value="{$vo.exchange_limit}"  />  {%EMPTY_EXCHANGE_LIMIT_TIP}
+		</td>
+	</tr>
+	<tr id="share_url_row">
+		<td class="item_title">分享URL:</td>
+		<td class="item_input">
+			{$vo.share_url}
+		</td>
+	</tr>
+	<tr id="memo_row">
+		<td class="item_title">红包备注:</td>
+		<td class="item_input">
+			<textarea class="textarea" name="memo" style="height:50px;">{$vo.memo}</textarea>
+		</td>
+	</tr>
+	<tr id="tpl_row">
+		<td class="item_title">红包模版:</td>
+		<td class="item_input">
+		<table>
+				<tr>
+					<td>
+						<select name="tpl" >
+						<foreach name="tpls" item="row">
+							<option value="{$row}" <if condition="$vo.tpl eq $row">selected="selected"</if>>{$row}</option>
+						</foreach>
+						</select>
+					</td>
+					<td id="preview">
+						
+					</td>
+				</tr>
+			</table>
+	</tr>
+	
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="id" value="{$vo.id}" />
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="EcvType" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="update" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

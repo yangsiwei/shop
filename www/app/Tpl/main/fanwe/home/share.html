@@ -1,0 +1,75 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_duobao.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/home_luck.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/home.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_share.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_msg.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_msg.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/home_share.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/home_share.js";
+
+?>
+{include file="inc/header.html"}
+
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav f_l ">
+		{include file="inc/home_nav_list.html"}
+	</div>
+
+	<div class="f_r luck_main">
+	{include file="inc/home_info.html"}
+	<div class="blank"></div>
+	<div class="m-user-frame-colMain">
+		
+		<div class="share-box">
+		{if $count eq 0 }
+			<div class="null-data">
+				<p class="txt">Ta暂时还没有晒单记录哦~ </p>
+				<div class="blank20"></div>
+			</div>
+		{else}
+			<div class="share-record">
+				共有<b>{$count}</b>条晒单记录
+			</div>
+			<div class="blank20"></div>
+			
+			<ul class="pin-layout" id="home-share-pin-box">
+		
+			</ul>
+			<input type="hidden" name="page" id="hd_page" value="{$page}" />
+			<input type="hidden" name="step_size" id="hd_step_size" value="{$step_size}" />
+			<input type="hidden" name="step" id="hd_step" /> 
+			<input type="hidden" name="ajax_wait" id="ajax_wait" /> 
+			<input type="hidden" name="user_id" id="user_id" value="{$home_user.id}" /> 
+			
+			<div id="pin-loading" style="height:50px;text-align:center;">加载中.....</div>
+			<div class="pages">{$pages}</div>
+			{/if}
+		</div>
+	</div>
+	</div>
+
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

@@ -1,0 +1,81 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pk_choose_pkgoods.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pk_choose_pkgoods.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pk_choose_pkgoods.js";
+?>
+{include file="inc/header_title_home.html"}
+{if $list}
+<ul class="pk-goods-list">
+    {foreach from=$list item=item}
+	<li class="flex-box split-line">
+		<div class="goods-img">
+            {if $item.unit_price==10}
+            <div class="tenyen"></div>
+            {elseif $item.unit_price==100}
+            <div class="hundredyen"></div>
+            {/if}
+			<img src="{$item.icon}" alt="{$item.icon}">
+		</div>
+		<div class="goods-info flex-1">
+			<h2 class="goods-tit">{$item.name}</h2>
+			<p class="goods-tip">总需：<span class="txt-red">{$item.max_buy}</span>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		</div>
+       {if $item.status==0}
+		<a href="javascript:void(0);" class="pk-nowing">发起PK中</a>
+	   {else}
+        <a href="javascript:void(0);" class="pk-now" duobao_id="{$item.id}" pk_min_number="{$item.pk_min_number}" max_buy="{$item.max_buy}">发起PK</a>
+        {/if}
+    </li>
+	{/foreach}
+</ul>
+{else}
+<div class="content">
+    <div class="null_data">
+        <p class="icon"><i class="iconfont">&#xe6e8;</i></p>
+        <p class="message">暂无数据</p>
+    </div>
+</div>
+{/if}
+<div class="mask"></div>
+<div class="pk-box">
+	<div class="pk-box-hd">
+		<h2 class="pk-box-tit">发起PK设置</h2>
+		<a href="javascript:void(0)" class="close-pk-box"><i class="iconfont">&#xe64f;</i></a>
+	</div>
+	<div class="pk-box-bd">
+		<div class="input-wrap flex-box">
+			<p>设置参与人数：</p>
+            <div class="select-wrap">
+                <div class="select">
+                    <a href="javascript:void(0);" class="iconfont split-line-right active" id="button_minus" >&#xe6d3;</a>
+                    <input class="buy_number buy_number_js " type="tel" name="buyer_number" id="buyer_number" check-login='{url x="index" r="user#check_login"}' url='{url x="index" r="pk#choose_pkgoods_do"}' value="2" />
+                    <a href="javascript:void(0);" class="iconfont split-line-left active" id="button_plus">&#xe6d1;</a>
+                </div>
+            </div>
+        </div>
+		<div class="input-wrap flex-box">
+			<p>设置密码：</p>
+			<input type="password" name="pk_password" id="pk_password" maxlength="6" class="flex-1" placeholder="请设置密码(选填)">
+		</div>
+		<a href="javascript:void(0);" class="pk-confirm" id="submit">确认</a>
+	</div>
+</div>
+{include file="inc/footer_index.html"}

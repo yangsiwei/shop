@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+body{ font-size:12px; font-family:"verdana,Arial";  margin:0px; padding:0px; color:#404040; }
+.main{ text-align:center; height:30px; color:#333; line-height:30px; font-size:14px;}
+
+
+.notify_box table { width:100%; }
+.notify_box table td{ padding:20px 10px 0px 10px; width:25%; text-align:center;}
+.notify_box table td table{ width:100%; height:150px; 
+	-moz-box-shadow: 0 5px 5px 1px rgba(0, 0, 0, 0.2);/*firefox*/
+	-webkit-box-shadow: 0 5px 5px 1px rgba(0, 0, 0, 0.2);/*safari或chrome*/
+	box-shadow:0 5px 5px 1px rgba(0, 0, 0, 0.2);/*opera或ie9*/
+}
+.notify_box table td.version_box table{ background:#395898;}
+.notify_box table td.order_box table{ background:#fc8600;}
+.notify_box table td.user_box table{ background:#6bb425;}
+.notify_box table td.tuan_box table{ background:#7d37bb;}
+.notify_box table td.shop_box table{ background:#d03a45;}
+.notify_box table td.youhui_box table{ background:#3ab8c4;}
+.notify_box table td.event_box table{ background:#253b48;}
+.notify_box table td.store_box table{ background:#0961b8; }
+
+.notify_box table td table td{ vertical-align:middle; color:#fff; padding:0px; line-height:22px;}
+
+.notify_box table a{  color:#fff; text-decoration:none; }

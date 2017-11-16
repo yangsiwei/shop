@@ -1,0 +1,54 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+?>
+{include file="inc/header_title_home.html"}
+
+
+<div class="wrap">
+		{if $data.list}
+		<div class="list-view bor_none">
+			 <ul class="tuan_ul scroll_bottom_list">
+			 	{foreach from=$data.list item=list key=key}
+			 	<li class="tuan_li" style="padding:15px 10px;">
+			 	     <a href="{$list.url}">
+			 	     	<div class="list_item">
+							 <div class="info">
+							 	<h2>{$list.name}</h2>
+							 </div>
+			 	     	</div>
+			 	     </a>
+			 	</li>
+				{/foreach}
+			 </ul>
+		</div>	
+		{else}
+		<div class="null_data">
+		<p class="icon"><i class="iconfont">&#xe6e8;</i></p>
+		<p class="message">暂无数据</p>
+		</div>
+		{/if}
+</div>
+
+
+{if $pages}
+	<div class="fy scroll_bottom_page">
+		{$pages}
+	</div>
+{/if}
+{include file="inc/footer_index.html"}	

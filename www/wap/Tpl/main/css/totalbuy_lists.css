@@ -1,0 +1,44 @@
+.totalbuy-lists{
+	padding:.4rem 0;
+}
+.totalbuy-lists ul{
+	-webkit-box-lines: multiple;
+	-webkit-flex-wrap:wrap;/*换行*/
+	flex-wrap:wrap;
+}
+.totalbuy-lists li{
+	width:50%;
+	padding:0 .4rem .4rem;
+}
+.totalbuy-lists li .list-info{
+	padding:.4rem;
+	background:#fff;
+	border:1px solid #ddd;
+}
+.totalbuy-lists li .goods-img{
+	width:4rem;
+	height:4rem;
+	margin: 0 auto;
+}
+.totalbuy-lists li .goods-img img{
+	width:100%;
+	height:100%;
+}
+.totalbuy-lists li .goods-name{
+	display:-webkit-box;
+	overflow:hidden;	
+	text-overflow:ellipsis;
+	word-break:break-all;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp:2;
+	line-height:.8rem;
+	height:1.6rem;
+}
+.totalbuy-lists li .buy-btn{
+	display: block;
+	background:@main_color;
+	text-align: center;
+	color:#fff;
+	line-height: 1rem;
+	border-radius:3px;
+}

@@ -1,0 +1,76 @@
+/* CSS Document */
+
+.index_float_bottom{
+	height: 106px;
+	width: 100%;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+  	z-index: 50;
+}
+.index_float_bottoms{
+	height: 106px;
+	width: 100%;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	background: #071828;
+	filter: alpha(opacity=85);
+	opacity: 0.85;
+  	z-index: 1;
+}
+.index_float_bottom .index_float_bottom_in{
+	width: 1200px;
+	position: relative;
+	margin: 0 auto;
+	height: 106px;
+	z-index: 2;
+}
+.index_float_close,.index_float_img,.index_float_wx{
+	float: left;
+}
+.index_float_close{
+	width: 50px;
+	height: 50px;
+}
+.index_float_close a{
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: url(../images/index_float.png) 0 0 no-repeat;
+	-webkit-transition: all 400ms;
+}
+.index_float_close a:hover{
+	-webkit-transform:rotate(180deg);
+	-webkit-transition:all 400ms
+}
+.index_float_img{
+	width: 747px;
+	height: 132px;
+	background: url(../images/float_img.png) 0 0 no-repeat;
+	margin: -32px 0px 0px 21px;
+}
+.index_float_wx{
+	margin-left: 60px;
+}
+.index_float_wx p{
+	color: #adc6df;
+	font-size: 16px;
+	line-height: 30px;
+	padding-top: 23px;
+	text-align: center;
+	padding-bottom: 2px;
+	display: block;
+	float: left;
+	padding-right: 20px;
+}
+.index_float_wx img{
+	display: block;
+	width: 90px;
+	background: #fff;
+	float: left;
+	margin-top: 8px;
+}

@@ -1,0 +1,141 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/js/user.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<load href='__TMPL__Common/js/deal_order.js' />
+
+<div class="main">
+<div class="main_title"><if condition="$order_info['order_status'] eq 0">{%DEAL_ORDER_HANDLE}<else />{%DEAL_ORDER_VIEW}</if>{$order_info.order_sn}
+
+</div>
+<div class="blank5"></div>
+
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=4 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%ORDER_USER}:</td>
+		<td class="item_input">
+			{$order_info.user_id|get_user_name_js}
+		</td>
+		<td class="item_title">订单状态:</td>
+		<td class="item_input">
+			{$order_info.order_status|get_order_status=$order_info}
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%ORDER_SN}:</td>
+		<td class="item_input">{$order_info.order_sn}</td>
+		<td class="item_title">{%ORDER_CREATE_TIME}:</td>
+		<td class="item_input">{$order_info.create_time|to_date}</td>
+	</tr>	
+	<tr>
+		<td class="item_title">{%ORDER_PAY_STATUS}:</td>
+		<td class="item_input">{$order_info.pay_status|get_pay_status}
+
+		</td>
+		<td class="item_title"> </td>
+		<td class="item_input"> </td>
+	</tr>
+	<tr>
+		<th colspan=3>{%PAYMENT_INFORMATION}</th>
+	</tr>
+	<tr>
+		<td class="item_title">{%ORDER_TOTAL_PRICE}:</td>
+		<td class="item_input">{$order_info.total_price|format_price}</td>
+		<td class="item_title">{%INCHARGE_AMOUNT}:</td>
+		<td class="item_input">{$order_info.pay_amount|format_price}</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%ORDER_DEAL_TOTAL_PRICE}:</td>
+		<td class="item_input">{$order_info.deal_total_price|format_price}</td>
+		<td class="item_title">积分返还:</td>
+		<td class="item_input">{$order_info.return_total_score|abs}积分</td>		
+	</tr>
+	
+	<tr>
+		<td colspan=4 class="bottomTd"></td>
+	</tr>
+</table>
+<div class="blank5"></div>
+
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<th colspan=2>夺宝活动列表</th>
+	</tr>
+	<tr>
+		<th>活动名称</th>
+		<th width=150>购买人次</th>		
+	</tr>
+	<foreach name="order_deals" key="key" item="deal_item">
+	<tr>
+		<td>{$deal_item.name}</td>
+		<td>{$deal_item.number}</td>		
+	</tr>
+	</foreach>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>
+
+<if condition="$payment_notice">
+<div class="blank5"></div>
+
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=6 class="topTd"></td>
+	</tr>
+	<tr>
+		<th colspan=6>{%PAYMENT_NOTICE}</th>
+	</tr>
+	<tr>
+		<th>{%PAYMENT_NOTICE_SN}</th>
+		<th>{%PAY_TIME}</th>
+		<th>{%PAYMENT_AMOUNT}</th>
+		<th>{%PAYMENT_METHOD}</th>
+		<th>{%PAYMENT_MEMO}</th>
+	</tr>
+	<foreach name="payment_notice" item="notice_item">
+	<tr>
+		<td>{$notice_item.notice_sn}</td>
+		<td>{$notice_item.pay_time|to_date}</td>
+		<td>{$notice_item.money|format_price}</td>
+		<td>{$notice_item.payment_id|get_payment_name}</td>
+		<td>{$notice_item.memo}</td>
+		
+	</tr>
+	</foreach>
+	<tr>
+		<td colspan=6 class="bottomTd"></td>
+	</tr>
+</table>
+</if>
+
+<if condition="$log_list">
+	<div class="blank5"></div>
+	<table class="form" cellpadding=0 cellspacing=0>
+		<tr>
+		<td colspan=2 class="topTd"></td>
+		</tr>
+		<tr><th colspan=2>{%ORDER_LOG}</th></tr>
+			<foreach name="log_list" item="log_item">
+			<tr>
+				<td>{$log_item.log_info}</td>
+				<td>{$log_item.log_time|to_date}</td>
+			</tr>
+			</foreach>
+		<tr>
+		<td colspan=2 class="bottomTd"></td>
+		</tr>
+	</table>
+</if>
+
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,36 @@
+
+<div id="fwIbar" class="fw-ibar close">
+	<div class="fw-ibar-toggle">
+		<div class="hline"></div>
+		<div class="vline"></div>
+	</div>
+	<div class="fw-ibar-mask hide"></div>
+	<div class="fw-ibar-wrap">
+		<a class="item" href="{url x="index" r="index"}">
+			<div class="iconfont ">&#xe659;</div>
+			<div class="title">首页</div>
+		</a>
+		<a class="item" href="{url x="index" r="search"}">
+			<div class="iconfont ">&#xe656;</div>
+			<div class="title">搜索</div>
+		</a>
+		<a class="item" href="{url x="index" r="uc_collect"}">
+			<div class="iconfont ">&#xe655;</div>
+			<div class="title">收藏</div>
+		</a>
+		<a class="item" href="{url x="index" r="cart"}">
+			<div class="iconfont ">&#xe654;</div>
+			<div class="title">购物车</div>
+		</a>
+		<a class="item" href="{url x="index" r="user_center"}">
+			<div class="iconfont ">&#xe60e;</div>
+			<div class="title">我</div>
+		</a>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	openclose(".fw-ibar-toggle","#fwIbar");
+	openclose(".fw-ibar-mask","#fwIbar");
+});
+</script>

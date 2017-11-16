@@ -1,0 +1,37 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">{%DEAL_ORDER}</div>
+<div class="blank5"></div>
+<form name="search" action="__APP__" method="get">	
+
+<div class="search_row">
+
+		{%ORDER_SN}：<input type="text" class="textbox" name="order_sn" value="{:strim($_REQUEST['order_sn'])}" style="width:100px;" />		
+
+		<input type="hidden" value="DuobaoOrder" name="m" />
+		<input type="hidden" value="trash" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+		<input type="button" class="button" value="删除" onclick="foreverdel();" />
+
+</div>
+</form>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	checkbox="true" 
+	style="dataTable" 
+	name="deal_order" 
+	datasource="list" 
+	show="id:{%ID}|50px,order_sn:订单编号,user_id|get_user_name:{%USER_NAME},total_price|format_price:充值金额,create_time|to_date:{%ORDER_CREATE_TIME},pay_status|get_pay_status:付款状态"	 
+ /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

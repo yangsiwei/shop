@@ -1,0 +1,19 @@
+	{if $delivery_list}
+	<table>
+		{foreach from=$delivery_list item=delivery_item}
+		<tr>
+			<td class="delivery_title">
+				<label class="ui-radiobox" rel="common_rdo">
+					<input type="radio" value="{$delivery_item.id}" name="delivery"  >
+					{$delivery_item.name}
+				</label>			
+			</td>
+			<td>												
+				{function name="nl2br" value=$delivery_item.description}
+			</td>
+		</tr>
+		{/foreach}
+	</table>
+	{else}
+	<div class="empty_tip">{lang v="NO_SUPPORT_DELIVERY"}</div>
+	{/if}	

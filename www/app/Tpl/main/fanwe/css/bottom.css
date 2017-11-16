@@ -1,0 +1,141 @@
+#bottom{
+	width:100%;
+	/*background-color:yellow;*/
+	height:40px;
+	/*border:1px solid red;*/
+	text-align: center;
+}
+#clea{
+	text-align: center;
+	margin-left: 350px;
+	margin-top: 20px;
+}
+li{
+	list-style: none;
+}
+.cft{
+	width:50%;
+	display: block;
+	float: left;
+	line-height:40px;
+	list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 20px;
+    margin-left: 100px;
+    /*margin-top: 20px;*/
+
+}
+.icon1{
+	height: 40px;
+	display: block;
+	width:15%;
+	float: left;
+	background-image: url(../images/user_home_common.png);
+	background-position:-89px -368px;
+	overflow: hidden;
+	position: relative;
+    top: -13px;
+   
+}
+ .icon-cft:hover{
+ 	height: 40px;
+	width:15%;
+	float: left;
+	background-image: url(../images/user_home_common.png);
+	background-position:-89px -400px;
+	overflow: hidden;
+	display: block;
+	overflow: hidden;
+	position: relative;
+    top: -13px;
+}
+
+.icon2:hover{
+	height: 40px;
+	display: block;
+	width:15%;
+	float: left;
+	background-image: url(../images/user_home_common.png);
+	background-position:-89px -475px;
+	overflow: hidden;
+	position: relative;
+    top: -15px;
+    left: -18px;
+   
+}
+
+ .icon-visacft{
+ 	height: 40px;
+	width:15%;
+	float: left;
+	background-image: url(../images/user_home_common.png);
+	background-repeat:no-repeat;
+	background-position:-89px -438px;
+	position: relative;
+    top: -15px;
+    left: -18px;
+}
+
+.icon3:hover{
+	height: 40px;
+	display: block;
+	width:15%;
+	float: left;
+	background-image: url(../images/user_home_common.png);
+	background-position:-89px -610px;
+	overflow: hidden;
+	position: relative;
+    top: -19px;
+    left: -32px;
+   
+}
+.icon-verisign{
+	height: 40px;
+	width:15%;
+	float: left;
+	background-image: url(../images/user_home_common.png);
+	background-repeat:no-repeat;
+	background-position:-89px -573px;
+	position: relative;
+    top: -19px;
+    left: -32px;
+}
+
+.icon4:hover{
+	height: 40px;
+	display: block;
+	width:15%;
+	float: left;
+	background-image: url(../images/user_home_common.png);
+	background-repeat:no-repeat;
+	background-position:-89px -682px;
+	overflow: hidden;
+	position: relative;
+    top: -16px;
+    left: -46px;
+   
+}
+.PCIDSSC{
+	width:15%;
+	float: left;
+	background-image: url(../images/user_home_common.png);
+	background-repeat:no-repeat;
+	background-position:-89px -649px;
+	position: relative;
+    top: -16px;
+    left: -46px;
+    /*z-index: 999;*/
+}
+.icon-credible{
+	width:15%;
+	float: left;	
+}
+.foot_info{
+	/*float: left;
+     margin-left: 10px; 
+    position: relative;
+    left: -369px;*/
+}

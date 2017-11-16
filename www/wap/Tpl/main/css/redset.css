@@ -1,0 +1,126 @@
+.redset-list{
+	padding-bottom: 1rem;
+}
+.redset-list .hd{
+	line-height: 2rem;
+	text-align: center;
+	margin: 0 .5rem;
+	position: relative;
+}
+.redset-list .hd::after{
+	content: '';
+	height: 1px;
+	background: #ddd;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width:100%;
+	z-index: 1;
+	-webkit-transform: translateY(-50%);
+	        transform: translateY(-50%);
+}
+.redset-list .hd span{
+	padding: 0 .5rem;
+	font-size: .6rem;
+	background: #f8f8f8;
+	position: relative;
+	z-index: 2;
+}
+.redset-list li{
+	margin: 0 .5rem;
+	height:3rem;
+	background:#fff;
+	padding:0 .5rem;
+}
+.redset-list li:last-child::after{
+	display:none;
+}
+.redset-list li .user-img{
+	width:2rem;
+	height: 2rem;
+	margin-right: .5rem;
+}
+.redset-list li .user-img img{
+	width:100%;
+	height:100%;
+}
+.redset-list li .user-info{
+	width:50%;
+	line-height: 1rem;
+}
+.redset-list li .user-info span{
+	display: block;
+}
+.redset-list li .user-info .name{
+	color:@main_color;
+	font-size:.56rem;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	max-width:50%;
+	margin-right: .25rem;
+}
+.redset-list li .user-info .time{
+	color:#999;
+}
+.redset-list li .user-info .user-tip{
+	color:#999;
+}
+.redset-list li .ecv-num{
+	font-size:.8rem;
+	color:@main_color;
+}
+.draw_money{
+	color: #333;
+    font-size: .5rem;
+    margin-top:.5rem;
+}
+.use_for{
+    line-height: 1.5rem; 
+    font-size: .8rem;
+    border: 1px solid #d93a55;
+    color: #fff;
+    border-radius: 3px;
+    margin: 0 auto;
+    height: 1.5rem;
+    margin-top: 1rem;
+    width: 10rem;
+    display: block;
+    text-align: center;
+    background: #d93a55 ;
+}
+.login-btn_p{
+	margin-top: .6rem;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-align-items:center;
+	align-items:center;
+	-webkit-box-align: center;
+	padding: 0 .5rem;
+	text-align: center;
+	display: block;
+	margin: 0 auto;
+}
+.login-btn1{
+	border-radius: 5px;
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	flex:1;
+	-webkit-appearance:none;
+	background: #d93a55 !important;
+	display: block;
+	text-align: center;
+	font-size: .6rem;
+	color: #fff;
+    line-height: 1.4rem;
+    margin-top: .8rem;
+}
+.nobaody{
+	font-size: 16px;
+    line-height: 30px;
+    margin-bottom: 10px;
+    margin-top: 1.5rem;
+    text-align: center;
+    color: #999;
+}

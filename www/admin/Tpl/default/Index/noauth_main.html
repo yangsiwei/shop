@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>{:conf("APP_NAME")}{:l("ADMIN_PLATFORM")}</title>
+<script type="text/javascript" src="__ROOT__/public/runtime/admin/lang.js"></script>
+<script type="text/javascript">
+	var version = '{:app_conf("DB_VERSION")}';
+	var app_type = '{$apptype}';
+	var ofc_swf = '__TMPL__Common/js/open-flash-chart.swf';
+	var sale_line_data_url = '{:urlencode(u("Ofc/sale_line"))}';
+	var sale_refund_data_url = '{:urlencode(u("Ofc/sale_refund"))}';
+</script>
+<load href='__TMPL__Common/style/style.css' />
+<load href='__TMPL__Common/style/main.css' />
+<load href='__TMPL__Common/js/jquery.js' />
+<load href='__TMPL__Common/js/swfobject.js' />
+<load href='__TMPL__Common/js/script.js' />
+<load href='__TMPL__Common/js/main.js' />
+</head>
+
+<body>
+	<div class="main">
+	<div class="main_title">{:conf("APP_NAME")}{:l("ADMIN_PLATFORM")} {%HOME}	</div>
+	<div class="notify_box">
+		<table>
+			<tr>
+			<td class="version_box">
+				<table>
+					<tr><td>
+						当前版本：{:conf("DB_VERSION")}<php>if(app_conf("APP_SUB_VER")){</php>.{:app_conf("APP_SUB_VER")}<PHP>}</PHP><br />
+						<div id="version_tip"></div>
+					</td></tr>
+				</table>
+			</td><!--version_box 版本提示-->
+			<td class="order_box">
+				<table>
+					<tr><td>
+						订单累计 无权限查看
+					</td></tr>
+				</table>
+			</td><!--order_box 订单提醒-->
+			<td class="user_box">
+				<table>
+					<tr><td>
+						平台会员总数  无权限查看
+					</td></tr>
+				</table>
+			</td><!--user_box 会员提醒-->
+			<td class="tuan_box">
+				<table>
+					<tr><td>
+						夺宝活动统计   无权限查看
+					</td></tr>
+				</table>
+			</td><!--tuan_box 团购提醒-->
+			</tr>
+			
+			
+		</table>
+	</div>	
+
+	</div>
+</body>
+</html>

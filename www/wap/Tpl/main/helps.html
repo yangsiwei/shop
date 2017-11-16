@@ -1,0 +1,51 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/article.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+?>
+{include file="inc/header_title_home.html"}
+<div class="wrap">
+	<div class="content">
+		<ul class="list">
+			{foreach from=$data.list item=item}
+			<li>
+				<header>{$item.title}</header>
+				<section>
+					<ul>
+					 	{foreach from=$item.article_list item=it}
+						<li><a href="{$it.url}">{$it.title}<i class="iconfont">&#xe6fa;</i></a></li>
+						{/foreach}
+					</ul>
+				</section>
+			</li>
+			{/foreach}
+		</ul>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$('.menu_box>li').eq(3).children('a').children('p').children('img').attr('src','./wap/Tpl/main/images/menu/helpr.png');
+	})
+</script>
+{include file="inc/footer_index.html"}
+{if $ajax_refresh==0}
+{include file="inc/app_input_num.html"}
+{include file="inc/footer_menu.html"}
+{include file="inc/footer_index.html"}
+{/if}

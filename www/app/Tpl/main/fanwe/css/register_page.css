@@ -1,0 +1,53 @@
+@CHARSET "UTF-8";
+#user_register_box .register_box{ padding:40px 70px;}
+#user_register_box .do_login{ display:block; margin-top:10px;}
+#user_register_box .login_tip{ display:block; margin-top:40px; height:40px; line-height:40px; }
+
+
+.register-tab {
+    border-bottom: 1px solid @border_color;
+    height: 35px;
+    margin: -10px 0 0 0px;
+    padding-left: 30px;
+
+}
+.register-tab a{
+    background: url("../images/user/login_tab.png") no-repeat #fff;
+}
+.register-tab a {
+    background-position: 0 0;
+    color: @font_color;
+    display: block;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    height: 17px;
+    line-height: 17px;
+    margin-bottom: -1px;
+    margin-right: 12px;
+    overflow: hidden;
+    padding: 10px 0 9px;
+    position: relative;
+    text-align: center;
+    width: 149px;
+    -webkit-transition: none;
+       -moz-transition: none;
+        -ms-transition: none;
+         -o-transition: none;
+            transition: none;
+}
+.register-tab a.current {
+    background-position: 0 -36px;
+    color: @font_color;
+}
+.register-tab a span {
+
+}
+
+.register-tab a:hover {
+    text-decoration: none;
+}
+
+
+.register-panel div.panel{ display:none;}
+.register-panel .ph_img_verify{ display:none;}

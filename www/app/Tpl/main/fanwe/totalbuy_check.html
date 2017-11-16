@@ -1,0 +1,121 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/cart_index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/zg_check.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/goods_item.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/zone.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/lazyload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/totalbuy_check.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/totalbuy_check.js";
+?>
+{include file="inc/header_cart_zg.html"}
+<script type="text/javascript">
+var main_url='{url r="index"}';
+var APP_ROOT = '{$APP_ROOT}';
+var CART_URL = '{url x="index" r="cart"}';
+var CART_CHECK_URL = '{url x="index" r="cart#check"}';
+{if app_conf("APP_MSG_SENDER_OPEN") eq 1}
+var send_span = {function name="app_conf" v="SEND_SPAN"}000;
+var IS_RUN_CRON = 1;
+var DEAL_MSG_URL = '{url x="index" r="cron#deal_msg_list"}';
+{/if}
+var AJAX_LOGIN_URL	= '{url x="index" r="user#ajax_login"}';
+var AJAX_URL	= '{url x="index" r="ajax"}';
+var LOADER_IMG = '{$TMPL}/images/loader_img.gif';
+</script>
+<div class="blank30"></div>
+<div class="{function name="load_wrap" t=$wrap_type}">
+	{if $order_info.order_status == -1}
+	<div class="zg-check-hd">
+		<div class="check-msg">
+			<h2 class="title">
+				<i class="ico m-fail-ico"></i>
+				订单不存在或已失效！
+			</h2>
+		</div>
+	</div>
+	{else}
+        {if $is_pk}
+            <form name="paydone_form" id="paydone_form" action="{url x="index" r="pk#pay_done"}" method="post">
+        {elseif $is_number_choose}
+            <form name="paydone_form" id="paydone_form" action="{url x="index" r="number_choose#pay_done"}" method="post">
+        {else}
+            <form name="paydone_form" id="paydone_form" action="{url x="index" r="totalbuy#pay_done"}" method="post">
+        {/if}
+	<div class="zg-check-hd">
+		<div class="check-msg">
+			<h2 class="title">
+				<i class="ico m-suc-ico"></i>
+				订单提交成功，只差最后一步支付就可以啦！
+			</h2>
+			<!-- 
+			<p class="desc">请您在提交订单后<span class="txt-red">00小时20分00秒</span>完成支付，否则订单会自动取消！</p>
+			-->
+		</div>
+		<div class="check-info">
+			<p>订  单  号：{$order_info.order_sn}</p>
+			<p>商品信息：{$order_info.deal_name}  ×  {$order_info.number}</p>
+            {if $order_info.address}
+			<p>收货信息：{$order_info.address}</p>
+            {/if}
+		</div>
+	</div>
+	{* 支付方式  *}
+	{if $show_payment}
+	<div id="cart_payment">
+	<div class="cart_row layout_box" style="border: 0;">
+		<div class="content" style="background:#f5f5f5;">
+			{if $bank_paylist}
+			{foreach from=$bank_paylist item=payment_item}
+				{$payment_item.display_code}
+			{/foreach}
+			{/if}
+			{if $icon_paylist}
+			{foreach from=$icon_paylist item=payment_item}
+				{$payment_item.display_code}
+			{/foreach}
+			{/if}
+			<div class="clear"></div>
+			<div class="account_payment">
+			{foreach from=$disp_paylist item=payment_item}
+				{$payment_item.display_code}
+			{/foreach}
+			</div>
+		</div>
+	</div>
+	<input type="hidden" value="{$payment_id}" name="payment_id"/>
+	</div>
+	{* 购物统计 *}
+	<div id="cart_total">
+	</div>
+	{* 购物统计 *}
+	<div id="cart_submit">
+		<input type="hidden" value="{function name="intval" value=$order_info.id}" name="id" />
+		<button id="order_done" class="btn btn-main f_r" rel="blue" type="button">{$LANG.CONFIRM_ORDER_AND_PAY}</button>
+	</div><!--cart_submit-->
+	<div class="blank30"></div>
+	{/if}
+	{* 支付方式 *}
+	</form>
+	{/if}
+</div>
+
+{include file="inc/footer.html"}

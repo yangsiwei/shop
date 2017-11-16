@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+.home_avatar{
+	width:160px;
+}
+.home_user_info{ padding:20px;}
+.home_avatar img{ width:160px; height:160px;}
+.home_info{ margin-left:20px; }
+.home_info .home_user_name{ padding:5px; font-size:18px; font-family:"微软雅黑"; font-weight:bold; display:block;}
+.home_info .home_user_id{ font-size:14px; display:block; padding:5px; }
+.m-user-comm-navLandscape .title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333333;
+    margin-right: 10px;
+}

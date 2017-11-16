@@ -1,0 +1,179 @@
+body{
+	height:100%;
+	/*overflow: hidden;*/
+	position: relative;
+}
+.c-hd{
+	background:@main_color;
+}
+.cut_city a, .cut_city a:hover, .cut_city a:visited{
+	color:#fff;
+}
+.logo_img{
+	color:#fff;
+}
+.tenyen{
+    width: 1.2rem;
+    height: 1.2rem;
+    background: url(../images/10yuan.png) no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: .4rem;
+    z-index: 500;
+}
+.hundredyen{
+    width: 1.2rem;
+    height: 1.2rem;
+    background: url(../images/100yuan.png) no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: .4rem;
+    z-index: 500;
+}
+.pk-goods-list{
+	height:100%;
+	padding-bottom:2rem;
+	overflow: auto;
+}
+.pk-goods-list li{
+	background: #fff;
+	padding: 0 .4rem;
+	height:4rem;
+}
+.pk-goods-list li .goods-img{
+	height:3rem;
+	width:3rem;
+}
+.pk-goods-list li .goods-img img{
+	width:100%;
+	height:100%;
+}
+.pk-goods-list li .goods-info{
+	margin: 0 .4rem;
+}
+.pk-goods-list li .goods-tit{
+	font-size:.56rem;
+	display:-webkit-box;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	word-break:break-all;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp:2;
+	height:1.6rem;
+	line-height: .8rem;
+	color:#444;
+}
+.pk-goods-list li .goods-tip{
+	line-height: 1rem;
+	margin-top: .2rem;
+	color:#999;
+}
+.pk-goods-list li .pk-now{
+	width:2rem;
+	text-align: center;
+	background:@main_color;
+	color:#fff;
+	line-height: 1rem;
+	border-radius:3px;
+}
+.mask{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width:100%;
+	height:100%;
+	background:rgba(0, 0, 0, 0);
+	z-index:-1;
+	-webkit-transition: background .25s ease;
+	        transition: background .25s ease;
+}
+.mask.active{
+	background:rgba(0, 0, 0, .5);
+	z-index:10;
+}
+.pk-box{
+	position: fixed;
+	bottom: 0;
+	-webkit-transform: translateY(200%);
+	        transform: translateY(200%);
+	-webkit-transition:transform .25s ease;
+	        transition:transform .25s ease;
+	width:100%;
+	background:#fff;
+	z-index:20;
+}
+.pk-box.active{
+	-webkit-transform: translateY(0);
+	        transform: translateY(0);
+
+}
+.pk-box .pk-box-hd{
+	background:#eee;
+	line-height: 1.4rem;
+	text-align: center;
+	color:#444;
+	font-size:.6rem;
+	position: relative;
+}
+.pk-box .close-pk-box{
+	color:#444;
+	position: absolute;
+	top: 0;
+	right: 0;
+	line-height: 1.4rem;
+	width:1.4rem;
+	text-align: center;
+}
+.pk-box .pk-box-bd{
+	padding:.4rem;
+}
+.pk-box .pk-box-bd .input-wrap{
+	margin-bottom: .4rem;
+}
+.pk-box .pk-box-bd .input-wrap p{
+	text-align:right;
+	width:7em;
+	line-height: 1.2rem;
+}
+.pk-box .pk-box-bd .input-wrap input{
+	display: block;
+	border:1px solid #eee;
+	height:1.2rem;
+	padding:0 .4rem;
+}
+.pk-confirm{
+	line-height: 1.6rem;
+	text-align: center;
+	color:#fff;
+	background:@main_color;
+	font-size:.6rem;
+	display: block;
+	margin: 0 -.4rem -.4rem;
+}
+.pk-box-bd .select-wrap .select {
+    -moz-box-align: center;
+    align-items: center;
+    border: 1px solid #aaa;
+    border-radius: 0.1rem;
+    display: flex;
+    height: 1.26rem;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 4.52rem;
+}
+.pk-box-bd .select-wrap .select input {
+    color: #df5667;
+    display: block;
+    height: 1.26rem;
+    text-align: center;
+    width: 2rem;
+}
+.pk-box-bd .select-wrap .select a {
+    color: #676767;
+    display: block;
+    line-height: 1.26rem;
+    text-align: center;
+    width: 1.26rem;
+}

@@ -1,0 +1,49 @@
+<style type="text/css">
+.content{background-color: #fff7e4;min-height: 620px;}
+.hb_head{width: 220px;margin: 0 auto;padding: 20px 0 10px 0;text-align: center;color: #ed3f17;font-weight: bold;}
+
+.hb_box{width: 220px; margin: 0 auto;position: relative;}
+.hb_box img{width:100%}
+.hb_text{position: absolute;top: 90px;width: 150px;height: 150px;left: 50%;margin-left: -75px;}
+.table_box{  display: display:-moz-box;display: -webkit-box;display: box;text-align: center;}
+.table_box .t_box_item{  -moz-box-flex: 1;-webkit-box-flex: 1;box-flex: 1;font-size: 52px;color: #ffd031;}
+.hb_floot{width: 220px;margin: 0 auto;text-align: center;padding-bottom: 20px;}
+.hb_floot img{width:80%;}
+.info_box{padding-top: 30px;text-align: center;color: #fff;}
+</style>
+<div class="content">
+		<div class="hb_head">
+			{$data.memo}
+		</div>
+		<a></a>
+		<div class="hb_box" {if $status eq 0}onclick="receive_ecv({$data.exchange_sn})"{/if}>
+			<img src="./system/ecv_tpl/images/hb2.png"/>
+			<div class="hb_text">
+				{if $status eq -1}
+					<div class="info_box">{$info}</div>
+				{elseif $status eq 1}
+					<div class="info_box">
+						<p>面额：{function name="format_price" value=$ecv_data.money}</p>
+						<p>有效期：{if $ecv_data.begin_time eq 0}无限{else}{function name="to_date" value=$ecv_data.begin_time}{/if} {if $ecv_data.end_time eq 0}{else}至 {function name="to_date" value=$ecv_data.end_time}{/if}</p>
+					</div>
+				{else}
+					<div class="table_box">
+						<div class="t_box_item">恭</div>
+						<div class="t_box_item">喜</div>
+					</div>
+					<div class="table_box">
+						<div class="t_box_item">發</div>
+						<div class="t_box_item">财</div>
+					</div>
+				{/if}
+			</div>
+		</div>
+		{if $status eq 0}
+		<div class="hb_floot">
+			<img src="./system/ecv_tpl/images/hbdb.png"/>
+		</div>
+		{else}
+		<div class="blank50"></div>
+		<div class="blank50"></div>
+		{/if}
+</div>

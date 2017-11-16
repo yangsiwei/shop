@@ -1,0 +1,124 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">	
+	var nav_cfg = {$nav_cfg|json_encode};	
+	var adv_type = {$vo.type|intval};
+	var data_json = {$vo.data|json_encode};
+</script>
+<load href='__TMPL__Common/js/mnav_cfg.js' />
+<load href='__TMPL__Common/js/m_zt.js' />
+<div class="main">
+<div class="main_title">{%EDIT} <a href="{:u("MZt/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%NAME}:</td>
+		<td class="item_input">
+			<input type="text" class="textbox require" name="name" value="{$vo.name}"  />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">专题标题:</td>
+		<td class="item_input">
+			<input type="text" class="textbox " name="zt_title"  value="{$vo.zt_title}" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">专题模板:</td>
+		<td class="item_input">
+			<table>
+				<tr>
+					<td>
+						<select name="zt_moban">
+						<foreach name="zt_moban" item="moban">
+							<option value="{$moban}" <if condition="$vo['zt_moban'] eq $moban">selected="selected"</if>>{$moban}</option>
+						</foreach>
+						</select>
+					</td>
+					<td id="preview">
+						
+					</td>
+				</tr>
+			</table>
+			
+		</td>
+	</tr>
+	<tr style="display:none;">
+		<td class="item_title">所属城市:</td>
+		<td class="item_input">
+		<select name="city_id">
+			<option value="0" <if condition="$vo['city_id'] eq 0">selected="selected"</if>>全部显示</option>
+			<foreach name="city_list" item="city_item">
+				<option value="{$city_item.id}" <if condition="$vo['city_id'] eq $city_item['id'] and $city_item['pid'] neq 0">selected="selected"</if> <if condition="$city_item['pid'] eq 0">disabled="disabled"</if>>{$city_item.title_show}</option>
+			</foreach>
+		</select>
+		</td>
+	</tr>
+	<tr style="display:none;">
+		<td class="item_title">手机类型:</td>
+		<td class="item_input">
+			<select name=mobile_type id = "mobileTypeSelect">
+				<foreach name="nav_cfg" item="cfg">
+					<option value="{$cfg.mobile_type}" <if condition="$vo['mobile_type'] eq $cfg['mobile_type']">selected="selected"</if>>{$cfg.name}</option>					
+				</foreach>
+			</select>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">{%ADV_TYPE}:</td>
+		<td class="item_input">
+			<select name="type" id='typeSelect'>
+				<foreach name="nav_list" item="nav">
+					<option value="{$nav.type}" <if condition="$vo['type'] eq $nav['type']">selected="selected"</if>>{$nav.name}</option>					
+				</foreach>
+			</select>
+		</td>
+	</tr>
+	
+	<tr id="type" style="display:none;">
+		<td class="item_title"></td>
+		<td class="item_input">
+			<input type="text" class="textbox " name=""  />
+		</td>
+	</tr>
+		
+	<tr style="display:none;">
+		<td class="item_title">是否显示在中间:</td>
+		<td class="item_input">
+			<select name="is_middle">
+				<option value="0" <if condition="$vo['is_middle'] eq 0">selected="selected"</if>>否</option>
+				<option value="1" <if condition="$vo['is_middle'] eq 1">selected="selected"</if>>是</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%SORT}:</td>
+		<td class="item_input">
+			<input type="text" class="textbox " name="sort" value="{$vo.sort}"  />
+		</td>
+	</tr>	
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" value="{$vo.id}" name="id" />
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="MZt" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="update" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+.x-all{width: 1200px; margin: 30px auto;}
+.x-userinfobox{border: 1px solid #ccc; padding: 20px; margin-bottom: 20px;}
+.x-userinfobox .x-userpic{width: 160px; height: 160px; margin-right: 20px;}
+.x-usercont .nickname{font-size: 18px; font-weight: bold; line-height: 50px;}
+.x-usercont .nickid{line-height: 30px;}
+.x-sharedetail{border: 1px solid #ccc; padding: 30px 50px 50px;}
+.x-sharetit{position: relative; border-bottom: 1px dotted #d0d0d0; padding-bottom: 10px;}
+.x-sharetit .sharetit{font-size: 25px;}
+.x-sharetit .share{position: absolute; bottom:-26px; right: 0;}
+.x-sharetit .sharelst{margin-left: 6px;}
+.x-sharetit .sharelst li{float: left; margin-right: 3px;}
+.x-sharetit .time{position: absolute; bottom: -10px; left: 0; width: 100%;}
+.x-sharetit .time span{padding: 0 10px; color: #999; font-size: 13px; background: #fff;}
+.x-windetail{border: 1px solid #dedede; height: 130px; margin-top: 30px; background: #fafafa;}
+.x-windetail .owner{height:130px;width: 410px; border-right: 1px dashed #cbcbcb; background: #fff;}
+.x-windetail .avatar{width: 90px; height: 90px; margin: 20px;}
+.x-windetail .avatar img{width: 100%; min-height: 100%;}
+.x-windetail .info{font-size: 13px; padding-top: 20px; color: #808080; line-height: 22px;}
+.x-windetail .info a:hover{
+	color:@main_color;
+	text-decoration:none;
+}
+.x_red{color: #db3652;}
+.x-windetail .pic{width: 90px; height: 90px; margin: 20px 40px 20px 20px;}
+.x-windetail .pic img{width: 100%; min-height: 100%;}
+.x-windetail .goods .info{padding-top: 15px;}
+.x-windetail .goods .name a{color: #808080;}
+.x-windetail .goods .go-more{margin-top: 10px;}
+.x-sharecont{margin: 20px 19px; padding: 12px 35px; position: relative; font-size: 15px; white-space: normal; word-wrap: break-word; text-indent: 2em; color: #808080;}
+.x-sharecont .quote-b{background-position: -40px -190px; left: 0; top: 0;}
+.x-sharecont .quote-a{background-position: -70px -190px; right: 0; bottom: 0;}
+.x-sharepics{margin-left: -16px; overflow: hidden;}
+.x-sharepics .item{display: inline-block; width: 540px; text-align: center; line-height: 0; font-size: 0; margin-left: 15px; margin-bottom: 10px;}
+.x-sharepics .item{
+	*display:inline
+}
+.x-sharepics .item img{width: 100%; vertical-align: bottom;}

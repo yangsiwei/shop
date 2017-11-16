@@ -1,0 +1,158 @@
+.content{
+	background: #ebeced;
+}
+.search{
+	padding: .3rem;	
+}
+.search .search-wrap{
+	position: relative;
+	display: block;
+}
+.search .search-wrap::after{
+	content: '';
+	width: 200%;
+	height:2.56rem;
+	border-radius: .4rem;
+	border: 1px solid #cbcbcb;
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	-webkit-transform: scale(0.5);
+	        transform: scale(0.5);
+	-webkit-transform-origin:0 0;
+	        transform-origin:0 0;
+	pointer-events: none;
+}
+.search .iconfont,.diyfont{
+	float: left;
+	width: 10%;
+	text-align: center;
+	color: #bdbdbd;
+	display: inline-block;
+	line-height: 1.28rem;
+	height: 1.28rem;
+	font-size: .7rem;
+	vertical-align: middle;
+	background: #fff;
+	border-radius:.2rem 0 0 .2rem;
+
+}
+.search .search-bar{
+	width: 100%;
+	background: #fff;
+	line-height:1.28rem;
+	height: 1.28rem;
+	border-radius:.2rem;
+	outline: none;
+	color: #bdbdbd;
+}
+/* 搜索 */
+.allgoods{
+	background: #fff;
+	position: relative;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.allgoods::before{
+	content: '';
+	width: 100%;
+	border-top: 1px solid #cbcbcb;
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	-webkit-transform: scaleY(0.25);
+	        transform: scaleY(0.25);
+	-webkit-transform-origin:0 0;
+	        transform-origin:0 0;
+}
+.allgoods::after{
+	content: '';
+	width: 100%;
+	border-bottom: 1px solid #cbcbcb;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	-webkit-transform: scaleY(0.25);
+	        transform: scaleY(0.25);
+	-webkit-transform-origin:0 100%;
+	        transform-origin:0 100%;
+}
+.allgoods .iconfont,.diyfont{
+	width: 17.3333%;
+	text-align: center;
+	display: inline-block;
+	font-size: 1.4rem;
+	color: #db3652;
+	line-height: 2.6rem;
+	vertical-align: middle;
+}
+.allgoods h1{
+	width: 82.6666%;
+	display: inline-block;
+	line-height: 2.6rem;
+	font-size: .76rem;
+	color: #222;
+	vertical-align: middle;
+	position: relative;
+}
+.allgoods h1::after{
+	content: '';
+	width: 100%;
+	border-bottom: 1px solid #cbcbcb;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	-webkit-transform: scaleY(0.25);
+	        transform: scaleY(0.25);
+	-webkit-transform-origin:0 100%;
+	        transform-origin:0 100%;
+}
+.allgoods p{
+	padding-left: .6rem;
+	line-height: 1.46rem;
+	color: #bdbdbd;
+}
+/* 全部商品头部 */
+.goods-list{
+	background: #fff;
+}
+.goods-list .iconfont,.diyfont{
+	text-align: center;
+	width: 17.3333%;
+	display: inline-block;
+	font-size: 1rem;
+	color: #db3652;
+	line-height: 2.12rem;
+	vertical-align: middle;
+}
+.goods-list h2{
+	width: 82.6666%;
+	display: inline-block;
+	line-height: 2.12rem;
+	font-size: .68rem;
+	color: #222;
+	vertical-align: middle;
+	position: relative;
+}
+.goods-list h2::after{
+	content: '';
+	width: 100%;
+	border-bottom: 1px solid #cbcbcb;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	-webkit-transform: scaleY(0.25);
+	        transform: scaleY(0.25);
+	-webkit-transform-origin:0 100%;
+	        transform-origin:0 100%;
+}

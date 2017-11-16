@@ -1,0 +1,83 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<php>
+    function get_handle($id, $item)
+    {
+    $str.="<a href='javascript:view(".$id.");'>".查看."&nbsp;</a>";
+    $str.="<a href='javascript:foreverdel(".$id.");'>".彻底删除."&nbsp;</a>";
+    if($item['type']==-1&&$item['push_type']!=1)
+    {
+        $str.="<a href='javascript:edit(".$id.");'>".编辑."&nbsp;</a>";
+        $str.="<a href='javascript:appbroadcast(".$id.",1,".$item['push_type'].");'>".安卓推送."&nbsp;</a>";
+        $str.="<a href='javascript:appbroadcast(".$id.",2,".$item['push_type'].");'>".ios推送."&nbsp;</a>";
+        $str.="<a href='javascript:appbroadcast(".$id.",0,".$item['push_type'].");'>".安卓和ios推送."&nbsp;</a>";
+    }else if($item['push_type']==1&&$item['is_read']==0){
+        $str.="<a href='javascript:edit(".$id.");'>".编辑."&nbsp;</a>";
+      if($item['android_device_tokens']){
+        $str.="<a href='javascript:appbroadcast(".$id.",1,".$item['push_type'].");'>".安卓推送."&nbsp;</a>";
+      }else if($item['ios_device_tokens']){
+        $str.="<a href='javascript:appbroadcast(".$id.",2,".$item['push_type'].");'>".ios推送."&nbsp;</a>";
+      }else{
+        $str.="<a href='javascript:return false;'>无法推送</a>";
+      }
+    }
+    return $str;
+    }
+    function get_push_type($type){
+        switch($type){
+            case '1':return '单播';
+            case '2':return '自定义播';
+            case '3':return '组播';
+            case '4':return '广播';
+            case '5':return '文件播';
+            default:return '广播';
+        }
+    }
+
+</php>
+<script type="text/javascript">
+    function view(id)
+    {
+        location.href = ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=view&id="+id;
+    }
+    function edit(id){
+        location.href = ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=edit&id="+id;
+    }
+    function appbroadcast(id,type,push_type){
+        $.ajax({
+            url:ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=appbroadcast",
+            method:"post",
+            dataType:"json",
+            data:{id:id,type:type,push_type:push_type},
+            success:function(da){
+                    alert(da.info);
+                    window.location.href=da.jumpUrl;
+            },
+            error:function(da){
+                alert('发送错误');
+            }
+        })
+    }
+</script>
+<div class="main">
+    <div class="main_title">{$main_title}</div>
+    <div class="blank5"></div>
+    <div class="button_row">
+        <input type="button" class="button" value="{%ADD}" onclick="add();" />
+        <input type="button" class="button" value="{%FOREVERDEL}" onclick="foreverdel();" />
+    </div>
+    <div class="blank5"></div>
+    <html:list
+            id="dataTable"
+            style="dataTable"
+            name="item"
+            checkbox="true"
+            action="true"
+            datasource="list"
+            show="id:{%ID}|50px,content:内容,pusher:推送者,create_time|to_date:{%CREATE_TIME},is_read|get_toogle_status=$item['id']#is_read:是否已推送,push_type|get_push_type:类型"
+            actionlist="id|get_handle=$item" />
+    <div class="blank5"></div>
+    <div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

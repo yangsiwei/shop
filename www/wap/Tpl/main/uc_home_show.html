@@ -1,0 +1,161 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_home.css";	
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+//遮罩JS
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/modernizr.custom.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/classie.js";
+//触屏JS
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchSlider.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_home.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/uc_home.js";
+?>
+{include file="inc/header_title_home.html"}
+<script type="text/javascript">
+var ajax_url = '{$ajax_url}';
+</script>
+		<div class="wrap">
+
+			<div class="main">
+				<div class="blank"></div>
+				<div class="data_list">
+				{if $row}
+					<div class="item_box">
+						<div class="i-head-img"><a  href="{url r="index" p="uc_home#index" d="id=$row.user_id"}"><img alt="" src="{$row.user_avatar}"></a></div>
+						<div class="i-info">
+							<div class="i-title"><a class="name_link" href="{url r="index" p="uc_home#index" d="id=$row.user_id"}">{$row.user_name}</a> <span>{$row.type_txt}</span></div>
+							<div class="i-content">
+								{if $row.type eq 'share'}
+								<!-- 普通分享 -->
+								<div class="g-content">
+									{if $row.title}
+										<div class="c-title">
+											{$row.title}
+										</div>
+									{/if}
+									{$row.content}
+									<!-- 点评 -->
+									{if $row.type eq 'dealcomment' || $row.type eq 'eventcomment' || $row.type eq 'youhuicomment' || $row.type eq 'slocationcomment'}
+									<div class="blank"></div>
+									<a href="{$row.share_obj.url}">
+										<div class="group-item">
+											<div class="g-img"><img src="{$row.share_obj.image}"></div>
+											<div class="g-title">{$row.share_obj.content}</div>
+										</div>
+									</a>
+									{/if}
+									{if $row.image_count gt 1}
+									<!-- 多张图  -->
+										<div class="images_box clearfix">
+										{foreach from=$row.images item=r_img name="r_imgs"}
+											
+												<div class="f_l i_item_box "><img class="img_o_btn" src="{$r_img.s_img}"  o_path="{$r_img.b_img}" data-index="{$smarty.foreach.r_imgs.index}"/></div>
+								
+										{/foreach}
+										</div>
+									{else}
+										<!-- 一张图  -->
+										<div class="images_box clearfix">
+												<div class="f_l i_item_big_box"><img class="img_o_btn" src="{$row.image}" o_path="{$row.o_path}"/></div>
+										</div>
+									{/if}
+								</div>
+								{else}
+								<!-- 商品 -->
+								<div class="blank"></div>
+								<a href="{$row.share_obj.url}">
+										<div class="group-item">
+											<div class="g-img"><img src="{$row.share_obj.image}"></div>
+											<div class="g-title">{$row.share_obj.content}</div>
+										</div>
+									</a>
+								{/if}
+							</div>
+							<div class="act-box clearfix">
+								<div class="time-box f_l">{$row.show_time}</div>
+								<div class="reply-btn"><i class="iconfont">&#xe661;</i></div>
+								<div class="act-item-box">
+									<div class="act-table">
+										<div class="act-zan" onclick="do_fav_topic({$row.id})"><i class="iconfont">&#xe655;</i>&nbsp;赞</div>
+										<div class="act-dp" onclick="submit_reply({$row.id})"><i class="iconfont">&#xe664;</i>&nbsp;回复</div>
+									</div>
+								</div>
+							</div>
+							
+							
+							
+							
+							
+						</div>
+					</div>
+					<div class="reply-box {if $row.reply_list}r-show{/if}">
+								<div class="jiantou arrow-up"></div>
+								<ul class="reply-list r_data_{$row.id}" >
+								{if $row.reply_list}
+									{foreach from=$row.reply_list item=reply_row}
+										<li class="r-item r_sub_data_id_{$reply_row.id}" >
+											<a class="name_link" href="{url r="index" p="uc_home#index" d="id=$reply_row.user_id"}">{$reply_row.user_name}</a>：
+											<div class="r-con" onclick="submit_reply({$row.id},{$reply_row.id})">{$reply_row.content}</div>
+										</li>
+									{/foreach}
+								{/if}
+								</ul>
+								
+							</div>
+							{if $row.reply_is_move eq 1}
+							<div class="load-move" data-id="{$row.id}">加载更多</div>
+							{/if}
+				{/if}
+				</div>
+				<div class="blank50"></div>
+			</div>
+		</div>
+
+<div class="overlay overlay-contentpush">
+<button type="button" class="overlay-close">Close</button>
+<div class="gallery-holder">
+			<div class="gallery" id="gallery2">
+				<div class="holder">
+					<div class="list centered">
+					</div>
+				</div>
+				<div id="tabs2"></div>
+			</div>
+		</div>
+</div>
+<div class="reply-input-box">
+	<form name="reply_form" action="{url r="index" p="uc_home#do_reply"}" method="post">
+		<div class="t-item-box">
+			<div class="input_box"><input class="i_txt" name="reply_txt" value="" placeholder="评论"/></div>
+			<div class="r-input-btn-box">
+				<div class="b-i-box"><button type="button" class="btn c_btn" onclick="cancel_reply()">取消</button></div>
+				<div class="b-i-box"><button type="submit" class="btn r_btn">回复</button></div>
+			</div>
+			<input type="hidden" name="reply_tid" value=""/>
+			<input type="hidden" name="reply_rid" value=""/>
+		</div>
+	</form>
+</div>
+<div class="reply-act-box">
+	<div class="r-act-item"><a class="del_r_data" href="javascript:void(0);" data-id="">删除</a></div>
+	<div class="r-act-bg"></div>
+	<div class="r-act-item"><a href="javascript:cancel_act()" data-id="">取消</a></div>
+</div>
+{include file="inc/no_footer.html"}

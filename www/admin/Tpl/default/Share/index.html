@@ -1,0 +1,77 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<php>
+	
+	function get_list_content($content)
+	{
+		return  msubstr(empty_tag($content),0,10);
+	}
+	function get_is_robot($is)
+	{
+		if($is)return "是";
+		else
+		return "否";
+	}
+	function get_check_status($is)
+	{
+		if($is)return "是";
+		else
+		return "否";
+	}
+	
+</php>
+<script type="text/javascript">
+
+</script>
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%DELETE}" onclick="del();" />
+</div>
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		用户名：<input type="text" class="textbox" name="user_name" value="{:strim($_REQUEST['user_name'])}" />		
+		关键词：<input type="text" class="textbox" name="keyword" value="{:strim($_REQUEST['keyword'])}" />	
+		机器人：
+		<select name="is_robot">
+			<option value="-1" <if condition="intval($_REQUEST['is_robot']) eq '-1'">selected="selected"</if>>全部</option>
+			<option value="0" <if condition="intval($_REQUEST['is_robot']) eq '0'">selected="selected"</if>>否</option>
+			<option value="1" <if condition="intval($_REQUEST['is_robot']) eq '1'">selected="selected"</if>>是</option>
+		</select>
+			
+		<input type="hidden" value="Share" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="topic" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px	
+	,duobao_item_id:期号
+	,user_id|get_user_name:{%USER_NAME}
+	,is_robot|get_is_robot:机器人
+	,title|msubstr:{%TITLE}
+	,content|get_list_content:{%CONTENT}	
+	,images_count:图片数
+	,is_check|get_check_status:审核状态
+	,is_recommend|get_toogle_status=$topic['id']#is_recommend:{%IS_RECOMMEND}
+	,is_index|get_toogle_status=$topic['id']#is_index:首页显示
+	,is_top|get_toogle_status=$topic['id']#is_top:置顶
+	,is_effect|get_toogle_status=$topic['id']#is_effect:有效性
+	,create_time|to_date:{%CREATE_TIME}	
+	" 
+	actionlist="edit:{%EDIT},del:{%DELETE}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

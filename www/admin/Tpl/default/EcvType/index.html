@@ -1,0 +1,89 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<PHP>
+	function get_send_types($type)
+	{
+		if($type==0)
+		{
+			return l("ADMIN_SEND");
+		}
+		elseif($type==2)
+		{
+			return "序列号领取";
+		}
+		elseif($type==3){
+			return "拆分红包";
+		}
+		elseif($type==4){
+			return "注册送红包";
+		}
+		elseif($type==5){
+			return "充值送红包";
+		}
+		elseif($type==6){
+			return "满返红包";
+		}
+		elseif($type==7){
+			return "分享红包";
+		}
+		else
+		{
+			return l("SCORE_EXCHANGE");
+		}
+	}
+	function get_send($id)
+	{
+		if(M("EcvType")->where("id=".$id)->getField("send_type")==0)
+		{
+			return "<a href='".u("EcvType/send",array("id"=>$id))."'>".l("SEND_VOUCHER")."</a>";
+		}
+	}
+	
+	function get_money($money, $data)
+	{
+		if($data['sm_way'] == 1){
+			$d = json_decode($data['data'], 1);
+			return '随机'.$d['rand_value1'].'到'.$d['rand_value2'];
+		}else if($data['sm_way'] == 2){
+			return round($money, 2).'%';
+		}else{
+			return round($money, 2);
+		}
+	}
+</PHP>
+<script type="text/javascript">
+	function view(id)
+	{
+		location.href = ROOT+"?"+VAR_MODULE+"=Ecv&"+VAR_ACTION+"=index&ecv_type_id="+id+"&";
+	}
+</script>
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%ADD}" onclick="add();" />
+	<input type="button" class="button" value="{%FOREVERDEL}" onclick="foreverdel();" />
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="article" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+	,name:{%VOUCHER_NAME}
+	,money|get_money=$article:{%VOUCHER_MONEY}
+	,use_limit:{%VOUCHER_LIMIT}
+	,begin_time|to_date:{%VOUCHER_BEGIN_TIME}
+	,end_time|to_date:{%VOUCHER_END_TIME}
+	,gen_count:{%VOUCHER_GEN_COUNT}
+	,send_type|get_send_types:{%VOUCHER_SEND_TYPE}" 
+	actionlist="edit:{%EDIT},foreverdel:{%FOREVERDEL},id|get_send,view:{%VIEW}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

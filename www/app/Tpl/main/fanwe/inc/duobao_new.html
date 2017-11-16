@@ -1,0 +1,20 @@
+{foreach from=$recomend_list item=recomend}
+	<li class="goods ui-item">
+				<div class="hover_line">
+				<div class="ten-logo-box"></div>
+					<div class="goods-wrap">
+						<div class="imgbox">
+						<a href="{url r="index" r="duobao" p="id=$recomend.id"}">
+							<img src="{$recomend.icon}" width="200" height="200"  />
+						</a>
+						</div>
+						<a href="{url r="index" r="duobao" p="id=$recomend.id"}" class="goods-title">
+							{$recomend.duobaoitem_name}
+						</a>
+						<div class="p-price f_l">
+							总需：{$recomend.max_buy}人次
+						</div>
+					</div>
+		</div>
+	</li>
+{/foreach}

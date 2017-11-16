@@ -1,0 +1,33 @@
+<li class="share-item ui-item">
+	<div class="share-pic">
+		<table>
+			<tbody>
+				<tr>
+					<td valign="middle" align="center"><a href="{url x="index" r="share#detail" p="id=$row.id" }">
+					<img src="{function name="get_spec_image" v=$row.img.o_path w=255 h=255}" width="270" height="<?php echo intval(270/$this->_var['row']['img']['width']*$this->_var['row']['img']['height']); ?>" ></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<p class="goods-name"><a href="{url x="index" r="share#detail" p="id=$row.id" }">{$row.duobao_item.name}</a></p>
+	<p class="code">幸运号码：<b class="txt-red">{$row.duobao_item.lottery_sn}</b></p>
+	<p class="status">晒单状态：
+	{if $row.is_check eq 0}
+	<span class="txt-yellow">审核中</span>
+	{else}
+		{if $row.is_effect eq 1}
+		<span class="txt-green">审核通过</span>
+		{else}
+		<span class="txt-red">审核不通过</span>
+		{/if}
+		
+	{/if}
+	</p>
+	<div class="share-info">
+		<p class="share-title"><a href="{url x="index" r="share#detail" p="id=$row.id" }"><strong>{$row.title}</strong></a></p>
+		<p class="time">{function name=to_date v=$row.create_time f="m-d H:i"}</p>
+		<div class="abbr">
+			<p class="share-txt">{$row.content}</p>
+		</div>
+	</div>
+</li>

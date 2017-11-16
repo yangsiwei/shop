@@ -1,0 +1,63 @@
+.list{
+	background: #fff;
+}
+.list>li{
+	position: relative;
+}
+.list>li::after{
+	content: '';
+	width: 100%;
+	border-bottom: 1px solid #e8e8e8;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	-webkit-transform: scaleY(0.25);
+	        transform: scaleY(0.25);
+	-webkit-transform-origin:0 100%;
+	        transform-origin:0 100%;
+}
+.list>li header{
+	line-height: 1.84rem;
+	font-size: .68rem;
+	color: #222;
+	margin: 0 .6rem;
+}
+.list>li section{
+	background: #fff;
+	font-size: .56rem;
+}
+.list>li section ul{
+	margin: 0 .6rem;
+}
+.list>li section ul li{
+	position: relative;
+	background: #fff;
+}
+.list>li section ul li a{
+	display: inline-block;
+	line-height: 1.6rem;
+	font-size: .6rem;
+	color:#6E7D8B;
+	width: 100%;
+	vertical-align: middle;
+}
+.list>li section ul li a .iconfont{
+	float: right;
+	font-size: .5rem;
+}
+.list>li section ul li::before{
+	content: '';
+	width: 100%;
+	border-top: 1px solid #e8e8e8;
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	-webkit-transform: scaleY(0.25);
+	        transform: scaleY(0.25);
+	-webkit-transform-origin:0 0;
+	        transform-origin:0 0;
+}

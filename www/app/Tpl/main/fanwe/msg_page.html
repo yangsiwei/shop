@@ -1,0 +1,60 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/msg_page.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/msg_page.js";
+?>
+{include file="inc/header_cart.html"}
+<script type="text/javascript">
+var APP_ROOT = '{$APP_ROOT}';
+var CART_URL = '{url x="index" r="cart"}';
+var CART_CHECK_URL = '{url x="index" r="cart#check"}';
+{if app_conf("APP_MSG_SENDER_OPEN") eq 1}
+var send_span = {function name="app_conf" v="SEND_SPAN"}000;
+var IS_RUN_CRON = 1;
+var DEAL_MSG_URL = '{url x="index" r="cron#deal_msg_list"}';
+{/if}
+var AJAX_LOGIN_URL	= '{url x="index" r="user#ajax_login"}';
+var AJAX_URL	= '{url x="index" r="ajax"}';
+var LOADER_IMG = '{$TMPL}/images/loader_img.gif';
+var order_id = {function name="intval" value=$order_info.id};
+</script>
+
+<div class="blank20"></div>
+<div class="{function name="load_wrap" t=$wrap_type}">
+
+	<div class="layout_box msg_box">
+		<div class="title">{$page_title}</div>
+		<div class="content" style="text-align: center;padding: 30px;font-size: 14px">
+			<div style="padding: 10px">
+			{$msg}
+			</div>
+			{if $stay eq 0}
+			<div class="jump_tip" style="padding: 10px">
+				系统将在 <span>5</span> 秒后自动跳转，或者直接点击 [<a href="{$jump}">这里</a>] 直接返回
+			</div>
+			{else}
+			<div class="jump_tip" style="padding: 10px">
+				请点击 [<a href="{$jump}">这里</a>] 返回
+			</div>
+			{/if}
+		</div>
+		<div class="blank30"></div>
+	</div>
+
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

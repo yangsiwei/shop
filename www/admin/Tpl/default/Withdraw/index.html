@@ -1,0 +1,74 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<!-- <load href='__TMPL__Common/js/fx_salary.js' /> -->
+<div class="main">
+<div class="main_title">{$title_name}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	
+</div>
+<div class="blank5"></div>
+<form name="edit" action="{:U('edit')}" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	
+	
+	<tr>
+		<td class="item_title">余额:</td>
+		<td>
+		<input type="text" name="money_high" value="{$res.money_high}">
+		<span style="color:#C24D60;">最高提现余额</span>
+		<br>
+		<input type="text" name="money_low" value="{$res.money_low}">
+		<span style="color:#444B8B;">最低提现余额</span>
+		</td>
+		
+	</tr>
+	
+	<tr>
+		<td class="item_title">推广奖:</td>
+		<td>
+		<input type="text" name="fx_money_high" value="{$res.fx_money_high}">
+		<span style="color:#C24D60;">最高提现推广奖</span>
+		<br>
+		<input type="text" name="fx_money_low" value="{$res.fx_money_low}">
+		<span style="color:#444B8B;">最低提现推广奖</span>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">赠送金额:</td>
+		<td>
+		<input type="text" name="give_money_high" value="{$res.give_money_high}">
+		<span style="color:#C24D60;">最高提现赠送金额</span>
+		<br>
+		<input type="text" name="give_money_low" value="{$res.give_money_low}">
+		<span style="color:#444B8B;">最低提现赠送金额</span>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">管理奖:</td>
+		<td>
+		<input type="text" name="admin_money_high" value="{$res.admin_money_high}">
+		<span style="color:#C24D60;">最高提现管理奖</span>
+		<br>
+		<input type="text" name="admin_money_low" value="{$res.admin_money_low}">
+		<span style="color:#444B8B;">最低提现管理奖</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">说明</td>
+		<td><span style="font-size:20px;color:#E65448;">等于0时表示不限制</span></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><input type="submit" value="确定"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

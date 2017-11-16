@@ -1,0 +1,96 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/totalbuy.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/TouchSlide.1.1.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/onload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/swipe.js";
+ 
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/duoobao_item_num.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/duoobao_item_num.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/totalbuy.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/totalbuy.js";
+
+?>
+{include file="inc/header_title_only.html"}
+{if $data.cart_result.cart_data}
+{if $data.cart_result.cart_data.is_fictitious neq 1}
+<div class="add-address">
+	<a href="{url x="index" r="totalbuy#add_consignee"}">添加地址</a>
+</div>
+{else}
+<div class="price">
+	<p>虚拟商品不需要收货地址哦</p>
+</div>
+{/if}
+<div class="blank10"></div>
+<form name="buy_form" id="buy_form" action="{url x="index" r="totalbuy#done"}" method="post">
+	{if $data.cart_result.cart_data.is_fictitious neq 1}
+	<a class="address-box" href="{url x="index" r="totalbuy#consignee_list" p="conid=$data.consignee.id"}">
+		<div class="user-info">
+			<p class="user-name fl">{$data.consignee.consignee}</p>
+			<p class="user-phone fr">{$data.consignee.mobile}</p>
+			<div class="clear"></div>
+			<p class="uc-add">{$data.consignee.address}</p>
+		</div>
+		<i class="iconfont">&#xe6fa;</i>
+	</a>
+	{/if}
+	<div class="blank10"></div>
+	<div class="goods-info">
+		<div class="goods-pic"><img src="{$data.cart_result.cart_data.deal_icon}"></div>
+		<div class="goods-detail">
+			<p class="goods-name">{$data.cart_result.cart_data.name}</p>
+			<div class="goods-num">
+				<p>数量</p>
+				<a duobao_item_id="{$data.cart_result.cart_data.duobao_item_id}" class="minus" href="javascript:void(0)">－</a><input duobao_item_id="{$data.cart_result.cart_data.duobao_item_id}" class="cart_input" type="text" value="{$data.cart_result.cart_data.number}"><a duobao_item_id="{$data.cart_result.cart_data.duobao_item_id}" class="plus" href="javascript:void(0)">＋</a>
+			</div>
+			<div class="goods-price">
+				<p>价格</p>
+				<p class="txt-red">&yen;{$data.cart_result.cart_data.unit_price_format}</p>
+			</div>
+		</div>
+	</div>
+	<div class="blank10"></div>
+	 
+	 
+	 
+	<div class="blank10"></div>
+	<div class="price">
+		<p>商品金额</p>
+		<p class="txt-red set-total-price">&yen;{$data.cart_result.cart_data.total_price_format}</p>
+	</div>
+	<div class="blank10"></div>
+	<div class="blank50"></div>
+	<div class="buy-bar">
+		<input type="hidden" name="consignee_id" value="{$data.consignee.id}" />
+		<a id="submit_buy_form" href="javascript:void(0)">提交订单</a>
+		<p>实付款：<span class="txt-red set-total-price">&yen;{$data.cart_result.cart_data.total_price_format}</span></p>
+	</div>
+</form>
+{else}
+<div class="null_data">
+	<p class="icon"><i class="iconfont">&#xe6e8;</i></p>
+	<p class="message">暂无提交的商品数据</p>
+</div>
+{/if}
+{include file="inc/no_footer.html"}

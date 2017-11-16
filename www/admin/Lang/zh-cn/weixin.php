@@ -1,0 +1,9 @@
+<?php
+return array(
+	'MCONF_PLATFORM_STATUS_0'	=>	'否',
+	'MCONF_PLATFORM_STATUS_1'	=>	'是',
+	'MCONF_PLATFORM_ALL_PUBLISH_0'	=>	'否',
+	'MCONF_PLATFORM_ALL_PUBLISH_1'	=>	'是',
+	'CONF_TENCENT_MAP_APPKEY'=>'腾讯地图APPKEY',
+);
+?>

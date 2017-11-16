@@ -1,0 +1,50 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_address.css";	
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_address.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/uc_address.js";
+
+?>
+{include file="inc/header_title_home.html"}
+
+
+<div class="wrap">
+	<div class="content">
+		<div class="add"><a href="{url a="index" r="uc_address#add"}" class="add_address" >新增地址</a></div>
+	 	<div class="blank"></div>
+	 	<div class="address_list">
+	 		{foreach from=$data.consignee_list item=item}
+	 		<ul>
+						<li>收件人：{$item.consignee}</li>
+						<li>手机：{$item.mobile}</li>
+						<li>{$item.region_lv2_name} {$item.region_lv3_name} {$item.region_lv4_name}</li>
+						<li>详细地址：{$item.address}</li>	 			
+	 		</ul>
+	 		<div class="add clearfix">
+	 			<a href="{$item.url}" class="operate" >修改</a>
+	 			<a href="javascript:;" class="operate del"  url="{$item.del_url}" >删除</a>
+	 			<a href="javascript:;" {if $item.is_default eq 0}dfurl="{$item.dfurl}"{/if} class="operate  {if $item.is_default eq 1}defaulted{else}set_default{/if}" >{if $item.is_default eq 1}默认地址{else}设为默认{/if}</a>
+	 		</div>
+	 		<div class="blank"></div>
+	 		{/foreach}
+	 	</div>
+	</div>
+</div>
+
+{include file="inc/footer_index.html"}	

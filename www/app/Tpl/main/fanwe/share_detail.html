@@ -1,0 +1,113 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/share_show.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.SuperSlide.2.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/lazyload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/share_show.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/share_show.js";
+?>
+{include file="inc/header.html"}
+	<div class="x-all">
+	{if $is_my eq 0}
+	    <div class="x-userinfobox clearfix">
+	        <img class="x-userpic f_l" data_id="{$share_info.user_id}" src="{function name="get_user_avatar" uid=$share_info.user_id type="big"}" />
+		    <div class="x-usercont ml20">
+		        <p class="nickname">{$share_info.user_name}</p>
+	            <p class="nickid">ID：<strong>{$share_info.user_id}</strong></p>
+		    </div>
+		</div>
+		{/if}
+		<div class="x-sharedetail">
+			<div class="x-sharetit">
+				<p class="sharetit tc">{$share_info.title}</p>
+				<div class="share">
+				   	<!-- JiaThis Button BEGIN -->
+						<div class="jiathis_style">
+							<span class="jiathis_txt">分享到：</span>
+							<a class="jiathis_button_tsina"><i class="icon iconfont"></i></a>   
+							<a class="jiathis_button_weixin"><i class="icon iconfont"></i></a>
+							<a class="jiathis_button_cqq"><i class="icon iconfont"></i></a>
+							<a class="jiathis_button_qzone"><i class="icon iconfont"></i></a>
+							<a class="jiathis_button_douban"><i class="icon iconfont"></i></a>
+							<a class="jiathis_button_copy"><i class="icon iconfont"></i></a>
+							<a class="jiathis_counter_style"></a>
+						</div>
+						<script type="text/javascript">
+							 var jiathis_config = {
+								sm:"tsina,weixin,cqq,qzone,douban,copy",
+								siteNum:6,
+							 	title:"{$share_title}",
+							    url:"{$share_url}",
+							    
+							};
+						</script>
+						<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+						
+						<!-- JiaThis Button END -->
+                </div>
+                <div class="time tc"><span>晒单时间：
+               <?php 
+               if(isset($_SESSION["saitime"])){
+                 echo $_SESSION["saitime"];
+               }else{ ?>
+                {function name="to_date" v=$share_info.create_time}
+               
+               <?php } ?>
+               
+                </span></div>
+			</div>
+			<div class="x-windetail">
+				<div class="owner f_l">
+					<div class="avatar f_l">
+						<a href="{url x="index" r="uc_home#index" p="id=$duobao_item.luck_user_id" }"><img class="x-userpic f_l" src="{function name="get_user_avatar" uid=$duobao_item.luck_user_id type="big"}" /></a>
+					</div>
+					<div class="info">
+						<p>获得者：<a href="{url x="index" r="home#index" p="id=$duobao_item.luck_user_id" }">{$duobao_item.luck_user_name}</a></p>
+						<p>总共参与：<strong class="x_red">{$duobao_item.luck_user_buy_count}</strong>人次</p>
+						<p>幸运号码：<strong class="x_red">{$duobao_item.lottery_sn}</strong></p>
+						<p>揭晓时间：{function name="to_date" v=$duobao_item.lottery_time}</p>
+					</div>
+				</div>
+				<div class="goods">
+					<div class="pic f_l">
+						<a href="{url x="index" r="duobao#index" p="id=$duobao_item.id"}"><img class="x-userpic f_l" src="{$duobao_item.icon}" /></a>
+					</div>
+					<div class="info">
+						<p class="name">期号：<a href="#">{$duobao_item.id}</a></p>
+						<p>总需：{$duobao_item.max_buy}人次</p>
+						<p class="go-more"><a href="{url x="index" r="duobao" p="dbid=$duobao_id" }">最新一期正在进行中...</a></p>
+					</div>
+				</div>
+			</div>
+			<div class="x-sharecont">
+                <i class="ico quote quote-b"></i>
+                <i class="ico quote quote-a"></i>
+                <div class="text">{$share_info.content}</div>
+            </div>
+            <div class="x-sharepics">
+            	{if $img_list}
+	            	{foreach from=$img_list item=img_item}
+	            		<div class="item"><img src="{function name="get_spec_image" v=$img_item.o_path w="540"}"></div>
+            		{/foreach}
+            	{/if}
+            </div>
+		</div>
+	</div>
+{include file="inc/footer.html"}

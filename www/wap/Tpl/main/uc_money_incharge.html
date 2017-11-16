@@ -1,0 +1,61 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_money_incharge.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_duobao_record.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/uc_duobao_record.js";
+
+?>
+{include file="inc/header_title_home.html"}
+
+<h1>选择充值金额(夺宝币)</h1>
+<!-- {if $first_pay}
+<div class="money" id="money1">
+	<input type="text" value="10" readonly="readonly" class="selected">
+	<input type="text" value="100" readonly="readonly">
+	<input type="text" value="1000" readonly="readonly">
+</div>
+{/if} -->
+<div class="money" id="money1">
+	<input type="text" value="20" readonly="readonly" class="selected">
+	<input type="text" value="50" readonly="readonly">
+	<input type="text" value="100" readonly="readonly">
+</div>
+<div class="money" id="money2">
+	<input type="text" value="200" readonly="readonly">
+	<input type="text" value="500" readonly="readonly">
+	<input type="text" placeholder="其他金额">
+</div>
+
+<h1>选择充值方式</h1>
+<ul class="pay-way">
+	<li>
+		<label for="weixin">
+			<input type="radio" name="way" value=" weixin" id="weixin" checked="checked">微信支付
+		<span class="checked"></span>
+		</label>
+	</li>
+</ul>
+<div class="subbox">
+<input type="button" value="确认充值" class="sub">
+</div>
+
+	
+
+{include file="inc/footer_index.html"}

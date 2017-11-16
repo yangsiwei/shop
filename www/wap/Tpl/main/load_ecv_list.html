@@ -1,0 +1,11 @@
+{foreach from=$ecv_list item=row}
+    	<li class="ecv-item">
+    		<div class="e-info">
+    			<div class="ei-pirce"><span>&yen;</span>{$row.money}</div>
+    			<div class="ei-note">{$row.name}</div>
+    			<div class="ei-status {if $row.use_status eq 1}e-use{/if}">{if $row.use_status eq 1}已失效{else}可使用{/if}</div>
+    		</div>
+    		<div class="e-datetiem">有效期至：{$row.datetime}</div>
+    	</li>
+{/foreach}
+	            

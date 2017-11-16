@@ -1,0 +1,77 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<PHP>
+	function get_handle($id, $duobaoItem)
+	{
+		$str.="&nbsp;&nbsp;<a href='javascript:foreverdel(".$id.");'>".l("DEL")."</a>";
+		return $str;
+	}
+	function get_has_lottery($has_lottery){
+		if($has_lottery == 1){
+			$str = '已开奖';
+		}else{
+			$str = '未开奖';
+		}
+		return $str;
+	}
+</php>
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">夺宝列表</div>
+<div class="blank5"></div>
+<form name="search" action="__APP__" method="get">	
+<div class="button_row">
+	<input type="button" class="button" value="删除" onclick="foreverdel();" />
+</div>
+<div class="blank5"></div>
+<div class="search_row">
+
+		编号：<input type="text" class="textbox" name="id" value="{:strim($_REQUEST['id'])}" style="width:100px;" />
+		商品名称：<input type="text" class="textbox" name="duobaoitem_name" value="{:strim($_REQUEST['duobaoitem_name'])}" style="width:100px;" />
+		分类名称：<input type="text" class="textbox" name="cate_name" value="{:strim($_REQUEST['cate_name'])}" style="width:100px;" />
+		中奖人：<input type="text" class="textbox" name="user_name" value="{:strim($_REQUEST['user_name'])}" style="width:100px;" />
+		开奖时段：
+		<input type="text" class="textbox" name="begin_time" id="begin_time" value="{:strim($_REQUEST['begin_time'])}" onfocus="return showCalendar('begin_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_begin_time');" />
+		<input type="button" class="button" id="btn_begin_time" value="{%SELECT_TIME}" onclick="return showCalendar('begin_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_begin_time');" />	
+		-
+		<input type="text" class="textbox" name="end_time" id="end_time" value="{:strim($_REQUEST['end_time'])}" onfocus="return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');" />
+		<input type="button" class="button" id="btn_end_time" value="{%SELECT_TIME}" onclick="return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');" />
+		
+		
+		<input type="hidden" value="DuobaoItemHistory" name="m" />
+		<input type="hidden" value="index" name="a" />
+		
+		<input type="submit" class="button" value="{%SEARCH}" />
+</div>
+</form>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="duobaoItem" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+			,duobaoitem_name:商品名称
+			,cate_name:分类名称
+			,brand_name:品牌名称
+			,user_name:中奖人
+			,lottery_sn:中奖号码
+			,has_lottery|get_has_lottery:开奖状态 
+			,success_time|to_date:成功时间
+			,lottery_time|to_date:开奖时间 
+			,fair_sn:公证号
+		 	,is_effect|get_toogle_status=$duobaoItem['id']#is_effect:有效"
+	actionlist="id|get_handle=$duobaoItem" />
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

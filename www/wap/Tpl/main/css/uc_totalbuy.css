@@ -1,0 +1,105 @@
+.tatalbuy-nav{
+	background:#fff;
+	margin-bottom:.4rem;
+}
+.tatalbuy-nav li{
+	text-align: center;
+	margin: 0 .8rem;
+}
+.tatalbuy-nav li a{
+	height:2.5rem;
+	display: block;
+	padding:.3rem 0;
+	color:#444;
+}
+.tatalbuy-nav li i{
+	font-size:1rem;
+	line-height: 1.3rem;
+}
+.tatalbuy-nav li .active{
+	border-bottom:3px solid @main_color;
+	color:@main_color;
+}
+.i-item-active
+{
+	color:@main_color !important;
+}
+.tatalbuy-nav li p{
+	line-height: .6rem;
+	font-size:.44rem;
+}
+.totalbuy-list{
+	background:#fff;
+	    padding: .15rem 0;
+}
+.totalbuy-list li{
+	margin-bottom: .4rem;
+	padding-left:.9rem;
+}
+.status-box{
+	height:1.6rem;
+	padding-right:.4rem;
+	color:#444;
+}
+.status-box .time{
+	font-size:.4rem;
+}
+.status-box .status{
+	font-size:.5rem;
+	color:#999;
+}
+.goods-info{
+	height:4rem;
+}
+.goods-info .goods-img{
+	width:4rem;
+	height:4rem;
+}
+.goods-info .goods-img img{
+	width:100%;
+	height:100%;
+}
+.goods-info .goods-detail{
+	width:50%;
+	padding:0 .6rem;
+}
+.goods-info .goods-detail p{
+	line-height: .7rem;
+	color:#999;
+	font-size:.44rem;
+}
+.goods-info .goods-detail .goods-name{
+	font-size:.5rem;
+	color:#444;
+	line-height: 1.6rem;
+}
+.pay-info .pay-price{
+	line-height: 1.6rem;
+	font-size:.44rem;
+	color:#999;
+	text-align:right;
+	padding-right:.4rem;
+}
+.pay-info .pay-price span{
+	font-size:.5rem;
+}
+.pay-btn{
+	text-align:right;
+	padding-right:.3rem;
+	padding-bottom:.4rem;
+}
+.pay-btn a{
+	display: inline-block;
+	line-height: 1.1rem;
+	font-size:.5rem;
+	border:1px solid @main_color;
+	color:@main_color;
+	padding:0 .4rem;
+	border-radius:3px;
+	margin-left:.4rem;
+	height:1.1rem;
+}
+.pay-btn .red-btn{
+	background:@main_color;
+	color:#fff;
+}

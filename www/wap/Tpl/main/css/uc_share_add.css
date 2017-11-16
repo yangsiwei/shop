@@ -1,0 +1,101 @@
+body{
+	background:#fff;
+}
+.add-wrap{
+	padding:0 .4rem;
+}
+.input-box input{
+	width:100%;
+	height:2rem;
+	font-size:.6rem;
+}
+.textarea-box{
+	padding:.4rem 0;
+}
+.textarea-box textarea{
+	width:100%;
+	height:7.4rem;
+	font-size:.48rem;
+}
+.add-pic{
+	display:block;
+	width:2.5rem;
+	text-align: center;
+	line-height:2.5rem;
+	height:2.5rem;
+	border:1px dashed #b5bbc3;
+	border-radius:5px;
+	color:#b5bbc3;
+	font-size:2rem;
+	word-break:break-all;
+}
+.upload-txt{
+	line-height: 1rem;
+	color:#999;
+}
+
+.pic-list .pic-item,.pic-list .item-add{
+	width:2.5rem;
+	height:2.5rem;
+	position: relative;
+	float: left;
+	margin-right:.4rem;
+	position: relative;
+}
+.pic-list .item-add{
+	position: relative;
+}
+.pic-list .item-add .file-btn{
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 2.5rem;
+	opacity: 0;
+}
+.pic-list .pic-item img{
+	width:100%;
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	   -moz-transform: translateY(-50%);
+	    -ms-transform: translateY(-50%);
+	     -o-transform: translateY(-50%);
+	        transform: translateY(-50%);
+}
+.img-show-box .img-item span {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+.img-show-box .img-item .close-btn {
+    display: block;
+    width: 22px;
+    height: 22px;
+    line-height: 4px;
+    background-color: rgba(0,0,0,.5);
+    border-radius: 22px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+.img-show-box .img-item .close-btn .iconfont {
+    color: #fff;
+    width: 22px;
+    height: 22px;
+    display: block;
+    line-height: 22px;
+    text-align: center;
+    font-size:14px;
+}
+.share-btn{
+	margin:0 .4rem;
+	display:block;
+	background:@main_color;
+	font-size:.6rem;
+	color:#fff;
+	text-align: center;
+	line-height: 1.8rem;
+	border-radius:5px;
+}

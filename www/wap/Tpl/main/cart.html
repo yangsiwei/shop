@@ -1,0 +1,227 @@
+{if $ajax_refresh==0}
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/cart_index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pull_refresh.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/tb/iconfont.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/sms_verify.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/sms_verify.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/cart_index.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/cart_index.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/lib/touche.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pull_refresh/pull-refresh.js";
+
+
+?>
+
+{include file="inc/header_title_only.html"}
+
+<script type="text/javascript">
+	//减少移动端触发"Click"事件时300毫秒的时间差
+window.addEventListener('load', function() {
+    FastClick.attach(document.body);
+}, false);
+var jsondata = {$jsondata};
+var cart_index = 1;
+</script>
+
+{/if}
+
+
+<div class="loading_container" id="loading_container" style="background:#fff;">
+	<form name="buy_form" id="buy_form" action="{url x="index" r="cart#check_cart"}" method="post">
+	<input type="hidden" value="{$type}" name="type"/>
+	<div class="wrap">
+	    {if $data.cart_list}
+			<ul class="cart-list">
+		{foreach from=$data.cart_list item=item}
+				<li class="split-line" data-id="{$item.id}">
+				  <div class="goods-img">
+	          {if $item.min_buy==10 || $item.unit_price==10}
+	            <div class="tenyen"></div>
+	          {elseif $item.unit_price eq 100}
+	            <div class="hundredyen"></div>
+	          {/if}
+				    <img src="{$item.deal_icon}" alt="{$item.deal_icon}">
+				  </div>
+				  <div class="txtbox">
+						<div class="flex-box">
+							<h2> {if $item.is_topspeed}
+                                <em style="background-color:#ff2300;padding: 1px 3px;color: #fff;font-size: 12px;">极速</em>
+                                {/if}{$item.name}</h2>
+						</div>
+						<p>总需:<span>{$item.max_buy}</span>人次，剩余<span class="rest">{$item.residue_count}</span>人次</p>
+					    <div class="select-bar">
+					  	<p>参与人次</p>
+						  	<div class="select-wrap">
+							  	<div class="select">
+                                    {if $item.is_number_choose}
+                                    <a href="javascript:void(0);" class="iconfont split-line-right" data-id="{$item.id}">&#xe6d3;</a>
+                                    <input name="num[{$item.id}]" readonly="readonly" class="buy_number buy-num-{$item.id} buy_number_js" type="tel" value="{$item.number}" data-id="{$item.id}" />
+                                    <a href="javascript:void(0);" class="iconfont split-line-left" data-id="{$item.id}">&#xe6d1;</a>
+                                    <em>选号区的物品无法在购物区改变数量</em>
+                                    {else}
+                                    <a href="javascript:void(0);" class="iconfont split-line-right minus" data-id="{$item.id}">&#xe6d3;</a>
+                                    <input name="num[{$item.id}]" class="buy_number buy-num-{$item.id} buy_number_js" type="tel" value="{$item.number}" data-id="{$item.id}" />
+                                    <a href="javascript:void(0);" class="iconfont split-line-left plus" data-id="{$item.id}">&#xe6d1;</a>
+                                    <em>参与人次需是{$item.min_buy}的倍数</em>
+                                    {/if}
+							  	</div>
+						  	</div>
+					  	<i class="iconfont del-item-btn" data-id="{$item.id}">&#xe68d;</i>
+					    </div>
+				  </div>
+				  <div class="clear"></div>
+				</li>
+		{/foreach}
+	
+			</ul>
+	    {else}
+			<div class="null_data">
+			<!--<p class="icon"><i class="iconfont">&#xe6e8;</i></p>-->
+				<div class="img" style="width: 40%;margin-left: 30%;margin-top: 5%;">
+					<img src="Tpl/main/images/gwc.jpg" alt="" style="width: 100%;height: 100%;">
+				</div>
+			<p class="message" style="color:#333;font-size:18px;margin-top: 5%;">购物车竟然是空的</p>
+				<p style="margin-top:5px">再忙，也要记得买点什么犒赏自己(^_^)</p>
+			</div>	
+	    {/if}
+	
+	    </div>
+	{if $data.cart_list}
+	<div class="cart-floot">
+	    <div class="cart-count-box split-line-top">
+	    {if $type eq 'free'}
+	        <div  class="cart-item-number">共<span class="cart-num-set">{$data.total_data.cart_item_number}</span>商品，总计: <span>{$data.total_data.total_price}</span>优惠币</div>
+	        {if $is_new_member eq 0 }
+		    	<input class="check-btn" style="background-color: #ddd;color:#fff; width:7rem" type="button" value="新用户才能参与免费购" />
+		    {else}
+	    		<input class="check-btn" type="submit" value="结算" />
+		    {/if}
+	    {/if}
+	    {if $type eq ''}
+	        <div  class="cart-item-number">共<span class="cart-num-set">{$data.total_data.cart_item_number}</span>商品，总计: <span>{$data.total_data.total_price}</span>夺宝币</div>
+
+			{if $data.total_data.cart_item_number gt 0}
+	        <input class="check-btn" type="submit" value="结算" />
+			{/if}
+	    {/if}
+	    </div>
+	</div>
+	{/if}
+	</form>
+</div>
+
+<div class="like" style="background:#fff;">
+	<div class="nav-gwc" style="margin-bottom:15px">
+		<!-- <span>------</span> -->
+		<p style="width:33%;height:1px;background: #FF7B22;float:left;margin-top:3%"></p>
+		<span style="line-height:5px;">购物车帮你挑</span>
+		<!-- <span>------</span> -->
+		<p style="width:33%;height:1px;background: #FF7B22;float:right;margin-top:3%"></p>
+	</div>	
+	<div class="content">
+		{if $data.index_duobao_list}
+		<!--在此处改变类名改变样式 tuan-ul-list  tuan-ul-img-->
+		<ul class="tuan-ul tuan-ul-img split-line-top">
+			{foreach from=$data.index_duobao_list item=item  key=key}
+			<li class="tuan_li split-line">
+				<a class="blw" href="{url a="index" r="duobao#index" p="data_id=$item.id"}">
+				<div class="pic">
+					{if $item.min_buy == 10 || $item.unit_price==10}
+					<div class="tenyen"></div>
+					{/if}
+					{if $item.unit_price eq 100}
+					<div class="hundredyen"></div>
+					{/if}
+					<img src="{$item.icon}" lazy="true" />
+				</div>
+				</a>
+				<div class="info">
+					<div class="info-tit">
+						{if $item.is_topspeed}
+						<em style="background-color:#ff2300;padding: 3px 5px;color: #fff;font-size: 12px;">极速</em>
+						{/if}
+						{$item.name}
+					</div>
+
+					<div class="progress-box">
+						<div class="left-box">
+							<progress max="{$item.max_buy}" value="{$item.current_buy}"></progress>
+							<div class="fl">
+								<p class="txt-red">{$item.current_buy}</p>
+								<p>已参与人次</p>
+							</div>
+							<div class="fr">
+								<p class="txt-red">{$item.surplus_buy}</p>
+								<p>剩余人次</p>
+							</div>
+						</div>
+						<!--<a data-id="{$item.id}" class="right-box add_cart_item" unit_price="{$item.unit_price}" buy_num="{$item.min_buy}" data_id="{$item.id}" rel="{$item.icon}"><i class="iconfont">&#xe658;</i></a>-->
+					</div>
+				</div>
+			</li>
+			{/foreach}
+		</ul>
+
+		{if $pages}
+		<a href="{url x="index" r="duobaos"}" class="more_duobao page-load">查看更多</a>
+		{/if}
+		{else}
+		<div class="null_data">
+			<p class="icon"><i class="iconfont">&#xe6e8;</i></p>
+			<p class="message">暂无数据</p>
+		</div>
+		{/if}
+	</div>
+
+</div>
+
+<style>
+	.nav-gwc{
+		text-align: center;
+		color: #FF5722;
+		font-size: 18px;
+	}
+	.goods{
+		width:100%;
+		background:#fff;
+	}
+</style>
+
+<script>
+	$(function(){
+		$('.menu_box>li').eq(2).children('a').children('p').children('img').attr('src','./wap/Tpl/main/images/menu/gour.png ');
+	    $(".check-btn").click(function(){
+	        var balance = {$balance};
+	        if(balance<1){
+	            alert('余额不足，请先充值');
+                location.href = "{url x=\"index\" r=\"uc_charge\"}";
+			}
+		});
+	});
+</script>
+
+{if $ajax_refresh==0}
+{include file="inc/app_input_num.html"}
+{include file="inc/footer_menu.html"}
+{include file="inc/footer_index.html"}
+{/if}

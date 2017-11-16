@@ -1,0 +1,102 @@
+.lose .bgbox{
+	height: 7.8rem;
+	margin-top: 1.2rem;
+	background: url(../images/winlog.png) no-repeat center center;
+	background-size:contain;
+}
+.lose h1{
+	font-size: .6rem;
+	text-align: center;
+	line-height: 1.64rem;
+}
+.lose button{
+	font-size: .6rem;
+	color: #fff;
+	border: none;
+	display: block;
+	width: 3.92rem;
+	height: 1.6rem;
+	border-radius: .2rem;
+	background: #df5667;
+	text-align: center;
+	margin: 0 auto;
+}
+.uc-info-head{
+	height: 4.04rem;
+	padding: .82rem 0;
+	background:#eb606d;
+}
+.uc-info-head .head-pic{
+	background:url(../images/uc-defaut.png) no-repeat center center;
+	background-size: contain;
+	margin-left: 1rem;
+	width: 2.4rem;
+	height: 2.4rem;
+	border-radius: 2.4rem;
+	overflow: hidden;
+}
+.uc-info-head .head-pic img{
+	width: 100%;
+}
+.uc-info-head .user-box{
+	padding: .2rem .68rem;
+}
+.uc-info-head p{
+	line-height: 1rem;
+	font-size: .56rem;
+	color: #fff;
+}
+.win-list{
+	background: #fff;
+}
+.win-list li{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	padding:0 .2rem;
+}
+.win-list li .goods-img{
+	width: 2.56rem;
+	height: 6.62rem;
+	position: relative;
+}
+.win-list li .goods-img img{
+	width: 100%;
+	position: absolute;
+	top:.35rem;
+	left: 0;
+}
+.win-list li .txtbox{
+		-webkit-flex:1;
+		flex:1;
+	/* 	for  uc */
+		-webkit-box-flex:1;      
+	padding:.35rem .4rem;
+}
+.win-list li .txtbox .flex-box{
+	height: 1.52rem;
+}
+.win-list li .txtbox h2{
+	line-height: .7rem;
+	font-size: .52rem;
+	display:-webkit-box !important;
+	overflow:hidden;	
+	text-overflow:ellipsis;
+	word-break:break-all;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+	color: #333;
+}
+.win-list li .txtbox dl{
+	color: #999;
+	line-height: .88rem;
+}
+.win-list li .txtbox dl span{
+	padding-left: .4rem;
+}
+.win-list li .txtbox dl .luckycode{
+	color: #df5667;
+}
+.status_info{
+color:@main_color;
+}

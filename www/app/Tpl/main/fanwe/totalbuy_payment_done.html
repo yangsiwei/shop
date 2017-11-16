@@ -1,0 +1,106 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/cart_index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/payment_done.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/goods_item.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/zone.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/lazyload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+?>
+{include file="inc/header_cart_zg.html"}
+<script>
+$(document).ready(function(){
+	$(".copy").click(function(){
+		$("input[name='cfm_new_pwd']:text").select();
+		document.execCommand("Copy");
+		alert("已复制，请黏贴到QQ，微信好友里");
+	});
+});
+</script>
+<style>
+.process_head_zg {
+    background-position: 0px -112px;
+}
+</style>
+<!-- 支付成功 -->
+<div class="blank20"></div>
+<div class="wrap_full_w">
+<!-- 充值成功 -->
+	 
+	{if $order_info['pay_status'] == 2}
+		<div class="message">
+			<div class="suc-ico ico"></div>
+			<h1 class="title">恭喜您，购买成功！<a style="font-size: 13px;font-weight: normal;" href="{url r="index" p="uc_totalbuy"}">查看购买记录</a>
+			</h1>
+			<div class="tips">
+				<p>您现在可以
+				<a href="{$APP_ROOT}/">返回首页</a>
+				或
+				<a href="{url x="index" r="duobaos"}" class="btn btn-main">查看更多商品</a>
+				</p>
+				<p style="margin-top: 8px">您已成功购买商品，信息如下：</p>
+			</div>
+		</div>
+		{if $order_info['type'] == 3}
+			<table>
+			<thead>
+				<tr>
+					<th width="219">订单号</th>
+					<th width="219">下单时间</th>
+					<th width="219">数量</th>
+					<th width="270">商品名称</th>
+				</tr>
+			</thead>
+			 
+			<tbody>
+			 
+				<tr>
+					<td>{$order_info.order_sn}</td>
+					<td>{$order_info.create_time_format}</td>
+					<td>{$order_info.number}</td>
+					<td><a href="{url r="index" p="duobao" b="id=$order_info.duobao_item_id"}">{$order_info.deal_name}</a></td>
+				</tr>
+			 
+			</tbody>
+		</table>
+		{/if}
+		{if $sendmoney.split_red_money}
+		<div class="linlin" >
+		<input  class="testing" type="text" name="cfm_new_pwd" value="{$sendmoney.url}" placeholder="分享链接" readonly="readonly">
+		<span class="copy">复制</span>
+		<p class="testing-tip" style="margin-top: .5rem;">复制链接分享给好友领红包</p>
+		</div>
+		{/if}
+	{else}
+		<div class="message">
+			<div class="fail-ico ico"></div>
+			<h1 class="title">订单未付款</a>
+			</h1>
+			<div class="tips">
+				<p>您现在可以
+				<a href="{$APP_ROOT}/">返回首页</a>
+				或
+				<a href="{url x="index" r="totalbuy#pay_check"  b="id=$order_info.id"}" class="btn btn-main">继续付款</a>
+				</p>
+			</div>
+		</div>
+	{/if}
+</div>
+{include file="inc/footer.html"}

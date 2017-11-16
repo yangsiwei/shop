@@ -1,0 +1,44 @@
+@CHARSET "UTF-8";
+.withdraw{ width:180px; }
+.info_table table td.withcontent{ width:550px; border-left:1px dotted #e5e5e5; text-align:left; padding-left:50px;  }
+.info_table table td.withcontent .ui-textbox{ padding:10px; width:300px; }
+.info_table table td.withcontent .ph_verify{ width:170px; margin-right:10px;}
+
+.order_table td h1 {
+  color: #e64d5e;
+  display: inline;
+  font-family: verdana;
+  font-size: 12px;
+  font-weight: normal;
+}
+.op_box {
+  border-left: 1px dotted #e5e5e5;
+}
+
+.bank_list_btn{display: inline-block;position:relative;padding-left: 10px;color: @main_color; cursor: pointer;}
+.bank_list{
+    position: absolute;
+    top: 22px;
+    right: 0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+    background-color: #fff;
+    display: none;
+}
+.bank_list .bank_item{
+        padding: 5px 10px;
+    border-bottom: 1px #DEDEDE solid;
+    color: #4D4D4D;
+    cursor: pointer;
+}
+.del_bank_btn{display:none;}
+.bank_list .bank_item:hover{
+    background-color: #ffffeb;
+}
+.bank_list .bank_item span{display: inline-block;font-weight: bold; margin-right: 6px;}
+.bank_list .bank_item:hover .del_bank_btn{
+    display: inline-block;
+    background-color: #fff;
+    color:@main_color;
+}

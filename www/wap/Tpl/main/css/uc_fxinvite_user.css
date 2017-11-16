@@ -1,0 +1,83 @@
+body{
+	background:@main_color;
+}
+.title-list{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	padding:0 .4rem;
+}
+.title-list p{
+	width:25%;
+	-webkit-flex:1;
+	-webkit-box-flex:1;  
+	flex:1;
+	line-height: 2rem;
+	color:#fff;
+	text-align: center;
+}
+.user-wrap{
+	padding:0 .4rem;
+	width: 100%;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items:center;
+	align-items:center;
+	margin-bottom:.4rem;
+}
+.user-wrap .user-item{
+	width:25%;
+	-webkit-flex:1;
+	-webkit-box-flex:1;  
+	flex:1;
+	text-align: center;
+	color:#fff;
+}
+.user-wrap p.user-item{
+	font-size:1.2rem;
+}
+.user-wrap .user-box img{
+	display: inline-block;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 2rem;
+}
+.user-wrap .user-box p{
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	margin: 0 auto;
+	line-height: .84rem;
+}
+.money-myfarmers{
+	height: 2rem;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items:center;
+	align-items:center;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	line-height: .6rem;
+	background: #fff;
+}
+.money-myfarmers .p-wrap{
+	text-align: center;
+	width: 100%;
+	padding: 0 .5rem;
+}
+.money-myfarmers .p-wrap p{
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+.money-myfarmers .p-wrap p span{
+	color: @main_color;
+}
+.money-myfarmers defaut-title{
+	font-size: .44rem
+}

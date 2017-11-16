@@ -1,0 +1,108 @@
+<tagLib name="html" />
+<include file="Public:wx_header" />
+<include file="Public:weixin_script" />
+<script type="text/javascript">
+	var navs = {$navs_json};
+	
+	$(document).ready(function(){
+		init_nav_row($("#nav_setting"));
+	});
+</script>
+<div class="container-f">
+	<div class="box-title clearfix">
+		<div class="f_l">
+			<h3>
+				<i class="fa fa-table"></i>
+				{$box_title}
+			</h3>
+		</div>
+ 	</div>
+	<div class="box-content clearfix">
+		<div class="row clearfix">
+			<form action="{:u("WeixinReply/save_onfocusn")}" method="post" class="form-horizontal ajax_form">
+				
+				<div class="changeStepBox clearfix  cf">
+					<div class="control-group-left clearfix cf f_l">
+						
+						<div class="control-group cf clearfix">
+		                	<label class="control-label" for="weixin_account">
+		                		标题：
+		                	</label>
+							<div class="controls">
+								<input type="text" name="reply_news_title" id="reply_news_title" class="textbox" value="{$reply.reply_news_title}" />
+								<span class="maroon">*</span>
+							</div>
+		                </div>
+		                
+		                <div class="control-group cf clearfix">
+		                	<label class="control-label" for="app_icon">
+		                		图文封面图：
+		                	</label>
+							<div class="controls">
+								
+									<html:imgUpload name = 'reply_news_picurl' id='reply_news_picurl' value='$reply.reply_news_picurl' />
+									<span class="help-inline">建议大小:720*300px， 允许上传大小<?php echo intval(conf("MAX_IMAGE_SIZE")/1024);?>KB</span>
+									
+							</div>
+		                </div>
+						
+						
+						<div class="control-group cf clearfix">
+		                	<label class="control-label" for="name">
+		                		回复内容：
+		                	</label>
+							<div class="controls">
+								<textarea  id="reply_news_description" name="reply_news_description" class="input-xlarge ipt_require" >{$reply.reply_news_description}</textarea>
+								<span class="maroon">*</span>
+							</div>
+		                </div>
+						<include file="Public:relate_reply" />
+						<div class="control-group cf clearfix" id="nav_setting">
+		                	<label class="control-label" for="weixin_account">
+		                		回复跳转链接：
+		                	</label>
+							<div class="controls">
+								<select name="ctl" class="ctl">
+										<foreach name="navs" item="nav_item" key="key" >
+											<option value="{$key}" <if condition="$key eq $reply['ctl']">selected="selected"</if> >{$nav_item.name}</option>
+										</foreach>
+								</select>										
+								
+								<span class="data" <if condition="$reply['data'] eq ''">style="display:none;"</if>>				
+									<span class="field_name">{$reply.data_name}</span>&nbsp;&nbsp;<input type="text" class="textbox" name="data"  value="{$reply.data} "/>
+								</span>
+							</div>
+		                </div>
+		                
+		                 
+						
+						<div class="control-group cf clearfix" > 
+		                	<label class="control-label" for="name">
+		                		是否关闭默认回复：
+		                	</label>
+							<div class="controls">
+								<input type="checkbox" name="default_close" id="default_close" <if condition="$reply.default_close eq 1">checked="checked"</if>  value="1"  />
+							</div>
+		                </div>
+		                
+		              
+		
+					</div>
+					
+
+					<div class="cf clearfix"></div>
+					<div class="form-actions">	                    
+						<input type="hidden" name="id" value="{$reply.id}" />
+	                    <input type="submit" class="btn btn-primary" value="保存" />
+	                    <input type="button" class="btn" value="切换到文本模式" onclick="location.href='{:u("WeixinReply/onfocus",array('t'=>1))}'" / >
+	                    
+	                </div>
+				</div>				
+				
+			
+            </form>
+		</div>
+	</div>
+</div>
+ 
+<include file="Public:footer" />

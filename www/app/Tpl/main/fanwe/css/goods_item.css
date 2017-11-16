@@ -1,0 +1,116 @@
+.goods{
+    width:239px;
+    overflow: hidden;
+    background:#fff;
+    border: 1px solid #e8e8e8;
+    color:#808080;
+}
+
+.goods .goods-pic{
+    padding: 1px;
+}
+.goods .goods-pic:hover{
+    padding:0;
+}
+.goods .hover_line{
+    border: 1px solid #fff;
+    height:100%;
+}
+.goods:hover{
+    border: 1px solid #d2d2d2;
+    z-index: 1;
+}
+.goods:hover .hover_line{
+    border: 1px solid #d2d2d2;
+    z-index: 1;
+}
+
+
+.goods .logo-box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:48px;
+    height:48px;
+}
+.goods .speed-logo-box{
+    left: 48px;
+}
+.goods .goods-wrap{
+    width: 200px;
+    height: 368px;
+    overflow: hidden;
+}
+.goods .imgbox{
+    display: block;
+    width: 200px;
+    height:200px;
+    background:url(../images/goods_defult_bg.png) no-repeat;
+    margin: 0 auto 8px;
+    overflow:hidden;
+}
+.goods .imgbox img{
+    background:#fff;
+    margin:0 auto;
+}
+.goods-title{
+    display:block;
+    width:100%;
+    color: #333;
+    font-size:13px;
+    line-height:26px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+.goods-title:hover{
+    color:@main_color;
+}
+.goods .goods-title:hover{
+    color:@main_color;
+    text-decoration:underline;
+}
+.goods .p-price{
+    margin-bottom:10px;
+    color:#999;
+}
+.goods .ten-zone-logo{
+    width:63px;
+    height: 25px;
+    line-height:22px;
+    text-align: center;
+    color:#fff;
+    background:url(../images/goods_ten.png) no-repeat;
+}
+.goods .person-info li{
+    width: 50%;
+}
+.goods .person-info li .num{
+    line-height:18px;
+}
+.goods .person-info li .info{
+    color: #999;
+    line-height:18px;
+}
+.goods .btn-box{
+    width: 100%;
+    text-align: center;
+    margin-top:15px;
+}
+.goods .btn-box .duobao-now{
+    width: 96px;
+    color:#fff;
+    margin: 0 auto;
+    text-align: center;
+    background:@main_color;
+    padding: 0 20px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor:pointer;
+}
+.goods .btn-box .duobao-now:hover{
+    text-decoration: none;
+    background:@hover_color;
+}

@@ -1,0 +1,227 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/cart_index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/cart_order.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/goods_item.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/zone.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/lazyload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/cart_check.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/cart_check.js";
+?>
+{include file="inc/header_cart.html"}
+<script type="text/javascript">
+var main_url='{url r="index"}';
+var APP_ROOT = '{$APP_ROOT}';
+var CART_URL = '{url x="index" r="cart"}';
+var CART_CHECK_URL = '{url x="index" r="cart#check"}';
+{if app_conf("APP_MSG_SENDER_OPEN") eq 1}
+var send_span = {function name="app_conf" v="SEND_SPAN"}000;
+var IS_RUN_CRON = 1;
+var DEAL_MSG_URL = '{url x="index" r="cron#deal_msg_list"}';
+{/if}
+var AJAX_LOGIN_URL	= '{url x="index" r="user#ajax_login"}';
+var AJAX_URL	= '{url x="index" r="ajax"}';
+var LOADER_IMG = '{$TMPL}/images/loader_img.gif';
+</script>
+</script>
+<div class="{function name="load_wrap" t=$wrap_type} cate_row">
+<div class="blank15"></div>
+	<form name="buy_form" id="buy_form" action="{url x="index" r="cart#order_done"}" method="post">
+<div class="wrap">
+	<table id="cart_form">
+	<tr>
+
+	<td width="480" class="text_left" style="padding-left: 15px">商品名称</td>
+	<td width="130">商品期号</td>
+	<td width="130">价值</td>
+	<td width="130">购买价</td>
+	<td width="130">参与人次</td>
+	<td width="170" style="padding-right: 15px">小计</td>
+	</tr>
+    {if $cart_result.cart_list}
+
+	{foreach from=$cart_result.cart_list item=item}
+	<tr class="cart-list" style="border-bottom: 1px solid #ddd;">
+
+			<td class="text_left" style="padding-left: 15px">
+					<a href="{url r="index" r="duobao" p="data_id=$item.duobao_item_id"}">{$item.name}</a>
+			</td>
+			<td>
+					{$item.duobao_item_id}
+			</td>
+			<td>
+					{function name=format_price v=$item.deal_price}
+			</td>
+			<td>
+					{function name=format_price v=$item.unit_price}
+			</td>
+			<td>
+					{$item.number}
+			</td>
+			<td style="padding-right: 15px">
+			<p class="txt-red"><span>{function name=format_price v=$item.total_price}</span></p>
+			</td>
+
+	</tr>
+	{/foreach}
+    <tr>
+	<td colspan="6" style="text-align:right;line-height: 56px;padding: 0 20px" >
+		<div class="cart-list-footer-total f_r" style="margin-left: 15px">商品合计：<span class="txt-red" style="font-size: 22px;font-weight: bold;">{function name=format_price v=$cart_result.total_data.total_price}</span></div>
+		<a href="{url i="index" r="cart"}"  class="f_r" style="line-height: 62px">返回清单修改</a>
+	</td>
+	</tr>
+	<td colspan="6" style="border:none;background:white;padding: 0;">
+		{* 支付方式  *}
+	{if $show_payment}
+	<div id="cart_payment">
+	<div class="cart_row layout_box" style="border: 0;">
+		<div class="title">{lang v="PAYMENT_INFO"}</div>
+		<div class="content">
+			{if $bank_paylist}
+			{foreach from=$bank_paylist item=payment_item}
+				{$payment_item.display_code}
+			{/foreach}
+			<div class="blank"></div>
+			{/if}
+			{if $icon_paylist}
+			{foreach from=$icon_paylist item=payment_item}
+				{$payment_item.display_code}
+			{/foreach}
+			<div class="blank"></div>
+			{/if}
+			<div class="account_payment">
+			{foreach from=$disp_paylist item=payment_item}
+				{$payment_item.display_code}
+				<div class="blank"></div>
+			{/foreach}
+			</div>
+		</div>
+	</div>
+	</div>
+	{/if}
+	{* 支付方式 *}
+	</td>
+
+
+    {else}
+    <tr class="null_data">
+    	<td colspan="7" >
+		<div>
+		<p class="message">购物车暂无数据</p>
+		</div>
+	    </td>
+    </tr>
+    {/if}
+	</table>
+	<div class="blank15"></div>
+
+	   {* 用户手机  *}
+	<div id="user_mobile">
+	{if $user_info.mobile}
+	<input type="hidden" name="user_mobile" value="{$user_info.mobile}" />
+	{else}
+	<div class="form_panel">
+	<div class="panel">
+		
+			<dl>
+				<dt>手机号</dt>
+				<dd>
+					<input class="ui-textbox" name="user_mobile" value="" holder="请输入手机号" />
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+			{if app_conf("SMS_ON") eq 1}
+			<dl class="ph_img_verify" {if $sms_ipcount>1}style="display:block"{/if}>
+				<dt>图片验证码</dt>
+				<dd>
+					<input type="text" name="verify_code" class="ui-textbox img_verify" holder="请输入图片文字" />
+					<img src="{$APP_ROOT}/verify.php" class="verify" rel="{$APP_ROOT}/verify.php" />
+					<a href="javascript:void(0);" class="refresh_verify">看不清楚？换一张！</a>
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+					
+			<dl>
+				<dt>验证码</dt>
+				<dd>
+					<input class="ui-textbox ph_verify" name="sms_verify" holder="请输入验证码" />
+					<button class="ui-button f_l light ph_verify_btn" rel="light" form_prefix="{$form_prefix}" lesstime="{$sms_lesstime}" type="button">发送验证码</button>
+					
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+			{/if}
+
+		</div>
+		</div>
+	{/if}
+	</div>
+	{* 用户手机  *}
+	
+	{* 购物统计 *}
+	<div id="cart_total">
+	</div>
+	{* 购物统计 *}
+	<div class="blank"></div>
+	<div id="cart_submit">
+		<input type="hidden" value="{function name="intval" value=$order_info.id}" name="id" />
+		<button id="order_done" class="ui-button f_r" rel="blue" type="button">{$LANG.CONFIRM_ORDER_AND_PAY}</button>	
+	</div><!--cart_submit-->	
+
+</div>
+
+	</form>
+    <div class="blank15"></div>
+    <div class="wrap_full_w">
+	    {if $recomend_list}
+		<div class="index-new-goods-list" style="width: 1201px">
+			<h1 class="main-title">推荐购买
+			<a href="javascript:void(0);" id="new"  class="title-more"><i class="iconfont">&#xe624;</i>换一批</a>
+			</h1>
+			<ul class="ui-list" width="241" pin_col_init_width="0" wSpan="-1" hSpan="1">
+				{foreach from=$recomend_list item=recomend}
+				<li class="goods ui-item">
+				<div class="hover_line">
+				<div class="ten-logo-box"></div>
+					<div class="goods-wrap">
+						<div class="imgbox">
+						<a href="{url r="index" r="duobao" p="data_id=$recomend.id"}">
+							<img src="{$recomend.icon}" width="200" height="200" lazy="true" />
+						</a>
+						</div>
+						<a href="{url r="index" r="duobao" p="data_id=$recomend.id"}" class="goods-title">
+							{$recomend.duobaoitem_name}
+						</a>
+						<div class="p-price f_l">
+							总需：{$recomend.max_buy}人次
+						</div>
+					</div>
+					</div>
+				</li>
+				{/foreach}
+			</ul>
+		</div>
+		{/if}
+    </div>
+
+</div>
+
+{include file="inc/footer.html"}

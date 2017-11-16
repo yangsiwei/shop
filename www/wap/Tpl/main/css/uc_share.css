@@ -1,0 +1,193 @@
+body{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-flex-direction:column;
+	flex-direction:column;
+}
+.null-data{
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	flex:1;
+}
+.share-none{
+	width:7.8rem;
+	height:7.8rem;
+	background:url(../images/share-bg.png) no-repeat;
+	background-size:contain;
+	margin: 0 auto;
+}
+.null-data p{
+	line-height: 2rem;
+	color:#999;
+	font-size:.64rem;
+	text-align: center;
+}
+.null-data a{
+	display: block;
+	width:4.6rem;
+	line-height: 1.6rem;
+	color:#fff;
+	font-size:.6rem;
+	text-align: center;
+	margin: 0 auto;
+	background:@main_color;
+	border-radius:5px;
+}
+.luck-data{
+	min-height:100%;
+	background:#fff;
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	flex:1;
+	background:#fff;
+}
+.luck-data-hd{
+	height:1.8rem;
+	position: relative;
+}
+.luck-data-hd::before{
+	content:'';
+	width:.2rem;
+	height:1.4rem;
+	position: absolute;
+	top: .2rem;
+	left: 0;
+	background:@main_color;
+}
+.luck-data-hd .title{
+	margin-left:.55rem;
+	line-height: 1.8rem;
+	border-bottom:1px dashed #999;
+	font-size:.5rem;
+}
+.luck-list .item{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	padding:.6rem .55rem;
+}
+.luck-list .item .pic img{
+	width:3rem;
+	height:3rem;
+}
+.luck-list .item .info{
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	flex:1;
+	margin-left:.4rem;
+	line-height: 1.2rem;
+}
+.luck-list .item .info .goods-name{
+	display:-webkit-box;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	word-break:break-all;
+	-webkit-box-orient: vertical;
+	-webkit-box-pack: center;
+	-webkit-line-clamp:2;
+	line-height: .8rem;
+	height:1.6rem;
+}
+.luck-list .item .info .share-now{
+	display:block;
+	width:2.8rem;
+	line-height: 1rem;
+	color:#fff;
+	background:@main_color;
+	border-radius:2px;
+	text-align: center;
+}
+.share-list .item{
+	position: relative;
+	margin-bottom:.4rem;
+}
+.share-list .item .avatar{
+	display: block;
+	width:2rem;
+	height:2rem;
+	border-radius:1rem;
+	position: absolute;
+	top: .4rem;
+	left: .55rem;
+	overflow: hidden;
+}
+.share-list .item .avatar img{
+	width:100%;
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	        transform: translateY(-50%);
+}
+.share-list .item .share-info{
+	display: block;
+	padding:1.2rem .55rem .2rem 3.2rem;
+	padding-left:3.2rem;
+	padding-right:.55rem;
+}
+.share-list .item .share-info:active{
+	background:#efefef;
+}
+.share-list .item .user-name{
+	position: absolute;
+	top: .2rem;
+	left: 3.2rem;
+	line-height: 1rem;
+	color:@main_color;
+	float: left;
+	z-index:10;
+}
+.share-list .item .time{
+	top: .2rem;
+	right: .55rem;
+	position: absolute;
+	float: right;
+	line-height: 1rem;
+	color:#999;
+	z-index:10;
+}
+.share-list .item .share-info .content{
+	padding:.4rem;
+	background:#efefef;
+	position: relative;
+	border-radius:0 5px 5px 5px;
+}
+.share-list .item .share-info .content .arrow-ico{
+	position: absolute;
+	top: 0;
+	left:-9px;
+}
+.share-list .item .share-info .content .share-title{
+	line-height: .84rem;
+	font-size:.52rem;
+	color:#333;
+}
+.share-list .item .share-info .content p{
+	color:#999;
+	line-height: .84rem;
+}
+.share-list .item .share-info .content .share-txt{
+	color:#555;
+	line-height: .6rem;
+	margin-top:.4rem;
+}
+.share-list .item .share-info .content .share-pic{
+	margin-top:.4rem;
+}
+.share-list .item .share-info .content .share-pic li{
+	width:2rem;
+	height:2rem;
+	overflow: hidden;
+	margin: 0 .2rem;
+	position: relative;
+	float: left;
+	margin-bottom:.4rem;
+}
+.share-list .item .share-info .content .share-pic li img{
+	width:100%;
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	        transform: translateY(-50%);
+}

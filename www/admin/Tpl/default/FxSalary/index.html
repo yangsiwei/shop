@@ -1,0 +1,80 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/fx_salary.js' />
+<div class="main">
+<div class="main_title">{$title_name}</div>
+<div class="blank5"></div>
+<div class="button_row">
+<script>
+$(function(){
+	init_fx_level(1);
+	//绑定事件
+	$("select[name='fx_salary_type']").live("change",function(){init_fx_level();});
+});
+</script>
+ 
+	
+</div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	
+	
+	<tr>
+		<td class="item_title">三级分销开启:</td>
+		<td class="item_input fx_is_open" >
+			
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">邀请推广奖类型:</td>
+		<td class="item_input fx_salary_type_box" >
+			
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">渠道二维码类型:</td>
+		<td class="item_input fx_salary_type_qrcode" >
+			
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">新增用户默认开启:</td>
+		<td class="item_input fx_default_status" >
+			
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">邀请推广奖:</td>
+		<td class="item_input fx_level_box">
+			
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="FxSalary" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="save" />
+			<input type="hidden" name="fx_set_type" value="{$fx_set_type}" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,152 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_duobao.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_luck.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_order.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_order.js";
+?>
+{include file="inc/header.html"}
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="blank20"></div>
+	<div class="side_nav f_l ">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	{if $list}
+	<div  class="right_box">
+		<ul class="web-map clearfix">
+			<li>当前位置：</li>
+			<li><a href="{url x="index" r="uc_center"}">个人中心</a> ></li>
+			<li class="txt-red">幸运记录</li>
+		</ul>
+		<div class="m-user-comm-wrapers f_r">
+			<div class="wraper">
+				<ul class="wraper-hd clearfix">
+					<li class="info">商品信息</li>
+					<li class="status">商品状态</li>
+					<li class="opt">操作</li>
+				</ul>
+				{foreach from=$list item=value}
+				<ul class="w-goods">
+					<li class="info">
+						<div class="w-goods-pics">
+						    <a title="{$value.name}" href="{url r="index" r="duobao" p="id=$value.duobao_item_id"}">
+							<img src="{$value.deal_icon}" alt="{$value.name}" width="120">
+							</a>
+						</div>
+						<div class="w-goods-content">
+							<p class="w-goods-title">
+							{if $value.min_buy eq 10}
+							<span class="type-ten">十夺宝币专区</span>&nbsp;{/if}<a title="{$value.name}" href="{url r="index" r="duobao" p="id=$value.duobao_item_id"}" style="color:#333;">{$value.name}</a>
+							</p>
+							<p class="w-goods-price" >期号：{$value.duobao_item_id}</p>
+							<p class="w-goods-price" >总需：{$value.max_buy}人次</p>
+							<p class="w-goods-price" >幸运号码：<strong class="txt-impt">{$value.lottery_sn}</strong>，总共参与：<strong class="txt-dark">{$value.number}</strong>人次</p>
+							<p class="w-goods-price" >夺宝时间：{$value.create_time}</p>
+							<p class="w-goods-price" >揭晓时间：{$value.lottery_time}</p>
+						</div>
+					</li>
+					<li class="status">
+						{if   $value.cate_id && $value.delivery_status eq 1}
+							<p class="txt-green">已派发商品</p>
+						{elseif $value.cate_id && $value.delivery_status eq 0 }
+							<p class="txt-yellow">等待商品派发</p>
+						{elseif $value.is_set_consignee eq 0 }
+							<p class="txt-red">待填写收货地址</p>
+						{elseif $value.delivery_status eq 0 }
+							<p class="txt-yellow">等待商品派发</p>
+						{elseif $value.delivery_status eq 1 && $value.is_arrival eq 0 }
+							<p class="txt-green">已派发商品</p>
+						{elseif $value.delivery_status eq 1 && $value.is_arrival eq 1}	
+							<p class="txt-green">已签收</p>
+						{/if}
+						
+
+					</li>
+					<li class="opt">
+					{if $value.cate_id && $value.delivery_status eq 0}
+					<p>
+							<a href="{url r="index" p="uc_luck#detail" d="id=$value.id"}">查看详情</a>
+						</p>
+					{elseif $value.is_set_consignee eq 0 && $value.delivery_status eq 0}
+						<p>
+							<a href="{url r="index" p="uc_luck#detail" d="id=$value.id"}">填写</a>
+						</p>
+					{else}
+						<p>
+							<a href="{url r="index" p="uc_luck#detail" d="id=$value.id"}">查看详情</a>
+						</p>
+						<p>
+						{if $value.delivery_status eq 1 && $value.cate_id eq ''}
+							<a  {if app_conf("KUAIDI_TYPE") neq 1}ajax="true" kuaidi_type="{function name="app_conf" v="KUAIDI_TYPE"}"  href="javascript:void(0);" action="{url x="index" r="uc_order#check_delivery" p="item_id=$value.id"}"{else}href="{url x="index" r="uc_order#check_delivery" p="item_id=$value.id"}" target="_blank"{/if} rel="{$value.id}" class="check_delivery">查看物流</a>
+						{/if}
+						</p>
+					{/if}
+					{if $value.delivery_status eq 1 && $value.is_arrival eq 1 && $value.is_send_share eq 0}	
+						<p>
+							<a class="btn btn-s btn-main" href="{url x="index" r="uc_share#add" p="id=$value.id"}">晒单</a>
+						</p>
+					{/if}
+					{if $value.is_send_share eq 1}	
+						<p>
+							<a href="{url x="index" r="share#detail" p="id=$value.share_id"}">查看晒单</a>
+						</p>
+					{/if}
+					</li>
+				</ul>
+				{/foreach}
+			</div>
+			<div class="pages">{$pages}</div>
+		</div>
+	</div>
+	{else}
+	<div class="m-user-frame-colMain">
+		<ul class="web-map clearfix">
+			<li>当前位置：</li>
+			<li><a href="{url x="index" r="uc_center"}">我的夺宝</a> ></li>
+			<li class="txt-red">幸运记录</li>
+		</ul>
+		<div class="m-user-frame-content" pro="userFrameWraper">
+			<div class="m-user-duobao">
+				<div class="m-user-comm-wraper">
+					<div class="m-user-comm-cont">
+						<div>
+						<div class="listCont">
+							<div >
+								<div class="duobaoList">
+									<div class="m-user-comm-empty" id="pro-view-11" style="text-align:center;padding:100px 0px 128px;">
+										<div class="i-desc">您还没有此记录哦~</div>
+										<div class="i-opt">
+											<a href="{url r="index" }" class="w-button w-button-main w-button-xl" style="color:#ffffff;border:none;white-space:nowrap;font-size:18px;display:inline-block;vertical-align:middle;padding:0px 35px;height:45px;line-height:45px;border-radius:4px;cursor:pointer;font-family:'microsoft yahei', simhei;outline:none;text-decoration:none !important;background:#dd344f;">马上试试运气</a>
+										</div>
+									</div>
+								</div>
+								<div pro="pager" class="pager" style="text-align:right;"></div>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{/if}
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>{:conf("APP_NAME")}{:l("ADMIN_PLATFORM")}</title>
+<script type="text/javascript" src="__ROOT__/public/runtime/admin/lang.js"></script>
+<script type="text/javascript">
+	var version = '{:app_conf("DB_VERSION")}';
+	var app_type = '{$apptype}';
+	var ofc_swf = '__TMPL__Common/js/open-flash-chart.swf';
+	var sale_line_data_url = '{:urlencode(u("Ofc/sale_line"))}';
+</script>
+<load href='__TMPL__Common/style/style.css' />
+<load href='__TMPL__Common/style/main.css' />
+<load href='__TMPL__Common/js/jquery.js' />
+<load href='__TMPL__Common/js/swfobject.js' />
+<load href='__TMPL__Common/js/script.js' />
+<load href='__TMPL__Common/js/main.js' />
+</head>
+
+<body>
+	<div class="main">
+	<div class="main_title">{:conf("APP_NAME")}{:l("ADMIN_PLATFORM")} {%HOME}	</div>
+	<div class="notify_box">
+		<table>
+			<tr>
+			<td class="version_box">
+				<table>
+					<tr><td>
+						当前版本：{:conf("DB_VERSION")}<php>if(app_conf("APP_SUB_VER")){</php>.{:app_conf("APP_SUB_VER")}<PHP>}</PHP><br />
+						<div id="version_tip"></div>
+						<!--<div>授权号：{$FANWE_APP_ID}</div>-->
+					</td></tr>
+				</table>
+			</td><!--version_box 版本提示-->
+			<td class="order_box">
+				<table>
+					<tr><td>
+						订单累计成交额 {$income_order|format_price}<br />
+						
+						<if condition="$dealing_order gt 0">
+						待处理订单共计 {$dealing_order} <a href="{:u("DealOrder/index",array("delivery_status_item"=>0,"type"=>0,"is_robot"=>0))}">【去处理】</a> <br />
+						</if>
+						
+					</td></tr>
+				</table>
+			</td><!--order_box 订单提醒-->
+			<td class="user_box">
+				<table>
+					<tr><td>
+						平台会员总数 {$user_count}<br />
+						<if condition="$income_incharge gt 0">
+						预付款总金额 {$income_incharge|format_price}<br />
+						</if>
+						<if condition="$withdraw gt 0">
+						共有 {$withdraw} 笔提现申请 <a href="{:u("User/withdrawal_index",array("is_paid"=>0))}">【去处理】</a> 
+						</if>
+					</td></tr>
+				</table>
+			</td><!--user_box 会员提醒-->		
+			<td class="tuan_box">
+				<table>
+					<tr><td>
+						共有 {$duobao_count}期夺宝活动<br />			
+						进行中共有 {$duobaoing_count}期<br />	
+						揭晓中共有 {$lotterying_count}期<br />	
+						已揭晓共有 {$lottery_count}期<br />	
+					</td></tr>
+				</table>
+			</td><!--tuan_box 团购提醒-->	
+			</tr>
+			
+	
+		</table>
+	</div>	
+	<div class="blank5"></div>
+	<div class="blank5"></div>
+	<div class="blank5"></div>
+	<div class="blank5"></div>
+	<div class="main_title">最近30天运营数据</div>
+	<table width=100%>
+		
+		<tr>
+			<td width=10>&nbsp;</td>
+			<td width=100%>
+				<div id="sale_line_data_chart"></div>
+			</td>	
+			<td width=10>&nbsp;</td>
+		</tr>
+	</table>
+	</div>
+</body>
+</html>

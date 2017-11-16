@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+.msg{padding:8px;border-bottom: 1px solid #ddd;margin:0 5px 5px 5px;background:#eee;overflow:hidden;}
+.msg_ico{width:20%;float:left;}
+.msg_ico .iconfont {font-size: 30px;padding-left:8px;}
+.msg_main{width:78%;float:right;}
+.msg_title{line-height:22px;font-size:16px;}
+.msg_title a{color:@main_color;}
+.msg_content{font-size:13px;padding-top:5px;color:#333;}
+.msg_info{width:78%;float:right;padding-top:5px;color:#aaa;}
+.msg_info a{float:right;}
+.msg_info a .iconfont{font-size:20px;color:@main_color;}
+.msg_ico img{width:50px;height:50px;}

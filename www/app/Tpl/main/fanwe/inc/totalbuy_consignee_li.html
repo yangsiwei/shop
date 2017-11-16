@@ -1,0 +1,18 @@
+{foreach from=$consignee_list item=item}
+<li data-id="{$item.id}" {if $item.is_default == 1}class="current"{/if}>
+	<div class="address-content">
+		<div class="receiver">
+			<span>{$item.consignee}</span>
+			<a url="{url x="index" r="uc_consignee#set_default" p="id=$item.id"}" class="set-default" href="javascript:void(0)">设为默认</a>
+		</div>
+		<p>{$item.region_lv2}&nbsp;{$item.region_lv3}&nbsp;{$item.region_lv4} </p>
+		<p class="address">{$item.address}</p>
+		<p>{$item.mobile}</p>
+		<div class="operation">
+			<a url="{$item.id}" class="save-consignee" href="javascript:void(0)">修改</a>
+			<a url="{url x="index" r="uc_consignee#del" p="id=$item.id"}" class="del-consignee" href="javascript:void(0)">删除</a>
+		</div>
+		<i class="check-ico"></i>
+	</div>
+</li>
+{/foreach}

@@ -1,0 +1,93 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/payment.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/user_login.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+
+?>
+{include file="inc/header_title_home_nofx.html"}
+<style type="text/css">
+	.header{
+		display:none;
+	}
+	html body,.wrap{ background:#fff;}
+	.cur-button{
+		-webkit-appearance: none;
+		display: block;
+	    width: 95%;
+	    height: 1.4rem;
+		line-height: 1.4rem;
+	    background-color: #d01e41;
+	    color: #fff;
+	    text-align: center;
+	    border-radius: .2rem; 
+		margin: auto;
+		margin-top:1rem;
+	}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	var is_ajax_submit = '{$data.is_ajax_submit}';
+	var success_url = '{$data.success_url}';
+	var reload_url  = '{$data.reload_url}';
+	var http_host   = '{$data.http_host}';
+	var is_app		= '{$data.is_app}';
+	//$("form[name='pay']").submit();
+	var html = '';
+	if(is_ajax_submit == 1 && is_app == 1){
+		$.post("{$data.pay_action}"+"&is_app=1", {}, function(data){
+			if(data.status == 1){
+				$('#display-info').css('display','none');
+				html += '<a class="cur-button" href="fanwe://'+http_host+'/main" data-type="1">返回app</a>'
+				html += '<a class="cur-button" href="'+reload_url+'&is_app=1" data-type="1">重新发起支付</a>';
+				$('#display-info').css('text-align', 'center');
+				$('#display-info').css('margin', 'auto');
+				$('#display-info').html(html);
+				$('#display-info').css('display','block');
+				location.href = data.html;
+			}
+		}, "json");
+	}else{
+		$("form[name='pay']").submit();
+	}
+	
+	
+});
+</script>
+<div class="wrap">
+	<div class="pay_order_index">
+	<div class="pay_info" style="display:none;">
+	 	<p class="h">
+			{$data.pay_info}
+		</p>	
+	</div>	
+	<div id="display-info" class="pay_info" style="font-size:18px;">
+			正在发送支付请求，请稍等......
+	</div>	
+ 	<form name="pay" method="post" action="{$data.pay_action}&is_app={$data.is_app}" style="display:none;">
+	    <div class="btn_login">
+	    	<input type="submit" value="{$data.payment_name}（{$data.pay_money}夺宝币）" style="background: none;">
+		</div>
+    </form>
+	</div>
+			
+</div>				
+
+{include file="inc/footer_index.html"}	

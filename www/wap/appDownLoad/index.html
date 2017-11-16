@@ -1,0 +1,71 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv=Content-Type content="text/html;charset=utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<meta name=format-detection content="telphone=no"/>
+<meta name=apple-mobile-web-app-capable content=yes />
+<title>夺宝联盟app下载中心</title>
+	<script src="https://cdn.bootcss.com/jquery/2.2.2/jquery.slim.js"></script>
+<style>
+/*-- 清除原属性 --*/
+html, body, div, p { box-sizing: border-box; }
+html, body { height: 100%; }
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, input { margin: 0; padding: 0; border: none; outline: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust: none; }
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+body { font-family: 'Helvetica Neue', Arial, "Hiragino Sans GB", 'Microsoft YaHei', sans-serif; -webkit-touch-callout: none;-webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; -o-text-size-adjust: none; text-size-adjust: none }
+a { color: #666; text-decoration: none; }
+a:hover { color: #666; text-decoration: none;}
+img { max-width: 100%; }
+.wrap {height: 100%; overflow: auto; color: #999;padding-bottom:4em;}
+.logo {margin:28px auto 26px; text-align: center; }
+.btn { width:239px; margin:0 auto;   }
+.btn a { display: block; }
+.go-btn{background: #e25e4e;text-align: center;border-radius: 27px;color: #fff;padding: 10px;}
+.go-btn1{fong-size:15%;padding:15px;}
+.tit { font-size: 80%; text-align: center; margin:20px 0 40px;}
+.wap-text { text-align: center; font-size: 80%; padding-bottom: 10px; }
+.min-btn { margin-bottom:2em;}
+.min-btn .fa{font-size:2em;}
+.min-btn span{font-size:1.4em;margin-left: 0.5em;}
+.android{border:2px solid #e25e4e;text-align: center;border-radius: 27px;color:#e25e4e;padding: 10px;}
+.ios{border:2px solid #4da54e;text-align: center;border-radius: 27px;color:#4da54e;padding: 10px;}
+.wap-foot { position: fixed; bottom:0px; width: 100%; text-align: center;background:#fff;line-height: 3.5em;}
+.fa img{float: left; padding-left: 20px;}
+/*.header{width:100%;height:55px;background: linear-gradient(to right, #4578E5 0%,#0D2C9C 50%,#4578E5 100%);text-align:center;}*/
+/*.fanhui{color:#fff;font-size:30px;position:absolute;left:20px;line-height:55px;}*/
+/*.nav_span{color:#fff;font-size:18px;line-height:55px;}*/
+	#img{
+		position:absolute;
+		top:-10%;
+		width:100%;
+		height:110%;
+		background: rgba(0, 0, 0, 0.61);
+	}
+</style>
+</head>
+<body>
+	<img src="./img/downLoadHit.png" alt="" id="img">
+	<!--<div class="header">-->
+		<!--<a href="http://www.aliduobaodao.com/wap/index.php?ctl=user_center&show_prog=1" class="fanhui"> < </a>-->
+		<!--<span class="nav_span">下载APP</span>-->
+	<!--</div>-->
+	<div class="wrap">
+		<div class="logo"><img src="img/logo.png" style="width:200px;"></div>
+		<div class="wap-text">推荐您使用手机APP夺宝,请选择下载  <i class="fa fa-download"></i></div>
+		<div class="btn min-btn"><a href="dblm.apk" class="android"><i class="fa fa-android"><img src="img/ico1.png" alt=""></i><span>Android下载</span></a></div>
+		<div class="btn min-btn"><a href="itms-services:///?action=download-manifest&url=https://www.aliduobaodao.com/wap/appDownLoad/manifest.plist" class="ios"><i class="fa fa-apple"><img src="img/ico2.png" alt=""></i><span>App Store下载</span></a></div>
+		<div class="btn min-btn"><a href="explain.html" class="ios" style="border:0; border: 2px solid #666; color: #666;"><i class="fa fa-apple"><img src="img/ico3.png" alt=""></i><span>IOS安装说明</span></a></div>
+		<!--<div class="btn"><a href="http://www.aliduobaodao.com" class="go-btn">进入夺宝联盟</a></div>-->
+	</div>
+	<script>
+		$("#img").click(function(){
+		    $("#img").hide();
+		});
+	</script>
+</body>
+</html>

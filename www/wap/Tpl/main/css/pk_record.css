@@ -1,0 +1,147 @@
+body{
+	background: #eff3f6;
+}
+.c-hd{
+	background:@main_color;
+}
+.c-hd::after{
+	border-color:@main_color;
+}
+.cut_city a, .cut_city a:hover, .cut_city a:visited{
+	color:#fff;
+}
+.logo_img{
+	color:#fff;
+}
+.record-hd{
+	background: @main_color;
+	padding-top: .4rem;
+}
+.record-hd .user-avatar{
+	width: 2.3rem;
+	height: 2.3rem;
+	border:2px solid #fff;
+	overflow: hidden;
+	border-radius: 2.3rem;
+	margin: 0 auto;
+}
+.record-hd .user-avatar img{
+	width:100%;
+	height:100%;
+}
+.record-item{
+	text-align: center;
+	color:#fff;
+	line-height: 1.8rem;
+}
+.record-item span{
+	font-size:1.2rem;
+	margin: 0 .4rem;
+}
+.record-tab{
+	line-height: 2rem;
+	background:#fff;
+}
+.record-tab li{
+	text-align: center;
+	width:33.33%;
+	font-size:.52rem;
+}
+.record-tab li a{
+	display: block;
+	margin: 0 1.2rem;
+	border-bottom:2px solid #fff;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.record-tab .active a{
+	border-bottom:2px solid @main_color;
+	color:@main_color;
+}
+.record-list li{
+	background: #fff;
+	padding: .4rem;
+	align-items:flex-start;
+	align-items:flex-start;
+	-webkit-box-align: flex-start;
+}
+.record-list li .goods-img{
+	height:3rem;
+	width:3rem;
+}
+.record-list li .goods-img img{
+	width:100%;
+	height:100%;
+}
+.record-list li .goods-info{
+	margin: 0 .4rem;
+}
+.record-list li .goods-tit{
+	font-size:.56rem;
+	display:-webkit-box;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	word-break:break-all;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp:2;
+	line-height: .8rem;
+	color:#444;
+	margin-bottom: .4rem;
+}
+.record-list li .pking-tip{
+	color:#999;
+	line-height: .8rem;
+}
+.progress-bar{
+	width:100%;
+	height:.2rem;
+	background:#eee;
+	border-radius:.1rem;
+	margin: .2rem 0;
+}
+.progress-bar .progress{
+	height:.2rem;
+	background:@main_color;
+	border-radius:.1rem;
+}
+.user-tip a{
+	color:#50a3d8;
+}
+.user-tip .hide-code{
+	display:none;
+}
+.my-code-list{
+	margin-top: .4rem;
+	background:#eee;
+	border-radius:3px;
+	display:none;
+}
+.my-code-list li{
+	background:none;
+	float: left;
+	line-height: .8rem;
+	padding:0 .4rem;
+	color:#999;
+}
+.user-info{
+	margin-top: .4rem;
+	padding:.4rem;
+	background:#eee;
+}
+.user-info p{
+	font-size:.4rem;
+	line-height: .6rem;
+	color:#999;
+}
+.user-info .user{
+	color:#444;
+}
+.null-data img{
+	width: 100%;
+}
+.null-data p{
+	font-size: .6rem;
+	color:#999;
+	line-height: 1rem;
+	text-align: center;
+}

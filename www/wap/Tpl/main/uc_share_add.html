@@ -1,0 +1,47 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_share_add.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/exif.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/lrz.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/mobileFix.mini.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_share_add.js";
+
+
+?>
+{include file="inc/header_title_home.html"}
+<div class="add-wrap">
+	<form name="add_form" action="{url x="index" r="uc_share#do_save"}" method="post">
+		<div class="input-box split-line"><input name="title" type="text" placeholder="晒单主题，不少于6个字"></div>
+		<div class="textarea-box"><textarea name="content" placeholder="幸运感言，不少于30个字"></textarea></div>
+		<ul class="pic-list img-show-box">
+			<li class=" item-add "><a href="" class="add-pic" >+</a><input class="file-btn" id="file-btn" type="file" capture="camera"></li>
+		</ul>
+		<div class="blank20"></div>
+		<input name="id" type="hidden" value="{$id}"/>
+		<a href="javascript:void();" class="share-btn">发布</a>
+		<div class="blank50"></div>
+	</form>
+</div>
+{include file="inc/footer_index.html"}

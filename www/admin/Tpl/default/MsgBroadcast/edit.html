@@ -1,0 +1,95 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/msgbroadcast.js' />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<div class="main">
+<div class="main_title">{%EDIT} <a href="{:u("MsgBroadcast/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+
+	<tr>
+		<td class="item_title">{%MSG_CONTENT}:</td>
+		<td class="item_input">
+			<textarea class="textarea require" name="content">{$vo.content}</textarea>
+		</td>
+	</tr>
+    <tr>
+        <td class="item_title">{%PUSH_TYPE}:</td>
+        <td class="item-input">
+            <select name="push_type">
+                <option value="1" <if condition="$vo['push_type']==1">selected="selected"</if> >{%TYPE_UNITCAST}</option>
+                <!--<option value="2">{%TYPE_CUSTOMIZEDCAST}</option>-->
+                <!--<option value="3">{%TYPE_GROUPCAST}</option>-->
+                <option value="4" <if condition="$vo['push_type']==4">selected="selected"</if> >{%TYPE_BROADCAST}</option>
+                <!--<option value="5">{%TYPE_FILECAST}</option>-->
+            </select>
+        </td>
+    </tr>
+    <tr id="tr_choose_user" style="display:none">
+        <td class="item_title">{%CHOOSE_UNITCAST_USER}</td>
+        <td class="item_input">
+            <select  name="acceptor">
+                <option device_token="{$vo['device_token']}" dev_type="{$vo['dev_type']}" value="{$vo['acceptor']}">{$vo['user_name']}</option>
+            </select>
+            <input type="text" class="textbox" name="user_name" placeholder="请输入用户名" />
+            <input type="button" id="search_user" class="button" value="搜索" />
+        </td>
+    </tr>
+    <tr>
+        <td class="item_title">跳转Url(安卓有效)</td>
+        <td class="item_input">
+            <input type="text" class="textbox" name="go_url" placeholder="请输入跳转url" value="{$vo['go_url']}"/>
+        </td>
+    </tr>
+	<!--<tr>-->
+		<!--<td class="item_title">{%USER_NAMES}:</td>-->
+		<!--<td class="item_input">-->
+			<!--<textarea class="textarea" name="user_names">{$vo.user_names}</textarea>-->
+			<!--<span class='tip_span'>[{%USER_NAMES_TIP}]</span>-->
+		<!--</td>-->
+	<!--</tr>-->
+	
+	<!--<tr>-->
+		<!--<td class="item_title">{%END_TIME}:</td>-->
+		<!--<td class="item_input">-->
+			<!--<input type="text" class="textbox" name="end_time" id="end_time" value="{$vo.end_time}" onfocus="this.blur(); return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');" />-->
+			<!--<input type="button" class="button" id="btn_end_time" value="{%SELECT_TIME}" onclick="return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');" />	-->
+			<!--<input type="button" class="button" value="{%CLEAR_TIME}" onclick="$('#end_time').val('');" />-->
+			<!--<span class='tip_span'>[{%NO_TIME_SET_TIP}]</span>-->
+		<!--</td>-->
+	<!--</tr>-->
+	
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="id" value="{$vo.id}" />
+            <input type="hidden" name="ios_device_tokens" value="" />
+            <input type="hidden" name="android_device_tokens" value=""/>
+            <input type="hidden" name="pusher" value="{$vo.pusher}" />
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="MsgBroadcast" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="update" />
+			<!--隐藏元素-->
+            <if condition="$is_eidt">
+			<input type="submit" class="button" value="保存" />
+            </if>
+            <if condition="!$is_edit">
+            <input type="submit" class="button" value="新建" />
+            </if>
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

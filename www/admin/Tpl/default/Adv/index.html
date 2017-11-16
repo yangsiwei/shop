@@ -1,0 +1,80 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<PHP>
+function get_city_name_adv($city_id)
+{
+	if($city_id==0)
+	{
+		return "全国显示";
+	}
+	else
+	{
+		return get_city_name($city_id);
+	}
+}
+function get_group_name($group,$adv)
+{
+	return $adv['group_name'];
+}
+</PHP>
+<script type="text/javascript">
+	var webadv_cfg_json = {$webadv_cfg_json};
+	var group_selected = '{:strim($_REQUEST['group'])}';
+</script>
+<load href='__TMPL__Common/js/webadv_cfg.js' />
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%ADD}" onclick="add();" />
+	<input type="button" class="button" value="{%FOREVERDEL}" onclick="foreverdel();" />
+</div>
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		名称：<input type="text" class="textbox" name="name" value="{:strim($_REQUEST['name'])}" />
+		城市：
+		<select name="city_id">
+			<option value="0" <if condition="intval($_REQUEST['city_id']) eq 0">selected="selected"</if>>全国显示</option>
+			<foreach name="city_list" item="city_item">
+				<option value="{$city_item.id}" <if condition="$city_item['pid'] eq 0">disabled="disabled"</if> <if condition="intval($_REQUEST['city_id']) eq $city_item['id']">selected="selected"</if>>{$city_item.title_show}</option>
+			</foreach>
+		</select>
+		页面：
+		<select name="page_module">
+			<option value="" <if condition="empty($_REQUEST['page_module'])">selected="selected"</if>>所有</option>
+			<foreach name="webadv_cfg" key="key" item="page">
+				<option value="{$key}" <if condition="$_REQUEST['page_module'] eq $key">selected="selected"</if>>{$page.page_name}</option>
+			</foreach>
+		</select>
+		分组：
+		<select name="group">
+		
+		</select>
+		<input type="hidden" value="Adv" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+</div>
+
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="adv" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+	,name:广告名称:edit
+	,page_name:所在页面
+	,group|get_group_name=$adv:分组
+	,is_effect|get_is_effect=$adv['id']:{%IS_EFFECT}
+	,sort|get_sort=$adv['id']:{%SORT}" 
+	actionlist="edit:{%EDIT}, foreverdel:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$show_page}</div>
+</div>
+<include file="Public:footer" />

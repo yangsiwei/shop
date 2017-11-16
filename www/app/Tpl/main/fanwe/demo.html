@@ -1,0 +1,114 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/lazyload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/demo.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/demo.js";
+?>
+{include file="inc/header.html"} 
+<div class="blank"></div>
+<div class="{function name="load_wrap" t=$wrap_type}" style="height:1500px;">
+	示例包含了广告位调用,insert模式,简易前端框架fanweUI.js的使用示例，包含按钮，下拉菜单select,多选框，文本框信息提示与信息确认的功能<br />
+	瀑布流
+
+	<div class="blank"></div>	
+
+	<a href="javascript:$.showSuccess('abc');">{lang v="test1"}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="{url r="index" a="index#pin"}">瀑布流测试页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	<div class="blank"></div>
+	复选框：
+	<label class="ui-checkbox" rel="common_cbo"><input type="checkbox" name="cbo1" value="1" />复选框1</label>
+	<label class="ui-checkbox" rel="common_cbo"><input type="checkbox" name="cbo2" value="1" checked="checked" />复选框2</label>
+	<div class="blank"></div>
+	
+	单选框：
+	<label class="ui-radiobox" rel="common_rdo">
+		<input type="radio" value="1" name="rdo" checked="checked"  />
+		模拟选项1
+	</label>	
+	<label class="ui-radiobox" rel="common_rdo">
+		<input type="radio" value="2" name="rdo"  />
+		模拟选项2
+	</label>	
+	<div class="blank"></div>
+	按钮:
+
+	<button class="ui-button" rel="orange">橙色按钮</button>
+	<button class="ui-button noform" rel="orange" type="submit">橙色提交空表单按钮</button>
+	<button class="ui-button" rel="blue">蓝色按钮</button>
+	<button class="ui-button" rel="light">白色大按钮</button>
+	<button class="ui-button" rel="white">白色小按钮</button>
+	<button class="ui-button" rel="disabled">禁用按钮,仍会响应button的click事件,用脚本自行禁用</button>
+
+	<div class="blank"></div>
+	
+	<a href="javascript:void(0);" id="uploader">多图上传测试</a>
+	
+	<div class="blank"></div>
+	评分星级
+	<div class="blank"></div>
+	<input name="demostar" class="ui-starbar" id="demostar_ipt" value="2.65"  />						
+	<input type="button" id="demostar" value="demostar" />	
+	<div id="starcontent"></div>
+	<div class="blank"></div>					
+	带兼容IE的placeholder的输入框带高光描边： <input type="text" class="ui-textbox" holder="测试的holder" />
+	<div class="blank"></div>
+	带兼容IE的placeholder的文本域带高光描边： 
+	<textarea class="ui-textbox" holder="文本域的holder"></textarea>
+	<div class="blank"></div>
+	<div style="margin:20px; border:solid 1px #ccc;">
+		测试的表单(有值直接提交，无值响就表单的submit事件(展示重写的confirm:$.showConfirm))：<br />
+		<form name="testform" action="{url r="demo"}" method="get">
+			表单字段1 <input type="text" name="test1" id="test1" value="1" class="ui-textbox" holder="test1" />
+			<div class="blank"></div>
+			<button class="ui-button testformbtn" rel="orange" type="submit">提交</button>
+			<button class="ui-button" rel="blue" type="reset">重置</button>
+		</form>
+	</div>
+	<div class="blank"></div>
+	无样式的select: 
+	<select name="testselect" class="ui-select">
+		<option value="0">选项1</option>
+		<option value="0">选项2</option>
+		<option value="0">选项3</option>
+		<option value="0">选项4</option>
+		<option value="0">选项5</option>
+		<option value="0">选项66666</option>
+	</select>
+	<div class="blank"></div>
+	以下是图片延时加载的示例
+	<div class="blank"></div>
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+	<img src="{$APP_ROOT}/demo_img.php?{function name="rand" b=1000000 e=9999999}" lazy="true" /><br />
+
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

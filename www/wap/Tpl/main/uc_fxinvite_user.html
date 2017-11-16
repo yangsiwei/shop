@@ -1,0 +1,52 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/public.css";		
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_fxinvite_user.css";	
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/fastclick.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+?>
+{include file="inc/header_title_home.html"}
+<div class="wrap">
+	<div class="content">
+		{if $data.amount_data}
+		<div class="title-list">
+			<p><!-- 用户名 --></p>
+			<p>今日充值</p>
+			<p>今日推广奖</p>
+			<p>累计推广奖</p>
+		</div>
+		{foreach from="$data.amount_data" item="ad"}
+		<div class="user-wrap">
+			<div class="user-box user-item">
+				<a style="color:#fff;" href="{url a="index" r="anno_user_center#index" p="lucky_user_id=$ad.uid"}">
+					<img src="{if $ad.user_logo}{$ad.user_logo}{else}{$data.no_user_logo}{/if}">
+					<p>{$ad.user_name}</p>
+				</a>
+			</div>
+			<!-- 今日充值 -->
+			<p class="user-item">{$ad.today_money}</p>
+			<!-- 今日推广奖 -->
+			<p class="user-item">{$ad.order_number}</p>
+			<!-- 累计推广奖 -->
+			<p class="user-item">{$ad.amount_money}</p>
+		</div>
+		{/foreach}
+		{/if}
+	</div>
+</div>
+{include file="inc/footer_index.html"}

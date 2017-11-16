@@ -1,0 +1,76 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<!-- <load href='__TMPL__Common/js/fx_salary.js' /> -->
+<div class="main">
+<div class="main_title">{$title_name}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	
+</div>
+<div class="blank5"></div>
+<form name="edit" action="{:U('edit')}" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	
+	
+	<tr>
+		<td class="item_title">白银会员:</td>
+		<td><input type="text" name="silver_money" value="{$res.silver_money}">需要累计消费多少元</td>
+		
+	</tr>
+	
+	<tr>
+		<td class="item_title">黄金会员:</td>
+		<td>
+		<input type="text" name="gold_person" value="{$res.gold_person}">线下一级会员的人数
+		<input type="text" name="gold_money" value="{$res.gold_money}">线下一级会员累计充值金额
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">钻石会员:</td>
+		<td>
+		<input type="text" name="jewel_person" value="{$res.jewel_person}">线下两级会员总人数
+		<input type="text" name="jewel_money" value="{$res.jewel_money}">线下两级会员累计充值金额
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">管理奖获得条件:</td>
+		<td>
+		<input type="text" name="admin_person" value="{$res.admin_person}">线下三级会员总人数
+		<input type="text" name="admin_money" value="{$res.admin_money}">线下三级会员累计充值金额
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">首冲一百赠送金额:</td>
+		<td><input type="text" name="hundred" value="{$res.hundred}">首冲一百赠送金额</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">首冲一千赠送金额:</td>
+		<td><input type="text" name="thousand" value="{$res.thousand}">首冲一千赠送金额</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">日常充值赠送比例:</td>
+		<td><input type="text" name="usual_day" value="{$res.usual_day}">日常充值赠送比例</td>
+	</tr>
+
+	<tr>
+		<td class="item_title"></td>
+		<td> <span style="color:#E82148;">注意：日常充值赠送比例为小数模式，10%可写为0.1</span> </td>
+	</tr>
+
+	<tr>
+		<td></td>
+		<td><input type="submit" value="确定"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

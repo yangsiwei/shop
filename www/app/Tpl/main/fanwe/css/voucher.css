@@ -1,0 +1,219 @@
+@CHARSET "UTF-8";
+
+.voucher_item{
+	display: inline-block;
+	vertical-align: top;
+	border: 6px solid #E5E5E5;
+	background: #fff;
+	width: 474px;
+	height: 188px;
+	margin:0 20px 18px 0;
+	position: relative;
+	color: #3C3C3C;
+}
+.voucher_item .voucher_bg{
+	width: 150px;
+	height: 160px;
+	position: absolute;
+	left: 14px;
+	top: 14px;
+	background:url(../images/evc-bg.png) no-repeat;
+}
+.voucher_item table{ width:100%;height:100%;}
+.voucher_item table td{ vertical-align:middle;text-align:center;}
+.voucher_info{
+	padding-left: 184px;
+	padding-right: 5px;
+	font-size: 14px;
+	position: relative;
+}
+.voucher_info .title{
+	font-size: 18px;
+	border-bottom: 1px dotted #ccc;
+	padding-top: 10px;
+	line-height: normal;
+	padding-bottom: 8px;
+	margin-bottom: 10px;
+	width: 285px;
+	overflow: hidden;
+}
+.voucher_info .title-info{
+	margin-right: 80px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.voucher_info .use-evc{
+	position: absolute;
+	right: 6px;
+	top: 8px;
+	background-color: #FFF0E9;
+	color: #F55732;
+	font-size: 12px;
+	border: 1px solid #FCB08E;
+	border-radius: 3px;
+	height: 16px;
+	padding: 4px 10px 3px;
+	text-decoration: none;
+	line-height: normal;
+}
+.evc-ico{
+	background:url(../images/evc-ico.png) no-repeat;
+}
+.used-ico{
+	width: 111px;
+	height: 57px;
+	background-position:0 -128px;
+}
+.out-ico{
+	width: 111px;
+	height: 57px;
+	background-position:0 -192px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 10;
+}
+.voucher_info .used-ico{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 10;
+}
+.voucher_info .evc-txt{
+	line-height: 1.8;
+}
+.bonus_name{ font-size:14px; font-family:"微软雅黑"; font-weight:bolder; height:26px; line-height:26px; color:yellow;}
+.uc_info_box{
+	padding: 10px 20px;
+	border:1px solid #ddd;
+}
+.evc-nav{
+	height:40px;
+}
+.evc-tab{
+	line-height: 35px;
+	font-size: 14px;
+	white-space: nowrap;
+}
+.evc-tab a{
+	color: #3C3C3C;
+}
+.evc-tab a:hover{
+	text-decoration:none;
+}
+.evc-tab a.current{
+	color:@main_color;
+}
+.evc-tab .mid-line{
+	color: #DDDDDD;
+	margin: 0 4px;
+}
+.evc-num-ico{
+	display: inline-block;
+	vertical-align: middle;
+	height: 61px;
+	width:37px;
+	background-position:0 0;
+	background-repeat:no-repeat;
+}
+.evc-num-0{
+	background-image:url(../images/evc-0.png);
+}
+.evc-num-1{
+	background-image:url(../images/evc-1.png);
+	width:30px;
+	background-position:0 1px;
+}
+.evc-num-2{
+	background-image:url(../images/evc-2.png);
+	width:35px;
+}
+.evc-num-3{
+	background-image:url(../images/evc-3.png);
+}
+.evc-num-4{
+	background-image:url(../images/evc-4.png);
+	background-position:0 2px;
+}
+.evc-num-5{
+	background-image:url(../images/evc-5.png);
+	background-position:0 2px;
+}
+.evc-num-6{
+	background-image:url(../images/evc-6.png);
+}
+.evc-num-7{
+	background-image:url(../images/evc-7.png);
+	width:30px;
+	background-position:0 2px;
+}
+.evc-num-8{
+	background-image:url(../images/evc-8.png);
+}
+.evc-num-9{
+	background-image:url(../images/evc-9.png);
+}
+
+.evc-num-11{
+	background-image:url(../images/evc-11.png);
+}
+.evc-rule{
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+.evc-rule-hd{
+	position: relative;
+	height: 38px;
+	border-bottom:2px solid #e5e5e5;
+}
+.evc-rule-hd .title{
+	float: left;
+	color: #3c3c3c;
+	font-size: 22px;
+	font-weight: bold;
+	border-bottom: 2px solid #DA3651;
+	position: relative;
+	z-index: 2;
+	padding: 1px 0;
+}
+.evc-rule-hd .fold-btn{
+	position: absolute;
+	right: 15px;
+	top: 14px;
+	color: #3399ff;
+	cursor: pointer;
+}
+.evc-rule-hd .fold-btn-up{
+	display:none;
+}
+.evc-rule-info{
+	display: none;
+	background: url(../images/evc-rule.png) no-repeat;
+	width: 994px;
+	height: 313px;
+	margin: 26px auto;
+}
+.panel .input-wrap{
+	width:366px;
+}
+.panel .fanwe-ui-holder{
+	*left:110px !important;
+}
+.panel .ui-textbox{
+	display:block;
+	width: 364px;
+	padding: 12px 0;
+	font-size: 24px;
+	text-align: center;
+	border-radius: 3px;
+	margin: 0 auto;
+}
+.panel .btn{
+	display: block;
+	width: 152px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 20px;
+	margin: 0 auto;
+}

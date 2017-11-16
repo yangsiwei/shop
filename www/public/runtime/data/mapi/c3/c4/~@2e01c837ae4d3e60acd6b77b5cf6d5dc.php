@@ -1,0 +1,3 @@
+<?php
+//000000000300a:1:{i:0;a:4:{i:0;a:6:{s:2:"id";s:2:"80";s:4:"name";s:12:"所有产品";s:9:"icon_name";s:3:"";s:5:"color";s:7:"#d93a56";s:4:"data";a:1:{s:0:"";N;}s:3:"ctl";s:4:"cate";}i:1;a:6:{s:2:"id";s:2:"82";s:4:"name";s:9:"竞技场";s:9:"icon_name";s:3:"";s:5:"color";s:7:"#197b30";s:4:"data";a:1:{s:0:"";N;}s:3:"ctl";s:4:"more";}i:2;a:6:{s:2:"id";s:2:"86";s:4:"name";s:10:"晒单show";s:9:"icon_name";s:8:"&#58930;";s:5:"color";s:7:"#f7941d";s:4:"data";a:1:{s:0:"";N;}s:3:"ctl";s:5:"share";}i:3;a:6:{s:2:"id";s:2:"87";s:4:"name";s:9:"VIP专区";s:9:"icon_name";s:3:"";s:5:"color";s:7:"#00aeef";s:4:"data";a:1:{s:0:"";N;}s:3:"ctl";s:8:"duobaosh";}}}
+?>
